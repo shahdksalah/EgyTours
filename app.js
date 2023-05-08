@@ -7,4 +7,4 @@ app.get('/',(req,res)=>{
 });
 app.listen(8080);
 
-app.use(express.static(path.join(__dirname,'public'))); 
+app.use(express.static(path.join(__dirname,'public')));  //All static assets in the public folder

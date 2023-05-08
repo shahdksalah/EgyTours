@@ -1,0 +1,210 @@
+html{
+    height:100%;
+}
+body{
+    position:relative;
+    margin:0;
+    min-height:100%;
+}  
+
+.myHeader{
+    height:100px;
+    background:transparent;
+}
+
+.logoHead{
+    display: inline-block;
+    margin:13px;
+}
+
+.topnav {
+    overflow: hidden;
+    background: transparent;
+    float: right;
+    width:50%;
+}
+.topnav a {
+    float: right;
+    display: block;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-top: 3%;
+    margin-left: 20px;
+    position: relative;
+    right: 40px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    color:rgb(214, 53, 17);
+    background-color: transparent;
+}
+.topnav input{
+    border-radius: 15px;
+    border: none;
+    position: absolute;
+    right:10px;
+    margin-top:55px;
+    font-size: 17px;
+    width:360px;
+    height:25px;
+}
+.topnav input:focus{
+    outline: none;
+    border: none;
+}
+.topnav #searchbar
+{
+    float: right;
+    display: block;
+    color: grey;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin-top:-3.5%;
+    position: relative;
+    right: 200px;
+    margin-right:12%;
+    margin-left:25%;
+}
+.topnav button{
+    float:right;
+    position: relative;
+    margin-top:2%;
+    right:3%;
+    width: 80px;
+    height:30px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(62, 49, 36);
+    font-weight: bold;
+}
+.topnav button:hover{
+    background-color: rgb(214, 53, 17);
+    color: white;
+    cursor: pointer;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height:70px;
+    background-color: rgb(54, 36, 27);
+    z-index: 1000;
+    transition: 0.5s;
+    color:white;
+}
+.sticky+.bgVisit{
+    padding:102;
+}
+
+.sticky a:hover{
+    color:rgb(177, 165, 109);
+}
+
+.sticky .topnav{
+    margin-top:0.5%;
+}
+
+.sticky button:hover{
+    background-color:rgb(177, 165, 109);
+    color:rgb(54, 36, 27);
+}
+
+footer{
+    position:relative;
+    bottom:0%;
+    left: 0%;
+    right:0%;
+    background-color: #36241b;
+    height: 250px;
+    display: block;
+}
+.info{
+    display:flex;
+    color:white;
+    justify-content: center;
+}
+.info a{
+    text-decoration: none;
+    color:white;
+    cursor: pointer;
+}
+.info ul{
+    list-style-type: none;
+    text-align: center;
+    padding-left: 0;
+    
+}
+.col{
+    margin:1% 5% 1% 5%;
+}
+.titles{
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    text-align: center;
+}
+.lia{
+    text-decoration:none;
+    font-size: 12px;
+}
+.bottom{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+.botright{
+    flex:37%;
+}
+.botleft{
+    flex:63%;
+    padding-top:20px;
+    text-align: right;
+}
+.ficons i{
+    color:white;
+    margin-right:3%;
+    margin-top:2%;
+    font-size: 20px;
+}
+.copyright{
+    display: flex;
+}
+
+
+#tmail::-webkit-input-placeholder{
+    color:#a78c4c;
+}
+#tmail{
+    border:3px solid #a78c4c;
+    padding:10px;
+    background-color: #36241b;
+    color:#a78c4c;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:20px;
+    width:350px;
+}
+#subscribe{
+    padding:10px;
+    border:0;
+    color: white;
+    text-shadow:15px ;
+    font-size: 17px;
+    background-color:#a78c4c;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:20px;
+    position:relative;
+    bottom:0px;
+    right:55px;
+    top:1px;
+    height:42px;
+    width:160px;
+    cursor: pointer;
+}
+#subscribe:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}

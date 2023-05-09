@@ -3,7 +3,9 @@ const app=express();
 const mongoose=require('mongoose');
 
 const dbURI='mongodb+srv://mennaemam:menna-2003@project.mdtkzue.mongodb.net/';
-mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedToplogy:true});
+mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedToplogy:true})
+.then((result)=>console.log('connected to db'))
+.catch((err)=>console.log('error'))
 
 app.set('view engine','ejs');
 let path=require('path');

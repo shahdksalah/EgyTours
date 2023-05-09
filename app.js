@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname,'public')));  //All static assets in 
 
 const dburl ='mongodb+srv://newuser:newuser123@cluster0.7xhafht.mongodb.net/Tours?retryWrites=true&w=majority';
 mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
-.then((result) => app.listen(8080))
+.then((result) => app.listen(8000))
 .catch((err) => console.log(err))
 
 app.use(express.urlencoded({ extended: true }));
@@ -21,7 +21,7 @@ app.get('/',(req,res)=>{
 });
 
 app.post('/success', function(req, res) {
-    const userdetails = new User({
+    const userdetails = new {User}({
         Username: req.body.uname,
         Email: req.body.email,
         PhoneNumber: req.body.number,
@@ -40,5 +40,3 @@ app.post('/success', function(req, res) {
     
     
   });
-
-  app.listen(8000);

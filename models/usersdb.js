@@ -8,23 +8,33 @@ app.use(express.urlencoded({extended:true}));
 const userSchema = new Schema ({
     Username:{
         type:String,
-        required:true
+        unique:true,
+        trim:true,
+        required:true,
+        min:4,
+        max:15
     },
     Email:{
         type:String,
-        required:true
+        required:true,
+        trim:true
     },
     PhoneNumber:{
         type:Number,
-        required:true
+        required:true,
+        trim:true
     },
     Password:{
         type:String,
-        required:true
+        required:true,
+        minLength:8,
+        maxLength:16,
+        trim:true
     },
     ConfPassword:{
         type:String,
-        required:true
+        required:true,
+        trim:true
     }
 
 },{timestamp:true});

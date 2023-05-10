@@ -1,8 +1,8 @@
 const express=require('express');
 const app=express();
 const mongoose=require('mongoose');
-var bodyParser=require("body-parser");
-const {User}= require('./models/usersdb.js');
+
+const User= require('./models/usersdb.js');
 const PORT=8080;
 const indexRoute=require('./routes/Indexroute.js');
 
@@ -19,28 +19,29 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 .catch((err) => console.log(err))
 
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.use("/",indexRoute);
 
 
-app.post('/', function(r, response) {
-    const userdetails = new {User}({
-        Username: r.body.uname,
-        Email: r.body.email,
-        PhoneNumber: r.body.number,
-        Age: r.body.age,
-        Password: r.body.psw,
-        ConfPassword: r.body.confpsw,
+app.post('/success', (req, res) =>  {
+  console.log("entered");
+    const userdetails = new User({
+        Username: req.body.uname,
+        Email: req.body.email,
+        PhoneNumber: req.body.number,
+        Password: req.body.psw,
+        ConfPassword: req.body.confpsw,
       });
-   
     userdetails.save()
     .then((result)=>
     {
         console.log("saved");
-        response.redirect('/');
+        res.redirect('/');
     })
-    .catch((err)=>console.log(err));
-    
-    
+    .catch((err) =>
+    {
+      console.log(err);
+    });
   });
+    

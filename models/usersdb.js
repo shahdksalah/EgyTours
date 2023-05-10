@@ -3,7 +3,8 @@ const app = express()
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
+
 
 const userSchema = new Schema ({
     Username:{
@@ -15,10 +16,6 @@ const userSchema = new Schema ({
         required:true
     },
     PhoneNumber:{
-        type:Number,
-        required:true
-    },
-    Age:{
         type:Number,
         required:true
     },

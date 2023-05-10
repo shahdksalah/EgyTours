@@ -16,19 +16,22 @@ function proceed()
     var myNumber=document.querySelector('#number').value;
     var mypass=document.querySelector('#password').value;
     var myconfpass=document.querySelector('#password-confirmation').value;
+    console.log(myName);
     var obj={
-        name:myName,
+        unam:myName,
         email:myEmail,
         number:myNumber,
-        password:mypass,
-        confirmpass:myconfpass
+        psw:mypass,
+        confpsw:myconfpass
     };
-
     fetch('/success',{
         method:"POST",
         headers:{
-           "Content-type":"apllication/json"
+           "Content-type":"application/json"
         },
+     
         body:JSON.stringify(obj)
     });
+    console.log(myName);
 }
+

@@ -3,8 +3,7 @@ const app = express()
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-app.use(express.urlencoded({ extended: true }));
-
+app.use(express.urlencoded({extended:true}));
 
 const userSchema = new Schema ({
     Username:{
@@ -26,7 +25,7 @@ const userSchema = new Schema ({
     ConfPassword:{
         type:String,
         required:true
-    },
+    }
 
 },{timestamp:true});
 

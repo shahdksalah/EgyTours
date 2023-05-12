@@ -1,0 +1,35 @@
+#updateInfo{
+    display:none;
+    margin-left:-200px;
+}
+#Edit{
+    margin-left:4%;
+}
+#submit,#reset,.cancelbtn,.deletebtn{
+    background-color: rgb(54, 36, 27);
+color: white;
+border: none;
+cursor: pointer;
+width: 10%;
+border-radius: 10px;
+margin-left:0px;
+}
+.cancelbtn,.deletebtn{
+    width: 20%;
+}
+#myUL{
+    width:600px;
+}
+#c{
+    display:none;
+    margin-left:30%;
+    position:absolute;
+    top:20%;
+}
+.Right{
+    width:60%;
+}
+.view{
+    margin:60px;
+    margin-left:-200px;
+}

@@ -9,7 +9,7 @@ function hide(id){
     x.style.display='none';
 }
 
-function proceed()
+/*function proceed()
 {
     var myName=document.querySelector('#uname').value;
     var myEmail=document.querySelector('#femail').value;
@@ -33,5 +33,5 @@ function proceed()
         body:JSON.stringify(obj)
     });
     console.log(myName);
-}
+}*/
 

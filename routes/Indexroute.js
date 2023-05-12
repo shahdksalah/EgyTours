@@ -3,7 +3,10 @@ const router=express.Router();
 const User= require('../models/usersdb.js');
 const mongoose=require('mongoose');
 var db = mongoose.connection;
+const bodyParser = require('body-parser');
+const{check,validationResult}=require('express-validator');
 
+const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
 router.get('/',function(req,res)
 {

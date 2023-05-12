@@ -1,3 +1,7 @@
+const express = require('express')
+const app = express()
+const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 app.use(express.urlencoded({extended:true}));
 

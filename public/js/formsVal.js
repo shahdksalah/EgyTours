@@ -1,3 +1,4 @@
+let validated=false;
 class validateForm{
     constructor(form,fields){
         this.form=form;
@@ -67,6 +68,7 @@ class validateForm{
     setStatus(field,message,status){
         const errorMessage=field.parentElement.querySelector('.error-message');
         if(status==="success"){
+            validated=true;
             if(errorMessage){
                 errorMessage.innerText="";
             }
@@ -79,19 +81,27 @@ class validateForm{
     }
 }
 
-
+function submit(){
 const form=document.querySelector('.form');
 const fields=["uname","femail","number","password","password_confirmation"];
 const validator=new validateForm(form,fields);
 validator.initialize();
+}
 
-const form1=document.querySelector('.sform');
+function correct(){
+    submit();
+    if(validated===true){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+
+/*const form1=document.querySelector('.form');
 const fields1=["username","password1"];
 const signin =new validateForm(form1,fields1);
-signin.initialize();
+signin.initialize();*/
 
-
-const form2=document.querySelector('.form');
-const fields2=["uname","email","number","password","password_confirmation"];
-const adminAddUser = new validateForm(form2,fields2);
-adminAddUser.initialize();

@@ -11,8 +11,8 @@ const userSchema = new Schema ({
         unique:true,
         trim:true,
         required:true,
-        min:4,
-        max:15
+        //min:4,
+        //max:15
     },
     Email:{
         type:String,
@@ -27,8 +27,8 @@ const userSchema = new Schema ({
     Password:{
         type:String,
         required:true,
-        minLength:8,
-        maxLength:16,
+        //minLength:8,
+        //maxLength:16,
         trim:true
     },
     ConfPassword:{

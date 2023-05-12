@@ -1,4 +1,4 @@
-let validated=false;
+
 class validateForm{
     constructor(form,fields){
         this.form=form;
@@ -88,15 +88,11 @@ const validator=new validateForm(form,fields);
 validator.initialize();
 }
 
-function correct(){
-    submit();
-    if(validated===true){
-        return true;
-    }
-    else{
-        return false;
-    }
+function close(){
+    document.getElementById("btn-close").style.display="none";
 }
+
+
 
 
 

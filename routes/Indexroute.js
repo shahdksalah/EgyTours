@@ -5,8 +5,9 @@ const mongoose=require('mongoose');
 var db = mongoose.connection;
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
-
+const Activity= require('../models/addActivitiesdb.js');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
+let path=require('path');
 
 router.get('/',function(req,res)
 {
@@ -66,14 +67,14 @@ router.post('/',urlencodedParser,[
   });
 
 
-  app.get('/AddActivity',function(req,res)
+  router.get('/AddActivity',function(req,res)
 {
     res.render("AddActivity");
 });
 
 
 
-app.post('/submit',(request, response) =>  {
+router.post('/submit',(request, response) =>  {
   console.log("entered");
       console.log(request.body);
       console.log(request.body.file);
@@ -94,11 +95,12 @@ app.post('/submit',(request, response) =>  {
 
       const file=request.files;
      const filepath= path.join(__dirname,'uploads',`${request.files}`);
-
+/*
      file.mv(filepath,err => {
       if(err) return response.status(500).send(err);
       console.log("success");
      })
+*/
     db.collection("activities").insertOne(activitydetails,(err,result)=>{
       if(err)
       {

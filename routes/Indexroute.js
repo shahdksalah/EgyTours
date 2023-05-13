@@ -35,6 +35,11 @@ router.get('/AddHotel',function(req,res)
     res.render("AddHotel");
 });
 
+router.get('/hotels',function(req,res)
+{
+    res.render("hotels");
+});
+
 module.exports=router;
 
 router.post('/',urlencodedParser,[

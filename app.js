@@ -5,7 +5,8 @@ const User= require('./models/usersdb.js');
 const PORT=8080;
 
 const indexRoute=require('./routes/Indexroute.js');
-//const addActivity=require('./routes/AddActivityRoute');
+//const addActivity=require('./routes/AddActivityRoute.js');
+//const addHotel=require('./routes/AddHotelRoute.js');
 
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
@@ -53,10 +54,19 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.use("/",indexRoute);
-app.use("/",indexRoute);
 app.use("/success",indexRoute);
 app.use("/food",indexRoute);
 app.use("/activities",indexRoute);
+//app.use("/AddActivity", addActivity)
+//app.use("/AddHotel", addHotel);
+
+app.get("/AddActivity",(req,res)=>{
+  res.render("AddActivity");
+})
+
+app.get("/AddHotel", (req,res)=>{
+  res.render("AddHotel");
+})
 
 
 app.post('/submit',fileupload(),(request, response) =>  {

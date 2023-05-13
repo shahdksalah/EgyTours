@@ -71,20 +71,19 @@ app.get("/AddHotel", (req,res)=>{
 
 app.post('/submit',fileupload(),(request, response) =>  {
   console.log("entered");
-    const activitydetails = new Activity({
-        Name:request.body.Aname,
-        Type:request.body.Atype,
-        Picture:{
-          data:request.file,
-          contentType:'image/png'
-        },
-        BriefDes:request.body.Abrief,
-        DetailedDes:request.body.Adetails,
-        Plan:request.body.Aplan,
-        CancelDet:request.body.Acancel,
-        Duration:request.body.Atime,
-        PickupDet:request.body.Apickup,
-        AvailableDate:request.body.Adate
+
+  const errors=validationResult(request)
+  if(!errors.isEmpty()){
+      const alert=errors.array();
+      response.render('index',{alert});
+  }
+ else{
+    const userdetails = new User({
+        Username: request.body.unam,
+        Email: request.body.email,
+        PhoneNumber: request.body.number,
+        Password: request.body.psw,
+        ConfPassword: request.body.confpsw,
       });
       console.log(request.files);
     db.collection("activities").insertOne(activitydetails,(err,result)=>{

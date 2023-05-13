@@ -59,14 +59,16 @@ app.use("/food",indexRoute);
 app.use("/activities",indexRoute);
 app.use("/AddActivity",indexRoute);
 app.use("/AddHotel",indexRoute);
+app.use("/hotels",indexRoute);
 
-app.use("/AddActivity", indexRoute);
+
+//app.use("/AddActivity", indexRoute);
 app.use("submit",indexRoute);
 //app.use("/AddHotel", addHotel);
 
-app.get("/AddHotel", (req,res)=>{
-  res.render("AddHotel");
-})
+//app.get("/AddHotel", (req,res)=>{
+  //res.render("AddHotel");
+//})
 
 
 

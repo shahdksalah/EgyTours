@@ -6,6 +6,7 @@ var db = mongoose.connection;
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 
+
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
 router.get('/',function(req,res)
@@ -34,7 +35,18 @@ router.post('/',urlencodedParser,[
 
   check('email','Email is not valid')
   .isEmail()
-  .normalizeEmail()
+  .normalizeEmail(),
+  
+  check('number','Invalid phone number')
+  .isMobilePhone(),
+
+  check('psw','Invalid Password')
+  .exists()
+  .isLength({min:6}),
+
+  check('confpsw','Invalid Password')
+  .exists()
+  .isLength({min:6})
 
 ] ,(request, response) =>  {
   console.log("entered");
@@ -42,7 +54,6 @@ router.post('/',urlencodedParser,[
   const errors=validationResult(request)
   if(!errors.isEmpty()){
       const alert=errors.array();
-      response.render('index',{alert});
   }
  else{
     const userdetails = new User({

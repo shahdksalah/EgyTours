@@ -1,0 +1,80 @@
+.restaurant {
+    position: relative;
+    width: 300px;
+    padding:20px;
+    background-color: rgb(222, 221, 214);
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+  }
+
+.restaurant:hover{
+   background-color: rgb(194, 189, 176);
+}
+.restaurant img{
+   border-radius: 5px;
+}
+  
+.whole_menu{
+   overflow: auto;
+   width: 100%;	
+   display: flex;
+   gap: 20px;
+   padding-left: 20px;
+   padding-right: 20px;
+   margin-bottom: 2%;
+}
+.caption{
+   color: black;
+   text-align: left;
+   font-family: 'Times New Roman', Times, serif;
+   margin: 10px;
+   padding: 10px;
+}
+.photo img {
+   display: inline-block;
+   text-decoration: none;
+   text-align: center;
+   padding: 5px;
+   width: 300px;
+   height: 250px;
+   position: relative;
+   border-radius: 5px ;
+}
+.restaurant img:hover{
+   transform:scale(1.1);
+}
+.checked {
+   color: orange;
+}   
+.like-button{
+   position:absolute;
+   color: white;
+   font-size: 20px;
+   cursor: pointer;
+   border-radius: 10rem;
+   background-color: transparent;
+   border: transparent;
+   z-index: 2;
+   left: 90%;
+   bottom: 87%;
+}
+.like-button:hover{
+   color: rgb(193, 40, 40);
+}
+  
+.photo {
+   position: relative;
+}
+.ALL_MENUES{
+   display: block;
+}
+.section_header{
+   text-align: left;
+   font-family: 'Times New Roman', Times, serif;
+   margin: 5px;
+   padding: 5px;
+}
+body{
+   background-color: red;
+}

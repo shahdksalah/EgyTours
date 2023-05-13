@@ -13,6 +13,17 @@ router.get('/',function(req,res)
     res.render("index");
 });
 
+
+router.get('/food',function(req,res)
+{
+    res.render("food");
+});
+
+router.get('/activities',function(req,res)
+{
+    res.render("activities");
+});
+
 module.exports=router;
 
 router.post('/',urlencodedParser,[

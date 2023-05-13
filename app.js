@@ -3,11 +3,14 @@ const app=express();
 const mongoose=require('mongoose');
 const User= require('./models/usersdb.js');
 const PORT=8080;
+
 const indexRoute=require('./routes/Indexroute.js');
+//const addActivity=require('./routes/AddActivityRoute');
+
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
-const addActivity=require('./routes/AddActivityRoute');
+
 const Activity= require('./models/addActivitiesdb.js');
 var db = mongoose.connection;
 var multer=require('multer');
@@ -41,7 +44,7 @@ let path=require('path');
 
 
 app.use(express.static(path.join(__dirname,'public')));  //All static assets in the public folder
-
+console.log(__dirname);
 
 const dburl ='mongodb+srv://newuser:newuser123@cluster0.7xhafht.mongodb.net/Tours?retryWrites=true&w=majority';
 mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
@@ -52,10 +55,9 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 app.use("/",indexRoute);
 app.use("/",indexRoute);
 app.use("/success",indexRoute);
-app.use('/AddActivity',function(req,res)
-{
-    res.render("AddActivity");
-});
+app.use("/food",indexRoute);
+app.use("/activities",indexRoute);
+
 
 app.post('/submit',fileupload(),(request, response) =>  {
   console.log("entered");

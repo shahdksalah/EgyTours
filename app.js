@@ -3,9 +3,33 @@ const app=express();
 const mongoose=require('mongoose');
 const User= require('./models/usersdb.js');
 const PORT=8080;
+
 const indexRoute=require('./routes/Indexroute.js');
+//const addActivity=require('./routes/AddActivityRoute');
+
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
+const fs=require('fs');
+
+const Activity= require('./models/addActivitiesdb.js');
+var db = mongoose.connection;
+var multer=require('multer');
+const cors=require('cors');
+const fileupload=require("express-fileupload");
+
+app.use(cors());
+app.use(fileupload());
+
+const storage = multer.diskStorage({
+  destination:function(req,file,callback){
+    cb(null,__dirname+'uploads');
+  },
+  filename: function(req,file,cb){
+    cb(null,Date.now()+'--'+file.originalname);
+  }
+});
+
+const uploads = multer({storage:storage});
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
@@ -20,7 +44,7 @@ let path=require('path');
 
 
 app.use(express.static(path.join(__dirname,'public')));  //All static assets in the public folder
-
+console.log(__dirname);
 
 const dburl ='mongodb+srv://newuser:newuser123@cluster0.7xhafht.mongodb.net/Tours?retryWrites=true&w=majority';
 mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
@@ -29,25 +53,19 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.use("/",indexRoute);
+app.use("/",indexRoute);
+app.use("/success",indexRoute);
+app.use("/food",indexRoute);
+app.use("/activities",indexRoute);
 
-app.post('/',urlencodedParser,[
-  check('unam','Username must be 3+ characters long')
-  .exists()
-  .isLength({min:3})
-  ,
 
-  check('email','Email is not valid')
-  .isEmail()
-  .normalizeEmail()
-
-] ,(request, response) =>  {
+app.post('/submit',fileupload(),(request, response) =>  {
   console.log("entered");
 
   const errors=validationResult(request)
   if(!errors.isEmpty()){
       const alert=errors.array();
       response.render('index',{alert});
-      //document.getElementById("signup").style.display="block";
   }
  else{
     const userdetails = new User({
@@ -57,18 +75,19 @@ app.post('/',urlencodedParser,[
         Password: request.body.psw,
         ConfPassword: request.body.confpsw,
       });
-    userdetails.save()
-    .then((result)=>
-    {
-        console.log("saved");
-       // response.redirect('/');
-    })
-    .catch((err) =>
-    {
-      console.log(err);
-    });
-  }
-  });
+      console.log(request.files);
+    db.collection("activities").insertOne(activitydetails,(err,result)=>{
+      if(err)
+      {
+       console.log(err);
+      }
+       console.log("saved");
+       response.redirect('/');
+
+    
+  })
+});
+
 
 
     

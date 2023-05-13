@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Activity</title>
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css/styleAddActivity.css">
+    <link rel="stylesheet" href="/css/styleEditActivities.css">
+</head>
+<body>
+    <script src="/js/AddActivityJS.js"></script>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+    <div class="h">
+        <div class="admin">ADMIN</div>
+    </div>
+    <div class="main-content">
+
+        <div class="nav" style="height:1500px;">
+            <button class ="btn1" onclick="location.href='AdminDashboard.html';">Home</button>
+            <button class ="btn1" onclick="drop()"> + Add </button>
+            <div id="dropdown">
+                <ul class="dropdown-list">
+                    <li><a href="addHotel.html">Hotels</a></li>
+                    <li><a href="AddActivity.html">Activites</a> </li>
+                </ul>
+            </div>
+            <button class ="btn1" onclick="drop2()"> + Edit</button>
+            <div id="dropdown2">
+                <ul class="dropdown-list">
+                    <li><a href="hotelsAdmin.html">Hotels</a></li>
+                    <li><a href="EditActivities.html">Activites</a> </li>
+                </ul>
+            </div>
+            <button class="btn1"  onclick="location.href='Users.html';">Users</button>
+            <button class ="btn1">Weekly Summary</button>
+        </div>
+
+        <script src="js/AdminDashboardJS.js"></script>
+
+    <div id="adding">
+        <h2><ins>Add Activity</ins></h2>
+        <h3>Name</h3>
+        <textarea id="ActName" rows="3" cols="60" name="Aname"></textarea>
+        <h3>Type</h3>
+        <textarea id="ActType" rows="2" cols="25" name="Atype"></textarea>
+        <h3>Images </h3>
+        <div><input type="file" id="image" name="image" multiple></div>
+        <h2><ins>Details:</ins></h2>
+        <h3>Brief Description: </h3>
+        <textarea id="Actbrief" rows="5" cols="60" name="Abrief"></textarea>
+        <h3>Detailed Description: </h3>
+        <textarea id="Actdetails" rows="10" cols="60" name="Adetails"></textarea>
+        <h3>Plan: </h3>
+        <textarea id="ActPlan" rows="6" cols="60" name="Aplan"></textarea>
+        <h2><ins>About the trip:</ins></h2>
+        <h3>Cancellation details: </h3>
+        <textarea id="ActCancel" rows="3" cols="60" name="Acancel"></textarea>
+        <h3>Duration: </h3>
+        <textarea id="ActTime" rows="2" cols="60" name="Atime"></textarea>
+        <h3>Pickup Details: </h3>
+        <textarea id="ActPickup" rows="4" cols="60" name="Apickup"></textarea>
+        <h3>Available dates: </h3>
+        <input type="date" name="Dates" id="date" name="Adate">
+        <span id="plus" onclick="addDate()"> + </span>
+        <h3>Reviews: </h3>
+        <input type="submit" name="submit" id="submit" onclick="submit()">
+        <button onclick="reset()" id="reset">Reset</button>
+    </div>
+    <script src="js/EditActivites.js"></script>
+</body>
+</html>

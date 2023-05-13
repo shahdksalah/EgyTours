@@ -1,0 +1,32 @@
+.first{
+    display: flex;
+    gap:20px;
+    padding-left:20px;
+    padding-right:10px;
+    margin-bottom:2%;
+}
+.btn{
+    padding:20px;
+    background-color: rgb(222, 221, 214);
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+    width:300px;
+}
+.btn img{
+    border-radius: 5px ;
+}
+.btn:hover{
+    background-color: rgb(194, 189, 176);
+}
+.btn img:hover{
+    transform:scale(1.1);
+}
+.head{
+    margin-left:2%;
+    color:rgb(54, 36, 27);
+}
+.rating i
+{
+    color:rgb(238, 203, 5);
+}

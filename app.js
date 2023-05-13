@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
 
-const Activity= require('./models/addActivitiesdb.js');
+
 var db = mongoose.connection;
 var multer=require('multer');
 const cors=require('cors');
@@ -60,12 +60,9 @@ app.use("/activities",indexRoute);
 app.use("/AddActivity",indexRoute);
 app.use("/AddHotel",indexRoute);
 
-//app.use("/AddActivity", addActivity)
+app.use("/AddActivity", indexRoute);
+app.use("submit",indexRoute);
 //app.use("/AddHotel", addHotel);
-
-app.get("/AddActivity",(req,res)=>{
-  res.render("AddActivity");
-})
 
 app.get("/AddHotel", (req,res)=>{
   res.render("AddHotel");

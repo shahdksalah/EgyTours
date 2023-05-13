@@ -57,7 +57,8 @@ app.use("/",indexRoute);
 app.use("/success",indexRoute);
 app.use("/food",indexRoute);
 app.use("/activities",indexRoute);
-//app.use("/AddActivity", addActivity)
+app.use("/AddActivity", indexRoute);
+app.use("submit",indexRoute);
 //app.use("/AddHotel", addHotel);
 
 app.get("/AddActivity",(req,res)=>{
@@ -93,10 +94,10 @@ app.post('/submit',fileupload(),(request, response) =>  {
       }
        console.log("saved");
        response.redirect('/');
-
+    })
+  }
     
-  })
-});
+  });
 
 
 

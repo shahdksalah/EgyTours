@@ -47,6 +47,7 @@ app.post('/',urlencodedParser,[
   if(!errors.isEmpty()){
       const alert=errors.array();
       response.render('index',{alert});
+      //document.getElementById("signup").style.display="block";
   }
  else{
     const userdetails = new User({

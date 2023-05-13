@@ -1,4 +1,3 @@
-
 class validateForm{
     constructor(form,fields){
         this.form=form;
@@ -6,11 +5,12 @@ class validateForm{
     }
     initialize(){
         this.validateOnSubmit();
+        return true;
     }
     validateOnSubmit(){
         let self=this;
         this.form.addEventListener('submit',Event=>{
-            Event.preventDefault();
+           // Event.preventDefault();
             self.fields.forEach(fields=>{
             const input=document.querySelector(`#${fields}`);
             self.validateFields(input);
@@ -53,7 +53,7 @@ class validateForm{
         else if(field.type === "number"){
             const x =/^[0-9]+$/;
             if(x.test(field.value)){
-                his.setStatus(field,null,"success");
+                this.setStatus(field,null,"success");
             }
             else{
                 this.setStatus(field,"Please enter numbers only", "error");
@@ -68,7 +68,6 @@ class validateForm{
     setStatus(field,message,status){
         const errorMessage=field.parentElement.querySelector('.error-message');
         if(status==="success"){
-            validated=true;
             if(errorMessage){
                 errorMessage.innerText="";
             }
@@ -81,23 +80,18 @@ class validateForm{
     }
 }
 
-function submit(){
-const form=document.querySelector('.form');
+
+/*const form=document.querySelector('.form');
 const fields=["uname","femail","number","password","password_confirmation"];
 const validator=new validateForm(form,fields);
-validator.initialize();
-}
+validator.initialize();*/
 
-function close(){
-    document.getElementById("btn-close").style.display="none";
-}
-
-
-
-
-
-/*const form1=document.querySelector('.form');
+const form1=document.querySelector('.sform');
 const fields1=["username","password1"];
 const signin =new validateForm(form1,fields1);
-signin.initialize();*/
+signin.initialize();
 
+/*const form2=document.querySelector('.form');
+const fields=["uname","femail","number","password","password-confirmation"];
+const adminAddUser = new validateForm(form2,fields);
+adminAddUser.initialize();*/

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Hotel</title>
+    <link rel="stylesheet" href="../css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="../css/styleAddHotel.css">
+</head>
+<body>
+    <div class="h">
+        <div class="admin">ADMIN</div>
+    </div>
+        
+        <div class="main-content">
+    
+            <%- include("partials/adminHeader.ejs") %>
+        
+        <div class="right">
+            <div id="container">
+                <div class="hotel">
+                    <div>
+                        <h2>Hotel Name</h2>
+                    </div>
+                    <div>
+                        <textarea name="hotelName" id="hotelName" cols="60" rows="3"></textarea>
+                    </div>
+
+                    <div>
+                        <h2>Location</h2>
+                    </div>
+                    <div>
+                        <textarea name="hotelName" id="hotelName" cols="60" rows="3"></textarea>
+                    </div>
+                    <div>
+                        <h2>Images</h2>
+                    </div>
+                    <div id="images">
+                        <label for="inputTag" id="lab" >
+                            <div id="upload">
+                               Upload Images
+                            </div>
+                              <input type="file" id="inputTag" class="addimg" >
+                              <div>
+                                <label id="chosenfiles"></label>
+                              </div>
+                        </label>
+                    </div>
+                </div>
+                    <div>
+                        <h2>About</h2>
+                    </div>
+                    <div>
+                        <textarea name="hotelName" id="hotelName" cols="150" rows="15"></textarea>
+                    </div>
+
+                    <div>
+                        <h2>Property Amenities</h2>
+                    </div>
+                    <div id="items">
+                        <div class="item">
+                            <div class="icon">
+                                <label for="ic"  >
+                                    <div class="add">
+                                    Add Icon
+                                    </div>
+                                    <input type="file" id="ic"  class="i" >
+                                    <div>
+                                        <label class="chosenicon"></label>
+                                    </div>
+                                </label>
+                            </div>
+                            <textarea name="amenities" id="amenities" cols="30" rows="2"></textarea>
+                            <button class="plus">+</button>
+                        </div>
+
+                        <div>
+                            <h2>Room Features</h2>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <label for="ic2"  >
+                                    <div class="add">
+                                    Add Icon
+                                    </div>
+                                    <input type="file" id="ic2"  class="i" >
+                                    <div>
+                                        <label class="chosenicon"></label>
+                                    </div>
+                                </label>
+                            </div>
+                            <textarea name="rfeatures" id="rfeatures" cols="30" rows="2"></textarea>
+                            <button class="plus">+</button>
+                        </div>
+
+                        <div>
+                            <h2>Room Types</h2>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <label for="ic3"  >
+                                    <div class="add">
+                                    Add Icon
+                                    </div>
+                                    <input type="file" id="ic3"  class="i" >
+                                    <div>
+                                        <label class="chosenicon"></label>
+                                    </div>
+                                </label>
+                            </div>
+                            <textarea name="rfeatures" id="rfeatures" cols="30" rows="2"></textarea>
+                            <button class="plus">+</button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Available dates: </h3>
+                        <input type="date" name="Dates" id="date">
+                        <span id="plus"> <button onclick="addDate()"> + </button></span>
+                    </div>
+                </div>
+             <div  id="buttons">
+                <span>
+                    <button>Submit</button>
+                    <button>Reset</button>
+                </span>
+            </div>
+        </div>
+    </div>    
+    <script src="../scripts/admin/addHotelJS.js"></script>
+</body>
+</html>

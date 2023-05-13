@@ -35,6 +35,11 @@ const userSchema = new Schema ({
         type:String,
         required:true,
         trim:true
+    },
+    Type:{
+        type:String,
+        required:true,
+        trim:true
     }
 
 },{timestamp:true});

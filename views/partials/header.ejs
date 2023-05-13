@@ -96,6 +96,17 @@
             <input id="password-confirmation" type="password" placeholder="Repeat Password" name="confpsw">
             <span class="error-message"></span>
             </div>
+
+            <div class="input-group">
+                <input type="radio" id="admin" name="type" value="Admin"> 
+                <label for="admin">Admin</label>
+            </div>
+
+            <div class="input-group">
+                <input type="radio" id="user" name="type" value="User" checked="true">
+                <label for="user">User</label>
+            </div>
+            <span id="error"></span>
         
             <button type="submit" class="subutton" id="sub">Sign Up</button>
         </div>

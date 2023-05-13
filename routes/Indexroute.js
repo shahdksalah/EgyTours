@@ -5,6 +5,7 @@ const mongoose=require('mongoose');
 var db = mongoose.connection;
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
+const validate=require('../public/js/formsVal');
 
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
@@ -52,9 +53,12 @@ router.post('/',urlencodedParser,[
   console.log("entered");
 
   const errors=validationResult(request)
+  console.log(validate.register)
   if(!errors.isEmpty()){
       const alert=errors.array();
   }
+  else if(validate.register==false)
+     console.log("error");
  else{
     const userdetails = new User({
         Username: request.body.unam,
@@ -62,6 +66,7 @@ router.post('/',urlencodedParser,[
         PhoneNumber: request.body.number,
         Password: request.body.psw,
         ConfPassword: request.body.confpsw,
+        Type:request.body.type,
       });
       db.collection("users").insertOne(userdetails,(err,result)=>{
         if(err)

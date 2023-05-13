@@ -1,3 +1,5 @@
+let register=true;
+let type="user";
 class validateForm{
     constructor(form,fields){
         this.form=form;
@@ -5,7 +7,6 @@ class validateForm{
     }
     initialize(){
         this.validateOnSubmit();
-        return true;
     }
     validateOnSubmit(){
         let self=this;
@@ -72,6 +73,11 @@ class validateForm{
                 this.setStatus(field,"Please enter numbers only", "error");
             }
         }
+        else if(field.id==="admin"){
+            let radioA=document.getElementById('admin');
+            if(radioA.checked)
+              type="admin";
+        }
         else{
             this.setStatus(field,null,"success");
         }
@@ -88,6 +94,7 @@ class validateForm{
             return true;
         }
         if(status==="error"){
+            register=false;
             field.parentElement.querySelector('.error-message').innerText=message;
             field.classList.add('input-error');
             return false;
@@ -100,13 +107,23 @@ class validateForm{
 const fields=["uname","femail","number","password","password_confirmation"];
 const validator=new validateForm(form,fields);
 validator.initialize();*/
-
-const form1=document.querySelector('.sform');
+if (typeof document !== 'undefined'){
+/*const form1=document.querySelector('.sform');
 const fields1=["username","password1"];
 const signin =new validateForm(form1,fields1);
-signin.initialize();
+signin.initialize();*/
 
 const form2=document.querySelector('.form');
-const fields=["uname","femail","number","password","password-confirmation"];
+const fields=["uname","femail","number","password","password-confirmation","admin"];
 const adminAddUser = new validateForm(form2,fields);
 adminAddUser.initialize();
+}
+
+if(register===false){
+    exports.register=register;
+    console.log(module);
+}
+
+
+
+

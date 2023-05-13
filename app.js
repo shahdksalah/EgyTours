@@ -57,6 +57,9 @@ app.use("/",indexRoute);
 app.use("/success",indexRoute);
 app.use("/food",indexRoute);
 app.use("/activities",indexRoute);
+app.use("/AddActivity",indexRoute);
+app.use("/AddHotel",indexRoute);
+
 //app.use("/AddActivity", addActivity)
 //app.use("/AddHotel", addHotel);
 
@@ -69,34 +72,7 @@ app.get("/AddHotel", (req,res)=>{
 })
 
 
-app.post('/submit',fileupload(),(request, response) =>  {
-  console.log("entered");
 
-  const errors=validationResult(request)
-  if(!errors.isEmpty()){
-      const alert=errors.array();
-      response.render('index',{alert});
-  }
- else{
-    const userdetails = new User({
-        Username: request.body.unam,
-        Email: request.body.email,
-        PhoneNumber: request.body.number,
-        Password: request.body.psw,
-        ConfPassword: request.body.confpsw,
-      });
-      console.log(request.files);
-    db.collection("activities").insertOne(activitydetails,(err,result)=>{
-      if(err)
-      {
-       console.log(err);
-      }
-       console.log("saved");
-       response.redirect('/');
-
-    
-  })
-});
 
 
 

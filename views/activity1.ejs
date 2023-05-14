@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/styleHF.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleForm.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleActivity1.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleActivities.css">
+
+</head>
+<body>
+
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+
+    <%- include("partials/header.ejs") %>
+
+    <div class="body">
+    <div class="group">
+        <h1 id="h">From Cairo: Full Day Tour of Historical Alexandria</h1>
+        <span>DAY TRIP</span> &nbsp;
+        <span class ="rating">
+            <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+        </span>
+        &nbsp;
+        <span> 5 / 5 </span>
+        &nbsp;
+        <span> (400 ratings)</span>
+    </div>
+    <br>
+<div class="grid">
+    <div class="mySlides">
+        <div class="numbertext">1 / 3</div>
+          <img src="../images/cities/alex3.jpg" style="width:100%">
+      </div>
+    
+      <div class="mySlides">
+        <div class="numbertext">2 / 3</div>
+          <img src="../images/cities/alex4.jpg" style="width:100%">
+      </div>
+    
+      <div class="mySlides">
+        <div class="numbertext">3 / 3</div>
+          <img src="../images/cities/QAITBAY.jpg" style="width:100%">
+      </div>
+      
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+      
+    <br>
+    <div>
+        <div class="text">
+            See the highlights of Alexandria in just one day with this tour from Cairo. You'll see all sorts of Greco-Roman sites, 
+            from the catacombs to Pompey's Pillar.
+        </div>
+        <div class ="text">
+            You'll also have the chance to see the city's famous Citadel and check out the 
+            treasures on display at the Royal Jewelry Museum.
+        </div>
+    </div>
+    <div>
+        <h2><ins>DETAILS:</ins></h2>
+        <h4>Full Description: </h4>
+        <div class="w">
+            <div>
+            Enjoy a full-day trip to the historic city of Alexandria and experience the remnants of a bygone era. After pickup from your 
+            hotel in Cairo or Giza, you'll drive towards Alexandria, stopping along the way to use the bathroom and get a coffee.
+            </div>
+            <br>
+            <div>
+            Upon arrival, start your tour of this ancient city. Head towards the marble-stone Roman amphitheater of Kom El-Deka that once 
+            accommodated over 800 visitors. Enjoy the sights of its pleasure garden and mosaic floored Roman baths and villas.
+            </div>
+            <div>
+            Afterward, move on to the Catacombs of Kom El Shoqafa where you can feel the aura of ancient Egyptian, Greek, and Roman 
+            architectural excellence. The cemetery was constructed in the second century AD and is still one of the seven wonders of 
+            the middle ages.
+            </div>
+            <br>
+            <div>
+            Next, visit Pompey's Pillar, the significant Roman triumphal column in Alexandria. Savor a delicious lunch
+             from a local restaurant and then enjoy an outside photo stop at the Library of Alexandria, one of the largest and most 
+             renowned archives of the ancient world.
+             </div>
+             <br>
+             <div>
+             Later, visit the Citadel of Qaitbay, built above 
+             the ruined Alexandria lighthouse. At the end of the tour, you'll be driven back to Cairo or Giza to be 
+             dropped off at your accommodation.
+             </div>
+        </div>
+        <h4>Plan: </h4>
+        <div class="w">
+                <div>1.Marvel at the Roman amphitheater of Kom El-Deka</div>
+                <div>2.Admire the architectural excellence of the Catacombs of Kom El Shoqafa</div>
+                <div>3.Explore Pompey's Pillar, enjoying its artifacts and sculptures</div>
+                <div>4.Enjoy a photo stop by the well-known Library of Alexandria</div>
+        </div>
+        <h4>About the Trip: </h4>
+        <div class="w">
+            <span><i class="fa-sharp fa-solid fa-xmark"></i></span>&nbsp
+            <span>Free Cancellation</span>
+            <div class="more">Cancel up to 24 hours in advance for a full refund</div>
+        </div>
+        <div class="w">
+            <span><i class="fa-regular fa-clock"></i></span>&nbsp
+            <span>Duration 10-11 hours</span>
+            <div class="more">Check availability to see starting times</div>
+        </div>
+        <div class="w">
+            <span><i class="fa-solid fa-bus"></i></span>&nbsp
+            <span>Pickup Available</span>
+            <div class="more"> Pickup is available from your hotel or selected location in Cairo. You will be contacted via WhatsApp, email, 
+                or phone the day before the tour to confirm the exact pickup time. · The long-range pickup service from Nasr city, Cairo Airport, 
+                Heliopolis City, Mirage city, Rehab City, Madinaty, New Cairo, New Capital hotels or on October 6th is available to book in the checkout process as "Add on".</div>
+            </div>
+
+    </div>
+
+  
+
+    <h2><ins>Select participants and date</ins></h2>
+    <div class="book" id="book">
+      <div>
+        <input id="dropbtn" list="Adults" placeholder="Adults">
+        <datalist id="Adults">
+          <option value="1"></option>
+          <option value="2"></option>
+          <option value="3"></option>
+          <option value="4"></option>
+          <option value="5"></option>
+          <option value="6"></option>
+          <option value="7"></option>
+          <option value="8"></option>
+          <option value="9"></option>
+          <option value="10"></option>
+        </datalist>
+        <div id="adult-msg" class="check-error"></div>
+      </div>
+        <div>
+          <input id="dropbtn1" list="Children" placeholder="Children">
+          <datalist id="Children">
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+            <option value="7"></option>
+            <option value="8"></option>
+            <option value="9"></option>
+            <option value="10"></option>
+          </datalist>
+          <div id="child-msg" class="check-error"></div>
+        </div>
+        <div>
+          <input id="dat" type="date" placeholder="Date" >
+          <div id="date-msg" class="check-error"></div>
+        </div>
+        <div> 
+          <button id="check" onclick="view()">Check Availability</button>
+        </div>
+       
+        <script src="js/Activity1.js"></script>
+      </div>
+
+      <div id="avail">
+        <h2><ins>Available</ins></h2>
+        <div class="duration">
+        <span><i class="fa-regular fa-clock"></i></span>&nbsp
+        <span>10-11 hours</span>
+        </div>
+        <div class="cancel">
+        <span><i class="fa-sharp fa-solid fa-xmark"></i></span>&nbsp
+        <span>Free Cancellation before 5AM on </span>
+        <span id="time"> </span>
+        </div>
+        <div class ="Adultprice">
+          <span>Adults Price: </span>
+          <span id="num1"> </span>
+          <span>*</span>
+          <span id="price1">5000</span>
+          <span>=</span>
+          <span id="total1"> </span>
+          </div>
+          <div class="Childprice">
+          <span>Children Price: </span>
+          <span id="num2"> </span>
+          <span>*</span>
+          <span id="price2">2000</span>
+          <span>=</span>
+          <span id="total2"> </span>
+        </div>
+        <div class="total"> 
+          <span class="add">Total: </span>
+          <span id="t"> </span>
+        </div>
+        <div style="text-align: center;">
+          <button>Add To Cart</button>
+        </div>
+
+      </div>
+      <script src="js/Activity1.js"></script>
+
+
+      <h2><ins>Reviews</ins></h2>
+      
+      <div class="first">
+                      
+        <div class="reviews">
+                <div class="rev">
+                    <h6 class="R">Jan Erik L wrote a review Jan 2023</h6>
+                </div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                    <p class="R">"Thank you very much for your positive review of your recent holiday with us at Jaz Makadina.
+                   We are happy to read about your experience with our hotel facilities and services.
+                   We appreciate you taking the time to share your experience on Tripadvisor and we are 
+                   looking forward welcoming you back at our hotel in the future."</p>
+        </div>
+
+
+        <div class="reviews">
+            <div class="rev">
+                <h6 class="R">Tony Nagy L wrote a review Feb 2023</h6>
+            </div>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+                <p class="R">"I've stayed at the Four Season Cairo Nile Plaza twice prior to booking this trip for my family. As it 
+                    was their first time to Cairo wanted to make it special so we booked the Four Seasons again. Weeks leading up to 
+                    the trip, the Concierge was incredibly helpful in assisting us with planning the best itinerary to make the most 
+                    of our trip."</p>
+        </div>
+        <div class="reviews">
+          <div class="rev">
+              <h6 class="R">Sara Samy L wrote a review Dec 2022</h6>
+          </div>
+          <div class="rating">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+          </div>
+              <p class="R">"It’s a bit outside of downtown, but given that we weren’t looking to do any self exploring 
+                  of the city this was not an issue. The hotel property is safe and very pleasant, built around a lovely pool 
+                  area on the banks of the Nile with great views of the Valley of Kings when lit at night. Would 
+                  definitely stay here again if I returned to Luxor."</p>
+      </div>
+
+
+    </div>
+    </div>
+
+    <script src="js/jazhotel.js"></script>
+
+    <%- include("partials/footer.ejs") %>
+
+</body>
+</html>

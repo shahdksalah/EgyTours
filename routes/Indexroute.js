@@ -41,6 +41,12 @@ router.get('/hotels',function(req,res)
     res.render("hotels");
 });
 
+router.get('/activity1',function(req,res)
+{
+    res.render("activity1");
+});
+
+
 module.exports=router;
 
 router.post('/',urlencodedParser,[

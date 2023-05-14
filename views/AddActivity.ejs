@@ -41,12 +41,13 @@
 
     <div id="adding">
         <h2><ins>Add Activity</ins></h2>
+        <form method="post" action="/submit" >
         <h3>Name</h3>
         <textarea id="ActName" rows="3" cols="60" name="Aname"></textarea>
         <h3>Type</h3>
         <textarea id="ActType" rows="2" cols="25" name="Atype"></textarea>
         <h3>Images </h3>
-        <div><input type="file" id="image" name="image" multiple></div>
+        <div><input type="file" id="file" name="file" multiple></div>
         <h2><ins>Details:</ins></h2>
         <h3>Brief Description: </h3>
         <textarea id="Actbrief" rows="5" cols="60" name="Abrief"></textarea>
@@ -62,11 +63,12 @@
         <h3>Pickup Details: </h3>
         <textarea id="ActPickup" rows="4" cols="60" name="Apickup"></textarea>
         <h3>Available dates: </h3>
-        <input type="date" name="Dates" id="date" name="Adate">
+        <input type="date" name="Dates" id="date">
         <span id="plus" onclick="addDate()"> + </span>
         <h3>Reviews: </h3>
         <input type="submit" name="submit" id="submit" onclick="submit()">
         <button onclick="reset()" id="reset">Reset</button>
+        </form>
     </div>
     <script src="js/EditActivites.js"></script>
 </body>

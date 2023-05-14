@@ -17,8 +17,8 @@ const ActivitySchema = new Schema ({
         trim:true
     },
     Picture:{
-        data:Buffer,
-        contentType:String
+        type:Array,
+        required:true
     },
     BriefDes:{
         type:String,

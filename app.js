@@ -5,14 +5,15 @@ const User= require('./models/usersdb.js');
 const PORT=8080;
 
 const indexRoute=require('./routes/Indexroute.js');
-//const addActivity=require('./routes/AddActivityRoute');
+//const addActivity=require('./routes/AddActivityRoute.js');
+//const addHotel=require('./routes/AddHotelRoute.js');
 
 
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
 
-const Activity= require('./models/addActivitiesdb.js');
+
 var db = mongoose.connection;
 var multer=require('multer');
 const cors=require('cors');
@@ -54,10 +55,15 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.use("/",indexRoute);
-app.use("/",indexRoute);
 app.use("/success",indexRoute);
 app.use("/food",indexRoute);
 app.use("/activities",indexRoute);
+app.use("/AddActivity",indexRoute);
+app.use("/AddHotel",indexRoute);
+app.use("/hotels",indexRoute);
+
+
+
 
 
 

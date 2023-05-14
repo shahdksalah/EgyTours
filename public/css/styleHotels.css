@@ -1,0 +1,61 @@
+
+
+
+#parent{
+    padding-left:20px;
+    margin-bottom:100px;
+}
+.cols{
+    display: inline-block;
+    flex:80%;
+    margin-left:20px;
+    padding-bottom:10px;
+}
+.image{
+    flex:20%;
+    
+}
+.image img{
+    height:250px;
+    width:320px;
+    border-radius: 10px;
+}
+p{
+    margin:10px 0 10px;
+}
+
+.btn{
+    width:90%;
+    height:250px;
+    padding:15px;
+    margin-bottom: 20px;
+    background-color: rgb(222, 221, 214) ;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+    display: flex;
+}
+.btn:hover{
+    background-color: rgb(194, 189, 176);
+}
+.btn img:hover{
+    transform:scale(1.03);
+}
+
+
+.rating i{
+    color:rgb(238, 203, 5);
+}
+.rev{
+    display:inline-block;
+}
+.comment{
+    display: flex;
+    color:lightslategray;
+}
+.comment img{
+    width:20px;
+    height:20px;
+}
+
+

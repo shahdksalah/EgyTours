@@ -12,6 +12,7 @@ const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
 
+const Hotel = require('./models/addHoteldb.js');
 const Activity= require('./models/addActivitiesdb.js');
 var db = mongoose.connection;
 var multer=require('multer');
@@ -68,36 +69,15 @@ app.get("/AddHotel", (req,res)=>{
   res.render("AddHotel");
 })
 
-
-app.post('/submit',fileupload(),(request, response) =>  {
+app.post("/AddHotel", (req,res)=>{
   console.log("entered");
-
-  const errors=validationResult(request)
-  if(!errors.isEmpty()){
-      const alert=errors.array();
-      response.render('index',{alert});
-  }
- else{
-    const userdetails = new User({
-        Username: request.body.unam,
-        Email: request.body.email,
-        PhoneNumber: request.body.number,
-        Password: request.body.psw,
-        ConfPassword: request.body.confpsw,
-      });
-      console.log(request.files);
-    db.collection("activities").insertOne(activitydetails,(err,result)=>{
-      if(err)
-      {
-       console.log(err);
-      }
-       console.log("saved");
-       response.redirect('/');
-
-    
-  })
-});
-
-
-
-    
+  const hotel = new Hotel(req.body);
+  console.log(hotel);
+  hotel.save()
+    .then((results)=>{
+      res.redirect('/AddHotel');
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+})

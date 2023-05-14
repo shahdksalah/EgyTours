@@ -8,6 +8,7 @@ const indexRoute=require('./routes/Indexroute.js');
 //const addActivity=require('./routes/AddActivityRoute.js');
 //const addHotel=require('./routes/AddHotelRoute.js');
 
+
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
@@ -58,16 +59,11 @@ app.use("/",indexRoute);
 app.use("/success",indexRoute);
 app.use("/food",indexRoute);
 app.use("/activities",indexRoute);
-//app.use("/AddActivity", addActivity)
-//app.use("/AddHotel", addHotel);
-
-app.get("/AddActivity",(req,res)=>{
-  res.render("AddActivity");
-})
-
-app.get("/AddHotel", (req,res)=>{
-  res.render("AddHotel");
-})
+app.use("/AddActivity",indexRoute);
+app.use("/AddHotel",indexRoute);
+app.use("/hotels",indexRoute);
+app.use("/activity1",indexRoute);
+app.use("/luxor",indexRoute);
 
 app.post("/AddHotel", (req,res)=>{
   console.log("entered");

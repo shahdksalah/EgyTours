@@ -28,47 +28,47 @@ function Update(index)
         }
 
 
-        function submit()
-        {
-            const files= document.getElementById("image");
-            const formData=new FormData();
-            var pic=new FormData();
-            for (let i = 0; i < files.files.length; i++) {
-                formData.append('file',files.files[i]);
-                pic.append('file',files.files[i]);
-              }
-              console.log(formData);
-            var name=document.querySelector('#ActName').value;
-            var type=document.querySelector('#ActType').value;
-            var brief=document.querySelector('#Actbrief').value;
-            var details=document.querySelector('#Actdetails').value;
-            var plan=document.querySelector('#ActPlan').value;
-            var cancel=document.querySelector('#ActCancel').value;
-            var time=document.querySelector('#ActTime').value;
-            var pickup=document.querySelector('#ActPickup').value;
-            var date=document.querySelector('#date').value;
-    console.log(pic);
-    var obj={
-        Aname:name,
-        Atype:type,
-        Apics:pic,
-        Abrief:brief,
-        Adetails:details,
-        Aplan:plan,
-        Acancel:cancel,
-        Atime:time,
-        Apickup:pickup,
-        Adate:date
-    };
-    formData.append("object",obj);
-    fetch('http://localhost:8080/submit',{
-        method:"POST",
-        body:formData,
-        headers:{
-           "Content-type":"application/json"
-        },
-
-         body:JSON.stringify(obj),
-    });
-    console.log(name);
-        }
+            function submit()
+            {
+                const files= document.getElementById("file");
+                const formData=new FormData();
+                var pic=new FormData();
+                for (let i = 0; i < files.files.length; i++) {
+                    formData.append('file',files.files[i]);
+                  }
+                  console.log(formData);
+                var name=document.querySelector('#ActName').value;
+                var type=document.querySelector('#ActType').value;
+                var pic=document.querySelector('#file').value;
+                var brief=document.querySelector('#Actbrief').value;
+                var details=document.querySelector('#Actdetails').value;
+                var plan=document.querySelector('#ActPlan').value;
+                var cancel=document.querySelector('#ActCancel').value;
+                var time=document.querySelector('#ActTime').value;
+                var pickup=document.querySelector('#ActPickup').value;
+                var date=document.querySelector('#date').value;
+        console.log(pic);
+        var obj={
+            Aname:name,
+            Atype:type,
+            Apics:pic,
+            Abrief:brief,
+            Adetails:details,
+            Aplan:plan,
+            Acancel:cancel,
+            Atime:time,
+            Apickup:pickup,
+            Adate:date
+        };
+        formData.append("object",obj);
+        fetch('http://localhost:8080/submit',{
+            method:"POST",
+            body:formData,
+            headers:{
+               "Content-type":"application/json"
+            },
+    
+             //body:JSON.stringify(obj),
+        });
+        console.log(name);
+            }

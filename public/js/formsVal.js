@@ -1,3 +1,5 @@
+let register=true;
+let type="user";
 class validateForm{
     constructor(form,fields){
         this.form=form;
@@ -5,7 +7,6 @@ class validateForm{
     }
     initialize(){
         this.validateOnSubmit();
-        return true;
     }
     validateOnSubmit(){
         let self=this;
@@ -34,11 +35,22 @@ class validateForm{
             var letters = /^[A-Za-z]+$/;
             if(!field.value.match(letters))
                 this.setStatus(field,"Must enter letters only","error");
+            else if(field.value.length<3)
+                this.setStatus(field,"Username must be 3+ caharcters long")
             else
                 this.setStatus(field,null,"success");
 
          }
-        else if(field.id==="password_confirmation"){
+        else if(field.id==="password"){
+            if(field.value.trim()=="")
+                this.setStatus(field,"Password confirmation required","error");
+            else if(field.value.length<6)
+                this.setStatus(field,"Username must be 6+ caharcters long")
+            else
+                this.setStatus(field,null,"success");
+            
+        }
+        else if(field.id==="password-confirmation"){
             const passwordField=this.form.querySelector('#password');
             if(field.value.trim()==""){
                 this.setStatus(field,"Password confirmation required","error");
@@ -46,6 +58,8 @@ class validateForm{
             else if(field.value!=passwordField.value){
                 this.setStatus(field,"Passwords don't match","error");
             }
+            else if(field.value.length<6)
+                this.setStatus(field,"Username must be 6+ caharcters long")
             else{
                 this.setStatus(field,null,"success");
             }
@@ -58,6 +72,11 @@ class validateForm{
             else{
                 this.setStatus(field,"Please enter numbers only", "error");
             }
+        }
+        else if(field.id==="admin"){
+            let radioA=document.getElementById('admin');
+            if(radioA.checked)
+              type="admin";
         }
         else{
             this.setStatus(field,null,"success");
@@ -72,10 +91,13 @@ class validateForm{
                 errorMessage.innerText="";
             }
             field.classList.remove('input-error');
+            return true;
         }
         if(status==="error"){
+            register=false;
             field.parentElement.querySelector('.error-message').innerText=message;
             field.classList.add('input-error');
+            return false;
         }
     }
 }
@@ -85,13 +107,23 @@ class validateForm{
 const fields=["uname","femail","number","password","password_confirmation"];
 const validator=new validateForm(form,fields);
 validator.initialize();*/
-
-const form1=document.querySelector('.sform');
+if (typeof document !== 'undefined'){
+/*const form1=document.querySelector('.sform');
 const fields1=["username","password1"];
 const signin =new validateForm(form1,fields1);
-signin.initialize();
+signin.initialize();*/
 
-/*const form2=document.querySelector('.form');
-const fields=["uname","femail","number","password","password-confirmation"];
+const form2=document.querySelector('.form');
+const fields=["uname","femail","number","password","password-confirmation","admin"];
 const adminAddUser = new validateForm(form2,fields);
-adminAddUser.initialize();*/
+adminAddUser.initialize();
+}
+
+if(register===false){
+    exports.register=register;
+    console.log(module);
+}
+
+
+
+

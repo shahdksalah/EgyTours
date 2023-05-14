@@ -45,6 +45,10 @@ router.get('/activity1',function(req,res)
 {
     res.render("activity1");
 });
+router.get('/luxor',function(req,res)
+{
+    res.render("luxor");
+});
 
 
 module.exports=router;

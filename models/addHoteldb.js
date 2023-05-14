@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 app.use(express.urlencoded({extended:true}));
 
-const Hotel = new Schema({
+const HotelSchema = new Schema({
     Name:{
         type:String,
         trim:true,
@@ -24,5 +24,28 @@ const Hotel = new Schema({
         type:String,
         trim:true,
         required:true,
+    },
+    PropertyIcon:{
+        type:String,
+        trim:true,
+        required:true,
+    },
+    RoomFIcon:{
+        type:String,
+        trim:true,
+        required:true,
+    },
+    RoomTIcon:{
+        type:String,
+        trim:true,
+        required:true,
+    },
+    Dates:{
+        type:String,
+        trim:true,
+        required:true,
     }
-})
+},{timestamp:true});
+
+const Hotel= mongoose.model('Hotel',HotelSchema);
+module.exports=Hotel;

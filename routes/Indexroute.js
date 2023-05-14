@@ -1,6 +1,7 @@
 const express=require('express')
 const router=express.Router();
 const User= require('../models/usersdb.js');
+const validate=require('../public/js/formsVal.js')
 const mongoose=require('mongoose');
 var db = mongoose.connection;
 const bodyParser = require('body-parser');
@@ -80,7 +81,7 @@ router.post('/',urlencodedParser,[
         PhoneNumber: request.body.number,
         Password: request.body.psw,
         ConfPassword: request.body.confpsw,
-        Type:request.body.type,
+        Type:request.body.type
       });
       db.collection("users").insertOne(userdetails,(err,result)=>{
         if(err)

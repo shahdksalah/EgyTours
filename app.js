@@ -62,6 +62,7 @@ app.use("/AddActivity",indexRoute);
 app.use("/AddHotel",indexRoute);
 app.use("/hotels",indexRoute);
 app.use("/activity1",indexRoute);
+app.use("/luxor",indexRoute);
 
 
 

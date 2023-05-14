@@ -13,7 +13,8 @@ const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
 
-
+const Hotel = require('./models/addHoteldb.js');
+const Activity= require('./models/addActivitiesdb.js');
 var db = mongoose.connection;
 var multer=require('multer');
 const cors=require('cors');
@@ -64,11 +65,15 @@ app.use("/hotels",indexRoute);
 app.use("/activity1",indexRoute);
 app.use("/luxor",indexRoute);
 
-
-
-
-
-
-
-
-    
+app.post("/AddHotel", (req,res)=>{
+  console.log("entered");
+  const hotel = new Hotel(req.body);
+  console.log(hotel);
+  hotel.save()
+    .then((results)=>{
+      res.redirect('/AddHotel');
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+})

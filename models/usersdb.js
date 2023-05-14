@@ -34,7 +34,7 @@ const userSchema = new Schema ({
     ConfPassword:{
         type:String,
         required:true,
-        trim:truess
+        trim:true
     },
     Type:{
         type:String,

@@ -1,11 +1,14 @@
 const express=require('express')
 const router=express.Router();
 const User= require('../models/usersdb.js');
+const Customer= require('../models/customersdb.js');
+const Admin= require('../models/adminsdb.js');
 const validate=require('../public/js/formsVal.js')
 const mongoose=require('mongoose');
 var db = mongoose.connection;
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
+const lodash=require('lodash');
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 let path=require('path');
@@ -47,13 +50,13 @@ router.post('/',urlencodedParser,[
   console.log("entered");
 
   const errors=validationResult(request)
-  console.log(validate.register)
   if(!errors.isEmpty()){
       const alert=errors.array();
   }
   else if(request.body.psw!==request.body.confpsw)
      console.log("error");
  else{
+    console.log("e");
     const userdetails = new User({
         Username: request.body.unam,
         Email: request.body.email,
@@ -62,17 +65,49 @@ router.post('/',urlencodedParser,[
         ConfPassword: request.body.confpsw,
         Type:request.body.type
       });
-      db.collection("users").insertOne(userdetails,(err,result)=>{
-        if(err)
-        {
-         console.log(err);
-        }
-        else{
-        console.log(validate.type)
-         console.log("saved");
-         response.redirect('/');
-        }
-  })
+      if(request.body.type==="User"){
+        const customerdetails = new Customer({
+          Username: userdetails.Username,
+          Email: userdetails.Email,
+          PhoneNumber: userdetails.PhoneNumber,
+          Password: userdetails.Password,
+          ConfPassword:userdetails.ConfPassword
+        });
+
+        db.collection("users").insertOne(customerdetails,(err,result)=>{
+          if(err)
+          {
+           console.log(err);
+          }
+          else{
+           console.log("saved");
+           response.redirect('/');
+          }
+        })
+
+      }
+      else if(request.body.type==="Admin"){
+        const admindetails = new Admin({
+          Username: userdetails.Username,
+          Email: userdetails.Email,
+          PhoneNumber: userdetails.PhoneNumber,
+          Password: userdetails.Password,
+          ConfPassword:userdetails.ConfPassword
+        });
+
+        db.collection("admins").insertOne(admindetails,(err,result)=>{
+          if(err)
+          {
+           console.log(err);
+          }
+          else{
+           console.log("saved");
+           response.redirect('/');
+          }
+        })
+
+      }
+   
  }
   });
 
@@ -81,6 +116,64 @@ router.post('/',urlencodedParser,[
 {
     res.render("AddActivity");
 });
+
+
+router.post('/login',urlencodedParser,[
+  check('usename','Username is empty')
+  .exists(),
+  check('password','password is empty')
+  .exists()
+],(request,response)=>{
+  console.log("entered");
+  let un=request.body.username;
+  let pass=request.body.password;
+  const errors=validationResult(request)
+  db.collection('users').find({Username:un,Password:pass}).toArray((err, result) => {
+
+    if (err) {
+        console.log('The search errored');
+    } else if (_.isEmpty(result)) {
+        console.log('record not found')
+    } else {
+        console.log(result);
+    };
+});
+  db.collection('admins').find({Username:un,Password:pass}).toArray((err, result) => {
+
+    if (err) {
+        console.log('The search errored');
+    } else if (_.isEmpty(result)) {
+        console.log('record not found')
+    } else {
+        console.log(result);
+    };
+  });
+  if(!errors.isEmpty()){
+      const alert=errors.array();
+      for( i=0;i<errors.length;i++){
+          console.log(errors[i]);
+      }
+  }
+  else{
+   
+ 
+    console.log("fares")
+   
+    db.collection('admins').findOne({Username:un,Password:pass},function(err,result){
+      if(err)
+        console.log(err);
+      else{
+        console.log("admin logged in");
+      }
+    });
+
+    
+  
+}
+
+});
+
+
 
 
 

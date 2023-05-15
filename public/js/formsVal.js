@@ -1,4 +1,4 @@
-let type="user";
+let count=0;
 class validateForm{
     constructor(form,fields){
         this.form=form;
@@ -18,6 +18,7 @@ class validateForm{
        
     }
     validateFields(field){
+        count++;
         if(field.value.length==0){
             this.setStatus(field, field.previousElementSibling.innerText + ' cannot be blank',"error");
         }
@@ -72,11 +73,6 @@ class validateForm{
                 this.setStatus(field,"Please enter numbers only", "error");
             }
         }
-        else if(field.id==="admin"){
-            let radioA=document.getElementById('admin');
-            if(radioA.checked)
-              type="admin";
-        }
         else{
             this.setStatus(field,null,"success");
         }
@@ -90,12 +86,16 @@ class validateForm{
                 errorMessage.innerText="";
             }
             field.classList.remove('input-error');
-            return true;
+            if(count==7){
+               return true;
+            }
         }
         if(status==="error"){
             field.parentElement.querySelector('.error-message').innerText=message;
             field.classList.add('input-error');
-            return false;
+            if(count==7){
+               return false;
+            }
         }
     }
 }
@@ -113,13 +113,14 @@ signin.initialize();*/
 
 if (typeof document !== 'undefined'){
 const form2=document.querySelector('.form');
-const fields=["uname","femail","number","password","password-confirmation","admin"];
+const fields=["user","admin","uname","femail","number","password","password-confirmation"];
 const adminAddUser = new validateForm(form2,fields);
 adminAddUser.initialize();
 }
 
-exports.type=type;
-console.log(module);
+
+
+
     
 
 

@@ -1,4 +1,3 @@
-let register=true;
 let type="user";
 class validateForm{
     constructor(form,fields){
@@ -11,12 +10,12 @@ class validateForm{
     validateOnSubmit(){
         let self=this;
         this.form.addEventListener('submit',Event=>{
-           // Event.preventDefault();
             self.fields.forEach(fields=>{
             const input=document.querySelector(`#${fields}`);
             self.validateFields(input);
              })
         })
+       
     }
     validateFields(field){
         if(field.value.length==0){
@@ -36,7 +35,7 @@ class validateForm{
             if(!field.value.match(letters))
                 this.setStatus(field,"Must enter letters only","error");
             else if(field.value.length<3)
-                this.setStatus(field,"Username must be 3+ caharcters long")
+                this.setStatus(field,"Username must be 3+ caharcters long","error")
             else
                 this.setStatus(field,null,"success");
 
@@ -45,7 +44,7 @@ class validateForm{
             if(field.value.trim()=="")
                 this.setStatus(field,"Password confirmation required","error");
             else if(field.value.length<6)
-                this.setStatus(field,"Username must be 6+ caharcters long")
+                this.setStatus(field,"Username must be 6+ caharcters long","error")
             else
                 this.setStatus(field,null,"success");
             
@@ -59,7 +58,7 @@ class validateForm{
                 this.setStatus(field,"Passwords don't match","error");
             }
             else if(field.value.length<6)
-                this.setStatus(field,"Username must be 6+ caharcters long")
+                this.setStatus(field,"Username must be 6+ caharcters long","error")
             else{
                 this.setStatus(field,null,"success");
             }
@@ -94,7 +93,6 @@ class validateForm{
             return true;
         }
         if(status==="error"){
-            register=false;
             field.parentElement.querySelector('.error-message').innerText=message;
             field.classList.add('input-error');
             return false;
@@ -107,22 +105,23 @@ class validateForm{
 const fields=["uname","femail","number","password","password_confirmation"];
 const validator=new validateForm(form,fields);
 validator.initialize();*/
-if (typeof document !== 'undefined'){
+
 /*const form1=document.querySelector('.sform');
 const fields1=["username","password1"];
 const signin =new validateForm(form1,fields1);
 signin.initialize();*/
 
+if (typeof document !== 'undefined'){
 const form2=document.querySelector('.form');
 const fields=["uname","femail","number","password","password-confirmation","admin"];
 const adminAddUser = new validateForm(form2,fields);
 adminAddUser.initialize();
 }
 
-if(register===false){
-    exports.register=register;
-    console.log(module);
-}
+exports.type=type;
+console.log(module);
+    
+
 
 
 

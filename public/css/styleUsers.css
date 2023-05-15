@@ -1,0 +1,135 @@
+#container{
+    display: flex;
+}
+#search{
+   display: flex;
+}
+
+#search li{
+    color:gray;
+}
+.form{
+  width:400px;
+  border:2px solid rgb(54, 36, 27);
+}
+.right button{
+  border-radius: 10px;
+  background-color: rgb(54, 36, 27);
+  color:white;
+  height:25px;
+  cursor: pointer;
+}
+
+
+#myUL button{
+  float:right;
+  margin-right:5px;
+  padding:5px;
+  cursor: pointer;
+  border:none;
+  width:70x;
+}
+#myUL button:hover{
+  background-color: orangered;
+}
+#myInput {
+    width: 100%; 
+    font-size: 16px; 
+    padding: 12px 20px 12px 40px; 
+    border: 1px solid #ddd; 
+    margin-bottom: 12px;     flex:80%;
+  }
+  
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#myUL button { 
+  display: none;
+}
+ 
+#myUL li a {
+  border: 1px solid #ddd; 
+  margin-top: -1px; 
+  background-color: #514b3d7f;
+  padding: 12px; 
+  border-radius: 10px;
+  margin-bottom:5px;
+  text-decoration: none; 
+  font-size: 18px; 
+  color: black;
+  display: block;
+    
+}
+  
+#myUL li a:hover{
+  background-color: #d3d1d1; 
+}
+
+.form-btns{
+  display: inline;
+  padding-left:20%;
+}
+.form-btns button{
+  width:100px;
+  margin-right:10px;
+}
+#submit{
+    margin-left: 10%;
+    width:40%;
+}
+#reset{
+    width:40%;
+}
+.view{
+    margin:60px;
+    margin-top:0;
+}
+.update,.delete{
+    display: flex;
+    column-gap: 5px;
+    width:250px;
+    justify-content: left;
+}
+.info,.inf{
+  
+  margin-top:7.5%;
+  flex:20%;
+}
+.icol{
+  text-align: left;
+  flex:70%;
+  width:fit-content;
+
+
+}
+.edit{
+  margin-top: 19px;
+  flex:10%;
+  text-align: right;
+}
+#updateInfo{
+  display: none;
+}
+#deleteUser{
+  display: none;
+}
+#sIcon{
+  position:relative;
+  top:30px;
+  left:10px;
+}
+#id01{
+  display:none;
+}
+#msg{
+  display:none;
+}
+#smsg{
+  display:none;
+}
+
+
+*{box-sizing: border-box}
+

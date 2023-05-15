@@ -1,0 +1,24 @@
+#myUL li,#myInput{
+    width:500px;
+}
+#sBar{
+    margin-left: 0%;
+}
+#sIcon{
+    position:absolute;
+    left:22%;
+    top:24%;
+}
+#updateInfo{
+    display: none;
+}
+#c{
+    display:none;
+}
+.right{
+    display:flex;
+}
+#buttons{
+    position: relative;
+    top:3%;
+}

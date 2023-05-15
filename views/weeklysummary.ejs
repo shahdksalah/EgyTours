@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/styleFood.css">
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css/styleActivities.css">
+
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+    <div class="h">
+        <div class="admin">ADMIN</div>
+    </div>
+    
+    <div class="main-content">
+
+        <div class="nav">
+            <button class ="btn1">Home</button>
+            <button class ="btn1" onclick="drop()"> + Add </button>
+            <div id="dropdown">
+                <ul class="dropdown-list">
+                    <li><a href="addHotel.html">Hotels</a></li>
+                    <li><a href="AddActivity.html".html">Activites</a> </li>
+                </ul>
+            </div>
+            <button class ="btn1" onclick="drop2()"> + Edit</button>
+            <div id="dropdown2">
+                <ul class="dropdown-list">
+                    <li><a href="hotelsAdmin.html">Hotels</a></li>
+                    <li><a href="EditActivities.html">Activites</a> </li>
+                </ul>
+            </div>
+            <button class="btn1"  onclick="location.href='Users.html';">Users</button>
+            <button class ="btn1">Weekly Summary</button>
+        </div>
+        <script src="/js/AdminDashboardJS.js"></script>
+        
+        <div class="right">
+            <h1>Highlights</h1>
+            <div>
+                <h2>Vists This Week:</h2>
+                <span><p>300</p></span>
+            </div>
+            <div>
+                <h2>SignUps This Week:</h2>
+                <span><p>200</p></span>
+            </div>
+            <div>
+                <h2>Reviews This Week:</h2>
+                <span><p>50</p></span>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <div>
+                    <h2>Top Booked Hotel</h2>
+                <div class="btn">
+                    <div>
+                        <img src="../images/Hotels/fourseasons alex.jpg" alt="four seasons hotel" width="300 px" height="200 px" >
+                    </div>
+                <div>
+                    <h3>Four Seasons Hotel</h3>
+                    <h4>Booked 20 Times This Week</h4>
+                </div>
+                
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i><span style="margin-left:2%;">4.5</span>
+                </div>
+                </div>
+                </div>
+                
+
+                <div>
+                    <h2>Top Booked Activity</h2>
+                    <div class="btn">
+                        <div>
+                            <img src="../images/cities/PYRAMIDS.jpg" alt="pyramids" width="300 px" height="200 px" >
+                        </div>
+                    <div>
+                        <h5>GUIDED TOUR</h5>
+                        <h4>Booked 10 Times This Week</h4>
+                    </div>
+                    
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i><span style="margin-left:2%;">4.5</span>
+                    </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Top Visited Restaurant</h2>
+                    <div class="btn">
+                        <div>
+                            <img src="../images/restaurants/abu tarek2.jpeg" alt="restaurant_1"  width="300 px" height="200 px">
+                        </div>
+                        <div>
+                            <h3>Abou Tarek Koshary</h3>
+                            <h4>Booked 15 Times This Week</h4>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i><span style="margin-left:2%;">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -44,8 +44,8 @@
 }
 #buttons{
     position: relative;
-    top:2%;
     margin-left: 7%;
+    margin-top:2%;
 }
 #buttons button{
     border-radius: 17px;
@@ -53,5 +53,44 @@
     color: white;
     font-weight: bold;
     width:120px;
+    height:35px;
     cursor: pointer;
 }
+
+
+
+textarea{
+    height:303x;
+}
+.dropbtn {
+    background-color: rgb(54, 36, 27);
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: rgb(88, 71, 62);
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+  }
+  .dropdown-content h5{
+    margin: 5px;
+  }
+  .dropdown-content h5:hover{
+    cursor: pointer;
+  }
+  .show {display: block;}

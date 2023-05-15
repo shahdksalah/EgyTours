@@ -12,6 +12,7 @@ const hotelsRoute=require('./routes/hotelsroute.js');
 const addActivityRoute=require('./routes/addactivityroute.js');
 const addHotelRoute=require('./routes/addhotelroute.js');
 const luxorRoute=require('./routes/luxorroute.js');
+const editactivitiesRoute=require('./routes/editactivitiesroute.js');
 
 
 const bodyParser = require('body-parser');
@@ -69,6 +70,7 @@ app.use("/hotels",hotelsRoute);
 app.use("/addactivity",addActivityRoute);
 app.use("/addhotel",addHotelRoute);
 app.use("/luxor",luxorRoute);
+app.use("/editactivities",editactivitiesRoute);
 
 
 

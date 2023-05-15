@@ -18,6 +18,7 @@ const editactivitiesRoute=require('./routes/editactivitiesroute.js');
 const edithotelsRoute=require('./routes/edithotelsroute.js');
 const adminboardRoute=require('./routes/adminboardroute.js');
 const jazhotelRoute=require('./routes/jazhotelroute.js');
+const cartRoute=require('./routes/cartroute.js');
 
 
 
@@ -81,7 +82,9 @@ app.use("/addhotel",addHotelRoute);
 app.use("/luxor",luxorRoute);
 app.use("/editactivities",editactivitiesRoute);
 app.use("/edithotels",edithotelsRoute);
+app.use("/adminboard",adminboardRoute);
 app.use("/jazhotel",jazhotelRoute);
+app.use("/cart",cartRoute);
 
 
 

@@ -25,26 +25,21 @@ const HotelSchema = new Schema({
         trim:true,
         required:true,
     },
-    PropertyIcon:{
+    PropertyAmen:{
         type:String,
         trim:true,
         required:true,
     },
-    RoomFIcon:{
+    RoomFeatures:{
         type:String,
         trim:true,
         required:true,
     },
-    RoomTIcon:{
+    RoomTypes:{
         type:String,
         trim:true,
         required:true,
     },
-    Dates:{
-        type:String,
-        trim:true,
-        required:true,
-    }
 },{timestamp:true});
 
 const Hotel= mongoose.model('Hotel',HotelSchema);

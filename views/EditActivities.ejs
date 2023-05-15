@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Activities</title>
+
+    <link rel="stylesheet" href="/css/styleUsers.css">
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css//styleAddActivity.css">
+    <link rel="stylesheet" href="/css/styleForm.css">
+    <link rel="stylesheet" href="/css/styleEditActivities.css">
+
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+    <div class="h">
+        <div class="admin">ADMIN</div>
+    </div>
+        
+        <div class="main-content">
+    
+            <div class="nav" style="height:2000px;">
+                <button class ="btn1" onclick="location.href='AdminDashboard.html';">Home</button>
+                <button class ="btn1" onclick="drop()"> + Add </button>
+                <div id="dropdown">
+                    <ul class="dropdown-list">
+                        <li><a href="addHotel.html">Hotels</a></li>
+                        <li><a href="AddActivity.html">Activites</a> </li>
+                    </ul>
+                </div>
+                <button class ="btn1" onclick="drop2()"> + Edit</button>
+                <div id="dropdown2">
+                    <ul class="dropdown-list">
+                        <li><a href="hotelsAdmin.html">Hotels</a></li>
+                        <li><a href="EditActivities.html">Activites</a> </li>
+                    </ul>
+                </div>
+                <button class="btn1"  onclick="location.href='Users.html';">Users</button>
+                <button class ="btn1">Weekly Summary</button>
+            </div>
+            <script src="../scripts/admin/AdminDashboardJS.js"></script>
+
+        <h1 id="Edit"><ins>Edit Activities</ins></h1>
+        
+<div class="Right">
+    <div class="view">
+        <div id="search">
+            <div id="sBar">
+                <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Activities..">
+            </div>
+        </div>
+
+        <ul id="myUL">
+            <li><a href="#" id="1" onmouseover=" updateDeleteButtons(1)" onmouseleave="exit(1)">Alexandria <button onclick="Update(1)">Update</button> <button onclick="Delete(1)">Delete</button ></a></li>
+            <li><a href="#" id="2" onmouseover=" updateDeleteButtons(2)" onmouseleave="exit(2)">Pyramids <button onclick="Update(2)">Update</button> <button onclick="Delete(2)">Delete</button></a></li>
+
+            <li><a href="#" id="3" onmouseover=" updateDeleteButtons(3)" onmouseleave="exit(3)">Safari <button onclick="Update(3)">Update</button> <button onclick="Delete(3)">Delete</button></a></li>
+        </ul>
+    </div>
+
+    <div id="updateInfo">
+        <h2><ins>Add Activity</ins></h2>
+        <h3>Name</h3>
+        <textarea id="ActName" rows="3" cols="60"></textarea>
+        <h3>Type</h3>
+        <textarea id="ActType" rows="2" cols="25"></textarea>
+        <h3>Images <span><label for="file" onclick ="addImages()"> + </label></span></h3>
+        <div><input type="file" id="file" multiple="multiple" accept="image/jpeg, image/png, image/jpg" hidden="hidden"></div>
+        <h2><ins>Details:</ins></h2>
+        <h3>Brief Description: </h3>
+        <textarea id="Actbrief" rows="5" cols="60"></textarea>
+        <h3>Detailed Description: </h3>
+        <textarea id="Actdetails" rows="10" cols="60"></textarea>
+        <h3>Plan: </h3>
+        <textarea id="ActPlan" rows="6" cols="60"></textarea>
+        <h2><ins>About the trip:</ins></h2>
+        <h3>Cancellation details: </h3>
+        <textarea id="ActCancel" rows="3" cols="60"></textarea>
+        <h3>Duration: </h3>
+        <textarea id="ActTime" rows="2" cols="60"></textarea>
+        <h3>Pickup Details: </h3>
+        <textarea id="ActPickup" rows="4" cols="60"></textarea>
+        <h3>Available dates: </h3>
+        <input type="date" name="Dates" id="date">
+        <span id="plus" onclick="addDate()"> + </span>
+        <h3>Reviews: </h3>
+        <input type="submit" name="submit" id="submit">
+        <button onclick="reset()" id="reset">Reset</button>
+    </div>
+
+
+    <div id="c">
+        <h1>Delete Activity</h1>
+        <p>Are you sure you want to delete this Activity?</p>
+
+        <div class="clearfix">
+        <button type="button" class="cancelbtn" onclick="cancel()">Cancel</button>
+        <button type="button" class="deletebtn" onclick="del()">Delete</button>
+        <div id="msg" display="none">Activity deleted successfully</div>
+        </div>
+
+    </div>
+</div>
+</div>
+    <script src="/js/user.js"></script>
+    <script src="/js/EditActivities.js"></script>
+</body>
+</html>

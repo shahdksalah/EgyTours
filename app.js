@@ -5,15 +5,22 @@ const User= require('./models/usersdb.js');
 const PORT=8080;
 
 const indexRoute=require('./routes/Indexroute.js');
-//const addActivity=require('./routes/AddActivityRoute.js');
-//const addHotel=require('./routes/AddHotelRoute.js');
+const foodRoute=require('./routes/foodroute.js');
+const activitiesRoute=require('./routes/activitiesroute.js');
+const activity1Route=require('./routes/activity1route.js');
+const hotelsRoute=require('./routes/hotelsroute.js');
+const addActivityRoute=require('./routes/addactivityroute.js');
+const addHotelRoute=require('./routes/addhotelroute.js');
+const luxorRoute=require('./routes/luxorroute.js');
+const editactivitiesRoute=require('./routes/editactivitiesroute.js');
 
 
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
 
-
+const Hotel = require('./models/addHoteldb.js');
+const Activity= require('./models/addActivitiesdb.js');
 var db = mongoose.connection;
 var multer=require('multer');
 const cors=require('cors');
@@ -56,18 +63,26 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use("/",indexRoute);
 app.use("/success",indexRoute);
-app.use("/food",indexRoute);
-app.use("/activities",indexRoute);
-app.use("/AddActivity",indexRoute);
-app.use("/AddHotel",indexRoute);
-app.use("/hotels",indexRoute);
-app.use("/activity1",indexRoute);
+app.use("/food",foodRoute);
+app.use("/activities",activitiesRoute);
+app.use("/activity1",activity1Route);
+app.use("/hotels",hotelsRoute);
+app.use("/addactivity",addActivityRoute);
+app.use("/addhotel",addHotelRoute);
+app.use("/luxor",luxorRoute);
+app.use("/editactivities",editactivitiesRoute);
 
 
 
-
-
-
-
-
-    
+app.post("/AddHotel", (req,res)=>{
+  console.log("entered");
+  const hotel = new Hotel(req.body);
+  console.log(hotel);
+  hotel.save()
+    .then((results)=>{
+      res.redirect('/AddHotel');
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+})

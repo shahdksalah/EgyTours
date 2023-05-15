@@ -4,6 +4,8 @@ const mongoose=require('mongoose');
 const User= require('./models/usersdb.js');
 const PORT=8080;
 
+
+
 const indexRoute=require('./routes/Indexroute.js');
 const foodRoute=require('./routes/foodroute.js');
 const activitiesRoute=require('./routes/activitiesroute.js');
@@ -15,6 +17,9 @@ const luxorRoute=require('./routes/luxorroute.js');
 const editactivitiesRoute=require('./routes/editactivitiesroute.js');
 const edithotelsRoute=require('./routes/edithotelsroute.js');
 const adminboardRoute=require('./routes/adminboardroute.js');
+const jazhotelRoute=require('./routes/jazhotelroute.js');
+
+
 
 
 const bodyParser = require('body-parser');
@@ -63,6 +68,8 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 .catch((err) => console.log(err))
 
 
+
+
 app.use("/",indexRoute);
 app.use("/success",indexRoute);
 app.use("/food",foodRoute);
@@ -74,7 +81,9 @@ app.use("/addhotel",addHotelRoute);
 app.use("/luxor",luxorRoute);
 app.use("/editactivities",editactivitiesRoute);
 app.use("/edithotels",edithotelsRoute);
-app.use("/adminboard",adminboardRoute);
+app.use("/jazhotel",jazhotelRoute);
+
+
 
 
 

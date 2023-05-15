@@ -10,48 +10,16 @@ const{check,validationResult}=require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 let path=require('path');
 
+
+
 router.get('/',function(req,res)
 {
     res.render("index");
 });
 
-
-router.get('/food',function(req,res)
-{
-    res.render("food");
-});
-
-router.get('/activities',function(req,res)
-{
-    res.render("activities");
-});
-
-router.get('/AddActivity',function(req,res)
-{
-    res.render("AddActivity");
-});
-
-router.get('/AddHotel',function(req,res)
-{
-    res.render("AddHotel");
-});
-
-router.get('/hotels',function(req,res)
-{
-    res.render("hotels");
-});
-
-router.get('/activity1',function(req,res)
-{
-    res.render("activity1");
-});
-router.get('/luxor',function(req,res)
-{
-    res.render("luxor");
-});
-
-
 module.exports=router;
+
+
 
 router.post('/',urlencodedParser,[
   check('unam','Username must be 3+ characters long')

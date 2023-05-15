@@ -1,32 +1,30 @@
-//$(function(){
-    $(`#inputTag`).onchange(function(event){
-        console.log(event.target.files[0].name);
-        //document.getElementById("chosenfiles").innerHTML=event.target.files[0].name;
-       });
-    //})
+
+var form = document.getElementById("hotel");
+form.addEventListener('submit',Event=>{
+    var amen = document.getElementsByName('amen')
+    var textamen= document.getElementById('amenities')
+    var rf = document.getElementsByName('feat');
+    var textrf = document.getElementById('roomfeat');
+    var rt = document.getElementsByName('type');
+    var textrt = document.getElementById('roomtypes');
     
-    function addItem(){
-        document.getElementById("Items").innerHTML+=" menna";
+    for(var i=0; i<amen.length; i++){
+        if(amen[i].checked)
+            textamen.value += `${amen[i].value}, `;
+            
     }
 
-    var array 
-    function addItem(input){
-        var picked = document.getElementById(input);
-        
+    for(var j=0; j<rf.length; j++){
+        if(rf[j].checked)
+            textrf.value += `${rf[j].value}, `;
+            
     }
 
-    function addval(input) {// if button is in form element
-        let inputArray = [];
-    
-        let elements = input.value;
-    
-        elements = elements.trim(); // remove space from starting and end
-        elements = elements.replace(/  +/g, ' '); // remove multiple spaces
-        elements = elements.split(','); // split by space
-    
-        inputArray = elements;
-    
-        console.log(inputArray); // remove later
-        return inputArray;
+    for(var k=0; k<rt.length; k++){
+        if(rt[k].checked)
+            textrt.value += `${rt[k].value}, `;
+            
     }
-    
+ })
+         
+

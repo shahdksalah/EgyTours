@@ -1,0 +1,66 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.page{
+    display: flex;
+    width:50%;
+    height:320px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.3);
+    border-radius:20px;
+    padding:10px;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.left{
+    flex:30%;
+    background-color:rgba(158, 152, 141, 0.577);
+    text-align: center;
+    padding-top:10%;
+}
+.left img{
+    width:100px;
+    height:100px;
+}
+.right{
+    flex:70%;
+    background-color:rgba(158, 152, 141);
+    color:white;
+    text-align: left;
+    padding: 10px;
+}
+h4{
+    font-style: italic;
+    color:rgb(55, 28, 13);
+}
+.right h4,h3{
+    margin: 5px;
+}
+h5{
+    margin:10px; 
+}
+
+.signup{
+    display:none;
+}
+.bu{
+    display: none;
+}
+#saveButtons, #editForm{
+    display: none;
+}
+
+button{
+    border-radius: 10px;
+    background-color: rgb(55, 28, 13);
+    color:white;
+    margin:10px;
+    width:100px;
+}
+input{
+    background-color: rgba(227, 222, 212, 0.63);
+    border:none;
+}

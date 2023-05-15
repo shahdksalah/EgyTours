@@ -4,6 +4,8 @@ const mongoose=require('mongoose');
 const User= require('./models/usersdb.js');
 const PORT=8080;
 
+
+
 const indexRoute=require('./routes/Indexroute.js');
 const foodRoute=require('./routes/foodroute.js');
 const activitiesRoute=require('./routes/activitiesroute.js');
@@ -13,6 +15,18 @@ const addActivityRoute=require('./routes/addactivityroute.js');
 const addHotelRoute=require('./routes/addhotelroute.js');
 const luxorRoute=require('./routes/luxorroute.js');
 const editactivitiesRoute=require('./routes/editactivitiesroute.js');
+const edithotelsRoute=require('./routes/edithotelsroute.js');
+const adminboardRoute=require('./routes/adminboardroute.js');
+const jazhotelRoute=require('./routes/jazhotelroute.js');
+const cartRoute=require('./routes/cartroute.js');
+const aboutusRoute=require('./routes/aboutusroute.js');
+const food1Route=require('./routes/restaurent1route.js');
+const ourteamRoute=require('./routes/ourteamroute.js');
+const tcRoute=require('./routes/T&Croute.js');
+const profileRoute=require('./routes/profileroute.js');
+const usersRoute=require('./routes/usersroute.js');
+const weeklysummaryRoute=require('./routes/weeklysumroute.js');
+
 
 
 const bodyParser = require('body-parser');
@@ -61,6 +75,8 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 .catch((err) => console.log(err))
 
 
+
+
 app.use("/",indexRoute);
 app.use("/success",indexRoute);
 app.use("/food",foodRoute);
@@ -71,18 +87,44 @@ app.use("/addactivity",addActivityRoute);
 app.use("/addhotel",addHotelRoute);
 app.use("/luxor",luxorRoute);
 app.use("/editactivities",editactivitiesRoute);
+app.use("/edithotels",edithotelsRoute);
+app.use("/adminboard",adminboardRoute);
+app.use("/jazhotel",jazhotelRoute);
+app.use("/cart",cartRoute);
+app.use("/aboutus",aboutusRoute);
+app.use("/food1",food1Route);
+app.use("/ourteam",ourteamRoute);
+app.use("/terms",tcRoute);
+app.use("/profile",profileRoute);
+app.use("/users",usersRoute);
+app.use("/weeklysummary",weeklysummaryRoute);
+
+
+
 
 
 
 app.post("/AddHotel", (req,res)=>{
   console.log("entered");
-  const hotel = new Hotel(req.body);
+  const hotel = new Hotel({
+    Name: req.body.name,
+    Location:req.body.location,
+    Picture: req.body.picture,
+    About:req.body.about,
+    PropertyAmen: req.body.amenities,
+    RoomFeatures: req.body.roomfeatures,
+    RoomTypes: req.body.roomtypes,
+  });
+  
   console.log(hotel);
-  hotel.save()
-    .then((results)=>{
-      res.redirect('/AddHotel');
-    })
-    .catch((err)=>{
-      console.log(err);
-    });
+  db.collection("hotels").insertOne(hotel,(err,result)=>{
+    if(err)
+    {
+     console.log(err);
+    }
+    else{
+     console.log("saved");
+     response.redirect('/');
+    }
+})
 })

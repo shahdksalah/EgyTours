@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Hotels</title>
+
+    <link rel="stylesheet" href="/css/styleUsers.css">
+    <link rel="stylesheet" href="/css/styleAddHotel.css">
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css/styleEditHotels.css">
+
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+
+    <div class="h">
+        <div class="admin">ADMIN</div>
+    </div>
+        
+        <div class="main-content">
+    
+            <div class="nav" style="height:2000px;">
+                <button class ="btn1" onclick="location.href='AdminDashboard.html';">Home</button>
+                <button class ="btn1" onclick="drop()"> + Add </button>
+                <div id="dropdown">
+                    <ul class="dropdown-list">
+                        <li><a href="addHotel.html">Hotels</a></li>
+                        <li><a href="AddActivity.html">Activites</a> </li>
+                    </ul>
+                </div>
+                <button class ="btn1" onclick="drop2()"> + Edit</button>
+                <div id="dropdown2">
+                    <ul class="dropdown-list">
+                        <li><a href="hotelsAdmin.html">Hotels</a></li>
+                        <li><a href="EditActivities.html">Activites</a> </li>
+                    </ul>
+                </div>
+                <button class="btn1"  onclick="location.href='Users.html';">Users</button>
+                <button class ="btn1">Weekly Summary</button>
+            </div>
+            <script src="../scripts/admin/AdminDashboardJS.js"></script>
+            
+
+            <div class="right">
+                <div id="cont">
+                    <div>
+                        <h1>Edit Hotels</h1>
+                    </div>
+
+                    <div class="view">
+                        <div id="search">
+                            <div id="sBar">
+                                <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Activities..">
+                            </div>
+                        </div>
+                
+                        <ul id="myUL">
+                            <li><a href="#" id="1" onmouseover=" updateDeleteButtons(1)" onmouseleave="exit(1)">Jaz Aquamrine Resort<button onclick="Update(1)">Update</button> <button onclick="Delete(1)">Delete</button ></a></li>
+                            <li><a href="#" id="2" onmouseover=" updateDeleteButtons(2)" onmouseleave="exit(2)">Hilton Luxor Hotel & Spa <button onclick="Update(2)">Update</button> <button onclick="Delete(2)">Delete</button></a></li>
+                
+                            <li><a href="#" id="3" onmouseover=" updateDeleteButtons(3)" onmouseleave="exit(3)">Four Seasons Hotel Alexandria <button onclick="Update(3)">Update</button> <button onclick="Delete(3)">Delete</button></a></li>
+                        </ul>
+                    </div>
+
+                    <div id="updateInfo">
+                        <div>
+                            <h2>Hotel Name</h2>
+                        </div>
+                        <div>
+                            <textarea name="hotelName" id="hotelName" cols="60" rows="3"></textarea>
+                        </div>
+    
+                        <div>
+                            <h2>Location</h2>
+                        </div>
+                        <div>
+                            <textarea name="hotelName" id="hotelName" cols="60" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <h2>Images</h2>
+                        </div>
+                        <div id="images">
+                            <label for="inputTag" id="lab" >
+                                <div id="upload">
+                                   Upload Images
+                                </div>
+                                  <input type="file" id="inputTag" class="addimg" >
+                                  <div>
+                                    <label id="chosenfiles"></label>
+                                  </div>
+                            </label>
+                        </div>
+                        <div>
+                            <h2>About</h2>
+                        </div>
+                        <div>
+                            <textarea name="hotelName" id="hotelName" cols="150" rows="15"></textarea>
+                        </div>
+    
+                        <div>
+                            <h2>Property Amenities</h2>
+                        </div>
+                        <div id="items">
+                            <div class="item">
+                                <div class="icon">
+                                    <label for="ic"  >
+                                        <div class="add">
+                                        Add Icon
+                                        </div>
+                                        <input type="file" id="ic"  class="i" >
+                                        <div>
+                                            <label class="chosenicon"></label>
+                                        </div>
+                                    </label>
+                                </div>
+                                <textarea name="amenities" id="amenities" cols="30" rows="2"></textarea>
+                                <button class="plus">+</button>
+                            </div>
+    
+                            <div>
+                                <h2>Room Features</h2>
+                            </div>
+                            <div class="item">
+                                <div class="icon">
+                                    <label for="ic2"  >
+                                        <div class="add">
+                                        Add Icon
+                                        </div>
+                                        <input type="file" id="ic2"  class="i" >
+                                        <div>
+                                            <label class="chosenicon"></label>
+                                        </div>
+                                    </label>
+                                </div>
+                                <textarea name="rfeatures" id="rfeatures" cols="30" rows="2"></textarea>
+                                <button class="plus">+</button>
+                            </div>
+    
+                            <div>
+                                <h2>Room Types</h2>
+                            </div>
+                            <div class="item">
+                                <div class="icon">
+                                    <label for="ic3"  >
+                                        <div class="add">
+                                        Add Icon
+                                        </div>
+                                        <input type="file" id="ic3"  class="i" >
+                                        <div>
+                                            <label class="chosenicon"></label>
+                                        </div>
+                                    </label>
+                                </div>
+                                <textarea name="rfeatures" id="rfeatures" cols="30" rows="2"></textarea>
+                                <button class="plus">+</button>
+                            </div>
+                        </div>
+                        <div  id="buttons">
+                            <span>
+                                <button>Submit</button>
+                                <button>Reset</button>
+                            </span>
+                        </div>
+                 </div>
+                </div>
+                <div id="c">
+                    <h1>Delete Activity</h1>
+                    <p>Are you sure you want to delete this Activity?</p>
+            
+                    <div class="clearfix">
+                    <button type="button" class="cancelbtn" onclick="cancel()">Cancel</button>
+                    <button type="button" class="deletebtn" onclick="del()">Delete</button>
+                    <div id="msg" display="none">Activity deleted successfully</div>
+                    </div>
+            
+                </div>
+          </div>
+        </div>
+            <script src="/js/user.js"></script>
+            <script src="/js/EditHotels.js"></script>
+    </body>
+</html>

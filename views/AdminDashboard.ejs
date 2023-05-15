@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin DashBoard</title>
+    
+    <link rel="stylesheet" href="/css/styleActivities.css">
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css/styleHF_ALL.css">
+    <link rel="stylesheet" href="/css/styleChat.css">
+
+</head>
+<style>
+    
+</style>
+<body>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+
+    <div class="chatbox" id="chatbox">
+        <div class="chat-title">
+            <h3>Chatbox</h3>
+        </div>
+        <div class="window">
+            <div class="left-message" id="left-message">
+                <div class="msg-id">
+                    <div>
+                        <img src="../images/profile.jpg" alt="person" width="25px" height="25px" style="border-radius: 15px; border: none;">
+                    </div>
+                </div>
+                <div class="msgcontent">
+                    <div>
+                        <p class="textmsg"></p>
+                    </div>
+                </div>
+                <span class="stamp">
+                    <p class="time"></p>
+                </span>
+            </div>
+            <div class="right-message" id="right-message">
+                <div class="msg-id">
+                    <div>
+                        <img src="../images/profile.jpg" alt="person" width="25px" height="25px" style="border-radius: 15px; border: none;">
+                    </div>
+                    
+                </div>
+                <div class="msgcontent">
+                    <div>
+                        <p class="textmsg"></p>
+                    </div>
+                </div>
+                <span class="stamp">
+                    <p class="time"></p>
+                </span>
+            </div>
+        </div>
+        <div class="type-msg">
+            <input type="text" placeholder="Enter Message.." id="msg"><span><button onclick="sendMsg()">^</button></span>
+            
+        </div>
+    </div>
+
+
+
+    <div class="h">
+        <div class="admin">ADMIN</div>
+        <button onclick="viewChat('chatbox')"><i class="fa-regular fa-comment"></i>
+    </div>
+    
+    <script src="/js/chat.js"></script>
+    <div class="main-content">
+
+        <div class="nav">
+            <button class ="btn1">Home</button>
+            <button class ="btn1" onclick="drop()"> + Add </button>
+            <div id="dropdown">
+                <ul class="dropdown-list">
+                    <li><a href="addHotel.html">Hotels</a></li>
+                    <li><a href="AddActivity.html">Activites</a> </li>
+                </ul>
+            </div>
+            <button class ="btn1" onclick="drop2()"> + Edit</button>
+            <div id="dropdown2">
+                <ul class="dropdown-list">
+                    <li><a href="EditHotels.html">Hotels</a></li>
+                    <li><a href="EditActivities.html">Activites</a> </li>
+                </ul>
+            </div>
+            <button class="btn1"  onclick="location.href='Users.html';">Users</button>
+            <button class ="btn1">Weekly Summary</button>
+        </div>
+        <script src="/js/AdminDashboardJS.js"></script>
+    
+
+
+
+
+        <div class="right">
+            <h1 class="head">TOP ACTIVITIES</h1>
+            <div class="first">
+                <div class="btn">
+                    <div>
+                        <img src="../images/cities/SAFARI.jpg" alt="safari" width="300 px" height="200 px">
+                    </div>
+            
+                <div>
+                    <h5>ADVENTURE</h5>
+                    <h4>From Cairo:4x4 Desert Safari, Sandsurf, and Camel Ride </h4>
+                </div>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i><span style="margin-left:2%;">4.0</span>
+            </div>
+            
+            </div>
+        
+                <div class="btn">
+                    <div>
+                        <img src="../images/cities/PYRAMIDS.jpg" alt="pyramids" width="300 px" height="200 px" >
+                    </div>
+                <div>
+                    <h5>GUIDED TOUR</h5>
+                    <h4>From Cairo: Half Day Tour to Pyramids of Giza and the Sphinx </h4>
+                </div>
+                
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i><span style="margin-left:2%;">4.5</span>
+                </div>
+            </div>
+    
+            
+                <div class="btn">
+                <div>
+                    <img src="../images/cities/QAITBAY.jpg" alt="citadel qaitbay" width="300 px" height="200 px">
+                </div>
+                <div>
+                    <h5>DAY TRIP</h5>
+                    <h4>From Cairo: Full Day Tour of Historical Alexandria </h4>
+                </div>
+                    
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><span style="margin-left:2%;">5.0</span>
+                    
+                    </div>
+                </div>
+            </div>
+    
+    
+            <h1 class="head">TOP HOTELS</h1>
+            <div class="first">
+            <div class="btn">
+                <div>
+                    <img src="../images/Hotels/jaz hotel.jpeg" alt="jaz hotel" width="300 px" height="200 px">
+                </div>
+            
+            <div>
+                <h3>Jazz Makadina Hotel</h3>
+                <h4>From Cairo:3-4 days next to beach and swimming pool </h4>
+            </div>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i><span style="margin-left:2%;">4.0</span>
+            </div>
+            <div>
+                
+            </div>
+            </div>
+        
+            <div class="btn">
+                    <div>
+                        <img src="../images/Hotels/fourseasons alex.jpg" alt="four seasons hotel" width="300 px" height="200 px" >
+                    </div>
+                <div>
+                    <h3>Four Seasons Hotel</h3>
+                    <h4>From Cairo:2-3 days visiting all the historic tours </h4>
+                </div>
+                
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i><span style="margin-left:2%;">4.5</span>
+                </div>
+            </div>
+    
+            
+            <div class="btn">
+                <div>
+                    <img src="../images/Hotels/hilton luxor hotel.jpeg" alt="hilton luxor" width="300 px" height="200 px">
+                </div>
+                <div>
+                    <h3>Hilton Luxor Hotel</h3>
+                    <h4>From Cairo:5-6 days enjoying the greatest view ever </h4>
+                </div>
+                    
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><span style="margin-left:2%;">5.0</span>
+                </div>
+            </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+</html>

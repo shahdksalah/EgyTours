@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link rel="stylesheet" href="/css/styleUsers.css">
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css/styleForm.css">
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+    <div class="h">
+        <div class="admin">ADMIN</div>ol90ewwq
+    </div>
+
+    <div class="main-content">
+        <div class="nav">
+            <button class ="btn1" onclick="location.href='AdminDashboard.html';">Home</button>
+            <button class ="btn1" onclick="drop()"> + Add </button>
+            <div id="dropdown">
+                <ul class="dropdown-list">
+                    <li><a href="addHotel.html">Hotels</a></li>
+                    <li><a href="AddActivity.html">Activites</a> </li>
+                </ul>
+            </div>
+            <button class ="btn1" onclick="drop2()"> + Edit</button>
+            <div id="dropdown2">
+                <ul class="dropdown-list">
+                    <li><a href="hotelsAdmin.html">Hotels</a></li>
+                    <li><a href="EditActivities.html">Activites</a> </li>
+                </ul>
+            </div>
+            <button class="btn1"  onclick="location.href='Users.html';">Users</button>
+            <button class ="btn1">Weekly Summary</button>
+        </div>
+        <script src="../scripts/admin/AdminDashboardJS.js"></script>
+
+        <div class="right">
+            <div id="container">
+                <div class="addUser" id="addUser">
+                    <form class="form">
+                        <div class="signuptitle">
+                              <h2>Add User Info</h2>
+                        </div>
+                        <div class="container">
+                          <div class="input-group">
+                            <label for="uname">Userame</label>
+                            <input id="uname" type="text" placeholder="Enter Userame" name="uname">
+                            <span class="error-message"></span>
+                          </div>
+                          
+                          <div class="input-group">
+                            <label for="email">Email</label>
+                            <input id="femail" type="email" placeholder="Enter Email" name="email" >
+                            <span class="error-message"></span>
+                          </div>
+              
+                          <div class="input-group">
+                            <label for="number">Phone Number</label>
+                            <input id="number" type="number" placeholder="Enter Phone Number" name="number">
+                            <span class="error-message"></span>
+                          </div>
+                          
+                          <div class="input-group">
+                            <label for="psw">Password</label>
+                            <input id="password" type="password" placeholder="Enter Password" name="psw">
+                            <span class="error-message"></span>
+                          </div>
+              
+                          <div class="input-group">
+                            <label for="psw">Password Confirmation</label>
+                            <input id="password-confirmation" type="password" placeholder="Repeat Password" name="psw">
+                            <span class="error-message"></span>
+                          </div>
+                      
+                          <div class="form-btns">
+                            <button type="submit" >Add</button>
+                            <button onclick="reset()">Reset</button>
+                          </div>
+                          
+                        </div>
+                      </form>
+                </div>
+                <script src="../scripts/formsVal.js"></script>
+
+
+
+                <div class="view">
+                    <div id="search">
+                        <div id="sBar">
+                            <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for users..">
+                        </div>
+                    </div>
+
+                    <ul id="myUL">
+                        <li><a href="#" id="1" onmouseover=" updateDeleteButtons(1)" onmouseleave="exit(1)">Adele <button onclick="onUpdate(1)">Update</button> <button onclick="onDelete(1)">Delete</button ></a></li>
+                        <li><a href="#" id="2" onmouseover=" updateDeleteButtons(2)" onmouseleave="exit(2)" >Agnes <button onclick="onUpdate(2)">Update</button> <button onclick="onDelete(2)">Delete</button></a></li>
+
+                        <li><a href="#" id="3" onmouseover=" updateDeleteButtons(3)" onmouseleave="exit(3)">Billy <button onclick="onUpdate(3)">Update</button> <button onclick="onDelete(3)">Delete</button></a></li>
+                        <li><a href="#" id="4" onmouseover=" updateDeleteButtons(4)" onmouseleave="exit(4)">Bob <button onclick="onUpdate(4)">Update</button> <button onclick="onDelete(4)">Delete</button></a></li>
+
+                        <li><a href="#" id="5" onmouseover=" updateDeleteButtons(5)" onmouseleave="exit(5)" >Calvin <button onclick="onUpdate(5)">Update</button> <button onclick="onDelete(5)">Delete</button></a></li>
+                        <li><a href="#" id="6" onmouseover=" updateDeleteButtons(6)" onmouseleave="exit(6)">Christina <button onclick="onUpdate(6)">Update</button> <button onclick="onDelete(6)">Delete</button></a></li>
+                        <li><a href="#" id="7"onmouseover=" updateDeleteButtons(7)" onmouseleave="exit(7)">Cindy <button>Update</button onclick="onUpdate(7)"> <button onclick="onDelete(7)">Delete</button></a></li>
+                    </ul>
+                </div>
+
+
+
+                <div id="updateInfo">
+                    <div class="update">
+                        <div class="icol">
+                            <h4>Username:</h4>
+                        </div>
+                        <div class="info">
+                            <p  id="e1"></p>
+                        </div>
+                        <div class="edit">
+                            <button  onclick="replaceInfo('e1')"><i class="fa-solid fa-pen-to-square"></i></button>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="icol">
+                            <h4>Email:</h4>
+                        </div>
+                        <div class="info">
+                            <p id="e2"></p>
+                        </div>
+                        <div class="edit">
+                            <button onclick="replaceInfo('e2')"><i class="fa-solid fa-pen-to-square"></i></button>
+                        </div>
+                    </div>
+                    <div class="update">
+                            <div class="icol">
+                                <h4>Phone Number:</h4>
+                            </div>
+                            <div class="info">
+                                <p  id="e3">01098763442</p>
+                            </div>
+                            <div class="edit">
+                                <button onclick="replaceInfo('e3')"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button style="width:80px;" onclick="save()">Save</button>
+                    </div>
+                </div>
+                <div id="smsg">
+                    <span>User's Info Saved</span>
+                 </div>
+
+                <div id="deleteUser">
+                    <div class="delete">
+                        <div>
+                            <h4>Username:</h4>
+                        </div>
+                        <div class="inf">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="delete">
+                        <div>
+                            <h4>Email:</h4>
+                        </div>
+                        <div class="inf">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="delete">
+                        <div>
+                            <h4>Phone Number:</h4>
+                        </div>
+                        <div class="inf">
+                            <p> <p>01098763442</p></p>
+                        </div>
+                    </div>
+                    <div>
+                        <button onclick="document.getElementById('id01').style.display='block'">Remove</button>
+
+                        <div id="id01" class="modal">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                            <form class="modal-content" action="">
+                            <div class="container">
+                                <h1>Delete User</h1>
+                                <p>Are you sure you want to delete this user?</p>
+                  
+                                <div class="clearfix">
+                                <button type="button" class="cancelbtn" onclick="cancel()">Cancel</button>
+                                <button type="button" class="deletebtn" onclick="del()">Delete</button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                        <div id="msg">
+                            <span>User Deleted Successfully</span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script src="/js/user.js"></script>
+
+</body>
+</html>

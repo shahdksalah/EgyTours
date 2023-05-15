@@ -19,6 +19,14 @@ const edithotelsRoute=require('./routes/edithotelsroute.js');
 const adminboardRoute=require('./routes/adminboardroute.js');
 const jazhotelRoute=require('./routes/jazhotelroute.js');
 const cartRoute=require('./routes/cartroute.js');
+const aboutusRoute=require('./routes/aboutusroute.js');
+const food1Route=require('./routes/restaurent1route.js');
+const ourteamRoute=require('./routes/ourteamroute.js');
+const tcRoute=require('./routes/T&Croute.js');
+const profileRoute=require('./routes/profileroute.js');
+const usersRoute=require('./routes/usersroute.js');
+const weeklysummaryRoute=require('./routes/weeklysumroute.js');
+
 
 
 
@@ -85,6 +93,14 @@ app.use("/edithotels",edithotelsRoute);
 app.use("/adminboard",adminboardRoute);
 app.use("/jazhotel",jazhotelRoute);
 app.use("/cart",cartRoute);
+app.use("/aboutus",aboutusRoute);
+app.use("/food1",food1Route);
+app.use("/ourteam",ourteamRoute);
+app.use("/terms",tcRoute);
+app.use("/profile",profileRoute);
+app.use("/users",usersRoute);
+app.use("/weeklysummary",weeklysummaryRoute);
+
 
 
 

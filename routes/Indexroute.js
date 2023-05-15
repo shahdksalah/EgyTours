@@ -69,6 +69,7 @@ router.post('/',urlencodedParser,[
   check('confpsw','Invalid Password')
   .exists()
   .isLength({min:6})
+  
 
 ] ,(request, response) =>  {
   console.log("entered");
@@ -78,7 +79,7 @@ router.post('/',urlencodedParser,[
   if(!errors.isEmpty()){
       const alert=errors.array();
   }
-  else if(validate.register==false)
+  else if(request.body.psw!==request.body.confpsw)
      console.log("error");
  else{
     const userdetails = new User({
@@ -95,6 +96,7 @@ router.post('/',urlencodedParser,[
          console.log(err);
         }
         else{
+        console.log(validate.type)
          console.log("saved");
          response.redirect('/');
         }

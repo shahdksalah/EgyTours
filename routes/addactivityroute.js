@@ -1,8 +1,8 @@
 const express=require('express')
 const router=express.Router()
-const Activity= require('./models/addActivitiesdb.js');
+const Activity= require('../models/addActivitiesdb.js');
 const fileupload=require("express-fileupload");
-app.use(fileupload());
+router.use(fileupload());
 
 router.get('/',function(req,res)
 {
@@ -13,7 +13,20 @@ router.post('/submit',(request, response) =>  {
     console.log("entered");
         console.log(request.body);
         console.log(request.body.file);
-  
+
+        let imgFile;
+        let uploadPath;
+        console.log(request.files);
+        if(!request.files||Object.keys(request.files).length===0)
+        {
+            return res.status(400).send("no files uploaded");
+        }
+        imgFile=req.files.file;
+        uploadPath=__dirname+'/public/images'+request.body.Aname+' .png';
+
+        imgFile.mv(uploadPath,function(err){
+            return res.status(500).send(err);
+        })
   
       const activitydetails = new Activity({
           Name:request.body.Aname,
@@ -27,15 +40,6 @@ router.post('/submit',(request, response) =>  {
           PickupDet:request.body.Apickup,
           AvailableDate:request.body.Dates
         });
-  
-        const file=request.files;
-       const filepath= path.join(__dirname,'uploads',`${request.files}`);
-  /*
-       file.mv(filepath,err => {
-        if(err) return response.status(500).send(err);
-        console.log("success");
-       })
-  */
       db.collection("activities").insertOne(activitydetails,(err,result)=>{
         if(err)
         {

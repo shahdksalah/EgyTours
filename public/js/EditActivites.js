@@ -61,7 +61,7 @@ function Update(index)
             Adate:date
         };
         formData.append("object",obj);
-        fetch('http://localhost:8080/submit',{
+        fetch('http://localhost:8080/AddActivity/submit',{
             method:"POST",
             body:formData,
             headers:{

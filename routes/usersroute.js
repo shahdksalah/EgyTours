@@ -8,9 +8,14 @@ const bodyParser=require('body-parser');
 const{check,validationResult} =require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
-router.get('/',function(req,res)
+
+
+router.get('/',async function(req,res)
 {
-    res.render("users");
+    var Users=[];
+    Users=await User.find();
+    console.log(Users)
+    res.render("users",{users:(Users==='undefined'?"":Users)});
 });
 
 router.post('/',urlencodedParser,[
@@ -65,18 +70,5 @@ router.post('/',urlencodedParser,[
    }
     });
 
-router.post('/success',async(request, response) =>  {
-
-    console.log(request.body.search);
-    var query=request.body.search;
-    var Users=[];
-    const user1=await User.find().where("Username").equals(query);
-    Users=Array.from(user1);
-    console.log(Users[0]);
-    response.render("users",Users[0]==="undefined"?"":Users[0]);
-    
-
-    
-  });
 
 module.exports=router;

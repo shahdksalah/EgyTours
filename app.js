@@ -42,12 +42,14 @@ var db = mongoose.connection;
 
 
 
+
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 
 app.set('view engine','ejs');

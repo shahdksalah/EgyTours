@@ -6,6 +6,7 @@
             </div>
             <nav class="topnav">
                 <button onclick="show('signin')">Sign In</button>
+                
                 <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
                 <a href="/activities"> <i class="fa-regular fa-heart"></i> </a>
                 <a href="/cart"> <i class="fa-solid fa-cart-shopping"></i></a>
@@ -96,16 +97,8 @@
             <input id="password-confirmation" type="password" placeholder="Repeat Password" name="confpsw">
             <span class="error-message"></span>
             </div>
-
-            <div class="input-group">
-                <input type="radio" id="admin" name="type" value="Admin"> 
-                <label for="admin">Admin</label>
-            </div>
-
-            <div class="input-group">
-                <input type="radio" id="user" name="type" value="User" checked="true">
-                <label for="user">User</label>
-            </div>
+             
+            <input type="hidden" name="type" value="client">
             <span id="error"></span>
         
             <button type="submit" class="subutton" id="sub">Sign Up</button>

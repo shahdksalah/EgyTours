@@ -1,8 +1,6 @@
 const express=require('express')
 const router=express.Router();
 const User= require('../models/usersdb.js');
-const Customer= require('../models/customersdb.js');
-const Admin= require('../models/adminsdb.js');
 const validate=require('../public/js/formsVal.js')
 const mongoose=require('mongoose');
 var db = mongoose.connection;
@@ -56,7 +54,6 @@ router.post('/',urlencodedParser,[
   else if(request.body.psw!==request.body.confpsw)
      console.log("error");
  else{
-    console.log("e");
     const userdetails = new User({
         Username: request.body.unam,
         Email: request.body.email,
@@ -65,49 +62,13 @@ router.post('/',urlencodedParser,[
         ConfPassword: request.body.confpsw,
         Type:request.body.type
       });
-      if(request.body.type==="User"){
-        const customerdetails = new Customer({
-          Username: userdetails.Username,
-          Email: userdetails.Email,
-          PhoneNumber: userdetails.PhoneNumber,
-          Password: userdetails.Password,
-          ConfPassword:userdetails.ConfPassword
-        });
-
-        db.collection("users").insertOne(customerdetails,(err,result)=>{
-          if(err)
-          {
-           console.log(err);
-          }
-          else{
-           console.log("saved");
-           response.redirect('/');
-          }
-        })
-
-      }
-      else if(request.body.type==="Admin"){
-        const admindetails = new Admin({
-          Username: userdetails.Username,
-          Email: userdetails.Email,
-          PhoneNumber: userdetails.PhoneNumber,
-          Password: userdetails.Password,
-          ConfPassword:userdetails.ConfPassword
-        });
-
-        db.collection("admins").insertOne(admindetails,(err,result)=>{
-          if(err)
-          {
-           console.log(err);
-          }
-          else{
-           console.log("saved");
-           response.redirect('/');
-          }
-        })
-
-      }
-   
+    
+       userdetails.save()
+       .then((result)=>{
+         console.log('user added');
+         response.redirect("/");
+       });
+       
  }
   });
 
@@ -124,52 +85,18 @@ router.post('/login',urlencodedParser,[
   check('password','password is empty')
   .exists()
 ],(request,response)=>{
-  console.log("entered");
-  let un=request.body.username;
-  let pass=request.body.password;
   const errors=validationResult(request)
-  db.collection('users').find({Username:un,Password:pass}).toArray((err, result) => {
-
-    if (err) {
-        console.log('The search errored');
-    } else if (_.isEmpty(result)) {
-        console.log('record not found')
-    } else {
-        console.log(result);
-    };
-});
-  db.collection('admins').find({Username:un,Password:pass}).toArray((err, result) => {
-
-    if (err) {
-        console.log('The search errored');
-    } else if (_.isEmpty(result)) {
-        console.log('record not found')
-    } else {
-        console.log(result);
-    };
+  console.log("entered");
+  var query={Username:request.body.username,Password:request.body.password};
+  User.find(query)
+  .then(result=>{
+     request.session.user=result[0];
+     response.redirect("/",{user:(request.session.user===undefined)?"":request.session.user})
   });
-  if(!errors.isEmpty()){
-      const alert=errors.array();
-      for( i=0;i<errors.length;i++){
-          console.log(errors[i]);
-      }
-  }
-  else{
-   
  
-    console.log("fares")
-   
-    db.collection('admins').findOne({Username:un,Password:pass},function(err,result){
-      if(err)
-        console.log(err);
-      else{
-        console.log("admin logged in");
-      }
-    });
+  
 
     
-  
-}
 
 });
 

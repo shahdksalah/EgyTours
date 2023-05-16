@@ -115,6 +115,32 @@ function myFunction() {
     document.getElementById("msg").style.display="block";
   }
 
+
+  function submit()
+{
+    var myName=document.querySelector('#uname').value;
+    var myEmail=document.querySelector('#femail').value;
+    var myNumber=document.querySelector('#number').value;
+    var mypass=document.querySelector('#password').value;
+    var myconfpass=document.querySelector('#password-confirmation').value;
+    console.log(myName);
+    var obj={
+        unam:myName,
+        email:myEmail,
+        number:myNumber,
+        psw:mypass,
+        confpsw:myconfpass
+    };
+    fetch('/success',{
+        method:"POST",
+        headers:{
+           "Content-type":"application/json"
+        },
+     
+        body:JSON.stringify(obj)
+    });
+    console.log(myName);
+  }
   var search= document.getElementById('myInput');
 
   search.addEventListener("keydown",function(e){
@@ -127,7 +153,7 @@ function myFunction() {
         };
       
 
-      fetch("http://localhost:8080/users",{
+      fetch("http://localhost:8080/users/success",{
         method:"post",
         body:obj,
         headers:{

@@ -74,7 +74,6 @@ function myFunction() {
     user.trim();
     let info=document.getElementsByClassName("info");
     let name= user.split('\n')[0];
-    console.log(name);
     document.getElementById("e1").innerHTML=name;
     document.getElementById("e2").innerHTML=name.concat("@gmail.com");
     document.getElementById("updateInfo").style.display="block";
@@ -141,30 +140,7 @@ function myFunction() {
     });
     console.log(myName);
   }
-  var search= document.getElementById('myInput');
-
-  search.addEventListener("keydown",function(e){
-    if(e.key=="Enter")
-    {
-      if(typeof document !== 'undefined'){
-
-        var obj={
-          search:search.value
-        };
-      
-
-      fetch("http://localhost:8080/users/success",{
-        method:"post",
-        body:obj,
-        headers:{
-          "Content-type":"application/json"
-       },
-    
-       body:JSON.stringify(obj)
-      })
-    }
-    }
-  });
+ 
 
   
   

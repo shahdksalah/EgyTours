@@ -97,15 +97,15 @@
                     </div>
 
                     <ul id="myUL">
-                        <li><a href="#" id="1" onmouseover=" updateDeleteButtons(1)" onmouseleave="exit(1)">Adele <button onclick="onUpdate(1)">Update</button> <button onclick="onDelete(1)">Delete</button ></a></li>
-                        <li><a href="#" id="2" onmouseover=" updateDeleteButtons(2)" onmouseleave="exit(2)" >Agnes <button onclick="onUpdate(2)">Update</button> <button onclick="onDelete(2)">Delete</button></a></li>
-
-                        <li><a href="#" id="3" onmouseover=" updateDeleteButtons(3)" onmouseleave="exit(3)">Billy <button onclick="onUpdate(3)">Update</button> <button onclick="onDelete(3)">Delete</button></a></li>
-                        <li><a href="#" id="4" onmouseover=" updateDeleteButtons(4)" onmouseleave="exit(4)">Bob <button onclick="onUpdate(4)">Update</button> <button onclick="onDelete(4)">Delete</button></a></li>
-
-                        <li><a href="#" id="5" onmouseover=" updateDeleteButtons(5)" onmouseleave="exit(5)" >Calvin <button onclick="onUpdate(5)">Update</button> <button onclick="onDelete(5)">Delete</button></a></li>
-                        <li><a href="#" id="6" onmouseover=" updateDeleteButtons(6)" onmouseleave="exit(6)">Christina <button onclick="onUpdate(6)">Update</button> <button onclick="onDelete(6)">Delete</button></a></li>
-                        <li><a href="#" id="7"onmouseover=" updateDeleteButtons(7)" onmouseleave="exit(7)">Cindy <button>Update</button onclick="onUpdate(7)"> <button onclick="onDelete(7)">Delete</button></a></li>
+                   
+                        <% if(users!=="") {%>
+                            <% let id=1; %>
+                            <% users.forEach((user) => { %>
+                                <li><a href="#" id=<%= id %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=user.Username %> <button onclick="onUpdate(id)">Update</button> <button onclick="onDelete(id)">Delete</button ></a></li>
+                            <% id++; %>
+                            <% }); %>
+                        <% } %> 
+                    
                     </ul>
                 </div>
 

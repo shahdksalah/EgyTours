@@ -17,8 +17,8 @@ const HotelSchema = new Schema({
         required:true,
     },
     Picture:{
-        data:Buffer,
-        contentType:String
+        type:Array,
+        required:true,
     },
     About:{
         type:String,

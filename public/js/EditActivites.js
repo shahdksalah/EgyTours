@@ -27,7 +27,7 @@ function Update(index)
             document.getElementById("c").style.display="none";
         }
 
-
+/*
             function submit()
             {
                 const files= document.getElementById("file");
@@ -72,3 +72,4 @@ function Update(index)
         });
         console.log(name);
             }
+   */         

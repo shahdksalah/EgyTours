@@ -36,12 +36,9 @@ const fs=require('fs');
 const Hotel = require('./models/addHoteldb.js');
 const Activity= require('./models/addActivitiesdb.js');
 var db = mongoose.connection;
-var multer=require('multer');
-const cors=require('cors');
-const fileupload=require("express-fileupload");
 
-app.use(cors());
-app.use(fileupload());
+
+
 
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });

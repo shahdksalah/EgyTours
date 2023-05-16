@@ -3,6 +3,8 @@ const router=express.Router()
 const Activity= require('../models/addActivitiesdb.js');
 const fileupload=require("express-fileupload");
 router.use(fileupload());
+const mongoose=require('mongoose');
+var db = mongoose.connection;
 
 router.get('/',function(req,res)
 {
@@ -11,27 +13,31 @@ router.get('/',function(req,res)
 
 router.post('/submit',(request, response) =>  {
     console.log("entered");
-        console.log(request.body);
-        console.log(request.body.file);
 
-        let imgFile;
-        let uploadPath;
-        console.log(request.files);
+
+        var imgFile=[];
+        var uploadPath;
+        var num;
+        //console.log(request.files);
         if(!request.files||Object.keys(request.files).length===0)
         {
-            return res.status(400).send("no files uploaded");
+            return response.status(400).send("no files uploaded");
         }
-        imgFile=req.files.file;
-        uploadPath=__dirname+'/public/images'+request.body.Aname+' .png';
-
-        imgFile.mv(uploadPath,function(err){
-            return res.status(500).send(err);
-        })
+        console.log(request.files.imgs);
+        num=request.files.imgs.length;
+        console.log(num);
+        imgFile=request.files.imgs;
+        for(var i=0;i<num;i++){
+        uploadPath=__dirname+"/../public/images"+request.body.Aname+i+'.jpg';
+        imgFile[i].mv(uploadPath,(err)=>{
+          console.log(err);
+      })
+        }
   
       const activitydetails = new Activity({
           Name:request.body.Aname,
           Type:request.body.Atype,
-          Picture:request.body.file,
+          Picture:request.body.imgs,
           BriefDes:request.body.Abrief,
           DetailedDes:request.body.Adetails,
           Plan:request.body.Aplan,
@@ -46,10 +52,10 @@ router.post('/submit',(request, response) =>  {
          console.log(err);
         }
          console.log("saved");
-         response.render("food");
+         //response.render("food");
   
-      
-    })
+    }) 
+
   });
 
 module.exports=router;

@@ -20,7 +20,7 @@
         
             <div class="right">
             <div id="container">
-                <form id="hotel">
+                <form id="hotel" method="post" action="/AddHotel" enctype="multipart/form-data">
                     <div>
                         <label for="name"><h2>Hotel Name</h2></label>
                         <textarea name="name" id="hotelName" cols="60" rows="3"></textarea>
@@ -35,19 +35,14 @@
                     <div>
                         <h2>Images</h2>
                     </div>
-                    <div id="images">
-                        <label for="inputTag" id="lab" >
-                            <div id="upload">
-                               <label for="addimg">Upload Images</label>
-                               <input type="file" id="inputTag" class="addimg" name="picture" >
-                               
-                            </div>
-                            <span class="error-message"></span>
-                              <div>
-                                <label id="chosenfiles"></label>
-                              </div>
-                        </label>
+                    <div>
+                        <div>
+                            <input type="file" id="imgs" name="imgs" multiple>
+                        </div>
+                        <span class="error-message"></span>
                     </div>
+
+
                     <div>
                         <h2>About</h2>
                     </div>

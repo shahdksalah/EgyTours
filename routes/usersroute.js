@@ -73,7 +73,7 @@ router.post('/success',async(request, response) =>  {
     const user1=await User.find().where("Username").equals(query);
     Users=Array.from(user1);
     console.log(Users[0]);
-    response.render("users",Users[0]==="undefined"?"":Users[0]);
+    response.render("users",{User:((Users[0]==="undefined")?"":Users[0])});
     
 
     

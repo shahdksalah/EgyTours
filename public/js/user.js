@@ -115,6 +115,31 @@ function myFunction() {
     document.getElementById("msg").style.display="block";
   }
 
+  var search= document.getElementById('myInput');
+
+  search.addEventListener("keydown",function(e){
+    if(e.key=="Enter")
+    {
+      if(typeof document !== 'undefined'){
+
+        var obj={
+          search:search.value
+        };
+      
+
+      fetch("http://localhost:8080/users",{
+        method:"post",
+        body:obj,
+        headers:{
+          "Content-type":"application/json"
+       },
+    
+       body:JSON.stringify(obj)
+      })
+    }
+    }
+  });
+
   
   
   

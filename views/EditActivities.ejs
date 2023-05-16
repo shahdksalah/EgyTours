@@ -19,28 +19,7 @@
         <div class="admin">ADMIN</div>
     </div>
         
-        <div class="main-content">
-    
-            <div class="nav" style="height:2000px;">
-                <button class ="btn1" onclick="location.href='AdminDashboard.html';">Home</button>
-                <button class ="btn1" onclick="drop()"> + Add </button>
-                <div id="dropdown">
-                    <ul class="dropdown-list">
-                        <li><a href="addHotel.html">Hotels</a></li>
-                        <li><a href="AddActivity.html">Activites</a> </li>
-                    </ul>
-                </div>
-                <button class ="btn1" onclick="drop2()"> + Edit</button>
-                <div id="dropdown2">
-                    <ul class="dropdown-list">
-                        <li><a href="hotelsAdmin.html">Hotels</a></li>
-                        <li><a href="EditActivities.html">Activites</a> </li>
-                    </ul>
-                </div>
-                <button class="btn1"  onclick="location.href='Users.html';">Users</button>
-                <button class ="btn1">Weekly Summary</button>
-            </div>
-            <script src="../scripts/admin/AdminDashboardJS.js"></script>
+    <%- include("partials/adminHeader.ejs") %>
 
         <h1 id="Edit"><ins>Edit Activities</ins></h1>
         

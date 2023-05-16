@@ -15,7 +15,9 @@ let path=require('path');
 
 router.get('/',function(req,res)
 {
-    res.render("index");
+  // res.render("index",{user:((req.session.user===undefined)?"":req.session.user)});
+
+    res.render("index",{user:('nad')});
 });
 
 module.exports=router;
@@ -91,11 +93,9 @@ router.post('/login',urlencodedParser,[
   User.find(query)
   .then(result=>{
      request.session.user=result[0];
-     response.redirect("/",{user:(request.session.user===undefined)?"":request.session.user})
+     response.redirect("/");
   });
  
-  
-
     
 
 });

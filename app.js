@@ -36,23 +36,10 @@ const fs=require('fs');
 const Hotel = require('./models/addHoteldb.js');
 const Activity= require('./models/addActivitiesdb.js');
 var db = mongoose.connection;
-var multer=require('multer');
-const cors=require('cors');
-const fileupload=require("express-fileupload");
 
-app.use(cors());
-app.use(fileupload());
 
-const storage = multer.diskStorage({
-  destination:function(req,file,callback){
-    cb(null,__dirname+'uploads');
-  },
-  filename: function(req,file,cb){
-    cb(null,Date.now()+'--'+file.originalname);
-  }
-});
 
-const uploads = multer({storage:storage});
+
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
@@ -60,6 +47,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 
 app.set('view engine','ejs');

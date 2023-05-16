@@ -27,7 +27,7 @@ function Update(index)
             document.getElementById("c").style.display="none";
         }
 
-
+/*
             function submit()
             {
                 const files= document.getElementById("file");
@@ -61,7 +61,7 @@ function Update(index)
             Adate:date
         };
         formData.append("object",obj);
-        fetch('http://localhost:8080/submit',{
+        fetch('http://localhost:8080/AddActivity/submit',{
             method:"POST",
             body:formData,
             headers:{
@@ -72,3 +72,4 @@ function Update(index)
         });
         console.log(name);
             }
+   */         

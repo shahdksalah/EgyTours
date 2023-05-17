@@ -40,6 +40,10 @@ const HotelSchema = new Schema({
         trim:true,
         required:true,
     },
+    Reviews:{
+        type:Array,
+        required:false
+    }
 },{timestamp:true});
 
 const Hotel= mongoose.model('Hotel',HotelSchema);

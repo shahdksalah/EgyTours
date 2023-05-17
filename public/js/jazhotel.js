@@ -72,3 +72,25 @@ function bookHotel(){
     document.getElementById('r-error').innerHTML="";
   }
 }
+
+function addReview()
+{
+  var review=document.getElementById('addrev').value;
+  var rating=document.getElementById('dropbtn3').value;
+  var hotelname=document.getElementById('hotelname').value;
+  var obj={
+    hotel:hotelname,
+    review:review,
+    rating:rating,
+    Date:new Date()
+  }
+
+  fetch("http://localhost:8080/hotels",{
+    method:"post",
+    body:"obj",
+    headers:{
+      "Content-type":"application/json"
+    },
+    body:JSON.stringify(obj)
+  })
+}

@@ -17,4 +17,8 @@ router.get('/:name', async function(req,res){
     res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels)});
 });
 
+router.post('/',async function(req,res){
+    console.log(req.body.addrev);
+});
+
 module.exports=router;

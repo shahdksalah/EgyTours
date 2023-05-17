@@ -80,10 +80,12 @@
                     <ul id="myUL">
                    
                         <% if(users!=="") {%>
-                            <% let id=1; %>
+                            <% let uid=1; %>
                             <% users.forEach((user) => { %>
-                                <li><a href="#" id=<%= id %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=user.Username %> <button onclick="onUpdate(id)">Update</button> <button onclick="onDelete(id)">Delete</button ></a></li>
-                            <% id++; %>
+                                <li><a href="#" id=<%= uid %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=user.Username %> 
+                                    <button onclick="onUpdate('<%=user._id%>','<%=user.Username%>','<%=user.Email%>','<%=user.PhoneNumber%>','<%=user.Password%>')">Update</button>
+                                     <button onclick="onDelete('<%=user.Username%>','<%=user.Email%>','<%=user.PhoneNumber%>','<%=user.Password%>')">Delete</button ></a></li>
+                            <% uid++; %>
                             <% }); %>
                         <% } %> 
                     
@@ -120,15 +122,27 @@
                                 <h4>Phone Number:</h4>
                             </div>
                             <div class="info">
-                                <p  id="e3">01098763442</p>
+                                <p  id="e3"></p>
                             </div>
                             <div class="edit">
                                 <button onclick="replaceInfo('e3')"><i class="fa-solid fa-pen-to-square"></i></button>
                             </div>
                     </div>
+                    <div class="update">
+                        <div class="icol">
+                            <h4>Password:</h4>
+                        </div>
+                        <div class="info">
+                            <p  id="e4"></p>
+                        </div>
+                        <div class="edit">
+                            <button onclick="replaceInfo('e3')"><i class="fa-solid fa-pen-to-square"></i></button>
+                        </div>
+                    </div>
                     <div style="text-align: center;">
                         <button style="width:80px;" onclick="save()">Save</button>
                     </div>
+                    <div id="currid"></div>
                 </div>
                 <div id="smsg">
                     <span>User's Info Saved</span>
@@ -140,7 +154,7 @@
                             <h4>Username:</h4>
                         </div>
                         <div class="inf">
-                            <p></p>
+                            <p id="d1"></p>
                         </div>
                     </div>
                     <div class="delete">
@@ -148,7 +162,7 @@
                             <h4>Email:</h4>
                         </div>
                         <div class="inf">
-                            <p></p>
+                            <p id="d2"></p>
                         </div>
                     </div>
                     <div class="delete">
@@ -156,7 +170,15 @@
                             <h4>Phone Number:</h4>
                         </div>
                         <div class="inf">
-                            <p> <p>01098763442</p></p>
+                            <p id="d3"></p>
+                        </div>
+                    </div>
+                    <div class="delete">
+                        <div>
+                            <h4>Password:</h4>
+                        </div>
+                        <div class="inf">
+                            <p id="d4"></p>
                         </div>
                     </div>
                     <div>

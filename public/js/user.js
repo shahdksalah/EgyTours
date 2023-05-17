@@ -90,8 +90,15 @@ function myFunction() {
       psw:document.getElementById("e4").innerText,
       confpsw:document.getElementById("e4").innerText
   };
+  let data = new URLSearchParams();
+  data.append("unam",obj.uname);
+  data.append("email", obj.email);
+  data.append("number", obj.number);
+  data.append("psw", obj.psw);
+  data.append("confpsw", obj.confpsw);
   fetch('/',{
       method:"POST",
+      body: data,
       headers:{
          "Content-type":"application/json"
       },

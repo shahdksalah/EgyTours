@@ -34,15 +34,18 @@
                         <div id="search">
                             <div id="sBar">
                                 <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
-                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Activities..">
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Hotels..">
                             </div>
                         </div>
                 
                         <ul id="myUL">
-                            <li><a href="#" id="1" onmouseover=" updateDeleteButtons(1)" onmouseleave="exit(1)">Jaz Aquamrine Resort<button onclick="Update(1)">Update</button> <button onclick="Delete(1)">Delete</button ></a></li>
-                            <li><a href="#" id="2" onmouseover=" updateDeleteButtons(2)" onmouseleave="exit(2)">Hilton Luxor Hotel & Spa <button onclick="Update(2)">Update</button> <button onclick="Delete(2)">Delete</button></a></li>
-                
-                            <li><a href="#" id="3" onmouseover=" updateDeleteButtons(3)" onmouseleave="exit(3)">Four Seasons Hotel Alexandria <button onclick="Update(3)">Update</button> <button onclick="Delete(3)">Delete</button></a></li>
+                            <% if(hotels!=="") {%>
+                                <% let id=1; %>
+                                <% hotels.forEach((hotel) => { %>
+                                    <li><a href="#" id=<%= id %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=hotel.Name %> <button onclick="onUpdate(id)">Update</button> <button onclick="onDelete(id)">Delete</button ></a></li>
+                                <% id++; %>
+                                <% }); %>
+                            <% } %> 
                         </ul>
                     </div>
 
@@ -160,7 +163,8 @@
                 </div>
           </div>
         </div>
-            <script src="/js/user.js"></script>
-            <script src="/js/EditHotels.js"></script>
+        <script src="/js/EditHotels.js"></script>
+        <script src="/js/user.js"></script>
+      
     </body>
 </html>

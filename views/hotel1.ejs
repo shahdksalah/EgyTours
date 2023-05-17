@@ -19,7 +19,7 @@
         <div class="hotel">
             <div>
               <% if(hotel1!=="") {%>
-                  <h1 id="hotelname"><%=hotel1[0].Name %></h1>
+                  <h1><%=hotel1[0].Name %></h1>
                 <% }; %> 
            </div>
                <span class="rating">
@@ -341,7 +341,8 @@
 
       <div class="addReviews">
         <h3>Add Review</h3>
-        <form method="post" action="/hotels">
+        <form method="post" action="/hotels/:name">
+          <h3 id="hotelname" name="hotel"><%=hotel1[0].Name %></h3>
         <textarea cols="60" rows="5" id="addrev" name="addrev"></textarea>
         <h3>Rating</h3>
         <input id="dropbtn3" list="Rating" placeholder="Rating" name="rating">
@@ -353,6 +354,7 @@
               <option value="5"></option>
             </datalist>
         <div><button type="submit" id="sub" name="sub" onclick="addReview()">submit</button></div>
+
         </form>
       </div>
 

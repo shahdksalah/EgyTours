@@ -1,10 +1,14 @@
 const express=require('express')
 const router=express.Router()
+const Hotel = require('../models/addHoteldb.js');
 
 
-router.get('/',function(req,res)
+router.get('/', async function(req,res)
 {
-    res.render("hotels");
+    var Hotels=[];
+    Hotels=await Hotel.find();
+    console.log(Hotels);
+    res.render("hotels",{hotels:(Hotels==='undefined'?"":Hotels)});
 });
 
 module.exports=router;

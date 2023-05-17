@@ -22,7 +22,15 @@
         <h1>Explore Hotels</h1>
             <div class="btn" onclick="location.href='jazHotel.html';">
                 <div class="image">
-                    <img src="../images/Hotels/jaz hotel.jpeg" alt="Jaz Aquamarine Hotel" >
+                    <% if(hotels!=="") {%>
+                        <% let id=0; %>
+                        <% hotels.forEach((hotel) => { %>
+                            <img id=<%= id %> src=<%=hotel.Picture %>>
+                        <% id++; %>
+                        <% }); %>
+                        
+                    <% } %> 
+                    
                 </div>
                 <div class="cols">
                     <div>

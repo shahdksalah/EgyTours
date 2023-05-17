@@ -32,13 +32,7 @@ const weeklysummaryRoute=require('./routes/weeklysumroute.js');
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
-
-const Hotel = require('./models/addHoteldb.js');
-const Activity= require('./models/addActivitiesdb.js');
 var db = mongoose.connection;
-
-
-
 
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
@@ -92,27 +86,3 @@ app.use("/weeklysummary",weeklysummaryRoute);
 
 
 
-app.post("/AddHotel", (req,res)=>{
-  console.log("entered");
-  const hotel = new Hotel({
-    Name: req.body.name,
-    Location:req.body.location,
-    Picture: req.body.picture,
-    About:req.body.about,
-    PropertyAmen: req.body.amenities,
-    RoomFeatures: req.body.roomfeatures,
-    RoomTypes: req.body.roomtypes,
-  });
-  
-  console.log(hotel);
-  db.collection("hotels").insertOne(hotel,(err,result)=>{
-    if(err)
-    {
-     console.log(err);
-    }
-    else{
-     console.log("saved");
-     response.redirect('/');
-    }
-})
-})

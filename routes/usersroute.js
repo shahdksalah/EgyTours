@@ -18,7 +18,7 @@ router.get('/',async function(req,res)
     res.render("users",{users:(Users==='undefined'?"":Users)});
 });
 
-router.post('/',urlencodedParser,[
+router.post('/success',urlencodedParser,[
     check('unam','Username must be 3+ characters long')
     .exists()
     .isLength({min:3})
@@ -47,8 +47,6 @@ router.post('/',urlencodedParser,[
     if(!errors.isEmpty()){
         const alert=errors.array();
     }
-    else if(validate.register==false)
-       console.log("error");
    else{
       const userdetails = new User({
           Username: request.body.uname,
@@ -70,5 +68,42 @@ router.post('/',urlencodedParser,[
    }
     });
 
+router.post('/',urlencodedParser,[
+  check('unam','Username must be 3+ characters long')
+  .exists()
+  .isLength({min:3})
+  ,
 
+  check('email','Email is not valid')
+  .isEmail()
+  .normalizeEmail(),
+  
+  check('number','Invalid phone number')
+  .isMobilePhone(),
+
+  check('psw','Invalid Password')
+  .exists()
+  .isLength({min:6}),
+
+  check('confpsw','Invalid Password')
+  .exists()
+  .isLength({min:6})
+
+] ,(request, response) =>  {
+  console.log("entered");
+
+  const errors=validationResult(request)
+  console.log(validate.register)
+  if(!errors.isEmpty()){
+      const alert=errors.array();
+  }
+  else{
+    db.users.updateOne({_id:request.body._id}, { $set: 
+      {Username:request.body.Username,Email:request.body.Email,PhoneNumber:request.body.PhoneNumber
+      ,Password:request.body.Password,ConfPassword:request.body.ConfPassword}
+     
+    })
+  }
+
+});
 module.exports=router;

@@ -67,33 +67,47 @@ function myFunction() {
     });
   }
   
-  function onUpdate(index){
+  function onUpdate(id,username,email,phone,password){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("deleteUser").style.display="none";
-    let user=document.getElementById(index).innerText;
-    user.trim();
-    let info=document.getElementsByClassName("info");
-    let name= user.split('\n')[0];
-    document.getElementById("e1").innerHTML=name;
-    document.getElementById("e2").innerHTML=name.concat("@gmail.com");
+    document.getElementById("e1").innerHTML=username
+    document.getElementById("e2").innerHTML=email;
+    document.getElementById("e3").innerHTML=phone;
+    document.getElementById("e4").innerHTML=password;
+    document.getElementById("currid").innerText=id;
     document.getElementById("updateInfo").style.display="block";
   }
   
   function save(){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("smsg").style.display="block";
+
+    var obj={
+      id:document.getElementById("currid").innerText,
+      unam:document.getElementById("e1").innerText,
+      email:document.getElementById("e2").innerText,
+      number:document.getElementById("e3").innerText,
+      psw:document.getElementById("e4").innerText,
+      confpsw:document.getElementById("e4").innerText
+  };
+  fetch('/',{
+      method:"POST",
+      headers:{
+         "Content-type":"application/json"
+      },
+   
+      body:JSON.stringify(obj)
+  });
   }
   
-  function onDelete(index){
+  function onDelete(username,email,phone,password){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("deleteUser").style.display="none";
-    let user=document.getElementById(index).innerText;
-    user.trim();
-    let info=document.getElementsByClassName("inf");
-    let name= user.split('\n')[0];
-    console.log(name);
-    info[0].innerHTML=name;
-    info[1].innerHTML=name.concat("@gmail.com");
+    document.getElementById("d1").innerHTML=username
+    document.getElementById("d2").innerHTML=email;
+    document.getElementById("d3").innerHTML=phone;
+    document.getElementById("d4").innerHTML=password;
+    
     document.getElementById("deleteUser").style.display="block";
   }
   

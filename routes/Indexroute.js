@@ -75,10 +75,6 @@ router.post('/',urlencodedParser,[
   });
 
 
-  router.get('/AddActivity',function(req,res)
-{
-    res.render("AddActivity");
-});
 
 
 router.post('/login',urlencodedParser,[

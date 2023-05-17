@@ -5,13 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Activities</title>
-
     <link rel="stylesheet" href="/css/styleUsers.css">
     <link rel="stylesheet" href="/css/styleAdminDashboard.css">
-    <link rel="stylesheet" href="/css//styleAddActivity.css">
-    <link rel="stylesheet" href="/css/styleForm.css">
+    <link rel="stylesheet" href="/css/styleAddActivity.css">
+    <link rel="stylesheet" href="./css/styleForm.css">
     <link rel="stylesheet" href="/css/styleEditActivities.css">
-
 </head>
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
@@ -21,26 +19,7 @@
         
         <div class="main-content">
     
-            <div class="nav" style="height:2000px;">
-                <button class ="btn1" onclick="location.href='AdminDashboard.html';">Home</button>
-                <button class ="btn1" onclick="drop()"> + Add </button>
-                <div id="dropdown">
-                    <ul class="dropdown-list">
-                        <li><a href="addHotel.html">Hotels</a></li>
-                        <li><a href="AddActivity.html">Activites</a> </li>
-                    </ul>
-                </div>
-                <button class ="btn1" onclick="drop2()"> + Edit</button>
-                <div id="dropdown2">
-                    <ul class="dropdown-list">
-                        <li><a href="hotelsAdmin.html">Hotels</a></li>
-                        <li><a href="EditActivities.html">Activites</a> </li>
-                    </ul>
-                </div>
-                <button class="btn1"  onclick="location.href='Users.html';">Users</button>
-                <button class ="btn1">Weekly Summary</button>
-            </div>
-            <script src="../scripts/admin/AdminDashboardJS.js"></script>
+            <%- include("partials/adminHeader.ejs") %>
 
         <h1 id="Edit"><ins>Edit Activities</ins></h1>
         
@@ -54,10 +33,13 @@
         </div>
 
         <ul id="myUL">
-            <li><a href="#" id="1" onmouseover=" updateDeleteButtons(1)" onmouseleave="exit(1)">Alexandria <button onclick="Update(1)">Update</button> <button onclick="Delete(1)">Delete</button ></a></li>
-            <li><a href="#" id="2" onmouseover=" updateDeleteButtons(2)" onmouseleave="exit(2)">Pyramids <button onclick="Update(2)">Update</button> <button onclick="Delete(2)">Delete</button></a></li>
-
-            <li><a href="#" id="3" onmouseover=" updateDeleteButtons(3)" onmouseleave="exit(3)">Safari <button onclick="Update(3)">Update</button> <button onclick="Delete(3)">Delete</button></a></li>
+            <% if(activities!=="") {%>
+                <% let id=1; %>
+                <% activities.forEach((activity) => { %>
+                    <li><a href="#" id=<%= id %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=activity.Name %> <button onclick="onUpdate(id)">Update</button> <button onclick="onDelete(id)">Delete</button ></a></li>
+                <% id++; %>
+                <% }); %>
+            <% } %> 
         </ul>
     </div>
 
@@ -105,7 +87,7 @@
     </div>
 </div>
 </div>
-    <script src="/js/user.js"></script>
-    <script src="/js/EditActivities.js"></script>
+    <script src="../scripts/admin/user.js"></script>
+    <script src="../scripts/admin/EditActivities.js"></script>
 </body>
 </html>

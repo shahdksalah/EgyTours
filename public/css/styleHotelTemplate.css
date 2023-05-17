@@ -1,0 +1,194 @@
+.page{
+    margin-left: 200px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  footer{
+    margin-left: 0;
+  }
+  .hotel{
+    margin-top: 4%;
+  }
+  .rating i{
+    color:rgb(238, 203, 5);
+  }
+  td button{
+      padding:0px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+  }
+  .demo{
+    margin-top: 4%;
+      width:150px;
+      height:140px;
+      filter: brightness(50%);
+  }
+  .demo:hover{
+      filter:brightness(100%);
+      cursor: pointer;
+  }
+  .mySlides {
+      margin-top: 4%;
+      display: none;
+      width:770px;
+  }
+  .mySlides img{
+    height:430px;
+    width:100%;
+  }
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 17%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .next {
+    margin-left: 47.4%;
+   }
+   .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .numbertext {
+      color: #000000;
+      font-size: 12px;
+      padding: 8px 12px;
+    }
+    #checkIn,#checkOut{
+      width:150px;
+      height: 40px;
+    }
+    #guests{
+      width:300px;
+      height:40px;
+    }
+  
+    .rat{
+      display:flex;
+    }
+    .rat strong{
+      font-size: 40px;
+    }
+    .rat div{
+      height:25px;
+      font-size: 15px;
+      margin-left: 1%;;
+      margin-top: -1%;
+    }
+    .text{
+      margin-top: 2%;
+      width:800px;
+      font-size:18px;
+    }
+    .inf{
+      display:block;
+    }
+    .list1{
+      margin-top: 2%;
+    }
+    .list1 div{
+      font-weight: bold;
+      font-size: 15px;
+    }
+    li i{
+      font-size: 18px;
+    }
+    .list1 span{
+      margin-left: 0%;
+    }
+    .booking{
+      margin-top: 15%;
+      display: block;
+    }
+    #inout{
+      height:120px;
+      display: flex;
+      justify-content: center;
+    }
+    #in,#out{
+      display: block;
+      flex:50%;
+      justify-content: center;
+      margin-left: 10%;
+    }
+    #inout label{
+      font-size: 18px;
+      color: #a78c4c;
+    }
+    .l{
+      margin-left: 20%;
+      height:30px;
+      font-weight: bold;
+    }
+    
+  
+    #bForm{
+      border-radius:20px;
+      box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+      padding: 20px;
+      width:700px;
+      height:250px;
+      display: block;
+    }
+    .error-message{
+      float:none;
+    }
+    #reserv{
+      display:flex; 
+    }
+  
+    #dropbtn1, #dropbtn2, #dropbtn3,#checkIn,#checkOut,#book{
+      border:3px solid #a78c4c;
+      padding:10px;
+      color:#a78c4c;
+      box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+      border-radius:20px;
+      width:200px;
+    }
+    #book{
+      background-color: rgb(54, 36, 27);
+      cursor: pointer;
+      margin-left:35%;
+      margin-top:5%;
+    }
+  
+  
+  .reviews{
+    width:200px;
+    } 
+  
+  .rating i{
+  color:rgb(238, 203, 5);
+  }
+  
+  .first{
+    display: flex;
+    gap:20px;
+    padding-right:10px;
+    margin-bottom:10%;
+  }
+  .R{
+    font-size:13px ;
+  }
+  .reviews{
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:20px;
+    width:250px;
+    padding: 10px;
+  }
+  hr{
+    width:800px;
+    margin-left: 0;
+  }
+   
+    
+  

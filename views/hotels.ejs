@@ -19,22 +19,17 @@
 
 
     <div id="parent">
-        <h1>Explore Hotels</h1>
-            <div class="btn" onclick="location.href='jazHotel.html';">
+        <% if(hotels!=="") {%>
+            <% let id=1; %>
+            <% hotels.forEach((hotel) => { %>
+                <h2 id='name'+ <%= id %> class="h2hotels"><%=hotel.Name%></h2>
+            <div class="btn" onclick="location.href= '/hotels/<%=hotel.Name%>'">
                 <div class="image">
-                    <% if(hotels!=="") {%>
-                        <% let id=0; %>
-                        <% hotels.forEach((hotel) => { %>
-                            <img id=<%= id %> src=<%=hotel.Picture %>>
-                        <% id++; %>
-                        <% }); %>
-                        
-                    <% } %> 
-                    
+                    <img src="/images/Hotels/<%=hotel.Picture[0]%>" >
                 </div>
                 <div class="cols">
                     <div>
-                        <h2 class="h2hotels">Jaz Aquamarine Resort</h2>
+                       
                     </div>
                     <div class="rating">
                         <i class="fa-solid fa-star"></i>
@@ -46,8 +41,10 @@
                             <p>14,010 reviews</p>
                         </div>  
                     </div>
-                    <p>South Sahl Hashish Road,Hurghada, Red Sea and Sinai, Egypt</p>
-                    <div class="comment">
+                    <div>
+                        <p><%=hotel.Location%></p>
+                    </div>
+                    
                         <div>
                             <i class="fa-solid fa-comment"></i>
                         </div>
@@ -60,101 +57,13 @@
                     </div>
                    
                 </div>
-            </div>
+           
 
-            <div class="btn">
-                <div class="image">
-                    <img src="../images/Hotels/hilton luxor hotel.jpeg" alt="Hilton Luxor Hotel" >
-                </div>
-                <div class="cols">
-                    <div>
-                        <h2 class="h2hotels">Hilton Luxor Hotel & Spa</h2>
-                    </div>
-                    
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
-                        <div class="rev">
-                            <p>2,991 reviews</p>
-                        </div>  
-                    </div>
-                    <p>New Karnak, Luxor, Nile River Valley, Egypt</p>
-                    <div class="comment">
-                        <div>
-                            <i class="fa-solid fa-comment"></i>
-                       </div>
-                       <div>
-                             <p>532 mentions of egypt</p>
-                       </div>
-                    </div>
-                    <p>"...We know many hotels in Egypt, because we live and work here in this wonderful..."</p>
-                </div>
-            </div>
-
-            
-            <div class="btn">
-                <div class="image">
-                    <img src="../images/Hotels/fourseasons alex.jpg" alt="Four Seasons Hotel Alexandria">
-                </div>
-                <div class="cols">
-                    <h2 class="h2hotels">Four Seasons Hotel Alexandria</h2>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
-                        <div class="rev">
-                            <p>991 reviews</p>
-                        </div>  
-                    </div>
-                    <p >399 El Geish Road, Alexandria Governorate, Egypt</p>
-                    <div class="comment">
-                        <div>
-                            <i class="fa-solid fa-comment"></i>
-                       </div>
-                       <div>
-                             <p>5 mentions of four seasons</p>
-                       </div>
-                    </div>
-                    <p>"...The sea view is great in for seasons beach. We will come back..."</p>
-                </div>
-            </div>
-
-            <div class="btn">
-                <div class="image">
-                    <img src="../images/Hotels/tonaroz siwa.jpg" alt="Toranoz Siwa Hotel">
-                </div>
-                <div class="cols">
-                    <div  class="h2hotels">
-                        <h2>Siwa Tonaroz Hotel</h2>
-                    </div>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
-                        <div>
-                            <p>50 reviews</p>
-                        </div>  
-                    </div>
-                    <p>Almaraqi Road, Siwa, Matrouh Governate, Egypt</p>
-                    <div class="comment">
-                        <div>
-                            <i class="fa-solid fa-comment"></i>
-                       </div>
-                       <div>
-                             <p >10 mentions of siwa</p>
-                       </div>
-                    </div>
-                    <p>"...Really we go to siwa oasis every year, but this time when it's our first..."</p>
-                </div>
-            </div>     
+            <% id++; %>
+            <% }); %>
+        <% } %> 
     </div>
+            
 
     <%- include("partials/footer.ejs") %>
 

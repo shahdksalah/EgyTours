@@ -27,4 +27,3 @@ function Update(index)
             document.getElementById("c").style.display="none";
         }
 
-        

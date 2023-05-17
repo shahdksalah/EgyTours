@@ -341,8 +341,8 @@
 
       <div class="addReviews">
         <h3>Add Review</h3>
-        <form method="post" action="/hotels/:name">
-          <h3 id="hotelname" name="hotel"><%=hotel1[0].Name %></h3>
+        <form method="post" action="/hotels/:<%=hotel1[0].Name %>">
+          <input type="text" name="hotel" id="hotel" value="<%=hotel1[0].Name %>">
         <textarea cols="60" rows="5" id="addrev" name="addrev"></textarea>
         <h3>Rating</h3>
         <input id="dropbtn3" list="Rating" placeholder="Rating" name="rating">

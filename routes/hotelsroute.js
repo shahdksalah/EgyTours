@@ -18,32 +18,34 @@ router.get('/:name', async function(req,res){
 });
 
 router.post('/:name',async function(req,res){
-    console.log(req.body.rating);
-    console.log(req.body.addrev);
-    console.log(req.params.name);
-
     var arr=[];
-    arr[0]=req.body.addrev;
-    arr[1]=req.body.rating;
-    arr[2]=new Date();
-
-    
     var Hotels=[];
+    var Hotel2=[];
     var query1=req.body.hotel;
     const hotel1=await Hotel.find().where("Name").equals(query1);
     Hotels=Array.from(hotel1);
+    console.log(Hotels);
     console.log(hotel1);
+    console.log(Hotels[0].Reviews[0]);
+
+    for(var i =0;i<Hotels[0].Reviews.length;i++)
+    {
+        arr.push(Hotels[0].Reviews[i]);
+    }
+
+    arr.push(req.body.addrev);
+    arr.push(req.body.rating);
+    arr.push(new Date());
+
     const filter={Name:query1};
     const update={Reviews:arr};
-    if(hotel1!=='undefined')
+    if(hotel1 !=='undefined')
     {
-        await Hotel.findOneAndUpdate(filter,update)
-        .then(result =>
-            {
-                console.log(result);
-            });
+        const hotel2=await Hotel.findOneAndUpdate(filter,update);
+        console.log(hotel2);
+        res.render.reload;
     
-    }  
+    } 
 
 });
 

@@ -32,15 +32,7 @@ const weeklysummaryRoute=require('./routes/weeklysumroute.js');
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const fs=require('fs');
-
-const Hotel = require('./models/addHoteldb.js');
-const Activity= require('./models/addActivitiesdb.js');
 var db = mongoose.connection;
-
-
-
-
-
 
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });

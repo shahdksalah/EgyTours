@@ -313,31 +313,54 @@
         <script src="/js/jazhotel.js"></script>
       </div>
      </div>
+
      <div style="margin-top: 6%;">
         <h2 style="margin-left:200px;">Reviews</h2>
     </div>
-     <div class="first">                  
-       <div class="reviews">
+
+    <div class="first"> 
+        <% let start=0; %>
+        <% while(start < hotel1[0].Reviews.length) { %>
+            <div class="reviews">     
                <div class="rev">
-                   <h6 class="R">Jan Erik L wrote a review Jan 2023</h6>
+
+                   <h6 class="R">Jan Erik L wrote a review at  <%=hotel1[0].Reviews[start]%></h6>
+                   <% start=start+1 %>
                </div>
                <div class="rating">
+                <% if(hotel1[0].Reviews[start]==="1") { %>
+                  <i class="fa-solid fa-star"></i>
+                  <% } %>
+                  <%  if(hotel1[0].Reviews[start]==="2") { %>
+                   <i class="fa-solid fa-star"></i>
+                   <i class="fa-solid fa-star"></i>
+                   <% } %>
+                   <% if(hotel1[0].Reviews[start]==="3") { %>
                    <i class="fa-solid fa-star"></i>
                    <i class="fa-solid fa-star"></i>
                    <i class="fa-solid fa-star"></i>
+                   <% } %>
+                   <% if(hotel1[0].Reviews[start]==="4") { %>
+                    <i class="fa-solid fa-star"></i>
                    <i class="fa-solid fa-star"></i>
                    <i class="fa-solid fa-star"></i>
+                   <i class="fa-solid fa-star"></i>
+                   <% } %>
+                   <% if(hotel1[0].Reviews[start]==="5"){ %>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <% } %>
+
                </div>
-                   <p class="R">"After we thought the all in experience in turkey is the best, we are completely convinced that jaz aquamarine is 10 times better.
-                    People were SO FRIENDLY, helpfull, everything was so clean, toilets were constantly cleaned, the garden was a picture right from a book. food was SOO FESH AND GOOD.
-                    pools where SOO clean and nice.
-                    They even put a birthday cake on my room and decorated my sunbed.
-                    never seen people so friendly and helpful.
-                    every detail was perfect. 
-                    Best all in ever. We go back
-                    "</p>
-       </div>
-       </div>
+               <% start=start+1 %>
+                   <p class="R"> <%=hotel1[0].Reviews[start] %></p>
+                   <% start=start+1 %>
+           </div>
+       <% } %>
+   </div>
 
       <div class="addReviews">
         <h3>Add Review</h3>

@@ -27,6 +27,8 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+
+
 function bookHotel(){
   let book = document.getElementById('booking');
   let ci = document.getElementById('checkIn');

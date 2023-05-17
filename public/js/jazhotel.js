@@ -73,11 +73,12 @@ function bookHotel(){
   }
 }
 
+/*
 function addReview()
 {
   var review=document.getElementById('addrev').value;
   var rating=document.getElementById('dropbtn3').value;
-  var hotelname=document.getElementById('hotelname').value;
+  var hotelname=document.getElementById('hotelname').innerHTML;
   var obj={
     hotel:hotelname,
     review:review,
@@ -87,10 +88,11 @@ function addReview()
 
   fetch("http://localhost:8080/hotels",{
     method:"post",
-    body:"obj",
+    body:obj,
     headers:{
       "Content-type":"application/json"
     },
     body:JSON.stringify(obj)
   })
 }
+*/

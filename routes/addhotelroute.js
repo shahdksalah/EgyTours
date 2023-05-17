@@ -22,16 +22,18 @@ router.post('/', (req,res)=>{
 
     numOfImgs = req.files.imgs.length;
     imgFile = req.files.imgs;
+    var paths = [];
     for(var i=0; i<numOfImgs; i++){
         extension = imgFile[i].name.split('.')[1];
-        uploadPath =__dirname + '/../public/Images/Hotels/' + req.body.name + i + '.' +extension;
+        uploadPath =__dirname + '/../public/images/Hotels/' + req.body.name +(i+1) + '.' +extension;
         imgFile[i].mv(uploadPath);
+        paths[i] = req.body.name + (i+1) + '.' +extension;
     }
 
     const hotel = new Hotel({
         Name:req.body.name,
         Location:req.body.location,
-        Picture: req.files,
+        Picture: paths,
         About: req.body.about,
         PropertyAmen: req.body.amenities,
         RoomFeatures:req.body.roomfeatures,
@@ -39,7 +41,8 @@ router.post('/', (req,res)=>{
     })
     hotel.save()
         .then(result=>{
-            /*console.log(result);*/
+            console.log(result);
+            console.log(result.Picture[0])
             res.redirect('/hotels')
         })
         .catch(err=>{

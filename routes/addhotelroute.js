@@ -24,7 +24,7 @@ router.post('/', (req,res)=>{
     imgFile = req.files.imgs;
     for(var i=0; i<numOfImgs; i++){
         extension = imgFile[i].name.split('.')[1];
-        uploadPath =__dirname + '/../public/Images/Hotels/' + req.body.name + '/' + req.body.name + i + '.' +extension;
+        uploadPath =__dirname + '/../public/Images/Hotels/' + req.body.name + i + '.' +extension;
         imgFile[i].mv(uploadPath);
     }
 
@@ -39,7 +39,7 @@ router.post('/', (req,res)=>{
     })
     hotel.save()
         .then(result=>{
-            console.log(result);
+            /*console.log(result);*/
             res.redirect('/hotels')
         })
         .catch(err=>{

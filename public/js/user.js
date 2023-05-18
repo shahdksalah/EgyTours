@@ -60,6 +60,7 @@ function myFunction() {
     textBox.setAttribute("value",repNode.innerText);
     textBox.setAttribute("id",id);
     repNode.replaceWith(textBox);
+   // textBox.style.width="20px";
     textBox.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {  
         bckText(id,textBox.value);
@@ -81,15 +82,6 @@ function myFunction() {
   function save(){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("smsg").style.display="block";
-
-    var obj={
-      id:document.getElementById("currid").innerText,
-      unam:document.getElementById("e1").innerText,
-      email:document.getElementById("e2").innerText,
-      number:document.getElementById("e3").innerText,
-      psw:document.getElementById("e4").innerText,
-      confpsw:document.getElementById("e4").innerText
-    };
  
   }
   

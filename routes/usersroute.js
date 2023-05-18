@@ -68,7 +68,7 @@ router.post('/success',urlencodedParser,[
    }
     });
 
-router.post('/updated',urlencodedParser,[
+router.post('/',urlencodedParser,[
   check('userUpdated','Username must be 3+ characters long')
   .exists()
   .isLength({min:3})

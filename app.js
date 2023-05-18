@@ -2,6 +2,7 @@ const express=require('express');
 const app=express();
 const mongoose=require('mongoose');
 const User= require('./models/usersdb.js');
+const session=require('express-session');
 const PORT=8080;
 
 
@@ -34,6 +35,7 @@ const fs=require('fs');
 var db = mongoose.connection;
 
 
+
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
 app.use(express.urlencoded({ extended: true }));
@@ -41,6 +43,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.static('public'));
+// app.use(session({
+//     secret: 'this is my secret',
+//     cookie:{
+//         sameSite: 'strict',
+//     }
+// }));
 
 
 app.set('view engine','ejs');

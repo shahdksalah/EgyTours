@@ -7,6 +7,7 @@ var db = mongoose.connection;
 const bodyParser = require('body-parser');
 const{check,validationResult}=require('express-validator');
 const lodash=require('lodash');
+const session=require('express-session');
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 let path=require('path');
@@ -15,9 +16,10 @@ let path=require('path');
 
 router.get('/',function(req,res)
 {
-  // res.render("index",{user:((req.session.user===undefined)?"":req.session.user)});
-
-    res.render("index",{user:('nad')});
+  if(req.session.aurhorized)
+   res.render("index",{user:req.session.user});
+  else
+   res.render("index",{user:""});
 });
 
 module.exports=router;
@@ -89,6 +91,7 @@ router.post('/login',urlencodedParser,[
   User.find(query)
   .then(result=>{
      request.session.user=result[0];
+     request.session.authorized=true;
      response.redirect("/");
   });
  

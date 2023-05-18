@@ -40,7 +40,7 @@ router.post('/success',urlencodedParser,[
     .isLength({min:6})
   
   ] ,(request, response) =>  {
-    console.log("entered");
+   // console.log("entered");
   
     const errors=validationResult(request)
     console.log(validate.register)
@@ -68,26 +68,22 @@ router.post('/success',urlencodedParser,[
    }
     });
 
-router.post('/',urlencodedParser,[
-  check('unam','Username must be 3+ characters long')
+router.post('/updated',urlencodedParser,[
+  check('userUpdated','Username must be 3+ characters long')
   .exists()
   .isLength({min:3})
   ,
 
-  check('email','Email is not valid')
+  check('emailUpdated','Email is not valid')
   .isEmail()
   .normalizeEmail(),
   
-  check('number','Invalid phone number')
+  check('phoneUpdated','Invalid phone number')
   .isMobilePhone(),
 
-  check('psw','Invalid Password')
+  check('pswUpdated','Invalid Password')
   .exists()
   .isLength({min:6}),
-
-  check('confpsw','Invalid Password')
-  .exists()
-  .isLength({min:6})
 
 ] ,async(request, response) =>  {
   console.log("entered");

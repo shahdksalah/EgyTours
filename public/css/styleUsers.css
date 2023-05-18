@@ -12,6 +12,9 @@
   width:400px;
   border:2px solid rgb(54, 36, 27);
 }
+#uform{
+  width:500px
+}
 .right button{
   border-radius: 10px;
   background-color: rgb(54, 36, 27);

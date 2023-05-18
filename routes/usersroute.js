@@ -98,15 +98,15 @@ router.post('/',urlencodedParser,[
       const alert=errors.array();
   }
   else{
-    console.log(request.body._id);
-    // db.users.updateOne({_id:request.body._id}, { $set: 
-    //   {Username:request.body.Username,Email:request.body.Email,PhoneNumber:request.body.PhoneNumber
-    //   ,Password:request.body.Password,ConfPassword:request.body.ConfPassword}
+    console.log(request.body.id);
+        //  db.users.updateOne({_id:request.body.id}, { $set: 
+        //  {Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
+        //  ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated}
      
-    // })
+        //  })
 
-    await User.findByIdAndUpdate(request.body._id,{Username:request.body.uname,Email:request.body.email,PhoneNumber:request.body.phone
-     ,Password:request.body.psw,ConfPassword:request.body.confpsw});
+    await User.findByIdAndUpdate(request.body.id,{Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
+     ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated});
 
   }
 

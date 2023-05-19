@@ -26,7 +26,7 @@
         <% if(activities!=="") {%>
             <% let id=1; %>
             <% activities.forEach((activity) => { %>
-        <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
+        <div class="btn" onclick="location.href= '/activities/<%=activity.Type%>'">
             <div>
                 <img src="/images/activities/<%=activity.Picture[2]%>">
             </div>

@@ -97,16 +97,10 @@ router.post('/login',urlencodedParser,[
 
 router.get('/logout', (req, res) => {
   if (req.session) {
-    req.session.destroy(err => {
-      console.log("entered destroyed");
-      if (err) {
-        res.status(400).send('Unable to log out')
-      } else {
-        console.log("destroyed");
-        res.clearCookie(cookieName);
-        res.redirect("/");
-      }
-    });
+    req.session.user=null;
+    res.clearCookie('user')
+    req.session.destroy()
+    res.render("index",{user:""});
   } else {
     res.end()
   }

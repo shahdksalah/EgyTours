@@ -28,14 +28,14 @@
             <% activities.forEach((activity) => { %>
         <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
             <div>
-                <img src="/images/activities/<%=activity.Picture[2]%>" alt="safari" width="300 px" height="200 px">
+                <img src="/images/activities/<%=activity.Picture[2]%>">
             </div>
 
             <div>
-                <h5>ADVENTURE</h5>
+                <h5><%=activity.Type%></h5>
                 <h4><%=activity.Name%> </h4>
                 <h5><%=activity.Duration%></h5>
-                <h5><mark>Excellent guide</mark></h5>
+                <h5><mark><%=activity.Advantage%></mark></h5>
             </div>
             <div>
                 <% if(activity.Rate === "0") { %>

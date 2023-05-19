@@ -11,6 +11,11 @@ const ActivitySchema = new Schema ({
         trim:true,
         required:true,
     },
+    Days:{
+        type:String,
+        trim:true,
+        required:true,
+    },
     Type:{
         type:String,
         required:true,
@@ -23,6 +28,11 @@ const ActivitySchema = new Schema ({
     Picture:{
         type:Array,
         required:true
+    },
+    Advantage:{
+        type:String,
+        trim:true,
+        required:true,
     },
     BriefDes:{
         type:String,

@@ -24,13 +24,21 @@
         <form method="post" action="/AddActivity/submit" enctype="multipart/form-data">
         <h3>Name</h3>
         <textarea id="ActName" rows="3" cols="60" name="Aname"></textarea>
-        <h3>Type</h3>
+        <h3>Days:</h3>
+        <input id="dropbtn" list="Days" placeholder="Number of Days" name="Days">
+        <datalist id="Days">
+          <option value="DAY TRIP"></option>
+          <option value="MULTI-DAY TRIP"></option>
+          </datalist>
+        <h3>Type:</h3>
         <textarea id="ActType" rows="2" cols="25" name="Atype"></textarea>
         <input type="text" name="rate" value="0" hidden>
         <h3>Images </h3>
         <div>
             <input type="file" id="imgs" name="imgs" multiple>
         </div>
+        <h3>Advantage:</h3>
+        <input type="text" id="adv" name="adv">
         <h2><ins>Details:</ins></h2>
         <h3>Brief Description: </h3>
         <textarea id="Actbrief" rows="5" cols="60" name="Abrief"></textarea>

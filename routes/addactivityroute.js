@@ -29,9 +29,11 @@ router.post('/submit',(request, response) =>  {
   
   const activitydetails = new Activity({
     Name:request.body.Aname,
+    Days:request.body.Days,
     Type:request.body.Atype,
     Rate:request.body.rate,
     Picture:request.files,
+    Advantage:request.body.adv,
     BriefDes:request.body.Abrief,
     DetailedDes:request.body.Adetails,
     Plan:request.body.Aplan,

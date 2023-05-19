@@ -43,3 +43,7 @@ label:hover,#plus:hover{
 {
 margin-top:2%;
 }
+#dropbtn,#adv{
+    width:200px;
+    height:30px;
+}

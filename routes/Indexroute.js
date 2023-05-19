@@ -95,13 +95,16 @@ router.post('/login',urlencodedParser,[
  
 });
 
-router.delete('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   if (req.session) {
     req.session.destroy(err => {
+      console.log("entered destroyed");
       if (err) {
         res.status(400).send('Unable to log out')
       } else {
-        res.redirect("/")
+        console.log("destroyed");
+        res.clearCookie(cookieName);
+        res.redirect("/");
       }
     });
   } else {

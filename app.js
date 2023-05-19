@@ -69,7 +69,8 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 app.use("/",indexRoute);
 //app.use("/success",indexRoute);
 app.use("/login",indexRoute);
-app.use("/food",foodRoute);
+app.use("/login",indexRoute);
+app.use("/logout",foodRoute);
 app.use("/activities",activitiesRoute);
 app.use("/activity1",activity1Route);
 app.use("/hotels",hotelsRoute);

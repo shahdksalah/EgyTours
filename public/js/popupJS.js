@@ -9,21 +9,20 @@ function hide(id){
     x.style.display='none';
 }
 
-function signout(){
-    this.authenticated=false;
 
-    fetch('http://localhost:8080/logout' + e._id, {
-        headers: {
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json"
-        },
-        method: "DELETE",
-        body: e
-    })
-    .then(res => res.json())
+    
+
+async function handleLogout()  {
+    try {
+        await fetch("http://localhost:8080/logout", {
+        method: "GET",
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+    };
       
-}
+
 
 /*function proceed()
 {

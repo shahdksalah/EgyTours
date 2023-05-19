@@ -97,10 +97,18 @@ router.post('/login',urlencodedParser,[
 
 router.get('/logout', (req, res) => {
   if (req.session) {
-    console.log("destroyed")
-    res.clearCookie(this.cookie, { path: '/' });
-    res.redirect("/")
-    console.log("redirected")
+    req.session.destroy(err=>{
+      if(err){
+        console.log("unable to destroy");
+      }
+      else{
+        console.log("destroyed")
+        res.clearCookie(this.cookie, { path: '/' });
+        res.redirect("/")
+        console.log("redirected")
+      }
+    });
+  
   } else {
     res.end()
   }

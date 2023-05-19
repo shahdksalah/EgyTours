@@ -9,7 +9,11 @@
                 <% if(user===""){ %>
                     <button onclick="show('signin')">Sign In</button>  
                 <%} else{%>
-                    <button>logged in</button>
+                    <button>logged in as <%=user.Username%></button>
+                    <div class="menu">
+                        <button>My Profile</button>
+                        <button onclick="signout()" >Sign Out</button>
+                    </div>
                 <% } %>
                 <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
                 <a href="/activities"> <i class="fa-regular fa-heart"></i> </a>

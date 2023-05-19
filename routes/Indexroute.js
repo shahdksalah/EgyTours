@@ -16,10 +16,8 @@ let path=require('path');
 
 router.get('/',function(req,res)
 {
-  if(req.session.aurhorized)
-   res.render("index",{user:req.session.user});
-  else
-   res.render("index",{user:""});
+   res.render("index",{user:(req.session.user==='undefined'?"":req.session.user)});
+ 
 });
 
 module.exports=router;
@@ -90,8 +88,8 @@ router.post('/login',urlencodedParser,[
   var query={Username:request.body.username,Password:request.body.password};
   User.find(query)
   .then(result=>{
+     console.log(result[0]);
      request.session.user=result[0];
-     request.session.authorized=true;
      response.redirect("/");
   });
  

@@ -6,10 +6,9 @@
             </div>
             <nav class="topnav">
                 
-                <% if(user===" "){ %>
+                <% if(user===""){ %>
                     <button onclick="show('signin')">Sign In</button>  
-                <%}%>
-                <% else{%>
+                <%} else{%>
                     <button>logged in</button>
                 <% } %>
                 <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>

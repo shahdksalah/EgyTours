@@ -43,12 +43,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.static('public'));
-// app.use(session({
-//     secret: 'this is my secret',
-//     cookie:{
-//         sameSite: 'strict',
-//     }
-// }));
+app.use(session({
+    name: `daffyduck`,
+    secret: 'some-secret-example',  
+    resave: false,
+    saveUninitialized: false,
+}));
 
 
 app.set('view engine','ejs');
@@ -67,7 +67,8 @@ mongoose.connect(dburl,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.use("/",indexRoute);
-app.use("/success",indexRoute);
+//app.use("/success",indexRoute);
+app.use("/login",indexRoute);
 app.use("/food",foodRoute);
 app.use("/activities",activitiesRoute);
 app.use("/activity1",activity1Route);

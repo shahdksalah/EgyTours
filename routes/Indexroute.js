@@ -16,8 +16,8 @@ let path=require('path');
 
 router.get('/',function(req,res)
 {
-   res.render("index",{user:(req.session.user==='undefined'?"":req.session.user)});
- 
+   res.render("index",{user:(!req.session.authenticated)?"":req.session.user});
+   req.session.authenticated=false;
 });
 
 module.exports=router;
@@ -90,6 +90,7 @@ router.post('/login',urlencodedParser,[
   .then(result=>{
      console.log(result[0]);
      request.session.user=result[0];
+     request.session.authenticated=true;
      response.redirect("/");
   });
  

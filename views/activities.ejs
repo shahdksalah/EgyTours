@@ -23,96 +23,61 @@
 
 
     <div class="first">
-        <div class="btn">
+        <% if(activities!=="") {%>
+            <% let id=1; %>
+            <% activities.forEach((activity) => { %>
+        <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
             <div>
-                <img src="../images/cities/SAFARI.jpg" alt="safari" width="300 px" height="200 px">
+                <img src="/images/activities/<%=activity.Picture[2]%>" alt="safari" width="300 px" height="200 px">
             </div>
 
             <div>
                 <h5>ADVENTURE</h5>
-                <h4>From Cairo:4x4 Desert Safari, Sandsurf, and Camel Ride </h4>
-                <h5>10 hours Pickup Available</h5>
+                <h4><%=activity.Name%> </h4>
+                <h5><%=activity.Duration%></h5>
                 <h5><mark>Excellent guide</mark></h5>
             </div>
             <div>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
+                <% if(activity.Rate === "0") { %>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <% } %>
+                <% if(activity.Rate==="1") { %>
+                    <i class="fa-solid fa-star"></i>
+                    <% } %>
+                    <%  if(activity.Rate==="2") { %>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <% } %>
+                     <% if(activity.Rate==="3") { %>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <% } %>
+                     <% if(activity.Rate==="4") { %>
+                      <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <% } %>
+                     <% if(activity.rRate==="5"){ %>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <% } %>
             </div>
             <div>
-                <h3>From E£ 4,167 per person</h3>
+                <h3>From E£ <%=activity.Price%> per person</h3>
             </div>
         </div>
-
-        <div class="btn">
-            <div>
-                <img src="../images/cities/PYRAMIDS.jpg" alt="pyramids" width="300 px" height="200 px">
-            </div>
-            <div>
-                <h5>GUIDED TOUR</h5>
-                <h4>From Cairo: Half Day Tour to Pyramids of Giza and the Sphinx </h4>
-                <h5>20 hours Pickup Available</h5>
-                <h5><mark>Outstanding guide</mark></h5>
-            </div>
-
-            <div>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
-            </div>
-            <h4>From E£ 3,250 per person</h4>
-        </div>
-
-
-        <div class="btn" onclick="location.href='Activity1.html';">
-            <div>
-                <img src="../images/cities/QAITBAY.jpg" alt="citadel qaitbay" width="300 px" height="200 px">
-            </div>
-            <div>
-                <h5>DAY TRIP</h5>
-                <h4>From Cairo: Full Day Tour of Historical Alexandria </h4>
-                <h5>10-11 hours Pickup Available</h5>
-                <h5><mark>One of Favorites</mark></h5>
-            </div>
-
-            <div>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <div>
-                <h4>From E£ 2,373 per person</h4>
-            </div>
-        </div>
-
-
-        <div class="btn">
-            <div>
-                <img src="../images/cities/LUXOR.jpg" alt="luxor" width="300 px" height="200 px">
-            </div>
-            <div>
-                <h5>MULTI-DAY TRIP</h5>
-                <h4>From Cairo: Overnight Tour to Luxor from Cairo By VIP Train </h4>
-                <h5>4 Days Private Group Pickup Available</h5>
-                <h5><mark>New Activity</mark></h5>
-            </div>
-            <div>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
-                <i class="fa-regular fa-star"></i>
-            </div>
-            <div>
-                <h4>From E£ 3,753 per person</h4>
-            </div>
-        </div>
+        <% id++; %>
+        <% }); %>
+    <% } %> 
     </div>
 
     <%- include("partials/footer.ejs") %>

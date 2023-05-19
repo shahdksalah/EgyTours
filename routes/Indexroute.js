@@ -97,11 +97,9 @@ router.post('/login',urlencodedParser,[
 
 router.get('/logout', (req, res) => {
   if (req.session) {
-    req.session.user=null;
-    res.clearCookie('user')
-    req.session.destroy()
     console.log("destroyed")
-    res.render("index",{user:""});
+    res.clearCookie(this.cookie, { path: '/' });
+    res.redirect("/")
     console.log("redirected")
   } else {
     res.end()

@@ -23,13 +23,14 @@ router.post('/submit',(request, response) =>  {
   imgFile=request.files.imgs;
   for(var i=0;i<num;i++){
     ext = imgFile[i].name.split('.')[1];
-    uploadPath=__dirname+"/../public/images/cities/"+ request.body.Aname + i + '.' + ext;
+    uploadPath=__dirname+"/../public/images/activities/"+ request.body.Atype + i + '.' + ext;
     imgFile[i].mv(uploadPath);
   }
   
   const activitydetails = new Activity({
     Name:request.body.Aname,
     Type:request.body.Atype,
+    Rate:request.body.rate,
     Picture:request.files,
     BriefDes:request.body.Abrief,
     DetailedDes:request.body.Adetails,
@@ -37,7 +38,8 @@ router.post('/submit',(request, response) =>  {
     CancelDet:request.body.Acancel,
     Duration:request.body.Atime,
     PickupDet:request.body.Apickup,
-    AvailableDate:request.body.Dates
+    AvailableDate:request.body.Dates,
+    Price:request.body.price
     });
     activitydetails.save()
       .then(result=>{

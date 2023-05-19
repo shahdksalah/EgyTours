@@ -26,6 +26,7 @@
         <textarea id="ActName" rows="3" cols="60" name="Aname"></textarea>
         <h3>Type</h3>
         <textarea id="ActType" rows="2" cols="25" name="Atype"></textarea>
+        <input type="text" name="rate" value="0" hidden>
         <h3>Images </h3>
         <div>
             <input type="file" id="imgs" name="imgs" multiple>
@@ -47,6 +48,8 @@
         <h3>Available dates: </h3>
         <input type="date" name="Dates" id="date">
         <span id="plus" onclick="addDate()"> + </span>
+        <h3>Price per person: </h3>
+        <input type="text" name="price" id="price">
         <div class="subres"><input type="submit" name="submit" id="submit" >
         <button onclick="reset()" id="reset">Reset</button></div>
         </form>

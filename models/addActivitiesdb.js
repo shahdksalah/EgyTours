@@ -16,6 +16,10 @@ const ActivitySchema = new Schema ({
         required:true,
         trim:true
     },
+    Rate:{
+        type:String,
+        required:true
+    },
     Picture:{
         type:Array,
         required:true
@@ -56,8 +60,17 @@ const ActivitySchema = new Schema ({
         type:String,
         required:true,
         trim:true
+    },
+    Price:
+    {
+        type:Number,
+        required:true,
+        trim:true,
+    },
+    Reviews:{
+        type:Array,
+        required:false
     }
-
 },{timestamp:true});
 
 const Activity= mongoose.model('Activity',ActivitySchema);

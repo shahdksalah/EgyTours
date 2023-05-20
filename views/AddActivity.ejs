@@ -22,8 +22,10 @@
     <div id="adding">
         <h2><ins>Add Activity</ins></h2>
         <form method="post" action="/AddActivity/submit" enctype="multipart/form-data">
-        <h3>Name</h3>
+        <h3>City's Name</h3>
         <textarea id="ActName" rows="3" cols="60" name="Aname"></textarea>
+        <h3>Header: </h3>
+        <textarea id="ActHeader" rows="3" cols="60" name="Aheader"></textarea>
         <h3>Days:</h3>
         <input id="dropbtn" list="Days" placeholder="Number of Days" name="Days">
         <datalist id="Days">
@@ -56,6 +58,10 @@
         <h3>Available dates: </h3>
         <input type="date" name="Dates" id="date">
         <span id="plus" onclick="addDate()"> + </span>
+        <h3>Starting time:</h3>
+        <input type="time" name="starttime" id="starttime">
+        <h3>Ending time:</h3>
+        <input type="time" name="endtime" id="endtime">
         <h3>Price per person: </h3>
         <input type="text" name="price" id="price">
         <div class="subres"><input type="submit" name="submit" id="submit" >

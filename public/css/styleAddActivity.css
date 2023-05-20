@@ -1,3 +1,4 @@
+
 #add{
     font-size:20px;
     background-color:black;
@@ -8,7 +9,7 @@
     background-color:white;
     color:black;
 }
-#date,#price{
+#date,#price,#starttime,#endtime{
     width:460px;
     height:40px;
 }

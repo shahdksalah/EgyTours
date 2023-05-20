@@ -11,6 +11,11 @@ const ActivitySchema = new Schema ({
         trim:true,
         required:true,
     },
+    Header:{
+        type:String,
+        trim:true,
+        required:true,
+    },
     Days:{
         type:String,
         trim:true,
@@ -67,6 +72,16 @@ const ActivitySchema = new Schema ({
     },
     AvailableDate:
     {
+        type:String,
+        required:true,
+        trim:true
+    },
+    Starttime:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    Endtime:{
         type:String,
         required:true,
         trim:true

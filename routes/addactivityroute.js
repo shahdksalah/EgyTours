@@ -12,7 +12,7 @@ router.get('/',function(req,res)
 
 router.post('/submit',(request, response) =>  {
   console.log("entered");
-  var imgFile=[];
+  var imgFile;
   var uploadPath;
   var num;
   var ext;
@@ -23,12 +23,14 @@ router.post('/submit',(request, response) =>  {
   imgFile=request.files.imgs;
   for(var i=0;i<num;i++){
     ext = imgFile[i].name.split('.')[1];
-    uploadPath=__dirname+"/../public/images/activities/"+ request.body.Atype + i + '.' + ext;
+    uploadPath=__dirname+'/../public/images/activities/'+ request.body.Atype + (i+1) + '.' + ext;
     imgFile[i].mv(uploadPath);
+    paths[i]=req.body.name+(i+1)+'.'+ext;
   }
   
   const activitydetails = new Activity({
     Name:request.body.Aname,
+    Header:request.body.Aheader,
     Days:request.body.Days,
     Type:request.body.Atype,
     Rate:request.body.rate,
@@ -41,6 +43,8 @@ router.post('/submit',(request, response) =>  {
     Duration:request.body.Atime,
     PickupDet:request.body.Apickup,
     AvailableDate:request.body.Dates,
+    Starttime:request.body.starttime,
+    Endtime:request.body.endtime,
     Price:request.body.price
     });
     activitydetails.save()

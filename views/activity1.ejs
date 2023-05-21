@@ -42,7 +42,7 @@
         <% if(activity1[0].Rate==="1") { %>
             <i class="fa-solid fa-star"></i>
             <% } %>
-            <%  if(activity.Rate==="2") { %>
+            <%  if(activity1[0].Rate==="2") { %>
              <i class="fa-solid fa-star"></i>
              <i class="fa-solid fa-star"></i>
              <% } %>
@@ -70,7 +70,7 @@
         <span>
           <% if(activity1!=="") {%>
             <%=activity1[0].Rate%> / 5
-          <% } >
+          <% } %>
         </span>
         &nbsp;
         <span> (400 ratings)</span>
@@ -238,7 +238,7 @@
         </div>
 
       </div>
-      <script src="js/Activity1.js"></script>
+      <script src="../public/js/Activity1.js"></script>
 
 
       <h2><ins>Reviews</ins></h2>

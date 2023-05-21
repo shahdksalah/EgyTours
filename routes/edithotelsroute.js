@@ -12,7 +12,6 @@ router.get('/',async function(req,res)
 {
     var Hotels=[];
     Hotels=await Hotel.find();
-    console.log(Hotels)
     res.render("EditHotels",{hotels:(Hotels==='undefined'?"":Hotels)});
 });
 

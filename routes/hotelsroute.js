@@ -24,9 +24,6 @@ router.post('/:name',async function(req,res){
     var query1=req.body.hotel;
     const hotel1=await Hotel.find().where("Name").equals(query1);
     Hotels=Array.from(hotel1);
-    console.log(Hotels);
-    console.log(hotel1);
-    console.log(Hotels[0].Reviews[0]);
 
     for(var i =0;i<Hotels[0].Reviews.length;i++)
     {

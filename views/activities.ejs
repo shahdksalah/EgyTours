@@ -26,14 +26,14 @@
         <% if(activities!=="") {%>
             <% let id=1; %>
             <% activities.forEach((activity) => { %>
-        <div class="btn" onclick="location.href= '/activities/<%=activity.Type%>'">
+        <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
             <div>
                 <img src="/images/activities/<%=activity.Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">
             </div>
 
             <div>
                 <h5><%=activity.Type%></h5>
-                <h4><%=activity.Name%> </h4>
+                <h4><%=activity.Header%> </h4>
                 <h5><%=activity.Duration%></h5>
                 <h5><mark><%=activity.Advantage%></mark></h5>
             </div>

@@ -1,10 +1,8 @@
-let a=document.getElementById("avail");
+
 function view()
 {
-  let a=document.getElementById("avail");
   if(validated()){
-    a.style.display="block";
-    document.querySelector("#time").textContent=document.querySelector('#dat').value;
+    document.getElementById("avail").style.display="block";
 
     document.querySelector("#num1").textContent=document.querySelector("#dropbtn").value;
 
@@ -14,20 +12,18 @@ function view()
   }
 }
 
-let book = document.getElementById("book");
 function validated(){
-  let adults = document.getElementById("dropbtn");
-  let children = document.getElementById("dropbtn1");
+  let people = document.getElementById("dropbtn");
   let dat = document.getElementById("days");
   let valid = true;
-  if(adults.value==""){
+  if(people.value==""){
     valid = false;
     document.getElementById("msg").innerHTML="Choose number: ";
   }
   else{
     document.getElementById("msg").innerHTML="";
   }
-  if(dat.value.length==0){
+  if(dat.value==""){
     valid = false;
     document.getElementById("date-msg").innerHTML="Choose date";
   }

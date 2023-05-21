@@ -205,6 +205,10 @@
 #hotel{
 display:none;
 }
+#form{
+  background-color:transparent;
+  border:none;
+}
 
 
 

@@ -42,7 +42,9 @@
                             <% if(hotels!=="") {%>
                                 <% let id=1; %>
                                 <% hotels.forEach((hotel) => { %>
-                                    <li><a href="#" id=<%= id %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=hotel.Name %> <button onclick="onUpdate(id)">Update</button> <button onclick="onDelete(id)">Delete</button ></a></li>
+                                    <li><a href="#" id=<%=hotel.Name.split()%> onmouseover =" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=hotel.Name %>
+                                         <button onclick="onUpdate(id,'<%=hotel.Name%>','<%=hotel.Location%>','<%=hotel.About%>','<%=hotel.Picture%>','<%=hotel.PropertyAmen%>','<%=hotel.RoomFeatures%>','<%=hotel.RoomTypes%>')">Update</button> 
+                                         <button onclick="onDelete(id)">Delete</button ></a></li>
                                 <% id++; %>
                                 <% }); %>
                             <% } %> 
@@ -54,105 +56,127 @@
                             <h2>Hotel Name</h2>
                         </div>
                         <div>
-                            <textarea name="hotelName" id="hotelName" cols="60" rows="3"></textarea>
+                            <p id="i1" name="hotelName"></p>
+                            <div class="edit">
+                                <button  onclick="replaceInfo('i1')"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
                         </div>
     
                         <div>
                             <h2>Location</h2>
                         </div>
                         <div>
-                            <textarea name="hotelName" id="hotelName" cols="60" rows="3"></textarea>
+                            <p id="i2" name="hotelLoc">
+                                <div class="edit">
+                                    <button  onclick="replaceInfo('i2')"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </div>
                         </div>
                         <div>
-                            <h2>Images</h2>
-                        </div>
-                        <div id="images">
-                            <label for="inputTag" id="lab" >
-                                <div id="upload">
-                                   Upload Images
+                            <div>
+                                <h2>Images</h2>
+                            </div>
+                            <div>
+                                <div >
+                                    <p id="imagess"></p>
                                 </div>
-                                  <input type="file" id="inputTag" class="addimg" >
-                                  <div>
-                                    <label id="chosenfiles"></label>
-                                  </div>
-                            </label>
+                            </div>
                         </div>
+                        
                         <div>
                             <h2>About</h2>
                         </div>
                         <div>
-                            <textarea name="hotelName" id="hotelName" cols="150" rows="15"></textarea>
+                            <p id="i3" name="hotelAbout">
+                                <div class="edit">
+                                    <button  onclick="replaceInfo('i3')"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </div>   
                         </div>
     
                         <div>
                             <h2>Property Amenities</h2>
                         </div>
-                        <div id="items">
-                            <div class="item">
-                                <div class="icon">
-                                    <label for="ic"  >
-                                        <div class="add">
-                                        Add Icon
-                                        </div>
-                                        <input type="file" id="ic"  class="i" >
-                                        <div>
-                                            <label class="chosenicon"></label>
-                                        </div>
-                                    </label>
-                                </div>
-                                <textarea name="amenities" id="amenities" cols="30" rows="2"></textarea>
-                                <button class="plus">+</button>
+                        <div class="item" id="item3">
+                            <ul id="i4" name="hotelAmen">
+                            </ul>
+                            <div id="edit3" style="display: none; margin:10px; border:solid 2px;"> 
+                                <textarea name="amenities" id="amenities" cols="30" rows="3" style="display:none"></textarea>
+                                <input type="checkbox" value="Free Wifi" id="freewifi" name="amen">
+                                <label for="freewifi" name="amen-wifi">Free Wifi</label>    
+                                
+                                <input type="checkbox" value="Spa" id="spa" name="amen">
+                                <label for="Spa" name="amen-spa">Spa</label>    
+                                
+                                <input type="checkbox" value="Parking" id="parking" name="amen">
+                                <label for="parking" name="amen-park">Parking</label>    
+                                
+                                <input type="checkbox" value="Aqua Park" id="aquapark">
+                                <label for="aquapark" name="amen-aqua">Aqua Park</label>    
+                                
+                                <input type="checkbox" value="Green Spaces" id="greenspaces" name="amen">
+                                <label for="greenspaces" name="amen-green">Green Spaces</label> 
+
+                                <input type="checkbox" value="Fitness Center" id="fitness"name="amen">
+                                <label for="fitness" name="amen-fit">Fitness Center</label>
+
+                                <span class="error-message"></span>
                             </div>
+                            
+                        </div>
     
-                            <div>
-                                <h2>Room Features</h2>
-                            </div>
-                            <div class="item">
-                                <div class="icon">
-                                    <label for="ic2"  >
-                                        <div class="add">
-                                        Add Icon
-                                        </div>
-                                        <input type="file" id="ic2"  class="i" >
-                                        <div>
-                                            <label class="chosenicon"></label>
-                                        </div>
-                                    </label>
+                        <div>
+                            <h2>Room Features</h2>
+                        </div>
+                        <div class="item" id="item">
+                            <ul id="i5">
+                            </ul>
+                                <div id="edit2" style="display: none; margin:10px; border:solid 2px;">
+                                    <textarea name="roomfeatures" id="roomfeat" cols="30" rows="3" style="display:none"></textarea>
+                                    <input type="checkbox" value="Blackout Curtains" id="blackcurtains" name="feat">
+                                    <label for="blackcurtains" name="room-curtain">Blackout Curtains</label>    
+                                    
+                                    <input type="checkbox" value="Full Body Bath" id="bath" name="feat">
+                                    <label for="bath" name="room-bath"> Full Body Bath</label>        
+                                    
+                                    <input type="checkbox" value="Mini Fridge" id="minifridge" name="feat">
+                                    <label for="minifridge" name="room-fridge">Mini Fridge</label>    
+                                    
+                                    <input type="checkbox" value="Air Conditioning" id="aircond" name="feat">
+                                    <label for="aircond" name="room-flat">Air Conditioning</label>
                                 </div>
-                                <textarea name="rfeatures" id="rfeatures" cols="30" rows="2"></textarea>
-                                <button class="plus">+</button>
-                            </div>
+                        </div>
     
-                            <div>
-                                <h2>Room Types</h2>
-                            </div>
-                            <div class="item">
-                                <div class="icon">
-                                    <label for="ic3"  >
-                                        <div class="add">
-                                        Add Icon
-                                        </div>
-                                        <input type="file" id="ic3"  class="i" >
-                                        <div>
-                                            <label class="chosenicon"></label>
-                                        </div>
-                                    </label>
-                                </div>
-                                <textarea name="rfeatures" id="rfeatures" cols="30" rows="2"></textarea>
-                                <button class="plus">+</button>
-                            </div>
+                        <div>
+                            <h2>Room Types</h2>
+                        </div>
+                        <div class="item" id="item2">
+                            <ul id="i6">
+                            </ul>
+                                <div id="edit" style="display: none; margin:10px; border:solid 2px;">
+                                <textarea name="roomtypes" id="roomtypes" cols="30" rows="3" style="display: none;"></textarea>
+                                <input type="checkbox" value="Single Bedroom" id="single" name="type">
+                                <label for="single" name="type single">Single Bedroom</label>    
+                                        
+                                <input type="checkbox" value="Double Bedroom" id="double" name="type">
+                                <label for="double" name="type double">Double Bedroom</label>    
+                                        
+                                <input type="checkbox" value="Suite" id="suite" name="type">
+                                <label for="suite" name="type suite">Suite</label>    
+                                        
+                                <input type="checkbox" value="Premium Suite" id="premsuite" name="type">
+                                <label for="premsuite" name="type premsuite">Premium Suite</label>    
+                                </div> 
                         </div>
                         <div  id="buttons">
                             <span>
-                                <button>Submit</button>
+                                <button type="submit">Submit</button>
                                 <button>Reset</button>
                             </span>
                         </div>
                  </div>
                 </div>
-                <div id="c">
+                <div id="deleteHotel" style="display:none">
                     <h1>Delete Activity</h1>
-                    <p>Are you sure you want to delete this Activity?</p>
+                    <p>Are you sure you want to delete this Hotel?</p>
             
                     <div class="clearfix">
                     <button type="button" class="cancelbtn" onclick="cancel()">Cancel</button>
@@ -164,7 +188,6 @@
           </div>
         </div>
         <script src="/js/EditHotels.js"></script>
-        <script src="/js/user.js"></script>
       
     </body>
 </html>

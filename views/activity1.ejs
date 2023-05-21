@@ -8,9 +8,9 @@
 
     <link rel="stylesheet" type="text/css" href="/css/styleHF.css">
     <link rel="stylesheet" type="text/css" href="/css/styleForm.css">
-    <link rel="stylesheet" type="text/css" href="/css/styleActivity1.css">
     <link rel="stylesheet" type="text/css" href="/css/styleActivities.css">
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleActivity1.css">
 
 </head>
 <body>
@@ -22,16 +22,16 @@
     <div class="body">
     <div class="group">
         <h1 id="h">
-          <% if(activity1!=="") {%>
-          <h1><%=activity1[0].Name %></h1>
+          <% if(activity1!=="") { %>
+          <h1><%= activity1[0].Header %></h1>
         <% }; %> 
       </h1>
-        <span> <% if(activity1!=="") {%>
-          <%=activity1[0].Days%>
+        <span> <% if(activity1!=="") { %>
+          <%=activity1[0].Days %>
           <% }; %> 
         </span> &nbsp;
         <span class ="rating">
-          <% if(activity1!=="") {%>
+          <% if(activity1 !== "") {%>
           <% if(activity1[0].Rate === "0") { %>
             <i class="fa-regular fa-star"></i>
             <i class="fa-regular fa-star"></i>
@@ -69,11 +69,10 @@
         &nbsp;
         <span>
           <% if(activity1!=="") {%>
-            <%=activity1[0].Rate%> / 5
+            <%=activity1[0].Rate %> / 5
           <% } %>
         </span>
         &nbsp;
-        <span> (400 ratings)</span>
     </div>
     <br>
 <div class="grid">
@@ -98,7 +97,7 @@
       
     <br>
     <div>
-        <div class="text">
+        <div class="text" >
           <% if(activity1!=="") {%>
             <h1><%=activity1[0].BriefDes %></h1>
           <% }; %> 
@@ -125,27 +124,27 @@
         <h4>About the Trip: </h4>
         <div class="w">
             <span><i class="fa-sharp fa-solid fa-xmark"></i></span>&nbsp
-            <div class="more">
+            <span class="more">
               <% if(activity1!=="") {%>
                 <h1><%=activity1[0].CancelDet %></h1>
               <% }; %> 
-            </div>
+              </span>
         </div>
         <div class="w">
             <span><i class="fa-regular fa-clock"></i></span>&nbsp
-            <div class="more">
+            <span class="more">
               <% if(activity1!=="") {%>
                 <h1><%=activity1[0].Duration %></h1>
               <% }; %>
-            </div>
+              </span>
         </div>
         <div class="w">
             <span><i class="fa-solid fa-bus"></i></span>&nbsp
-            <div class="more"> 
+            <span class="more"> 
               <% if(activity1!=="") {%>
                 <h1><%=activity1[0].PickupDet %></h1>
               <% }; %>
-            </div>
+              </span>
             </div>
 
     </div>
@@ -155,7 +154,7 @@
     <h2><ins>Select participants and date</ins></h2>
     <div class="book" id="book">
       <div>
-        <input id="dropbtn" list="Adults" placeholder="Adults">
+        <input id="dropbtn" list="Adults" placeholder="Select number: ">
         <datalist id="Adults">
           <option value="1"></option>
           <option value="2"></option>
@@ -168,73 +167,45 @@
           <option value="9"></option>
           <option value="10"></option>
         </datalist>
-        <div id="adult-msg" class="check-error"></div>
+        <div id="msg" class="check-error"></div>
       </div>
-        <div>
-          <input id="dropbtn1" list="Children" placeholder="Children">
-          <datalist id="Children">
-            <option value="1"></option>
-            <option value="2"></option>
-            <option value="3"></option>
-            <option value="4"></option>
-            <option value="5"></option>
-            <option value="6"></option>
-            <option value="7"></option>
-            <option value="8"></option>
-            <option value="9"></option>
-            <option value="10"></option>
-          </datalist>
-          <div id="child-msg" class="check-error"></div>
-        </div>
         <div>
           <!--<input id="dat" type="date" placeholder="Date" >
           <div id="date-msg" class="check-error"></div>-->
 
-          <input id="dropbtn1" list="Children" placeholder="Children">
-          <datalist id="Children">
+          <input id="dropbtn1" list="days" placeholder="Days Available">
+          <datalist id="days">
             <option value=<%=activity1[0].AvailableDate %>></option>
           </datalist>
+          <div id="date-msg" class="check-error"></div>
         </div>
         <div> 
           <button id="check" onclick="view()">Check Availability</button>
         </div>
        
-        <script src="js/Activity1.js"></script>
+        <script src="/js/Activity1.js"></script>
       </div>
 
       <div id="avail">
         <h2><ins>Available</ins></h2>
         <div class="duration">
-        <span><i class="fa-regular fa-clock"></i></span>&nbsp
-        <span>10-11 hours</span>
+        <span><strong>FROM: </strong></span>
+        <span> <%=activity1[0].Starttime%></span>
+        <div style="margin-top:6px"> </div>
+        <span><strong>TO: </strong></span>
+        <span> <%=activity1[0].Endtime%></span>
         </div>
-        <div class="cancel">
-        <span><i class="fa-sharp fa-solid fa-xmark"></i></span>&nbsp
-        <span>Free Cancellation before 5AM on </span>
-        <span id="time"> </span>
-        </div>
-        <div class ="Adultprice">
-          <span>Adults Price: </span>
+        <div class ="price">
+          <span>Total Price: </span>
           <span id="num1"> </span>
           <span>*</span>
-          <span id="price1">5000</span>
+          <span id="price1"><%=activity1[0].Price%></span>
           <span>=</span>
           <span id="total1"> </span>
-          </div>
-          <div class="Childprice">
-          <span>Children Price: </span>
-          <span id="num2"> </span>
-          <span>*</span>
-          <span id="price2">2000</span>
-          <span>=</span>
-          <span id="total2"> </span>
-        </div>
-        <div class="total"> 
-          <span class="add">Total: </span>
-          <span id="t"> </span>
-        </div>
-        <div style="text-align: center;">
-          <button>Add To Cart</button>
+      </div>
+        
+        <div style="text-align: center; margin-top:15px;">
+          <button style="width:150px">Add To Cart</button>
         </div>
 
       </div>
@@ -243,64 +214,78 @@
 
       <h2><ins>Reviews</ins></h2>
       
-      <div class="first">
-                      
+    <div class="first">
+      <% if(activity1[0].Reviews!=="") { %>
+        <% let start=0; %>
+        <% while(start < activity1[0].Reviews.length) { %>
         <div class="reviews">
                 <div class="rev">
-                    <h6 class="R">Jan Erik L wrote a review Jan 2023</h6>
+                    <h6 class="R">Jan Erik L wrote a review <%=activity1[0].Reviews[start]%></h6>
+                    <% start=start+1 %>
                 </div>
                 <div class="rating">
+                  <% if(activity1[0].Reviews[start] === "0") { %>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <% } %>
+                  <% if(activity1[0].Reviews[start]==="1") { %>
                     <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <% } %>
+                    <%  if(activity1[0].Reviews[start]==="2") { %>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <% } %>
+                     <% if(activity1[0].Reviews[start]==="3") { %>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <% } %>
+                     <% if(activity1[0].Reviews[start]==="4") { %>
+                      <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i>
+                     <% } %>
+                     <% if(activity1[0].Reviews[start]==="5"){ %>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <% } %>
                 </div>
-                    <p class="R">"Thank you very much for your positive review of your recent holiday with us at Jaz Makadina.
-                   We are happy to read about your experience with our hotel facilities and services.
-                   We appreciate you taking the time to share your experience on Tripadvisor and we are 
-                   looking forward welcoming you back at our hotel in the future."</p>
-        </div>
-
-
-        <div class="reviews">
-            <div class="rev">
-                <h6 class="R">Tony Nagy L wrote a review Feb 2023</h6>
-            </div>
-            <div class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
-            </div>
-                <p class="R">"I've stayed at the Four Season Cairo Nile Plaza twice prior to booking this trip for my family. As it 
-                    was their first time to Cairo wanted to make it special so we booked the Four Seasons again. Weeks leading up to 
-                    the trip, the Concierge was incredibly helpful in assisting us with planning the best itinerary to make the most 
-                    of our trip."</p>
-        </div>
-        <div class="reviews">
-          <div class="rev">
-              <h6 class="R">Sara Samy L wrote a review Dec 2022</h6>
+                <% start=start+1 %>
+                    <p class="R"><%=activity1[0].Reviews[start] %></p>
+                    <% start=start+1 %>
           </div>
-          <div class="rating">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-          </div>
-              <p class="R">"It’s a bit outside of downtown, but given that we weren’t looking to do any self exploring 
-                  of the city this was not an issue. The hotel property is safe and very pleasant, built around a lovely pool 
-                  area on the banks of the Nile with great views of the Valley of Kings when lit at night. Would 
-                  definitely stay here again if I returned to Luxor."</p>
+          <% } %>
+          <% } %>
       </div>
-
-
-    </div>
     </div>
 
-    <script src="js/jazhotel.js"></script>
+    <div class="addReviews">
+      <form method="post" action="/activities/:<%=activity1[0].Name %>" id="form">
+        <h3>Add Review</h3>
+        <input type="text" name="activity" id="activity" value="<%=activity1[0].Name %>">
+      <textarea cols="60" rows="5" id="addrev" name="addrev"></textarea>
+      <h3>Rating</h3>
+      <input id="dropbtn3" list="Rating" placeholder="Rating" name="rating">
+          <datalist id="Rating">
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+          </datalist>
+      <div><button type="submit" id="sub" name="sub" >submit</button></div>
+
+      </form>
+    </div>
+
+    <script src="/js/jazhotel.js"></script>
 
     <%- include("partials/footer.ejs") %>
 

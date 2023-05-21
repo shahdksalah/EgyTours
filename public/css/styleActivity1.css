@@ -5,6 +5,7 @@
    .grid{
     margin-bottom:30%;
 }
+
 .next {
     border-radius: 3px 0 0 3px;
     position:relative;
@@ -64,9 +65,10 @@ span{
     padding:6px;
     padding-left: 6px;
 }
-.text
+.text,.w, .more
 {
-    font-size:18px;
+    font-size:8px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .w{
     width:800px;

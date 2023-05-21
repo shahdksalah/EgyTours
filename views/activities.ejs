@@ -23,7 +23,7 @@
 
 
     <div class="first">
-        <% if(activities!=="") {%>
+        <% if(activities!=="") { %>
             <% let id=1; %>
             <% activities.forEach((activity) => { %>
         <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
@@ -63,7 +63,7 @@
                      <i class="fa-solid fa-star"></i>
                      <i class="fa-solid fa-star"></i>
                      <% } %>
-                     <% if(activity.rRate==="5"){ %>
+                     <% if(activity.Rate==="5"){ %>
                       <i class="fa-solid fa-star"></i>
                       <i class="fa-solid fa-star"></i>
                       <i class="fa-solid fa-star"></i>

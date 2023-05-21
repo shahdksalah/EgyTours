@@ -13,13 +13,15 @@ function hide(id){
     
 
 async function handleLogout()  {
-    try {
-        await fetch("http://localhost:8080/logout", {
-        method: "GET",
-        });
-    } catch (error) {
-        console.error(error.message);
-    }
+    location.href = "http://localhost:8080/signout";
+
+    // try {
+    //     await fetch("http://localhost:8080/signout", {
+    //     method: "GET",
+    //     });
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
     };
       
 

@@ -15,14 +15,15 @@ function hide(id){
 async function handleLogout()  {
     location.href = "http://localhost:8080/signout";
 
-    // try {
-    //     await fetch("http://localhost:8080/signout", {
-    //     method: "GET",
-    //     });
-    // } catch (error) {
-    //     console.error(error.message);
-    // }
-    };
+}
+
+function disdplayDropdown(){
+    document.getElementById("dropdown-content").style.display="block";
+}
+
+function hideDropdown(){
+    document.getElementById("dropdown-content").style.display="none";
+}
       
 
 

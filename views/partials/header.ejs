@@ -9,11 +9,17 @@
                 <% if(user===""){ %>
                     <button onclick="show('signin')">Sign In</button>  
                 <%} else{%>
-                    <button onmouseenter="show('menu')" >logged in as <%=user.Username%></button>
-                    <div id="menu">
-                        <button>My Profile</button>
-                        <button onclick="handleLogout()" >logout</button>
-                    </div>
+                    <div calss="dropdown">
+                        <button class="dropbtn" onmouseover="disdplayDropdown()">
+                            logged in as <%=user.Username%></button>
+                        <div id="dropdown-content" onmouseleave="hideDropdown()">
+                            
+                            <a href="#">My Profile</a>
+                           
+                            <a href="#" onclick="handleLogout()" >logout</a>    
+                        </div>
+                     </div>   
+
                 <% } %>
                 <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
                 <a href="/activities"> <i class="fa-regular fa-heart"></i> </a>

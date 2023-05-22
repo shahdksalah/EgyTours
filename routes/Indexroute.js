@@ -83,8 +83,8 @@ router.post('/login', urlencodedParser, [
   const errors = validationResult(request)
   if (!errors.isEmpty()) {
       const alert = errors.array();
-      response.render('login', { alert });
   }
+  else{
   console.log("entered");
   var query = { Username: request.body.username, Password: request.body.password };
   User.find(query)
@@ -94,7 +94,7 @@ router.post('/login', urlencodedParser, [
       request.session.authenticated = true;
       response.redirect("/");
     });
-
+  }
 });
 
 router.get('/signout', function (req, res) {

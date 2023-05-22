@@ -24,6 +24,7 @@ async function handleLogout()  {
  function hideDropdown(){
      document.getElementById("dropdown-content").style.display="none";
  }
+
       
 
 

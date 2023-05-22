@@ -5,18 +5,19 @@
                 <img id="logo" src="/images/homepage/logo.png" alt="logo" width="100px">
             </div>
             <nav class="topnav">
-                
                 <% if(user===""){ %>
                     <button onclick="show('signin')">Sign In</button>  
                 <%} else{%>
-                    <div calss="dropdown" onmouseleave="hideDropdown()">
-                        <button class="dropbtn" onmouseover="disdplayDropdown()">
+                    <div calss="dropdown" onmouseleave="hideDropdown()" onmouseenter="displayDropdown()">
+                        <button class="dropbtn"  >
                             logged in as <%=user.Username%></button>
                         <div id="dropdown-content" >
-                            
+                            <div class="de">
                             <a href="#">My Profile</a>
-                           
-                            <a href="#" onclick="handleLogout()" >logout</a>    
+                            </div>
+                            <div class="de">
+                            <a href="#" onclick="handleLogout()" >logout</a>
+                           </div>      
                         </div>
                     </div>   
                 <% } %>
@@ -26,6 +27,7 @@
                 <a href="/"> <i class="fa-solid fa-house fa-fw"></i> </a>
                 <input id="searchbar" type="text" placeholder="Search" >
             </nav>
+            
         </header>
         
         <div class="slogan">

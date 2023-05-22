@@ -53,7 +53,7 @@ h5{
     display: none;
 }
 
-button{
+#button button,#saveButtons button{
     border-radius: 10px;
     background-color: rgb(55, 28, 13);
     color:white;

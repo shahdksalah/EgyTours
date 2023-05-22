@@ -9,17 +9,16 @@
                 <% if(user===""){ %>
                     <button onclick="show('signin')">Sign In</button>  
                 <%} else{%>
-                    <div calss="dropdown">
+                    <div calss="dropdown" onmouseleave="hideDropdown()">
                         <button class="dropbtn" onmouseover="disdplayDropdown()">
                             logged in as <%=user.Username%></button>
-                        <div id="dropdown-content" onmouseleave="hideDropdown()">
+                        <div id="dropdown-content" >
                             
                             <a href="#">My Profile</a>
                            
                             <a href="#" onclick="handleLogout()" >logout</a>    
                         </div>
-                     </div>   
-
+                    </div>   
                 <% } %>
                 <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
                 <a href="/activities"> <i class="fa-regular fa-heart"></i> </a>

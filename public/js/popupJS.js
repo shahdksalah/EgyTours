@@ -17,13 +17,13 @@ async function handleLogout()  {
 
 }
 
-function disdplayDropdown(){
-    document.getElementById("dropdown-content").style.display="block";
-}
+ function displayDropdown(){
+     document.getElementById("dropdown-content").style.display="block";
+ }
 
-function hideDropdown(){
-    document.getElementById("dropdown-content").style.display="none";
-}
+ function hideDropdown(){
+     document.getElementById("dropdown-content").style.display="none";
+ }
       
 
 

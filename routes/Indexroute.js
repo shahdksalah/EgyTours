@@ -81,6 +81,10 @@ router.post('/login', urlencodedParser, [
     .exists()
 ], (request, response) => {
   const errors = validationResult(request)
+  if (!errors.isEmpty()) {
+      const alert = errors.array();
+      response.render('login', { alert });
+  }
   console.log("entered");
   var query = { Username: request.body.username, Password: request.body.password };
   User.find(query)

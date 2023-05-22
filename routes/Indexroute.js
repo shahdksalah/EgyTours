@@ -75,7 +75,7 @@ router.post('/', urlencodedParser, [
 
 
 router.post('/login', urlencodedParser, [
-  check('usename', 'Username is empty')
+  check('username', 'Username is empty')
     .exists(),
   check('password', 'password is empty')
     .exists()
@@ -83,6 +83,7 @@ router.post('/login', urlencodedParser, [
   const errors = validationResult(request)
   if (!errors.isEmpty()) {
       const alert = errors.array();
+      console.log(alert[0]);
   }
   else{
   console.log("entered");

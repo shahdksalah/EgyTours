@@ -86,26 +86,25 @@ router.post('/',urlencodedParser,[
 
 ] ,(request, response) =>  {
   console.log("entered");
-  console.log(request.body.upemail);
-  
-
-  const errors=validationResult(request)
-  /*if(!errors.isEmpty()){
+  const errors=validationResult(request);
+  console.log(request.body);
+  if(!errors.isEmpty()){
       const alert=errors.array();
+      console.log(alert)
   }
-  else{*/
+  else{
     
-   // console.log(request.body.id);
-        //  db.users.updateOne({_id:request.body.id}, { $set: 
-        //  {Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
-        //  ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated}
+   //console.log(request.body.id);
+        /* db.users.updateOne({_id:request.body.id}, { $set: 
+         {Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
+         ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated}
      
-        //  })
+         })
 
-    // await User.findByIdAndUpdate(request.body.id,{Username:request.body.upuname,Email:request.body.upemail,PhoneNumber:request.body.upnumber
-    //  ,Password:request.body.uppsw,ConfPassword:request.body.uppsw});
+    await User.findByIdAndUpdate(request.body.id,{Username:request.body.upuname,Email:request.body.upemail,PhoneNumber:request.body.upnumber
+     ,Password:request.body.uppsw,ConfPassword:request.body.uppsw});*/
 
-  //}
+  }
   response.redirect("/")
 
 });

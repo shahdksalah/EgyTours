@@ -69,19 +69,19 @@ router.post('/success',urlencodedParser,[
     });
 
 router.post('/update',urlencodedParser,[
-  check('userUpdated','Username must be 3+ characters long')
+  check('uname','Username must be 3+ characters long')
   .exists()
   .isLength({min:3})
   ,
 
-  check('emailUpdated','Email is not valid')
+  check('email','Email is not valid')
   .isEmail()
   .normalizeEmail(),
   
-  check('phoneUpdated','Invalid phone number')
+  check('number','Invalid phone number')
   .isMobilePhone(),
 
-  check('pswUpdated','Invalid Password')
+  check('psw','Invalid Password')
   .exists()
   .isLength({min:6}),
 
@@ -101,8 +101,8 @@ router.post('/update',urlencodedParser,[
      
         //  })
 
-    await User.findByIdAndUpdate(request.body.id,{Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
-     ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated});
+    await User.findByIdAndUpdate(request.body.id,{Username:request.body.uname,Email:request.body.email,PhoneNumber:request.body.number
+     ,Password:request.body.psw,ConfPassword:request.body.psw});
 
   }
 

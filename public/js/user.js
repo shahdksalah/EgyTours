@@ -82,6 +82,7 @@ function myFunction() {
   function save(){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("smsg").style.display="block";
+    return true;
  
   }
   

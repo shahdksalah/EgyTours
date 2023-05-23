@@ -68,32 +68,34 @@ router.post('/success',urlencodedParser,[
    }
     });
 
-router.post('/update',urlencodedParser,[
-  check('uname','Username must be 3+ characters long')
+router.post('/',urlencodedParser,[
+  check('upuname','Username must be 3+ characters long')
   .exists()
   .isLength({min:3})
   ,
 
-  check('email','Email is not valid')
+  check('upemail','Email is not valid')
   .isEmail()
   .normalizeEmail(),
   
-  check('number','Invalid phone number')
+  check('upnumber','Invalid phone number')
   .isMobilePhone(),
 
-  check('psw','Invalid Password')
+  check('uppsw','Invalid Password')
   .exists()
   .isLength({min:6}),
 
 ] ,async(request, response) =>  {
   console.log("entered");
+  console.log(request.body.upemail);
+  
 
   const errors=validationResult(request)
-  console.log(validate.register)
-  if(!errors.isEmpty()){
+  /*if(!errors.isEmpty()){
       const alert=errors.array();
   }
-  else{
+  else{*/
+    
     console.log(request.body.id);
         //  db.users.updateOne({_id:request.body.id}, { $set: 
         //  {Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
@@ -101,10 +103,10 @@ router.post('/update',urlencodedParser,[
      
         //  })
 
-    await User.findByIdAndUpdate(request.body.id,{Username:request.body.uname,Email:request.body.email,PhoneNumber:request.body.number
-     ,Password:request.body.psw,ConfPassword:request.body.psw});
+    await User.findByIdAndUpdate(request.body.id,{Username:request.body.upuname,Email:request.body.upemail,PhoneNumber:request.body.upnumber
+     ,Password:request.body.uppsw,ConfPassword:request.body.uppsw});
 
-  }
+  //}
 
 });
 module.exports=router;

@@ -43,7 +43,6 @@ router.post('/success',urlencodedParser,[
    // console.log("entered");
   
     const errors=validationResult(request)
-    console.log(validate.register)
     if(!errors.isEmpty()){
         const alert=errors.array();
     }
@@ -85,7 +84,7 @@ router.post('/',urlencodedParser,[
   .exists()
   .isLength({min:6}),
 
-] ,async(request, response) =>  {
+] ,(request, response) =>  {
   console.log("entered");
   console.log(request.body.upemail);
   
@@ -96,17 +95,18 @@ router.post('/',urlencodedParser,[
   }
   else{*/
     
-    console.log(request.body.id);
+   // console.log(request.body.id);
         //  db.users.updateOne({_id:request.body.id}, { $set: 
         //  {Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
         //  ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated}
      
         //  })
 
-    await User.findByIdAndUpdate(request.body.id,{Username:request.body.upuname,Email:request.body.upemail,PhoneNumber:request.body.upnumber
-     ,Password:request.body.uppsw,ConfPassword:request.body.uppsw});
+    // await User.findByIdAndUpdate(request.body.id,{Username:request.body.upuname,Email:request.body.upemail,PhoneNumber:request.body.upnumber
+    //  ,Password:request.body.uppsw,ConfPassword:request.body.uppsw});
 
   //}
+  response.redirect("/")
 
 });
 module.exports=router;

@@ -19,7 +19,7 @@ router.get('/',async function(req,res)
 });
 
 router.post('/success',urlencodedParser,[
-    check('unam','Username must be 3+ characters long')
+    check('uname','Username must be 3+ characters long')
     .exists()
     .isLength({min:3})
     ,

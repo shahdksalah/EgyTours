@@ -95,55 +95,47 @@
 
 
                 <div id="updateInfo">
-                <form action="/" method="post" id="uform">
+                <form action="/update" method="post" id="uform">
                     <div class="update">
                         <div class="icol">
                             <h4>Username:</h4>
                         </div>
                         <div class="info">
-                            <p  id="e1" name="userUpdated"></p>
+                            <input type="text" id="u1" name="uname">
                         </div>
-                        <div class="edit">
-                            <button  onclick="replaceInfo('e1')"><i class="fa-solid fa-pen-to-square"></i></button>
-                        </div>
+                       
                     </div>
                     <div class="update">
                         <div class="icol">
                             <h4>Email:</h4>
                         </div>
-                        <div class="info">
-                            <p id="e2" name="emailUpdated"></p>
+                        <div class="info" style="margin-left: 45px;">
+                            <input type="text" id="u2" name="email">
                         </div>
-                        <div class="edit">
-                            <button onclick="replaceInfo('e2')"><i class="fa-solid fa-pen-to-square"></i></button>
-                        </div>
+                        
                     </div>
                     <div class="update">
                             <div class="icol">
                                 <h4>Phone Number:</h4>
                             </div>
-                            <div class="info">
-                                <p  id="e3" name="phoneUpdated"></p>
+                            <div class="info" style="margin-left: 28px;">
+                                <input type="text" id="u3" name="number">
                             </div>
-                            <div class="edit">
-                                <button onclick="replaceInfo('e3')"><i class="fa-solid fa-pen-to-square"></i></button>
-                            </div>
+                           
                     </div>
                     <div class="update">
                         <div class="icol">
                             <h4>Password:</h4>
                         </div>
-                        <div class="info">
-                            <p  id="e4" name="pswUpdated"></p>
+                        <div class="info" style="margin-left: 18px;">
+                            <input type="text" id="u4" name="psw">
                         </div>
-                        <div class="edit">
-                            <button onclick="replaceInfo('e3')"><i class="fa-solid fa-pen-to-square"></i></button>
-                        </div>
+                       
                     </div>
                     <div style="text-align: center;">
-                        <button type="submit" style="width:80px;" onclick="save()">Save</button>
+                        <button type="submit" style="width:120px; margin-top: 5%;" onclick="save()">Save</button>
                     </div>
-                    <p id="currid" name="userid" ></div>
+                    <p id="currid" ></div>
                 </form>
                 </div>
                 <div id="smsg">

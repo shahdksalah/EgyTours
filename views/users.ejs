@@ -22,7 +22,7 @@
         <div class="right">
             <div id="container">
                 <div class="addUser" id="addUser">
-                    <form class="form">
+                    <form class="form" method="post" action="/users/success">
                         <div class="signuptitle">
                               <h2>Add User Info</h2>
                         </div>
@@ -58,7 +58,7 @@
                           </div>
                       
                           <div class="form-btns">
-                            <button type="submit" onclick="submit()">Add</button>
+                            <button type="submit" >Add</button>
                             <button onclick="reset()">Reset</button>
                           </div>
                           
@@ -92,10 +92,8 @@
                     </ul>
                 </div>
 
-
-
                 <div id="updateInfo">
-                <form action="/" method="post" id="uform">
+                <form id="uform" method="post" action="/users" >
                     <div class="update">
                         <div class="icol">
                             <h4>Username:</h4>
@@ -112,7 +110,7 @@
                         </div>
                         <div class="info" style="margin-left: 45px;">
                             <label for="upemail"></label>
-                            <input type="text" id="u2" name="upemail">
+                            <input type="email" id="u2" name="upemail">
                         </div>
                         
                     </div>
@@ -122,7 +120,7 @@
                             </div>
                             <div class="info" style="margin-left: 28px;">
                                 <label for="upnumber"></label>
-                                <input type="text" id="u3" name="upnumber">
+                                <input type="number" id="u3" name="upnumber">
                             </div>
                            
                     </div>
@@ -132,14 +130,16 @@
                         </div>
                         <div class="info" style="margin-left: 18px;">
                             <label for="uppassword"></label>
-                            <input type="text" id="u4" name="uppsw">
+                            <input type="password" id="u4" name="uppsw">
                         </div>
                        
                     </div>
+                   <input type="text" id="currid" name="id"  style="display: none;"></input>
                     <div style="text-align: center;">
-                        <button type="submit" style="width:120px; margin-top: 5%;" >Save</button>
+                        <button type="submit" onclick="save()" style="width:120px; margin-top: 5%;" >Save</button>
                     </div>
-                    <p id="currid" ></div>
+                   
+                        
                 </form>
                 </div>
                 <div id="smsg">

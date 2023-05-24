@@ -75,7 +75,7 @@ function myFunction() {
     document.getElementById("u2").value=email;
     document.getElementById("u3").value=phone;
     document.getElementById("u4").value=password;
-    document.getElementById("currid").innerText=id;
+    document.getElementById("currid").value=id;
     document.getElementById("updateInfo").style.display="block";
   }
   
@@ -115,31 +115,7 @@ function myFunction() {
   }
 
 
-  function submit()
-{
-    var myName=document.querySelector('#uname').value;
-    var myEmail=document.querySelector('#femail').value;
-    var myNumber=document.querySelector('#number').value;
-    var mypass=document.querySelector('#password').value;
-    var myconfpass=document.querySelector('#password-confirmation').value;
-    console.log(myName);
-    var obj={
-        unam:myName,
-        email:myEmail,
-        number:myNumber,
-        psw:mypass,
-        confpsw:myconfpass
-    };
-    fetch('/success',{
-        method:"POST",
-        headers:{
-           "Content-type":"application/json"
-        },
-     
-        body:JSON.stringify(obj)
-    });
-    console.log(myName);
-  }
+ 
  
 
   

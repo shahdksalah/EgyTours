@@ -13,7 +13,7 @@
   border:2px solid rgb(54, 36, 27);
 }
 #uform{
-  width:500px
+  width:500px;
 }
 .right button{
   border-radius: 10px;
@@ -22,7 +22,9 @@
   height:25px;
   cursor: pointer;
 }
-
+.update{
+  margin-left: 70px;
+}
 
 #myUL button{
   float:right;
@@ -98,10 +100,12 @@
 .info,.inf{
   
   margin-top:7.5%;
+  margin-left: 5%;
   flex:20%;
 }
 .icol{
-  text-align: left;
+  margin-top: 20px;
+  margin-left: 10px;
   flex:70%;
   width:fit-content;
 
@@ -131,6 +135,9 @@
 }
 #smsg{
   display:none;
+}
+.info input{
+  width:200px;
 }
 
 

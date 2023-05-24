@@ -71,10 +71,10 @@ function myFunction() {
   function onUpdate(id,username,email,phone,password){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("deleteUser").style.display="none";
-    document.getElementById("e1").innerHTML=username
-    document.getElementById("e2").innerHTML=email;
-    document.getElementById("e3").innerHTML=phone;
-    document.getElementById("e4").innerHTML=password;
+    document.getElementById("u1").value=username
+    document.getElementById("u2").value=email;
+    document.getElementById("u3").value=phone;
+    document.getElementById("u4").value=password;
     document.getElementById("currid").innerText=id;
     document.getElementById("updateInfo").style.display="block";
   }
@@ -82,6 +82,7 @@ function myFunction() {
   function save(){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("smsg").style.display="block";
+    return true;
  
   }
   

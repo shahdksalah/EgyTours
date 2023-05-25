@@ -15,6 +15,9 @@ const CitySchema= new Schema({
     picture:{
         type:Array,
         required:true,
+    },
+    hotels:{
+        type:Array,
     }
 
 

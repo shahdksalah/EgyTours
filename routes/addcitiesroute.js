@@ -29,12 +29,13 @@ router.post('/submit',(request,response)=>{
       uploadPath=__dirname+'/../public/images/cities/'+ request.body.cityname+ (1) + '.' + ext;
       imgFile.mv(uploadPath);
       paths[0]=request.body.cityname+'.'+ext;
+
+      console.log(request.body);
     
-
-
     const city=new Cities({
         Name:request.body.cityname,
-        picture:paths[0]
+        picture:paths[0],
+        hotels:request.body.hotels
     });
 
     city.save()

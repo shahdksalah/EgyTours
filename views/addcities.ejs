@@ -22,7 +22,7 @@
 
             <div class="right">
                 <div id="container">
-                    <form id="hotel" method="post" action="/addcities/submit" enctype="multipart/form-data">
+                    <form id="form" method="post" action="/addcities/submit" enctype="multipart/form-data">
                         <div>
                             <label for="name">
                                 <h2>city Name</h2>
@@ -46,15 +46,15 @@
                     <br><br>
                 </div>
                 <div>
-                    <input type="checkbox" id="movenpick" name="movenpick" value="movenpick">
+                    <input type="checkbox" id="movenpick" name="hot" value="movenpick">
                     <label for="movenpick">Movenpick</label><br>
-                    <input type="checkbox" id="Hilton" name="Hilton" value="Hilton">
+                    <input type="checkbox" id="Hilton" name="hot" value="Hilton">
                     <label for="Hilton">Hilton</label><br>
-                    <input type="checkbox" id="Radisson" name="Radisson" value="Radisson">
+                    <input type="checkbox" id="Radisson" name="hot" value="Radisson">
                     <label for="Radisson">Radisson</label><br>
-                    <input type="checkbox" id="luxor" name="luxor" value="luxor">
+                    <input type="checkbox" id="luxor" name="hot" value="luxor">
                     <label for="luxor">luxor</label><br>
-
+                    <textarea name="hotels" id="selectedHotels"  cols="30" rows="10" style="display: none;"></textarea>
                 </div>
                 <div>
                     <br>
@@ -62,21 +62,22 @@
                     <br><br>
                 </div>
                 <div>
-                    <input type="checkbox" id="cruse" name="cruse" value="cruse">
+                    <input type="checkbox" id="cruse" class="activities" value="cruse">
                     <label for="cruse">Cruse</label><br>
-                    <input type="checkbox" id="balloon" name="balloon" value="balloon">
+                    <input type="checkbox" id="balloon" class="activities" value="balloon">
                     <label for="balloon">Balloon</label><br>
-                    <input type="checkbox" id="safari" name="safari" value="safari">
+                    <input type="checkbox" id="safari" class="activities" value="safari">
                     <label for="safari">safari</label><br>
-                    <input type="checkbox" id="valley of kings" name="valley of kings" value="valley of kings">
+                    <input type="checkbox" id="valley of kings" class="activities"  value="valley of kings">
                     <label for="valley of kings">valley of kings</label><br>
                 </div>
-                <input type="submit" value="Submit">
+                <button type="submit" >Save</button>
                 </form>
+                <script src="/js/cities.js"  type="text/javascript"> </script>
             </div>
 
     </div>
-
+   
 </body>
 
 </html>

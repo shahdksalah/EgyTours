@@ -22,12 +22,12 @@
 
             <div class="right">
                 <div id="container">
-                    <form id="hotel" method="post" action="/AddHotel" enctype="multipart/form-data">
+                    <form id="hotel" method="post" action="/addcities/submit" enctype="multipart/form-data">
                         <div>
                             <label for="name">
                                 <h2>city Name</h2>
                             </label>
-                            <textarea name="name" id="hotelName" cols="60" rows="3"></textarea>
+                            <input type="text" name="cityname" id="name">
                             <span class="error-message"></span>
                         </div>
                         <div>
@@ -41,7 +41,9 @@
                         </div>
                 </div>
                 <div>
+                    <br>
                     <label for="hotels">Hotels</label>
+                    <br><br>
                 </div>
                 <div>
                     <input type="checkbox" id="movenpick" name="movenpick" value="movenpick">
@@ -52,11 +54,12 @@
                     <label for="Radisson">Radisson</label><br>
                     <input type="checkbox" id="luxor" name="luxor" value="luxor">
                     <label for="luxor">luxor</label><br>
-                    <input type="submit" value="Submit">
 
                 </div>
                 <div>
+                    <br>
                     <label for="activities">activities</label>
+                    <br><br>
                 </div>
                 <div>
                     <input type="checkbox" id="cruse" name="cruse" value="cruse">
@@ -67,11 +70,13 @@
                     <label for="safari">safari</label><br>
                     <input type="checkbox" id="valley of kings" name="valley of kings" value="valley of kings">
                     <label for="valley of kings">valley of kings</label><br>
-                    <input type="submit" value="Submit">
                 </div>
+                <input type="submit" value="Submit">
                 </form>
             </div>
+
     </div>
+
 </body>
 
 </html>

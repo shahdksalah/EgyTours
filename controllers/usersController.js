@@ -30,10 +30,11 @@ const updateUser=async(req, res) =>  {
     
     };
 
-    const toAdmin = (req, res) => {
-        Employees.findByIdAndUpdate(req.params.id, { Type: 'admin' })
-            .then(result => {
-                console.log("successfull");
+    const toAdmin = async(req, res) => {
+        User.findByIdAndUpdate(req.params.id, { Type: 'admin' })
+            .then(async result => {
+                var Users= await User.find();
+                res.render("users",{user:Users});
             })
             .catch(err => {
                 console.log(err);
@@ -41,9 +42,9 @@ const updateUser=async(req, res) =>  {
       };
       
       const toClient = (req, res) => {
-        Employees.findByIdAndUpdate(req.params.id, { Type: 'client' })
+        User.findByIdAndUpdate(req.params.id, { Type: 'client' })
             .then(result => {
-                console.log("successfull");
+                res.render("users",{user:Users});
             })
             .catch(err => {
                 console.log(err);

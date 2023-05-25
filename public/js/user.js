@@ -47,10 +47,15 @@ function myFunction() {
   
   
   function onUpdate(id,username,email,phone,password,type){
-    if(type==="client")
-        document.getElementById("userType").innerText="Make Admin";
-    else
-        document.getElementById("userType").innerText="Make Client";
+    let link=document.getElementById("userType");
+    if(type==="client"){
+        link.innerText="Make Admin";
+        link.setAttribute("href","/users/toAdmin/"+`${id}`);
+    }
+    else{
+       link.innerText="Make Client";
+        link.setAttribute("href","/users/toClient/"+`${id}`);
+    }
 
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("deleteUser").style.display="none";

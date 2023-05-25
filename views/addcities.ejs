@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Hotel</title>
+    <link rel="stylesheet" href="../css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="../css/styleAddHotel.css">
+
+</head>
+
+<body>
+    <div class="h">
+        <div class="admin">ADMIN</div>
+    </div>
+
+    <div class="main-content">
+
+        <%- include("partials/adminHeader.ejs") %>
+
+            <div class="right">
+                <div id="container">
+                    <form id="hotel" method="post" action="/AddHotel" enctype="multipart/form-data">
+                        <div>
+                            <label for="name">
+                                <h2>city Name</h2>
+                            </label>
+                            <textarea name="name" id="hotelName" cols="60" rows="3"></textarea>
+                            <span class="error-message"></span>
+                        </div>
+                        <div>
+                            <h2>City Image</h2>
+                        </div>
+                        <div>
+                            <div>
+                                <input type="file" id="imgs" name="imgs" multiple>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+                </div>
+                <div>
+                    <label for="hotels">Hotels</label>
+                    <select name="hotels" id="hotels">
+                        <option value="movenpick">Movenpick</option>
+                        <option value="Hilton">Hilton</option>
+                        <option value="Radisson">Radisson</option>
+                        <option value="Luxor">Luxor</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="activities">activities</label>
+                    <select name="activities" id="activities">
+                        <option value="cruse">cruse</option>
+                        <option value="balloon">balloon</option>
+                        <option value="">Radisson</option>
+                        <option value="Luxor">Luxor</option>
+                    </select>
+                </div>
+                </form>
+            </div>
+
+    </div>
+
+    <script src="../js/addHotelJS.js"></script>
+</body>
+
+</html>

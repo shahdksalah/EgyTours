@@ -18,6 +18,11 @@ const CitySchema= new Schema({
     },
     hotels:{
         type:Array,
+        required:true,
+    },
+    activities:{
+        type:Array,
+        required:true,
     }
 
 

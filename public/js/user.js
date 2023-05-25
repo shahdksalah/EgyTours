@@ -45,30 +45,13 @@ function myFunction() {
       a.getElementsByTagName("button")[1].style.display="none";
   }
   
-  function bckText(id,txt){
-    let text=document.createElement("p");
-    let repNode=document.getElementById(id);
-    text.innerHTML=(txt);
-    text.setAttribute("id",id);
-    repNode.replaceWith(text);
-  }
   
-  function replaceInfo(id){
-    let textBox=document.createElement("input");
-    textBox.setAttribute("type","text");
-    let repNode=document.getElementById(id);
-    textBox.setAttribute("value",repNode.innerText);
-    textBox.setAttribute("id",id);
-    repNode.replaceWith(textBox);
-   // textBox.style.width="20px";
-    textBox.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {  
-        bckText(id,textBox.value);
-      }
-    });
-  }
-  
-  function onUpdate(id,username,email,phone,password){
+  function onUpdate(id,username,email,phone,password,type){
+    if(type==="client")
+        document.getElementById("userType").innerText="Make Admin";
+    else
+        document.getElementById("userType").innerText="Make Client";
+
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("deleteUser").style.display="none";
     document.getElementById("u1").value=username
@@ -86,13 +69,14 @@ function myFunction() {
  
   }
   
-  function onDelete(username,email,phone,password){
+  function onDelete(id,username,email,phone,password){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("deleteUser").style.display="none";
     document.getElementById("d1").innerHTML=username
     document.getElementById("d2").innerHTML=email;
     document.getElementById("d3").innerHTML=phone;
     document.getElementById("d4").innerHTML=password;
+    document.getElementById("delid").value=id;
     
     document.getElementById("deleteUser").style.display="block";
   }
@@ -109,10 +93,7 @@ function myFunction() {
     document.getElementById("id01").style.display="none";
   }
 
-  function del(){
-    document.getElementById("deleteUser").style.display="none";
-    document.getElementById("msg").style.display="block";
-  }
+  
 
 
  

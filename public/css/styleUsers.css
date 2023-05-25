@@ -139,7 +139,13 @@
 .info input{
   width:200px;
 }
-
+#delid{
+  display: none;
+}
+#updateType{
+  width:90px;
+  margin-left: 190px;
+}
 
 *{box-sizing: border-box}
 

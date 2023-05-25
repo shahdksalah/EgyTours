@@ -7,14 +7,13 @@ var db = mongoose.connection;
 const bodyParser=require('body-parser');
 const{check,validationResult} =require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
-const {updateUser}=require('../controllers/products.js')
+const {updateUser,deleteUser}=require('../controllers/usersController.js');
 
 
 
 router.get('/',async function(req,res)
 {
-    var Users=[];
-    Users=await User.find();
+    var Users=await User.find();
     res.render("users",{users:(Users==='undefined'?"":Users)});
 });
 
@@ -85,4 +84,7 @@ router.post('/',urlencodedParser,[
   .isLength({min:6}),
 
 ] ,updateUser);
+
+router.post('/delete',deleteUser);
 module.exports=router;
+

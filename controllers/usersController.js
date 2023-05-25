@@ -30,4 +30,24 @@ const updateUser=async(req, res) =>  {
     
     };
 
-  module.exports={updateUser,deleteUser};
+    const toAdmin = (req, res) => {
+        Employees.findByIdAndUpdate(req.params.id, { Type: 'admin' })
+            .then(result => {
+                console.log("successfull");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+      };
+      
+      const toClient = (req, res) => {
+        Employees.findByIdAndUpdate(req.params.id, { Type: 'client' })
+            .then(result => {
+                console.log("successfull");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+      };
+
+  module.exports={updateUser,deleteUser,toAdmin,toClient};

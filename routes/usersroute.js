@@ -7,7 +7,7 @@ var db = mongoose.connection;
 const bodyParser=require('body-parser');
 const{check,validationResult} =require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
-const {updateUser,deleteUser}=require('../controllers/usersController.js');
+const {updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
 
 
 
@@ -87,5 +87,7 @@ router.post('/',urlencodedParser,[
 ] ,updateUser);
 
 router.post('/delete',deleteUser);
+router.get("/toAdmin/:id", toAdmin);
+router.get("/toClient/:id", toClient);
 module.exports=router;
 

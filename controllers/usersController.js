@@ -10,7 +10,13 @@ const updateUser=async(req, res) =>  {
      }
      else{
       await User.findByIdAndUpdate(req.body.id,{Username:req.body.upuname,Email:req.body.upemail,PhoneNumber:req.body.upnumber
-       ,Password:req.body.uppsw,ConfPassword:req.body.uppsw});
+       ,Password:req.body.uppsw,ConfPassword:req.body.uppsw})
+       .then(result=>{
+        res.redirect('/users',{msg:"User Updated Successfully"});
+       })
+       .catch(err=>{
+        console.log(err);
+       })
     }
   
   
@@ -22,7 +28,7 @@ const updateUser=async(req, res) =>  {
          await User.findByIdAndDelete(req.body.id)
         .then(async result=>{
               var Users=await User.find();
-              res.render("users",{users:Users});
+              res.render("users",{users:Users,userUpdated:false});
         })
         .catch(err=>{
             console.log(err);
@@ -34,17 +40,18 @@ const updateUser=async(req, res) =>  {
         User.findByIdAndUpdate(req.params.id, { Type: 'admin' })
             .then(async result => {
                 var Users= await User.find();
-                res.render("users",{user:Users});
+                res.render("users",{users:Users,userUpdated:true});
             })
             .catch(err => {
                 console.log(err);
             });
       };
       
-      const toClient = (req, res) => {
+      const toClient = async(req, res) => {
         User.findByIdAndUpdate(req.params.id, { Type: 'client' })
-            .then(result => {
-                res.render("users",{user:Users});
+            .then(async result => {
+                var Users= await User.find();
+                res.render("users",{users:Users,userUpdated:true});
             })
             .catch(err => {
                 console.log(err);

@@ -92,6 +92,7 @@
                     </ul>
                 </div>
                 
+                
                 <div id="updateInfo">
             
                 <form id="uform" method="post" action="/users" >
@@ -141,9 +142,13 @@
                    <input type="text" id="currid" name="id"  style="display: none;">
                     <div style="text-align: center;">
                         <button type="submit" onclick="save()" style="width:120px; margin-top: 5%;" >Save</button>
-                    </div>
-                   
-                        
+                    </div> 
+                    <% if(userUpdated){ %>   
+                        <script>
+                           document.getElementById("updateInfo").display="block";
+                        </script>
+                    <% } %> 
+                </script>   
                 </form>
                 </div>
                 <div id="smsg">

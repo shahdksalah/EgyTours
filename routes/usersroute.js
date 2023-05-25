@@ -15,7 +15,7 @@ router.get('/',async function(req,res)
 {
     var Users=await User.find();
     console.log(Users);
-    res.render("users",{users:(Users==='undefined'?"":Users)});
+    res.render("users",{users:(Users==='undefined'?"":Users),userUpdated:false});
 });
 
 router.post('/success',urlencodedParser,[

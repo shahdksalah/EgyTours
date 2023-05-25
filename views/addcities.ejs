@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Hotel</title>
+    <title>Add city</title>
     <link rel="stylesheet" href="../css/styleAdminDashboard.css">
     <link rel="stylesheet" href="../css/styleAddHotel.css">
 
@@ -42,28 +42,36 @@
                 </div>
                 <div>
                     <label for="hotels">Hotels</label>
-                    <select name="hotels" id="hotels">
-                        <option value="movenpick">Movenpick</option>
-                        <option value="Hilton">Hilton</option>
-                        <option value="Radisson">Radisson</option>
-                        <option value="Luxor">Luxor</option>
-                    </select>
+                </div>
+                <div>
+                    <input type="checkbox" id="movenpick" name="movenpick" value="movenpick">
+                    <label for="movenpick">Movenpick</label><br>
+                    <input type="checkbox" id="Hilton" name="Hilton" value="Hilton">
+                    <label for="Hilton">Hilton</label><br>
+                    <input type="checkbox" id="Radisson" name="Radisson" value="Radisson">
+                    <label for="Radisson">Radisson</label><br>
+                    <input type="checkbox" id="luxor" name="luxor" value="luxor">
+                    <label for="luxor">luxor</label><br>
+                    <input type="submit" value="Submit">
+
                 </div>
                 <div>
                     <label for="activities">activities</label>
-                    <select name="activities" id="activities">
-                        <option value="cruse">cruse</option>
-                        <option value="balloon">balloon</option>
-                        <option value="">Radisson</option>
-                        <option value="Luxor">Luxor</option>
-                    </select>
+                </div>
+                <div>
+                    <input type="checkbox" id="cruse" name="cruse" value="cruse">
+                    <label for="cruse">Cruse</label><br>
+                    <input type="checkbox" id="balloon" name="balloon" value="balloon">
+                    <label for="balloon">Balloon</label><br>
+                    <input type="checkbox" id="safari" name="safari" value="safari">
+                    <label for="safari">safari</label><br>
+                    <input type="checkbox" id="valley of kings" name="valley of kings" value="valley of kings">
+                    <label for="valley of kings">valley of kings</label><br>
+                    <input type="submit" value="Submit">
                 </div>
                 </form>
             </div>
-
     </div>
-
-    <script src="../js/addHotelJS.js"></script>
 </body>
 
 </html>

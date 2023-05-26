@@ -11,8 +11,9 @@ const updateUser=async(req, res) =>  {
      else{
       await User.findByIdAndUpdate(req.body.id,{Username:req.body.upuname,Email:req.body.upemail,PhoneNumber:req.body.upnumber
        ,Password:req.body.uppsw,ConfPassword:req.body.uppsw})
-       .then(result=>{
-        res.redirect('/users',{msg:"User Updated Successfully"});
+       .then(async result=>{
+        var Users=await User.find();
+        res.render("users",{users:Users,userUpdated:false,msg:"User Updated Successfully"});
        })
        .catch(err=>{
         console.log(err);
@@ -28,7 +29,7 @@ const updateUser=async(req, res) =>  {
          await User.findByIdAndDelete(req.body.id)
         .then(async result=>{
               var Users=await User.find();
-              res.render("users",{users:Users,userUpdated:false});
+              res.render("users",{users:Users,userUpdated:false,msg:""});
         })
         .catch(err=>{
             console.log(err);
@@ -40,7 +41,7 @@ const updateUser=async(req, res) =>  {
         User.findByIdAndUpdate(req.params.id, { Type: 'admin' })
             .then(async result => {
                 var Users= await User.find();
-                res.render("users",{users:Users,userUpdated:true});
+                res.render("users",{users:Users,userUpdated:true,msg:""});
             })
             .catch(err => {
                 console.log(err);
@@ -51,7 +52,7 @@ const updateUser=async(req, res) =>  {
         User.findByIdAndUpdate(req.params.id, { Type: 'client' })
             .then(async result => {
                 var Users= await User.find();
-                res.render("users",{users:Users,userUpdated:true});
+                res.render("users",{users:Users,userUpdated:true,msg:""});
             })
             .catch(err => {
                 console.log(err);

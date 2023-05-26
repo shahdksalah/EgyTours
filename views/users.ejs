@@ -143,17 +143,18 @@
                     <div style="text-align: center;">
                         <button type="submit" onclick="save()" style="width:120px; margin-top: 5%;" >Save</button>
                     </div> 
-                    <% if(userUpdated){ %>   
-                        <script>
-                           document.getElementById("updateInfo").display="block";
-                        </script>
-                    <% } %> 
-                </script>   
+                    <script>
+                    '<% if(userUpdated){ %>'   
+                           document.getElementById("updateInfo").display="block";  
+                    '<% } %>' 
+                   </script>  
                 </form>
                 </div>
+                <% if(msg!="") {%>
                 <div id="smsg">
-                    <span>User's Info Saved</span>
+                    <span><%=msg %>></span>
                  </div>
+                 <% } %>
 
                 <div id="deleteUser">
                     <form action="/users/delete" method="post">

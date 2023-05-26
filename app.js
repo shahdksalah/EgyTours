@@ -29,11 +29,6 @@ const weeklysummaryRoute=require('./routes/weeklysumroute.js');
 
 
 const bodyParser = require('body-parser');
-const{check,validationResult}=require('express-validator');
-const fs=require('fs');
-var db = mongoose.connection;
-
-
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 

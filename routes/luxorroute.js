@@ -4,7 +4,7 @@ const router=express.Router()
 
 router.get('/',function(req,res)
 {
-    res.render("luxor");
+    res.render("luxor",{ user: (!req.session.authenticated) ? "" : req.session.user });
 });
 
 module.exports=router;

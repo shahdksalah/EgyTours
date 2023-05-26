@@ -25,7 +25,7 @@ const tcRoute=require('./routes/T&Croute.js');
 const profileRoute=require('./routes/profileroute.js');
 const usersRoute=require('./routes/usersroute.js');
 const weeklysummaryRoute=require('./routes/weeklysumroute.js');
-
+const addcity=require('./routes/addcitiesroute.js');
 
 
 const bodyParser = require('body-parser');
@@ -78,6 +78,7 @@ app.use("/terms",tcRoute);
 app.use("/profile",profileRoute);
 app.use("/users",usersRoute);
 app.use("/weeklysummary",weeklysummaryRoute);
+app.use("/addcities",addcity);
 
 
 

@@ -5,17 +5,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 app.use(express.urlencoded({extended:true}));
 
-const TypeSchema = new Schema({
-    Name:{
-        type:String,
-        trim:true,
-        required:true,
-    },
-    Price:{
-        type:Number,
-        required:true,
-    }
-})
 
 const HotelSchema = new Schema({
     Name:{
@@ -37,6 +26,10 @@ const HotelSchema = new Schema({
         trim:true,
         required:true,
     },
+    Caption:{
+        type:String,
+        trim:true,
+    },
     PropertyAmen:{
         type:String,
         trim:true,
@@ -47,10 +40,10 @@ const HotelSchema = new Schema({
         trim:true,
         required:true,
     },
-    RoomTypes:[{
-        type:mongoose.Schema.Types.ObjectId,ref:'Type',
+    RoomTypes:{
+        type:Array,
         required:true,
-    }],
+    },
     Reviews:{
         type:Array,
         required:false

@@ -70,9 +70,8 @@ const ActivitySchema = new Schema ({
         required:true,
         trim:true
     },
-    AvailableDate:
-    {
-        type:String,
+    MaxParticipants:{
+        type:Number,
         required:true,
         trim:true
     },
@@ -95,6 +94,12 @@ const ActivitySchema = new Schema ({
     Reviews:{
         type:Array,
         required:false
+    },
+    AvailableDate:
+    {
+        type:Array,
+        required:true,
+        trim:true
     }
 },{timestamp:true});
 

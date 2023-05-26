@@ -45,53 +45,43 @@ function myFunction() {
       a.getElementsByTagName("button")[1].style.display="none";
   }
   
-  function bckText(id,txt){
-    let text=document.createElement("p");
-    let repNode=document.getElementById(id);
-    text.innerHTML=(txt);
-    text.setAttribute("id",id);
-    repNode.replaceWith(text);
-  }
   
-  function replaceInfo(id){
-    let textBox=document.createElement("input");
-    textBox.setAttribute("type","text");
-    let repNode=document.getElementById(id);
-    textBox.setAttribute("value",repNode.innerText);
-    textBox.setAttribute("id",id);
-    repNode.replaceWith(textBox);
-   // textBox.style.width="20px";
-    textBox.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {  
-        bckText(id,textBox.value);
-      }
-    });
-  }
-  
-  function onUpdate(id,username,email,phone,password){
+  function onUpdate(id,username,email,phone,password,type){
+    let link=document.getElementById("userType");
+    if(type==="client"){
+        link.innerText="Make Admin";
+        link.setAttribute("href","/users/toAdmin/"+`${id}`);
+    }
+    else{
+       link.innerText="Make Client";
+        link.setAttribute("href","/users/toClient/"+`${id}`);
+    }
+
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("deleteUser").style.display="none";
-    document.getElementById("e1").innerHTML=username
-    document.getElementById("e2").innerHTML=email;
-    document.getElementById("e3").innerHTML=phone;
-    document.getElementById("e4").innerHTML=password;
-    document.getElementById("currid").innerText=id;
+    document.getElementById("u1").value=username
+    document.getElementById("u2").value=email;
+    document.getElementById("u3").value=phone;
+    document.getElementById("u4").value=password;
+    document.getElementById("currid").value=id;
     document.getElementById("updateInfo").style.display="block";
   }
   
   function save(){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("smsg").style.display="block";
+    return true;
  
   }
   
-  function onDelete(username,email,phone,password){
+  function onDelete(id,username,email,phone,password){
     document.getElementById("updateInfo").style.display="none";
     document.getElementById("deleteUser").style.display="none";
     document.getElementById("d1").innerHTML=username
     document.getElementById("d2").innerHTML=email;
     document.getElementById("d3").innerHTML=phone;
     document.getElementById("d4").innerHTML=password;
+    document.getElementById("delid").value=id;
     
     document.getElementById("deleteUser").style.display="block";
   }
@@ -108,37 +98,10 @@ function myFunction() {
     document.getElementById("id01").style.display="none";
   }
 
-  function del(){
-    document.getElementById("deleteUser").style.display="none";
-    document.getElementById("msg").style.display="block";
-  }
+  
 
 
-  function submit()
-{
-    var myName=document.querySelector('#uname').value;
-    var myEmail=document.querySelector('#femail').value;
-    var myNumber=document.querySelector('#number').value;
-    var mypass=document.querySelector('#password').value;
-    var myconfpass=document.querySelector('#password-confirmation').value;
-    console.log(myName);
-    var obj={
-        unam:myName,
-        email:myEmail,
-        number:myNumber,
-        psw:mypass,
-        confpsw:myconfpass
-    };
-    fetch('/success',{
-        method:"POST",
-        headers:{
-           "Content-type":"application/json"
-        },
-     
-        body:JSON.stringify(obj)
-    });
-    console.log(myName);
-  }
+ 
  
 
   

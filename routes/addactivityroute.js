@@ -29,6 +29,23 @@ router.post('/submit',(request, response) =>  {
     paths[i]=request.body.Aname+(i+1)+'.'+ext;
   }
   
+
+  var date=request.body.Dates.length;
+  var dates=request.body.Dates;
+  var arr=[];
+  var count=0;
+  for(var j=0;j<date;j++)
+  {
+    if(dates[j]===","){
+      count++;
+    }
+  }
+  console.log(count);
+  for(var k =0;k<= count;k++)
+  {
+    arr.push(dates.split(',')[k]);
+  }
+  
   const activitydetails = new Activity({
     Name:request.body.Aname,
     Header:request.body.Aheader,
@@ -43,10 +60,11 @@ router.post('/submit',(request, response) =>  {
     CancelDet:request.body.Acancel,
     Duration:request.body.Atime,
     PickupDet:request.body.Apickup,
-    AvailableDate:request.body.Dates,
+    MaxParticipants:request.body.Aparticipants,
     Starttime:request.body.starttime,
     Endtime:request.body.endtime,
-    Price:request.body.price
+    Price:request.body.price,
+    AvailableDate:arr
     });
     activitydetails.save()
       .then(result=>{

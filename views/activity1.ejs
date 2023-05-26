@@ -175,7 +175,9 @@
 
           <input id="dropbtn1" list="days" placeholder="Days Available">
           <datalist id="days">
-            <option value=<%=activity1[0].AvailableDate %>></option>
+            <%for(var j =0;j< activity1[0].AvailableDate.length; j++) {%>
+            <option value=<%=activity1[0].AvailableDate[j] %>></option>
+            <% } %>
           </datalist>
           <div id="date-msg" class="check-error"></div>
         </div>

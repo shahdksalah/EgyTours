@@ -7,19 +7,19 @@ var db = mongoose.connection;
 const bodyParser=require('body-parser');
 const{check,validationResult} =require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
+const {updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
 
 
 
 router.get('/',async function(req,res)
 {
-    var Users=[];
-    Users=await User.find();
-    console.log(Users)
-    res.render("users",{users:(Users==='undefined'?"":Users)});
+    var Users=await User.find();
+    console.log(Users);
+    res.render("users",{users:(Users==='undefined'?"":Users),userUpdated:false,msg:""});
 });
 
 router.post('/success',urlencodedParser,[
-    check('unam','Username must be 3+ characters long')
+    check('uname','Username must be 3+ characters long')
     .exists()
     .isLength({min:3})
     ,
@@ -43,7 +43,6 @@ router.post('/success',urlencodedParser,[
    // console.log("entered");
   
     const errors=validationResult(request)
-    console.log(validate.register)
     if(!errors.isEmpty()){
         const alert=errors.array();
     }
@@ -69,42 +68,26 @@ router.post('/success',urlencodedParser,[
     });
 
 router.post('/',urlencodedParser,[
-  check('userUpdated','Username must be 3+ characters long')
+  check('upuname','Username must be 3+ characters long')
   .exists()
   .isLength({min:3})
   ,
 
-  check('emailUpdated','Email is not valid')
+  check('upemail','Email is not valid')
   .isEmail()
   .normalizeEmail(),
   
-  check('phoneUpdated','Invalid phone number')
+  check('upnumber','Invalid phone number')
   .isMobilePhone(),
 
-  check('pswUpdated','Invalid Password')
+  check('uppsw','Invalid Password')
   .exists()
   .isLength({min:6}),
 
-] ,async(request, response) =>  {
-  console.log("entered");
+] ,updateUser);
 
-  const errors=validationResult(request)
-  console.log(validate.register)
-  if(!errors.isEmpty()){
-      const alert=errors.array();
-  }
-  else{
-    console.log(request.body.id);
-        //  db.users.updateOne({_id:request.body.id}, { $set: 
-        //  {Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
-        //  ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated}
-     
-        //  })
-
-    await User.findByIdAndUpdate(request.body.id,{Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
-     ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated});
-
-  }
-
-});
+router.post('/delete',deleteUser);
+router.get("/toAdmin/:id", toAdmin);
+router.get("/toClient/:id", toClient);
 module.exports=router;
+

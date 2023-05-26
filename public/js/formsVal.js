@@ -106,12 +106,14 @@ const fields=["uname","femail","number","password","password_confirmation"];
 const validator=new validateForm(form,fields);
 validator.initialize();*/
 
-/*const form1=document.querySelector('.sform');
-const fields1=["username","password1"];
-const signin =new validateForm(form1,fields1);
-signin.initialize();*/
+
 
 if (typeof document !== 'undefined'){
+const form1=document.querySelector('.sform');
+const fields1=["username","password1"];
+const signin =new validateForm(form1,fields1);
+signin.initialize();
+
 const form2=document.querySelector('.form');
 const fields=["user","admin","uname","femail","number","password","password-confirmation"];
 const adminAddUser = new validateForm(form2,fields);

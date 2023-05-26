@@ -14,11 +14,9 @@ let path = require('path');
 
 
 
-router.get('/', function (req, res) {
+router.get('/', function (req, res){
   res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user });
 });
-
-
 
 
 router.post('/', urlencodedParser, [
@@ -75,12 +73,17 @@ router.post('/', urlencodedParser, [
 
 
 router.post('/login', urlencodedParser, [
-  check('usename', 'Username is empty')
+  check('username', 'Username is empty')
     .exists(),
   check('password', 'password is empty')
     .exists()
 ], (request, response) => {
   const errors = validationResult(request)
+  if (!errors.isEmpty()) {
+      const alert = errors.array();
+      console.log(alert[0]);
+  }
+  else{
   console.log("entered");
   var query = { Username: request.body.username, Password: request.body.password };
   User.find(query)
@@ -90,32 +93,16 @@ router.post('/login', urlencodedParser, [
       request.session.authenticated = true;
       response.redirect("/");
     });
-
+  }
 });
 
 router.get('/signout', function (req, res) {
-  // if (req.session) {
-  //   req.session.destroy(err=>{
-  //     if(err){
-  //       console.log("unable to destroy");
-  //     }
-  //     else{
+
   req.session.destroy();
   console.log("destroyed");
-  // res.clearCookie(this.cookie, { path: '/' });
   res.redirect("/");
-console.log('hi');  // res.render("index",{user:(req.session.authenticated===undefined || !req.session.authenticated)?"":req.session.user});
 
-  console.log("redirectedttttt");
-  //     }
-  //   });
-
-  // } else {
-  //   res.end()
-  // }
 })
-
-
 
 
 

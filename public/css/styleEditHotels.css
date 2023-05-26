@@ -9,9 +9,6 @@
     left:22%;
     top:24%;
 }
-#updateInfo{
-    display: none;
-}
 #c{
     display:none;
 }
@@ -21,4 +18,11 @@
 #buttons{
     position: relative;
     top:3%;
+}
+img :hover{
+cursor: pointer;
+}
+
+li{
+    margin:10px
 }

@@ -22,14 +22,24 @@ function addItem(item, finalres, newid, list, errorid) {
 
         var rembut = document.createElement('button');
         rembut.setAttribute('type', "button");
+        if(newid.includes('feat')){
+            rembut.setAttribute('id','featbut'+newf);
+        }
+        else{
+            rembut.setAttribute('id','amenbut'+newa);
+        }
+        
         rembut.classList.add('plus');
         rembut.style.width = "80px";
         rembut.innerHTML = 'remove';
-        rembut.setAttribute('id', "newbut" + newt);
         rembut.addEventListener('click', event => {
+            
+            var newtext = document.getElementById(finalres).value.replace(`${newli.innerHTML},`, "");
+            document.getElementById(finalres).value = newtext;
+            
 
-            document.getElementById(newli.id).remove();
             document.getElementById(rembut.id).remove();
+            document.getElementById(newli.id).remove();
 
         })
 
@@ -39,11 +49,6 @@ function addItem(item, finalres, newid, list, errorid) {
 
         document.getElementById(errorid).innerHTML = "";
 
-
-
-
-
-
     }
     else {
 
@@ -51,36 +56,12 @@ function addItem(item, finalres, newid, list, errorid) {
     }
 }
 
-function removeItem(item, mybut) {
-    document.getElementById('showprice').style.display = "none";
-    document.getElementById(item).remove();
-    mybut.remove();
-}
-
-function removeItem2(item, mybut, index) {
-    document.getElementById('showprice').style.display = "none";
-    var p = document.getElementById('finalprices').value;
-    var prices = p.split(',');
-    console.log(prices);
-    prices.splice(ind, 1);
-}
-
-
-
 var newt = 1;
-function addType(newid, list) {
-    var newli = document.createElement('li');
-    console.log(newt);
-    newli.setAttribute('id', newid + newt);
-    document.getElementById("showprice").style.display = "block";
-
+function donez(newid, list) {
     var price = document.getElementById('price');
     var typein = document.getElementById('addedtype');
-    
-    
 
-
-    
+    var newli;
 
     var rembut = document.createElement('button');
     rembut.setAttribute('type', "button");
@@ -88,52 +69,73 @@ function addType(newid, list) {
     rembut.style.width = "80px";
     rembut.innerHTML = 'remove';
     rembut.setAttribute('id', "newbut" + newt);
-    rembut.addEventListener('click', event => {
+    rembut.addEventListener('click', () => {
         document.getElementById('showprice').style.display = "none";
-        
-        document.getElementById('success').innerHTML = "";
-        var newtext = document.getElementById('finalprices').value.replace(`${newli.innerHTML.slice(newli.innerHTML.indexOf('-')+2,newli.innerHTML.indexOf('L'))},`, "");
-        document.getElementById('finalprices').value = newtext;
 
-        var newtext2 = document.getElementById('finaltypes').value.replace(`${newli.innerHTML.slice(0,newli.innerHTML.indexOf('-')-1)},`, "");
+        document.getElementById('success').innerHTML = "";
+        var newtext = document.getElementById('finalprices').value.replace(`${newli.innerHTML.slice(newli.innerHTML.indexOf('-') + 2, newli.innerHTML.indexOf('L'))},`, "");
+        document.getElementById('finalprices').value = newtext;
+        
+
+        var newtext2 = document.getElementById('finaltypes').value.replace(`${newli.innerHTML.slice(0, newli.innerHTML.indexOf('-') - 1)},`, "");
         document.getElementById('finaltypes').value = newtext2;
+        
 
         document.getElementById(newli.id).remove();
         document.getElementById(rembut.id).remove();
     })
 
     
-    
-    
-    var done = document.getElementById('done');
-    done.addEventListener('click', (e) => {
-        if (price.value !== "") {
-            document.getElementById('finalprices').value += `${price.value},`;
-            document.getElementById('finaltypes').value += `${typein.value},`;
-            document.getElementById('errortype').innerHTML = "";
-            document.getElementById('success').innerHTML = "saved successfully";
-            newli.innerHTML = `${typein.value} - ${price.value}LE`;
-            document.getElementById(list).appendChild(newli);
-           
-            
-            newt++;
-            price.value = "";
-            typein.value = "";
+    if (price.value !== "") {
+        newli = document.createElement('li');
+        newli.setAttribute('id', newid + newt);
+        document.getElementById('finalprices').value += `${price.value},`;
+        document.getElementById('finaltypes').value += `${typein.value},`;
+        document.getElementById('errortype').innerHTML = "";
+        document.getElementById('success').innerHTML = "saved successfully";
+        newli.innerHTML = `${typein.value} - ${price.value}LE`;
+        document.getElementById(list).appendChild(newli);
+        document.getElementById(newli.id).parentNode.insertBefore(rembut, newli.nextSibling);
 
-            document.getElementById(newli.id).parentNode.insertBefore(rembut, newli.nextSibling);
-            document.getElementById('showprice').style.display = "none";
-            
+        price.value = "";
+        typein.value = "";
 
 
-            typein.addEventListener("keydown", () => {
-                document.getElementById('success').innerHTML = "";
-            })
-        }
-        else {
-            document.getElementById('errortype').innerHTML = "You must enter a price";
+        newt++;
+
+
+
+        document.getElementById('showprice').style.display = "none";
+
+
+        typein.addEventListener("keydown", () => {
             document.getElementById('success').innerHTML = "";
-        }
-    })
+            document.getElementById('errortype').innerHTML = "";
+        })
+    }
+    else {
+        document.getElementById('errortype').innerHTML = "You must enter a price";
+        document.getElementById('success').innerHTML = "";
+    }
+
+    
+
+}
+
+
+
+function addType() {
+    var letters = /^[A-Za-z]+$/;
+    
+    if(document.getElementById('addedtype').value===""){
+        document.getElementById('errortype').innerHTML = "You must enter a room type";
+    }
+    else if (!document.getElementById('addedtype').value.match(letters)) {
+        document.getElementById('errortype').innerHTML = "Room Type not valid";
+    }
+    else{
+        document.getElementById("showprice").style.display = "block";
+    }
     
 
 }

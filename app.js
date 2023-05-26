@@ -10,12 +10,12 @@ const PORT=8080;
 const indexRoute=require('./routes/Indexroute.js');
 const foodRoute=require('./routes/foodroute.js');
 const activitiesRoute=require('./routes/activitiesroute.js');
-const hotelsRoute=require('./routes/hotelsroute.js');
+const hotelsRoute=require('./routes/hotels.route.js');
 const addActivityRoute=require('./routes/addactivityroute.js');
-const addHotelRoute=require('./routes/addhotelroute.js');
+const addHotelRoute=require('./routes/addhotel.route.js');
 const luxorRoute=require('./routes/luxorroute.js');
 const editactivitiesRoute=require('./routes/editactivitiesroute.js');
-const edithotelsRoute=require('./routes/edithotelsroute.js');
+const edithotelsRoute=require('./routes/edithotels.route.js');
 const adminboardRoute=require('./routes/adminboardroute.js');
 const cartRoute=require('./routes/cartroute.js');
 const aboutusRoute=require('./routes/aboutusroute.js');
@@ -25,15 +25,10 @@ const tcRoute=require('./routes/T&Croute.js');
 const profileRoute=require('./routes/profileroute.js');
 const usersRoute=require('./routes/usersroute.js');
 const weeklysummaryRoute=require('./routes/weeklysumroute.js');
-
+const addcity=require('./routes/addcitiesroute.js');
 
 
 const bodyParser = require('body-parser');
-const{check,validationResult}=require('express-validator');
-const fs=require('fs');
-var db = mongoose.connection;
-
-
 
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
@@ -83,6 +78,7 @@ app.use("/terms",tcRoute);
 app.use("/profile",profileRoute);
 app.use("/users",usersRoute);
 app.use("/weeklysummary",weeklysummaryRoute);
+app.use("/addcities",addcity);
 
 
 

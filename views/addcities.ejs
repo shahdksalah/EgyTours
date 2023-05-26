@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add city</title>
+    <link rel="stylesheet" href="../css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="../css/styleAddHotel.css">
+
+</head>
+
+<body>
+    <div class="h">
+        <div class="admin">ADMIN</div>
+    </div>
+
+    <div class="main-content">
+
+        <%- include("partials/adminHeader.ejs") %>
+
+            <div class="right">
+                <div id="container">
+                    <form id="form" method="post" action="/addcities/submit" enctype="multipart/form-data">
+                        <div>
+                            <label for="name">
+                                <h2>city Name</h2>
+                            </label>
+                            <input type="text" name="cityname" id="name">
+                            <span class="error-message"></span>
+                        </div>
+                        <div>
+                            <h2>City Image</h2>
+                        </div>
+                        <div>
+                            <div>
+                                <input type="file" id="imgs" name="imgs" multiple>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+                </div>
+                <div>
+                    <br>
+                    <label for="hotels">Hotels</label>
+                    <br><br>
+                </div>
+                <div>
+                    <input type="checkbox" id="movenpick" name="hot" value="movenpick">
+                    <label for="movenpick">Movenpick</label><br>
+                    <input type="checkbox" id="Hilton" name="hot" value="Hilton">
+                    <label for="Hilton">Hilton</label><br>
+                    <input type="checkbox" id="Radisson" name="hot" value="Radisson">
+                    <label for="Radisson">Radisson</label><br>
+                    <input type="checkbox" id="luxor" name="hot" value="luxor">
+                    <label for="luxor">luxor</label><br>
+                    <textarea name="hotels" id="selectedHotels" cols="30" rows="10" style="display: none;"></textarea>
+                </div>
+                <div>
+                    <br>
+                    <label for="activities">activities</label>
+                    <br><br>
+                </div>
+                <div>
+                    <input type="checkbox" id="cruse" name="act" value="cruse">
+                    <label for="cruse">Cruse</label><br>
+                    <input type="checkbox" id="balloon" name="act" value="balloon">
+                    <label for="balloon">Balloon</label><br>
+                    <input type="checkbox" id="safari" name="act" value="safari">
+                    <label for="safari">safari</label><br>
+                    <input type="checkbox" id="valley of kings" name="act"  value="valley of kings">
+                    <label for="valley of kings">valley of kings</label><br>
+                    <textarea name="activities1" id="selectedActivities" cols="30" rows="10" style="display: none;"></textarea>
+                </div>
+                <button type="submit" >Save</button>
+                </form>
+                <script src="/js/cities.js"  type="text/javascript"> </script>
+            </div>
+
+    </div>
+   
+</body>
+
+</html>

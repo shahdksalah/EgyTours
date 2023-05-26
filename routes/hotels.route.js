@@ -1,26 +1,27 @@
 const express=require('express')
 const router=express.Router()
-const Hotel = require('../models/addHoteldb.js');
+const Hotel = require('../models/hotel.schema.js');
 
 
 router.get('/', async function(req,res)
 {
     var Hotels=[];
     Hotels=await Hotel.find();
-    res.render("hotels",{hotels:(Hotels==='undefined'?"":Hotels)});
+    res.render("hotels",{hotels:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user });
+    
+    
 });
 
 router.get('/:name', async function(req,res){
     var Hotels=[];
-    var url = req.params.name;
+    var url = req.params.name; 
     Hotels=await Hotel.find({"Name":url});
-    res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels)});
+    res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user });
 });
 
 router.post('/:name',async function(req,res){
     var arr=[];
     var Hotels=[];
-    var Hotel2=[];
     var query1=req.body.hotel;
     const hotel1=await Hotel.find().where("Name").equals(query1);
     Hotels=Array.from(hotel1);

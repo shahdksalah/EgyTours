@@ -17,7 +17,7 @@
 
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
 
-    <%- include("partials/headerPages.ejs") %>
+
 
     <div class="body">
     <div class="group">
@@ -150,11 +150,12 @@
     </div>
 
   
-
+    <form method="post" action="/activities/<%=activity1[0].Name%>/submit" id="form">
+      <input type="text" id="name" value=<%=activity1[0].Name%> name="name2" style="display:none">
     <h2><ins>Select participants and date</ins></h2>
     <div class="book" id="book">
       <div>
-        <input id="dropbtn" list="Adults" placeholder="Select number: ">
+        <input id="dropbtn" list="Adults" placeholder="Select number: " name="num">
         <datalist id="Adults">
           <option value="1"></option>
           <option value="2"></option>
@@ -173,20 +174,22 @@
           <!--<input id="dat" type="date" placeholder="Date" >
           <div id="date-msg" class="check-error"></div>-->
 
-          <input id="dropbtn1" list="days" placeholder="Days Available">
-          <datalist id="days">
-            <%for(var j =0;j< activity1[0].AvailableDate.length; j++) {%>
-            <option value=<%=activity1[0].AvailableDate[j] %>></option>
+          <select name ="days" id="dropbtn" style="margin-top:5px;">
+            <%for(var j =0;j< activity1[0].DatesDetails.length; j++) {%>
+              <% var b=activity1[0].DatesDetails[j].split(' ')[0]; %>
+            <option value=<%=b %>><%=b %> </option>
             <% } %>
-          </datalist>
+            </select>
           <div id="date-msg" class="check-error"></div>
         </div>
         <div> 
           <button id="check" onclick="view()">Check Availability</button>
         </div>
+        </div>
+        </form>
        
         <script src="/js/Activity1.js"></script>
-      </div>
+
 
       <div id="avail">
         <h2><ins>Available</ins></h2>
@@ -214,7 +217,7 @@
       <script src="../public/js/Activity1.js"></script>
 
 
-      <h2><ins>Reviews</ins></h2>
+      <h2 ><ins>Reviews</ins></h2>
       
     <div class="first">
       <% if(activity1[0].Reviews!=="") { %>
@@ -286,7 +289,7 @@
 
       </form>
     </div>
-
+  </div>
     <script src="/js/jazhotel.js"></script>
 
     <%- include("partials/footer.ejs") %>

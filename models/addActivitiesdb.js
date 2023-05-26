@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 app.use(express.urlencoded({extended:true}));
 
+
 const ActivitySchema = new Schema ({
     Name:{
         type:String,
@@ -70,11 +71,6 @@ const ActivitySchema = new Schema ({
         required:true,
         trim:true
     },
-    MaxParticipants:{
-        type:Number,
-        required:true,
-        trim:true
-    },
     Starttime:{
         type:String,
         required:true,
@@ -95,11 +91,13 @@ const ActivitySchema = new Schema ({
         type:Array,
         required:false
     },
-    AvailableDate:
-    {
+    DatesDetails:{
         type:Array,
         required:true,
-        trim:true
+    },
+    MaxParticipants:{
+        type:Number,
+        required:true,
     }
 },{timestamp:true});
 

@@ -7,14 +7,16 @@ router.get('/', async function(req,res)
 {
     var Hotels=[];
     Hotels=await Hotel.find();
-    res.render("hotels",{hotels:(Hotels==='undefined'?"":Hotels)});
+    res.render("hotels",{hotels:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user });
+    
+    
 });
 
 router.get('/:name', async function(req,res){
     var Hotels=[];
     var url = req.params.name; 
     Hotels=await Hotel.find({"Name":url});
-    res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels)});
+    res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user });
 });
 
 router.post('/:name',async function(req,res){

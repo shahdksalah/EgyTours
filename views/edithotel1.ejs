@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% if(hotel[0]!=="" ) {%>
+        <title>Edit <%=hotel[0].Name%>
+        </title>
+
+        <link rel="stylesheet" href="/css/styleUsers.css">
+        <link rel="stylesheet" href="/css/styleAddHotel.css">
+        <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+        <link rel="stylesheet" href="/css/styleEditHotels.css">
+        <%}%>
+</head>
+
+<body>
+
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+
+    <% if(hotel[0]!=="" ){%>
+        <div class="h">
+            <div class="admin">ADMIN</div>
+        </div>
+
+        <div class="main-content">
+
+            <%- include("partials/adminHeader.ejs") %>
+
+
+                <div class="right">
+                    <div id="cont">
+                        <div>
+                            <form action="edithotels/updated/<%=hotel.Name%>" method="post" id="form">
+                                <div>
+                                    <h2>Hotel Name</h2>
+                                </div>
+                                <div>
+                                    <input type="text" id="hotelname" name="hotelNname" value='<%=hotel[0].Name%>'>
+                                </div>
+
+                                <div>
+                                    <h2>Location</h2>
+                                </div>
+                                <div>
+                                    <input type="text" id="loc" name="hotelLoc" value='<%=hotel[0].Location%>'>
+
+                                </div>
+                                <div>
+                                    <div>
+                                        <h2>Images</h2>
+                                    </div>
+                                    <div>
+                                        <div id="imagess">
+                                            <% let id=1 %>
+                                                <% hotel[0].Picture.forEach((pic)=>{%>
+                                                    <img onclick='showInput("imginput<%=id%>","img<%=id%>")'
+                                                        src="/images/Hotels/<%=pic%>" alt="<%=pic%>" id='img<%=id%>'
+                                                        style="width:160px; height:130px">
+                                                    <span>
+                                                        <input type="file" name="imginput<%=id%>" id="imginput<%=id%>"
+                                                            hidden>
+                                                    </span>
+                                                    <% id++%>
+                                                        <%})%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h2>About</h2>
+                                </div>
+                                <div>
+                                    <textarea id="about" name="hotelAbout" cols="100"
+                                        rows="10"><%=hotel[0].About%></textarea>
+
+                                </div>
+
+                                <div>
+                                    <h2>Property Amenities</h2>
+                                </div>
+                                <div class="item" id="item3">
+                                    <ul id="i4" name="hotelAmen">
+                                        <% id=1 %>
+                                            <% let amens=hotel[0].PropertyAmen.split(",")%>
+                                                <% amens.forEach((amen)=>{%>
+                                                    <% if(amen.length!=0){%>
+                                                        <li id="amenli<%=id%>">
+                                                            <%=amen.trim()%>
+                                                        </li>
+                                                        <span><button type="button" id="delitem"
+                                                                onclick="removeItem('amenli<%=id%>',this)">remove</button></span>
+                                                        <% id++%>
+                                                            <%}%>
+                                                                <%})%>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <textarea name="finalamens" id="finalamens" cols="15" rows="5"
+                                        style="display: none;"></textarea>
+                                    <input type="text" id="addedamen" name="propamentext">
+                                    <button id="add" type='button'
+                                        onclick="addItem('addedamen','finalamens','amenlinew','i4')">+</button>
+                                </div>
+
+
+
+                                <div>
+                                    <h2>Room Features</h2>
+                                </div>
+                                <div class="item" id="item">
+                                    <ul id="i5">
+                                        <% id=1 %>
+                                            <% let feats=hotel[0].RoomFeatures.split(",")%>
+                                                <% feats.forEach((feat)=>{%>
+                                                    <% if(feat.length!=0){%>
+                                                        <li id="featli<%=id%>">
+                                                            <%=feat.trim()%>
+                                                        </li>
+                                                        <span><button type="button" id="delitem"
+                                                                onclick="removeItem('featli<%=id%>',this)">remove</button></span>
+
+                                                        <% id++%>
+                                                            <%}%>
+                                                                <%})%>
+                                    </ul>
+                                </div>
+                                <h3>Add Items</h3>
+                                <div>
+                                    <textarea name="finalfeats" id="finalfeats" cols="15" rows="5"
+                                        style="display: none;"></textarea>
+                                    <input type="text" id="addedfeat" name="roomfeattext">
+                                    <button id="add2" type='button'
+                                        onclick="addItem('addedfeat','finalfeats','featlinew','i5')">+</button>
+                                </div>
+
+
+
+                                <div>
+                                    <h2>Room Types</h2>
+                                </div>
+                                <div class="item" id="item2">
+                                    <ul id="i6">
+                                        <% id=1 %>
+                                            <% let types=hotel[0].RoomTypes.split(",")%>
+                                                <% types.forEach((type)=>{%>
+                                                    <% if(type.length!=0){%>
+                                                        <li id="typeli<%=id%>">
+                                                            <%=type.trim()%>
+                                                        </li>
+                                                        <button type="button" id="delitem2"
+                                                            onclick="removeItem('typeli<%=id%>',this)">remove</button>
+                                                        <% id++%>
+                                                            <%}%>
+                                                                <%})%>
+                                    </ul>
+                                </div>
+                                <h3>Add Items</h3>
+                                <div>
+                                    <textarea name="finaltypes" id="finaltypes" cols="15" rows="5"
+                                        style="display: none;"></textarea>
+                                    <input type="text" id="addedtype" name="roomtypetext">
+                                    <button id="add3" type='button'
+                                        onclick="addItem('addedtype','finaltypes','typelinew','i6')">+</button>
+                                </div>
+
+
+                                <div id="buttons">
+                                    <span>
+                                        <button type="submit">Submit</button>
+                                        <button type="button" onclick="location.href='/edithotels'"> Back</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+        <%}%>
+            <script src="/js/EditHotels.js"></script>
+</body>
+
+</html>

@@ -14,11 +14,9 @@ let path = require('path');
 
 
 
-router.get('/', function (req, res) {
+router.get('/', function (req, res){
   res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user });
 });
-
-
 
 
 router.post('/', urlencodedParser, [
@@ -99,28 +97,12 @@ router.post('/login', urlencodedParser, [
 });
 
 router.get('/signout', function (req, res) {
-  // if (req.session) {
-  //   req.session.destroy(err=>{
-  //     if(err){
-  //       console.log("unable to destroy");
-  //     }
-  //     else{
+
   req.session.destroy();
   console.log("destroyed");
-  // res.clearCookie(this.cookie, { path: '/' });
   res.redirect("/");
-console.log('hi');  // res.render("index",{user:(req.session.authenticated===undefined || !req.session.authenticated)?"":req.session.user});
 
-  console.log("redirectedttttt");
-  //     }
-  //   });
-
-  // } else {
-  //   res.end()
-  // }
 })
-
-
 
 
 

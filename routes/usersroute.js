@@ -7,15 +7,15 @@ var db = mongoose.connection;
 const bodyParser=require('body-parser');
 const{check,validationResult} =require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
+const {updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
 
 
 
 router.get('/',async function(req,res)
 {
-    var Users=[];
-    Users=await User.find();
-    console.log(Users)
-    res.render("users",{users:(Users==='undefined'?"":Users)});
+    var Users=await User.find();
+    console.log(Users);
+    res.render("users",{users:(Users==='undefined'?"":Users),userUpdated:false,msg:""});
 });
 
 router.post('/success',urlencodedParser,[
@@ -84,28 +84,10 @@ router.post('/',urlencodedParser,[
   .exists()
   .isLength({min:6}),
 
-] ,(request, response) =>  {
-  console.log("entered");
-  const errors=validationResult(request);
-  console.log(request.body);
-  if(!errors.isEmpty()){
-      const alert=errors.array();
-      console.log(alert)
-  }
-  else{
-    
-   //console.log(request.body.id);
-        /* db.users.updateOne({_id:request.body.id}, { $set: 
-         {Username:request.body.userUpdated,Email:request.body.emailUpdated,PhoneNumber:request.body.phoneUpdated
-         ,Password:request.body.pswUpdated,ConfPassword:request.body.pswUpdated}
-     
-         })
+] ,updateUser);
 
-    await User.findByIdAndUpdate(request.body.id,{Username:request.body.upuname,Email:request.body.upemail,PhoneNumber:request.body.upnumber
-     ,Password:request.body.uppsw,ConfPassword:request.body.uppsw});*/
-
-  }
-  response.redirect("/")
-
-});
+router.post('/delete',deleteUser);
+router.get("/toAdmin/:id", toAdmin);
+router.get("/toClient/:id", toClient);
 module.exports=router;
+

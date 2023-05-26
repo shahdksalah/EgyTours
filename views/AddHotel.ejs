@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,133 +10,129 @@
     <link rel="stylesheet" href="../css/styleAddHotel.css">
 
 </head>
+
 <body>
     <div class="h">
         <div class="admin">ADMIN</div>
     </div>
-        
-        <div class="main-content">
-    
-            <%- include("partials/adminHeader.ejs") %>
-        
+
+    <div class="main-content">
+
+        <%- include("partials/adminHeader.ejs") %>
+
             <div class="right">
-            <div id="container">
-                <form id="hotel" method="post" action="/AddHotel" enctype="multipart/form-data">
-                    <div>
-                        <label for="name"><h2>Hotel Name</h2></label>
-                        <textarea name="name" id="hotelName" cols="60" rows="3"></textarea>
-                        <span class="error-message"></span>
-                    </div>
-
-                    <div>
-                        <label for="location"><h2>Location</h2></label>
-                        <textarea name="location" id="location" cols="60" rows="3"></textarea>
-                        <span class="error-message"></span>
-                    </div>
-                    <div>
-                        <h2>Images</h2>
-                    </div>
-                    <div>
+                <div id="container">
+                    <form id="hotel" method="post" action="/AddHotel" enctype="multipart/form-data">
                         <div>
-                            
-                            <input type="file" id="imgs" name="imgs" multiple>
-                            <span><p style="color:red">minimum 10 images</p></span>
-                        </div>
-                        <span class="error-message"></span>
-                    </div>
-
-
-                    <div>
-                        <h2>About</h2>
-                    </div>
-                    <div>
-                        <textarea name="about" id="about" cols="150" rows="15"></textarea>
-                    </div>
-
-                    
-                    <div id="items">
-                        <div>
-                            <h2>Property Amenities</h2>
-                        </div>
-                        <div class="item">
-                                <div > 
-                                    <textarea name="amenities" id="amenities" cols="30" rows="3"></textarea>
-                                    <input type="checkbox" value="Free Wifi" id="freewifi" name="amen">
-                                    <label for="freewifi" name="amen-wifi">Free Wifi</label>    
-                                    
-                                    <input type="checkbox" value="Spa" id="spa" name="amen">
-                                    <label for="Spa" name="amen-spa">Spa</label>    
-                                    
-                                    <input type="checkbox" value="Parking" id="parking" name="amen">
-                                    <label for="parking" name="amen-park">Parking</label>    
-                                    
-                                    <input type="checkbox" value="Aqua Park" id="aquapark">
-                                    <label for="aquapark" name="amen-aqua">Aqua Park</label>    
-                                    
-                                    <input type="checkbox" value="Green Spaces" id="greenspaces" name="amen">
-                                    <label for="greenspaces" name="amen-green">Green Spaces</label> 
-
-                                    <input type="checkbox" value="Fitness Center" id="fitness"name="amen">
-                                    <label for="fitness" name="amen-fit">Fitness Center</label>
-
-                                    <span class="error-message"></span>
-                                </div>
+                            <label for="name">
+                                <h2>Hotel Name</h2>
+                            </label>
+                            <textarea name="name" id="name" cols="60" rows="2"></textarea>
+                            <p class='error-message' id="error-name">
+                                </p]>
                         </div>
 
                         <div>
-                            <h2>Room Features</h2>
+                            <label for="location">
+                                <h2>Location</h2>
+                            </label>
+                            <textarea name="location" id="location" cols="60" rows="3"></textarea>
+                            <p class='error-message' id="error-loc"></p>
                         </div>
-                        <div class="item">
-                                <div>
-                                    <textarea name="roomfeatures" id="roomfeat" cols="30" rows="3"></textarea>
-                                    <input type="checkbox" value="Blackout Curtains" id="blackcurtains" name="feat">
-                                    <label for="blackcurtains" name="room-curtain">Blackout Curtains</label>    
-                                    
-                                    <input type="checkbox" value="Full Body Bath" id="bath" name="feat">
-                                    <label for="bath" name="room-bath"> Full Body Bath</label>        
-                                    
-                                    <input type="checkbox" value="Mini Fridge" id="minifridge" name="feat">
-                                    <label for="minifridge" name="room-fridge">Mini Fridge</label>    
-                                    
-                                    <input type="checkbox" value="Air Conditioning" id="aircond" name="feat">
-                                    <label for="aircond" name="room-flat">Air Conditioning</label>
-                                  </div>
-                            
-    
-                        </div>
-
                         <div>
-                            <h2>Room Types</h2>
+                            <h2>Images</h2>
                         </div>
-                        <div class="item">
+                        <div>
                             <div>
-                                <textarea name="roomtypes" id="roomtypes" cols="30" rows="3"></textarea>
-                            <input type="checkbox" value="Single Room" id="single" name="type">
-                            <label for="single" name="type single">Single Bedroom</label>    
-                                    
-                            <input type="checkbox" value="Double Room" id="double" name="type">
-                            <label for="double" name="type double">Double Bedroom</label>    
-                                    
-                            <input type="checkbox" value="Suite" id="suite" name="type">
-                            <label for="suite" name="type suite">Suite</label>    
-                                    
-                            <input type="checkbox" value="Premium Suite" id="premsuite" name="type">
-                            <label for="premsuite" name="type premsuite">Premium Suite</label>    
+                                <input type="file" id="imgs" name="imgs" multiple>
                             </div>
-                            
-                                    
+                            <span class='error-message' id="error-imgs"></span>
                         </div>
-                    </div>
-                
-             <div  id="buttons">
-                    <button type="submit">Submit</button>
+
+
+                        <div>
+                            <h2>About</h2>
+                        </div>
+                        <div>
+                            <textarea name="about" id="about" cols="150" rows="15"></textarea>
+                            <span class='error-message' id="error-about"></span>
+                        </div>
+
+
+                        <div id="items">
+                            <div>
+                                <h2>Property Amenities</h2>
+                            </div>
+                            <div>
+                                <div>
+                                    <ul id="li1"></ul>
+                                </div>
+                                <textarea name="finalamens" id="finalamens" cols="15" rows="5"
+                                    style="display: none;"></textarea>
+                                <input type="text" id="addedamen" name="propamentext">
+                                <button class='plus' id="add" type='button'
+                                    onclick="addItem('addedamen','finalamens','amenlinew','li1','erroramen')">+</button>
+                                <span class='error-message' id="erroramen"></span>
+                            </div>
+
+                            <div>
+                                <h2>Room Features</h2>
+                            </div>
+                            <div>
+                                <div>
+                                    <ul id="li2"></ul>
+                                </div>
+                                <textarea name="finalfeats" id="finalfeats" cols="15" rows="5"
+                                    style="display: none;"></textarea>
+                                <input type="text" id="addedfeat" name="roomfeattext">
+                                <button class='plus' id="add2" type='button'
+                                    onclick="addItem('addedfeat','finalfeats','featlinew','li2','errorfeat')">+</button>
+                                <span class='error-message' id="errorfeat" style="color:red"></span>
+                            </div>
+
+                            <div>
+                                <h2>Room Types</h2>
+                            </div>
+                            <div>
+                                <div>
+                                    <ul id="li3"></ul>
+                                </div>
+
+                                <div id="addtype">
+                                    <input type="text" id="addedtype" name="roomtypetext">
+                                    <button class='plus' id="add" type='button'
+                                        onclick="addType('typelinew','li3')">+</button>
+
+                                </div>
+
+                                <div id="showprice" style="display: none;">
+                                    <h4>Enter price per night </h4>
+                                    <input type="text" id="price" name="typeprice">
+                                    <button class='plus' id="done" type='button' style="width:100px"s>done</button>
+
+                                </div>
+                                <span class='error-message' id="errortype"></span>
+                                <span id="success" style="color:green"></span>
+
+                                <textarea name="finalprices" id="finalprices" cols="15" rows="5"
+                                    ></textarea>
+                                <textarea name="finaltypes" id="finaltypes" cols="15" rows="5"
+                                   ></textarea>
+
+                            </div>
+                        </div>
+
+                        <div id="buttons">
+                            <button type="submit"
+                                style="width:120px; margin-top: 15px; height:35px; border-radius: 17px;">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-        </form>
-        </div> 
-        
-        </div> 
     </div>
-       
+
     <script src="../js/addHotelJS.js"></script>
 </body>
+
 </html>

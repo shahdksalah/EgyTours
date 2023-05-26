@@ -54,7 +54,7 @@
   display: none;
 }
  
-#myUL li a {
+#myUL li{
   border: 1px solid #ddd; 
   margin-top: -1px; 
   background-color: #514b3d7f;
@@ -139,7 +139,13 @@
 .info input{
   width:200px;
 }
-
+#delid{
+  display: none;
+}
+#updateType{
+  width:90px;
+  margin-left: 190px;
+}
 
 *{box-sizing: border-box}
 

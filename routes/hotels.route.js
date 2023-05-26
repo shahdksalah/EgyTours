@@ -41,7 +41,7 @@ router.post('/:name',async function(req,res){
     {
         const hotel2=await Hotel.findOneAndUpdate(filter,update);
         console.log(hotel2);
-        res.render.reload;
+        res.render("hotels");
     
     } 
 

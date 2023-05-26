@@ -103,6 +103,7 @@ router.post('/:name/submit', async function (req, res) {
     }
 
     if (found === "true") {
+        /*
         for (var i = 0; i < x[0].DatesDetails.length; i++) {
             if (i === number) {
                 arr.push(ret);
@@ -112,15 +113,20 @@ router.post('/:name/submit', async function (req, res) {
             }
             console.log(arr[i]);
         }
+
         const filter = { Name: name };
         const update = { DatesDetails: arr };
+       
         const Act = await Activity.findOneAndUpdate(filter, update);
         console.log(Act);
-
+        //window.location.reload();
+        */
+        res.render("activity1",{msg:""});
     }
 
     if(found1 === "true")
     {
+        /*
         for (var i = 0; i < x[0].DatesDetails.length; i++) {
             if (i !== number) {
                 arr.push(x[0].DatesDetails[i]);
@@ -129,13 +135,18 @@ router.post('/:name/submit', async function (req, res) {
         }
         const filter = { Name: name };
         const update = { DatesDetails: arr };
+       
         const Act = await Activity.findOneAndUpdate(filter, update);
         console.log(Act);
+        */
+        res.render("activity1",{msg:""});
+       //window.location.reload();
     }
 
     if(found2==="true")
     {
-        
+        //.location.reload();
+        res.render("activity1",{msg:"Not Available,Fully Booked"});
     }
 
 

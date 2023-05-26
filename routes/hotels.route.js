@@ -31,9 +31,9 @@ router.post('/:name',async function(req,res){
         arr.push(Hotels[0].Reviews[i]);
     }
 
-    arr.push(req.body.addrev);
-    arr.push(req.body.rating);
     arr.push(new Date());
+    arr.push(req.body.rating);
+    arr.push(req.body.addrev);
 
     const filter={Name:query1};
     const update={Reviews:arr};

@@ -3,14 +3,21 @@ const router=express.Router()
 const fileupload=require("express-fileupload");
 const path = require('path');   
 const Cities = require('../models/addcitiesdb');
+const Hotelss =require('../models/hotel.schema.js');
 
 
 router.use(fileupload());
 
 
-router.get('/',function(req,res)
-{
-    res.render("addcities");
+router.get('/',async function(req,res){
+    var arr=[];
+    arr=await Hotelss.find();
+    res.render("addcities",{hotels:arr});
+});
+router.get('/',async function(req,res){
+    var arr2=[];
+    arr2=await Hotelss.find();
+    res.render("addcities",{hotels:arr});
 });
 
 router.post('/submit',(request,response)=>{
@@ -29,7 +36,6 @@ router.post('/submit',(request,response)=>{
       imgFile.mv(uploadPath);
       paths[0]=request.body.cityname+'.'+ext;
 
-      console.log(request.body);
     
     const city=new Cities({
         Name:request.body.cityname,
@@ -44,7 +50,9 @@ router.post('/submit',(request,response)=>{
         })
         .catch(err=>{
             console.log(err);
-        })
+        })      
 });
+
+
 
 module.exports=router;

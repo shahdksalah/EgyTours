@@ -17,7 +17,6 @@ router.post('/submit',(request,response)=>{
     console.log("entered");
     var imgFile;
     var uploadPath;
-    var num;
     var ext;
     if(!request.files||Object.keys(request.files).length===0){
       return response.status(400).send("no files uploaded");
@@ -35,7 +34,8 @@ router.post('/submit',(request,response)=>{
     const city=new Cities({
         Name:request.body.cityname,
         picture:paths[0],
-        hotels:request.body.hotels
+        hotels:request.body.hotels,
+        activities:request.body.activities1
     });
 
     city.save()

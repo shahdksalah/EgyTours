@@ -1,4 +1,4 @@
-const express=require('express')
+const express = require('express')
 const router=express.Router()
 const Hotel =require('../models/hotel.schema.js');
 
@@ -22,14 +22,10 @@ router.post('/updated/:name', async function(req,res){
     var hotel=[];
     var query = req.params.name;
     hotel=await Hotel.find().where("Name").equals(query);
-    const newHotel = new Hotel({
-        Name:req.body.name,
-        Location:req.body.location,
-        Rating:hotel.Rating,
-
-    })
+    
     if(hotel != undefined){
-       
+       console.log(hotel);
+       res.render('hotels');
     }
     
     

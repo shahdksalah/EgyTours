@@ -204,10 +204,10 @@
                   <% let id=1; %>
                   <% let amen=0; %>
                   <% hotel1.forEach((hotel) => { %>
-                    <% let name = hotel.RoomTypes.split(',') %>
+                    <% let name = hotel.RoomTypes %>
                     <% name.forEach((type) =>{ %>
                       <% if(type){ %>
-                        <li id=<%= id %>><%=type %> </li>
+                        <li id=<%= id %>><%=type.Name%> - <%=type.Price%>LE Per Night</li>
                       <%}%>
                     <% }) %>
                   <% id++; %>

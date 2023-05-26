@@ -45,17 +45,15 @@
                     <label for="hotels">Hotels</label>
                     <br><br>
                 </div>
+                
                 <div>
-                    <input type="checkbox" id="movenpick" name="hot" value="movenpick">
-                    <label for="movenpick">Movenpick</label><br>
-                    <input type="checkbox" id="Hilton" name="hot" value="Hilton">
-                    <label for="Hilton">Hilton</label><br>
-                    <input type="checkbox" id="Radisson" name="hot" value="Radisson">
-                    <label for="Radisson">Radisson</label><br>
-                    <input type="checkbox" id="luxor" name="hot" value="luxor">
-                    <label for="luxor">luxor</label><br>
+                    <% hotels.forEach((hotel)=>{ %>
+                    <input type="checkbox" id=<%= hotel.Name %> name="hot" value=<%= hotel.Name %>>
+                    <label><%=hotel.Name %></label><br>
+                    <% }) %>
                     <textarea name="hotels" id="selectedHotels" cols="30" rows="10" style="display: none;"></textarea>
                 </div>
+                
                 <div>
                     <br>
                     <label for="activities">activities</label>

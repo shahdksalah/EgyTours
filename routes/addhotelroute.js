@@ -1,6 +1,6 @@
 const express=require('express')
 const router=express.Router()
-const Hotel = require('../models/addHoteldb.js');
+const Hotel = require('../models/hotel.schema.js');
 const fileUpload = require('express-fileupload');
 
 router.use(fileUpload());

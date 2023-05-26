@@ -1,6 +1,6 @@
 const express=require('express')
 const router=express.Router()
-const Activity= require('../models/addActivitiesdb.js');
+const Activity= require('../models/activity.schema.js');
 const fileupload=require("express-fileupload");
 
 router.use(fileupload());

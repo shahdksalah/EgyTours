@@ -1,7 +1,7 @@
 const express=require('express')
 const router=express.Router()
 const validate =require('../public/js/formsVal.js');
-const Activity =require('../models/addActivitiesdb.js');
+const Activity =require('../models/activity.schema.js');
 const mongoose =require('mongoose');
 var db = mongoose.connection;
 const bodyParser=require('body-parser');

@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% if(activity[0]!=="" ) {%>
         <title>Edit <%=activity[0].Name%></title>
-        <%}%>
+        
     <link rel="stylesheet" href="/css/styleUsers.css">
     <link rel="stylesheet" href="/css/styleAdminDashboard.css">
     <link rel="stylesheet" href="/css/styleAddActivity.css">
     <link rel="stylesheet" href="/css/styleForm.css">
     <link rel="stylesheet" href="/css/styleEditActivities.css">
+    <link rel="stylesheet" href="/css/styleDatePicker.css">
+    <%}%>
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" >
             </script>
@@ -38,7 +40,7 @@
             <div class="right">
                 <div id="cont">
                     <div>
-                        <form action="/updated/<%=activity[0].Name%>" method="post" id="form">
+                        <form action="/updated/<%=activity[0].Name%>" method="post" id="form" style="background-color:transparent; border:none;">
                             <input type="text" style="display: none;" value="<%=activity[0]._id%>">
                             <div>
                                 <h2>City's Name: </h2>
@@ -161,12 +163,14 @@
                             <div>
                                 <%for(var j =0;j< activity[0].DatesDetails.length; j++) {%>
                                     <% var b=activity[0].DatesDetails[j].split(' ')[0]; %>
-                                    <li id=<%=activity[0].Name.split()%> onmouseover =" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=b%>
-                                        <button >Update </button> 
-                                        <button>Delete</button ></a>
+                                    <li>
+                                    <input type="text" value="<%=b%>">
+                                        <button onclick="updateDate()" >Update DATE</button> 
+                                        <button onclick="deleteDate(b)">Delete</button >
                                     </li>
+                                    <% } %>
                             </div>
-                            <div class="container" >
+                            <div class="container" style="display:none">
                                 <input type="text" class="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px";>
                             </div>	
                             <div id="buttons">
@@ -183,6 +187,9 @@
             </div>
         </div>
         <%}%>
+
+        <script src="/js/AddActivityJS.js"></script>
+        <script src="/js/EditActivities.js"></script>
     </body>
 
     </html>

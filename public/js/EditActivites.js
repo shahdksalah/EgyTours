@@ -1,3 +1,4 @@
+/*
 function Update(index)
         {
          document.getElementById("updateInfo").style.display="block";
@@ -25,5 +26,11 @@ function Update(index)
         function cancel()
         {
             document.getElementById("c").style.display="none";
+        }
+        */
+
+        function updateDate()
+        {
+            document.getElementsByClassName("container").style.display="block";
         }
 

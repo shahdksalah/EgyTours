@@ -16,4 +16,24 @@ router.get('/',async function(req,res)
     res.render("EditActivities",{activities:(Activities==='undefined'?"":Activities)});
 });
 
+router.get('/:name', async function(req,res){
+    var Activities=[];
+    var url = req.params.name;
+    Activities=await Activity.find({"Name":url});
+    res.render("editactivity1",{activity:(Activities==='undefined'?"":Activities)});
+});
+
+router.post('/updated/:name', async function(req,res){
+    var activity=[];
+    var query = req.params.name;
+    activity=await Activity.find().where("Name").equals(query);
+    
+    if(activity != undefined){
+       console.log(activity);
+       res.render('activities');
+    }
+    
+    
+});
+
 module.exports=router;

@@ -36,7 +36,9 @@
             <% if(activities!=="") {%>
                 <% let id=1; %>
                 <% activities.forEach((activity) => { %>
-                    <li><a href="#" id=<%= id %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=activity.Name %> <button onclick="onUpdate(id)">Update</button> <button onclick="onDelete(id)">Delete</button ></a></li>
+                    <li id=<%=activity.Name.split()%> onmouseover =" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=activity.Name%>
+                        <button onclick="location.href= '/editactivities/<%=activity.Name%>'">Update </button> 
+                        <button onclick="location.href= '/deleteactivities/<%=activity.Name%>'">Delete</button ></a></li>
                 <% id++; %>
                 <% }); %>
             <% } %> 

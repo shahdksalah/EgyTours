@@ -1,29 +1,36 @@
-function Update(index)
+
+        function updateDate(showdate,confirmdate)
         {
-         document.getElementById("updateInfo").style.display="block";
+            document.getElementById(showdate).style.display="block";
+            document.getElementById(confirmdate).style.display="block";
+
         }
-        function Delete(index)
+        function confirmDate(currid,dateid,showdate)
         {
-         document.getElementById("c").style.display="block";
+            document.getElementById(dateid).value =document.getElementById(showdate).value;
+            document.getElementById(currid).style.display="none";
+            document.getElementById(showdate).style.display="none";
+
         }
-        function reset()
+        function deleteDate(dateid)
         {
-         document.getElementById("ActName").value=null;
-     document.getElementById("ActType").value=null;
-     document.getElementById("Actbrief").value=null;
-     document.getElementById("Actdetails").value=null;
-     document.getElementById("ActPlan").value=null;
-     document.getElementById("ActCancel").value=null;
-     document.getElementById("ActTime").value=null;
-     document.getElementById("ActPickup").value=null;
-     document.getElementById("date").value=null;
+            document.getElementById(dateid).style.display="none";
         }
-        function del()
-        {
-            document.getElementById("msg").style.display="block";
-        }
-        function cancel()
-        {
-            document.getElementById("c").style.display="none";
-        }
+
+        function replaceInfoImages(id, value, query) {
+            document.getElementById(id).setAttribute('src', value);
+          }
+
+          
+        function showInput(id, imgid) {
+            var inp = document.getElementById(id);
+            inp.hidden = false;
+            inp.addEventListener('change', (event) => {
+              var imgsrc = URL.createObjectURL(event.target.files[0]);
+              replaceInfoImages(imgid, imgsrc);
+              var img = document.getElementById(imgid);
+              img.style.border = 'solid 4px red';
+              inp.hidden = true;
+            })
+          }
 

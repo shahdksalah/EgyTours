@@ -33,6 +33,7 @@ router.post('/submit',(request, response) =>  {
   var date=request.body.Dates.length;
   var dates=request.body.Dates;
   var arr=[];
+  var arr2=[];
   var count=0;
   for(var j=0;j<date;j++)
   {
@@ -43,9 +44,10 @@ router.post('/submit',(request, response) =>  {
   console.log(count);
   for(var k =0;k<= count;k++)
   {
-    arr.push(dates.split(',')[k]);
+    arr.push(dates.split(',')[k]+" "+request.body.Aparticipants);
   }
-  
+
+
   const activitydetails = new Activity({
     Name:request.body.Aname,
     Header:request.body.Aheader,
@@ -60,12 +62,13 @@ router.post('/submit',(request, response) =>  {
     CancelDet:request.body.Acancel,
     Duration:request.body.Atime,
     PickupDet:request.body.Apickup,
-    MaxParticipants:request.body.Aparticipants,
     Starttime:request.body.starttime,
     Endtime:request.body.endtime,
     Price:request.body.price,
-    AvailableDate:arr
+    DatesDetails:arr,
+    MaxParticipants:request.body.Aparticipants
     });
+
     activitydetails.save()
       .then(result=>{
         console.log(result);
@@ -74,6 +77,8 @@ router.post('/submit',(request, response) =>  {
       .catch(err=>{
         console.log(err);
       })
+
+
 
   });
 

@@ -1,8 +1,8 @@
-
 var form=document.getElementById("form");
 form.addEventListener('submit',Event=>{
 
         var selected=new Array();
+        var selected1=new Array();
         var hotels=document.getElementsByName("hot");
         var activities1=document.getElementsByName("act");
         for(var i=0;i<hotels.length;i++)
@@ -16,9 +16,10 @@ form.addEventListener('submit',Event=>{
         for(var j=0;j<activities1.length;j++)
         {
             if(activities1[j].checked){
-                selected.push(activities1[j].value);
+                selected1.push(activities1[j].value);
             }
         }
-        document.getElementById("selectedActivities").innerText=selected;
+        document.getElementById("selectedActivities").innerText=selected1;
     
 });
+

@@ -2,7 +2,7 @@ const express=require('express')
 const router=express.Router()
 const Activity= require('../models/activity.schema.js');
 const fileupload=require("express-fileupload");
-
+const bodyParser=require('body-parser');
 router.use(bodyParser.json());
 
 router.use((req, res, next) => {

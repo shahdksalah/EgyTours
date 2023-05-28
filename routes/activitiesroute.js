@@ -81,18 +81,18 @@ router.post('/:name/submit', async function (req, res) {
         if (date === k) {
             console.log(x[0].DatesDetails[s].split(' ')[1]);
             console.log(num);
-            if (parseInt(num) <= parseInt(x[0].DatesDetails[s].split(' ')[1])) {
-                var newnum = x[0].DatesDetails[s].split(' ')[1] - num;
+            if (parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]) <= request.body.Aparticipants) {
+                var newnum = x[0].DatesDetails[s].split(' ')[1] + num;
                 console.log(newnum);
 
-                if (newnum !== 0) {
+                if (newnum < request.body.Aparticipants) {
                     ret = date + " " + newnum;
                     ret.toString();
                     console.log(ret);
                     found = "true";
                     number = s;
                 }
-                else if(newnum === 0)
+                else if(newnum === request.body.Aparticipants)
                 {
                     found1="true";
                     number=s;

@@ -80,7 +80,7 @@
                                             <% activity[0].Picture.forEach((pic)=>{%>
                                                 <img onclick='showInput("imginput<%=id%>","img<%=id%>")'
                                                     src="/images/activities/<%=pic%>" alt="<%=pic%>" id='img<%=id%>'
-                                                    style="width:160px; height:130px">
+                                                    style="width:160px; height:130px" name='img<%=id%>'>
                                                 <span>
                                                     <input type="file" name="imginput<%=id%>" id="imginput<%=id%>"
                                                         hidden>
@@ -188,6 +188,7 @@
                                     <button type="button" onclick="location.href='/editactivities'"> Back</button>
                                 </span>
                             </div>
+                            <input type="text" value="<%=activity.Rate" id="rate">
                         </form>
 
                     </div>

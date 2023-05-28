@@ -23,17 +23,51 @@ router.get('/:name', async function(req,res){
     res.render("editactivity1",{activity:(Activities==='undefined'?"":Activities)});
 });
 
-router.post('/updated/:name', async function(req,res){
+router.post('/updated/:name', async function(request,response){
     var activity=[];
-    var query = req.params.name;
+    console.log(request.params.name);
+    var query = request.params.name;
     activity=await Activity.find().where("Name").equals(query);
-    
-    if(activity != undefined){
-       console.log(activity);
-       res.render('activities');
+
+    var numofimgs=activity[0].Picture.length();
+    var id=1;
+    var arr=[];
+    for(var i = 0;i< numofimgs;i++)
+    {
+        var name=request.body.img+id;
+        console.log(name);
+       arr.push(name);
     }
-    
+
+
+    const activitydetails = new Activity({
+        Name:request.body.Cityname,
+        Header:request.body.Activityname,
+        Days:request.body.Days,
+        Type:request.body.ActivityType,
+        Rate:request.body.rate,
+        //Picture:paths,
+        Advantage:request.body.ActivityAdv,
+        BriefDes:request.body.Activitybrief,
+        DetailedDes:request.body.Activitydet,
+        Plan:request.body.Activityplan,
+        CancelDet:request.body.Activitycancel,
+        Duration:request.body.Activitydur,
+        PickupDet:request.body.Activitypickup,
+        Starttime:request.body.Activitystart,
+        Endtime:request.body.Activityend,
+        Price:request.body.Activityprice,
+        //DatesDetails:arr,
+        MaxParticipants:request.body.Activitymax
+        });
+
+        if(activity != undefined){
+            console.log(activity);
+            res.render('activities');
+         }
     
 });
+
+
 
 module.exports=router;

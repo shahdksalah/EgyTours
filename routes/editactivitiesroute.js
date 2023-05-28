@@ -40,15 +40,27 @@ router.post('/updated/:name', async function(request,response){
     var query = request.params.name;
     activity=await Activity.find().where("Name").equals(query);
 
-    var numofimgs=activity[0].Picture.length();
+    var uploadPath;
+    var num;
+    var ext;
+    var imgFile=[];
+    var numofimgs=activity[0].Picture.length;
     var id=1;
-    var arr=[];
-    for(var i = 0;i< numofimgs;i++)
+    console.log((request.files.imginput)+id);
+    for(var k =0;k < numofimgs;k++)
     {
-        var name=request.body.img+id;
-        console.log(name);
-       arr.push(name);
+        imgFile[k]=request.files.imginput+id;
+        id++;
+        console.log(imgFile[k]);
     }
+    imgFile=request.files.imgs;
+    for(var i=0;i<numofimgs;i++){
+        ext = imgFile[i].name.split('.')[1];
+        uploadPath=__dirname+'/../public/images/activities/'+ request.body.Cityname + (i+1) + '.' + ext;
+        imgFile[i].mv(uploadPath);
+        paths[i]=request.body.Cityname+(i+1)+'.'+ext;
+        console.log(paths[i]);
+      }
 
 
     const activitydetails = new Activity({
@@ -57,7 +69,7 @@ router.post('/updated/:name', async function(request,response){
         Days:request.body.Days,
         Type:request.body.ActivityType,
         Rate:request.body.rate,
-        //Picture:paths,
+        Picture:paths,
         Advantage:request.body.ActivityAdv,
         BriefDes:request.body.Activitybrief,
         DetailedDes:request.body.Activitydet,

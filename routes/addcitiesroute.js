@@ -5,7 +5,18 @@ const path = require('path');
 const Cities = require('../models/addcitiesdb');
 const Hotelss =require('../models/hotel.schema.js');
 const Activityy =require('../models/activity.schema.js');
+const bodyParser=require('body-parser');
 
+router.use(bodyParser.json());
+
+router.use((req, res, next) => {
+  if (req.session.user !== undefined && req.session.user.Type === 'admin') {
+      next();
+  }
+  else {
+      res.render('err', { err: 'You are not an Admin', user: (!req.session.authenticated) ? "" : req.session.user  })
+  }
+});
 
 router.use(fileupload());
 

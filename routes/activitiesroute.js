@@ -5,14 +5,16 @@ const Activity = require('../models/activity.schema.js');
 router.get('/', async function (req, res) {
     var Activities = [];
     Activities = await Activity.find();
-    res.render("activities", { activities: (Activities === 'undefined' ? "" : Activities) });
+    res.render("activities", { activities: (Activities === 'undefined' ? "" : Activities),
+    user: (!req.session.authenticated) ? "" : req.session.user  });
 });
 
 router.get('/:name', async function (req, res) {
     var Activities = [];
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
-    res.render("activity1", { activity1: (Activities === 'undefined' ? "" : Activities) });
+    res.render("activity1", { activity1: (Activities === 'undefined' ? "" : Activities),
+    user: (!req.session.authenticated) ? "" : req.session.user  });
 });
 
 router.post('/:name', async function (req, res) {
@@ -121,7 +123,8 @@ router.post('/:name/submit', async function (req, res) {
         console.log(Act);
         //window.location.reload();
         */
-        res.render("activity1",{msg:""});
+        res.render("activity1",{activities: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:""});
     }
 
     if(found1 === "true")
@@ -139,14 +142,16 @@ router.post('/:name/submit', async function (req, res) {
         const Act = await Activity.findOneAndUpdate(filter, update);
         console.log(Act);
         */
-        res.render("activity1",{msg:""});
+        res.render("activity1",{activities: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:""});
        //window.location.reload();
     }
 
     if(found2==="true")
     {
         //.location.reload();
-        res.render("activity1",{msg:"Not Available,Fully Booked"});
+        res.render("activity1",{activities: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Not Available,Fully Booked"});
     }
 
 

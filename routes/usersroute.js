@@ -8,8 +8,16 @@ const bodyParser=require('body-parser');
 const{check,validationResult} =require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
 const {updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
+router.use(bodyParser.json());
 
-
+router.use((req, res, next) => {
+  if (req.session.user !== undefined && req.session.user.Type === 'admin') {
+      next();
+  }
+  else {
+      res.render('err', { err: 'You are not an Admin', user: (!req.session.authenticated) ? "" : req.session.user  })
+  }
+});
 
 router.get('/',async function(req,res)
 {

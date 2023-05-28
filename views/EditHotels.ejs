@@ -45,8 +45,8 @@
                                     <li id=<%=hotel.Name.split()%> onmouseover =" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=hotel.Name%>
                                          <button onclick="location.href= '/edithotels/<%=hotel.Name%>'">Update </button> 
                                          <button onclick="location.href= '/deletehotels/<%=hotel.Name%>'">Delete</button ></a></li>
-                                            <% id++; %>
-                                             <% }); %>
+                                        <% id++; %>
+                                <% }); %>
                             <% } %>
                         </ul>
                     </div>

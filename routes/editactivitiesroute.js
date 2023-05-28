@@ -46,7 +46,7 @@ router.post('/updated/:name', async function(request,response){
     var imgFile=[];
     var numofimgs=activity[0].Picture.length;
     var id=1;
-    console.log(request.files.imginput[1]);
+    console.log((request.files.imginput)+id);
     for(var k =0;k < numofimgs;k++)
     {
         imgFile[k]=request.files.imginput+id;

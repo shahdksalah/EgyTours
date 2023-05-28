@@ -82,9 +82,9 @@
                         <% if(users!=="") {%>
                             <% let uid=1; %>
                             <% users.forEach((user) => { %>
-                                <li><a href="#" id=<%= uid %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=user.Username %> 
+                                <li id=<%= uid %> onmouseover=" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=user.Username %> 
                                     <button onclick="onUpdate('<%=user._id%>','<%=user.Username%>','<%=user.Email%>','<%=user.PhoneNumber%>','<%=user.Password%>','<%=user.Type%>')">Update</button>
-                                     <button onclick="onDelete('<%=user._id%>','<%=user.Username%>','<%=user.Email%>','<%=user.PhoneNumber%>','<%=user.Password%>')">Delete</button ></a></li>
+                                     <button onclick="onDelete('<%=user._id%>','<%=user.Username%>','<%=user.Email%>','<%=user.PhoneNumber%>','<%=user.Password%>')">Delete</button ></li>
                             <% uid++; %>
                             <% }); %>
                         <% } %> 
@@ -134,7 +134,7 @@
                             <h4>Password:</h4>
                         </div>
                         <div class="info" style="margin-left: 18px;">
-                            <label for="uppassword"></label>
+                            <label for="uppsw"></label>
                             <input type="password" id="u4" name="uppsw">
                         </div>
                        

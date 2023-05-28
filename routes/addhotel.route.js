@@ -44,10 +44,12 @@ router.post('/', (req, res) => {
     
     var reqtypes = req.body.finaltypes.split(',');
     var reqprices = req.body.finalprices.split(',');
+    var reqrooms = req.body.finalrooms.split(',');
     for(var i=0; i<reqtypes.length-1;i++){
         types[i] ={
             Name: reqtypes[i],
             Price: reqprices[i],
+            Rooms: reqrooms[i],
         }
     }
 

@@ -108,21 +108,6 @@ function showInput(id, imgid) {
   })
 }
 
-function displayOptions(query, options, id, delid, delbut) {
-  var checks = document.querySelectorAll(`[id^=${query}]`);
-  var ops = options.split(',');
-  checks.forEach((check) => {
-    ops.forEach((op) => {
-      if (check.value == op.trim()) {
-        check.checked = true;
-      }
-    })
-  })
-  document.getElementById(id).style.display = 'block';
-  document.getElementById(delid).style.display = 'none';
-  document.getElementById(delbut).style.display = 'none';
-}
-
 
 var newf = 1;
 var newt = 1;
@@ -182,23 +167,31 @@ function addItem(item, finalres, newid, list, errorid) {
 
 var edittype = document.getElementById('edittype');
 var editprice = document.getElementById('editprice');
+var editrooms = document.getElementById('editrooms');
 function updateType(idli) {
 
   document.getElementById('addtype').style.display="none";
-  document.getElementById('errors').style.display="none";
+  document.getElementById('errortype').style.display="none";
+  document.getElementById('errorrooms').style.display="none";
   var item = document.getElementById(idli);
   var oldtype = `${item.innerText.slice(0, item.innerText.indexOf('-') - 1)}`
   var oldprice = `${item.innerText.slice(item.innerText.indexOf('-') + 2, item.innerText.indexOf('L'))}`;
+  var oldroom = `${item.innerText.slice(item.innerText.indexOf('|') + 2, item.innerText.indexOf('R')-1)}`;
 
   edittype.value = oldtype;
   editprice.value = oldprice;
+  editrooms.value = oldroom;
 
   edittype.addEventListener('change', () => {
-    item.innerText = `${edittype.value} - ${editprice.value}LE`;
+    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms`;
   })
 
   editprice.addEventListener('change', () => {
-    item.innerText = `${edittype.value} - ${editprice.value}LE`;
+    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms`;
+  })
+
+  editrooms.addEventListener('change', () => {
+    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms`;
   })
 
   document.getElementById('showedit').style.display = "block";
@@ -214,6 +207,7 @@ var newt = 1;
 function donez(newid, list) {
     var price = document.getElementById('price');
     var typein = document.getElementById('addedtype');
+    var roomin = document.getElementById('rooms');
 
     var newli;
     var updbut = document.createElement('button');
@@ -245,8 +239,9 @@ function donez(newid, list) {
         newli = document.createElement('li');
         newli.setAttribute('id', newid + newt);
         document.getElementById('errortype').innerHTML = "";
-        document.getElementById('success').innerHTML = "saved successfully";
-        newli.innerHTML = `${typein.value} - ${price.value}LE`;
+        document.getElementById('errortyperooms').innerHTML = "";
+        document.getElementById('success').innerHTML = "Saved successfully";
+        newli.innerHTML = `${typein.value} - ${price.value}LE | ${roomin.value} Rooms`;
         document.getElementById(list).appendChild(newli);
         document.getElementById(newli.id).parentNode.insertBefore(updbut, newli.nextSibling);
         document.getElementById(newli.id).parentNode.insertBefore(rembut, newli.nextSibling);
@@ -254,6 +249,7 @@ function donez(newid, list) {
 
         price.value = "";
         typein.value = "";
+        roomin.value = "";
 
 
         newt++;
@@ -266,7 +262,11 @@ function donez(newid, list) {
         typein.addEventListener("keydown", () => {
             document.getElementById('success').innerHTML = "";
             document.getElementById('errortype').innerHTML = "";
+            document.getElementById('errortyperooms').innerHTML = "";
         })
+    }
+    else if(roomin.value===""){
+      document.getElementById('errortyperooms').innerHTML = "You must enter number of rooms";
     }
     else {
         document.getElementById('errortype').innerHTML = "You must enter a price";

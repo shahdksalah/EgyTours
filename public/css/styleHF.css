@@ -24,7 +24,7 @@ body{
     height: 100px;
     width:70%;
 }
-.topnav a {
+.links {
     float: right;
     display: block;
     color: rgb(255, 255, 255);
@@ -38,7 +38,7 @@ body{
     text-decoration: none;
 }
 
-.topnav a:hover {
+.links:hover {
     color:rgb(214, 53, 17);
     background-color: transparent;
 }
@@ -244,4 +244,22 @@ footer{
     background-color: rgb(214, 53, 17);
     color: white;
     cursor: pointer;
-  }
+}
+
+.admin{
+    width: 90px;
+    position: absolute;
+    left:70%;
+    top:1.7%;
+    height: 30px;
+}
+.admin a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.admin a:hover{
+    background-color: transparent;
+    color: rgb(214, 53, 17);
+}

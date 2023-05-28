@@ -28,8 +28,8 @@ function showSlides(n) {
 }
 
 
-
-function bookHotel(){
+let bookingForm=documents.getElementById("bForm");
+bookingForm.addEventListener('submit',Event=>{
   let book = document.getElementById('booking');
   let ci = document.getElementById('checkIn');
   let co = document.getElementById('checkOut');
@@ -71,7 +71,7 @@ function bookHotel(){
   else{
     document.getElementById('r-error').innerHTML="";
   }
-}
+});
 
 /*
 function addReview()

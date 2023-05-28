@@ -3,6 +3,17 @@ const router=express.Router()
 const Activity= require('../models/activity.schema.js');
 const fileupload=require("express-fileupload");
 
+router.use(bodyParser.json());
+
+router.use((req, res, next) => {
+  if (req.session.user !== undefined && req.session.user.Type === 'admin') {
+      next();
+  }
+  else {
+      res.render('err', { err: 'You are not an Admin', user: (!req.session.authenticated) ? "" : req.session.user  })
+  }
+});
+
 router.use(fileupload());
 
 router.get('/',function(req,res)

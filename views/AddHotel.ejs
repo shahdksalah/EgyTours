@@ -108,15 +108,20 @@
                                 <div id="showprice" style="display: none;">
                                     <h4>Enter price per night </h4>
                                     <input type="number" id="price" name="typeprice">
+                                    <span class='error-message' id="errortype"></span>
+                                    <h4>Enter number of rooms </h4>
+                                    <input type="number" id="rooms" name="typerooms">
                                     <button class='plus' id="done" type='button' onclick="donez('typelinew','li3')" style="width:100px"s>done</button>
-
+                                    <span class='error-message' id="errorrooms"></span>
                                 </div>
-                                <span class='error-message' id="errortype"></span>
+                                
                                 <span id="success" style="color:green"></span>
 
                                 <textarea name="finalprices" id="finalprices" cols="15" rows="5"
                                 style="display: none;" ></textarea>
                                 <textarea name="finaltypes" id="finaltypes" cols="15" rows="5"
+                                style="display: none;" ></textarea>
+                                <textarea name="finalrooms" id="finalrooms" cols="15" rows="5"
                                 style="display: none;" ></textarea>
 
                             </div>

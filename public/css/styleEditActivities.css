@@ -33,3 +33,11 @@ margin-left:0px;
     margin:60px;
     margin-left:-200px;
 }
+#showdate{
+display:none; 
+width:150px;
+}
+#confirm
+{
+    display:none; 
+}

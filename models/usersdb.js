@@ -20,15 +20,13 @@ const userSchema = new Schema ({
         trim:true
     },
     PhoneNumber:{
-        type:Number,
+        type:String,
         required:true,
         trim:true
     },
     Password:{
         type:String,
         required:true,
-        //minLength:8,
-        //maxLength:16,
         trim:true
     },
     ConfPassword:{

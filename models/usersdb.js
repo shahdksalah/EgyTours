@@ -11,8 +11,6 @@ const userSchema = new Schema ({
         unique:true,
         trim:true,
         required:true,
-        //min:4,
-        //max:15
     },
     Email:{
         type:String,

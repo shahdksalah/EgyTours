@@ -108,7 +108,7 @@ router.post('/login', urlencodedParser, [
       console.log(result[0]);
       request.session.user = result[0];
       request.session.authenticated = true;
-      response.redirect("/");
+      response.redirect('back')
       }
     })
     .catch(err => console.error(err.message)) 

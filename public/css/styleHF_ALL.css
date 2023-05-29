@@ -154,7 +154,7 @@ form input{
     font-size: 20px;
 }
 .topnav{
-    flex:30%;
+    flex:60%;
     margin-top:10px;
 }
 #myHeader button:hover{

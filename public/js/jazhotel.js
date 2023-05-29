@@ -36,40 +36,47 @@ function bookHotel(){
   let ad = document.getElementById('dropbtn1');
   let chi = document.getElementById('dropbtn2')
   let r = document.getElementById('dropbtn3');
+  let t = document.getElementById('dropbtn4');
 
   if(ci.value.length==0){
-    document.getElementById('ci-error').innerHTML="Choose checkin date";
+    document.getElementById('ci-error').innerHTML="Choose Checkin Date";
   }
   else{
     document.getElementById('ci-error').innerHTML="";
   }
 
   if(co.value.length==0){
-    document.getElementById('co-error').innerHTML="Choose checkout date"
+    document.getElementById('co-error').innerHTML="Choose Checkout Date"
   }
   else{
     document.getElementById('co-error').innerHTML="";
   }
 
   if(ad.value.length==0){
-    document.getElementById('ad-error').innerHTML="Enter Number of Adults";
+    document.getElementById('ad-error').innerHTML="Choose Number of Adults";
   }
   else{
     document.getElementById('ad-error').innerHTML="";
   }
 
   if(chi.value.length==0){
-    document.getElementById('chi-error').innerHTML="Enter Number of Children";
+    document.getElementById('chi-error').innerHTML="Choose Number of Children";
   }
   else{
     document.getElementById('chi-error').innerHTML="";
   }
 
   if(r.value.length==0){
-    document.getElementById('r-error').innerHTML="Enter Number of Rooms";
+    document.getElementById('r-error').innerHTML="Choose Number of Rooms";
   }
   else{
     document.getElementById('r-error').innerHTML="";
+  }
+  if(t.value.length==0){
+    document.getElementById('t-error').innerHTML="Choose Room Type";
+  }
+  else{
+    document.getElementById('t-error').innerHTML="";
   }
 }
 

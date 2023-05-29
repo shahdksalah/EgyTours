@@ -1,15 +1,24 @@
 const express=require('express')
 const router=express.Router();
 const Cart=require('../models/cartdb.js');
+const Hotel = require('../models/hotel.schema.js');
 
 const addToCart=async(req,res)=>{
     console.log('Entered')
     let days;
+    let price;
     var date1 = moment(req.body.checkIn);
     var date2 = moment(req.body.checkOut);
     if (date1.isValid() && date2.isValid()) {
-        days=date1.diff(date2, 'days')
+        days=date2.diff(date1, 'days')
     }
+    
+     var hotel=await Hotel.find({"_id":req.params.id});
+     hotel.RoomTypes.forEach(room=>{
+        if(room.Name===req.body.roomType){
+           price=room.Price*req.body.rooms*days;
+        }
+     })
 
 
     var hotels=[];
@@ -18,6 +27,7 @@ const addToCart=async(req,res)=>{
         id:req.params.id,
         checkIn:req.body.checkIn,
         checkOut:req.body.checkOut,
+        days:days,
         children:req.body.children,
         adults:req.body.adults,
         rooms:req.body.rooms,

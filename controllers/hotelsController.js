@@ -4,7 +4,12 @@ const Cart=require('../models/cartdb.js');
 
 const addToCart=async(req,res)=>{
     console.log('Entered')
-    
+    let days;
+    var date1 = moment(req.body.checkIn);
+    var date2 = moment(req.body.checkOut);
+    if (date1.isValid() && date2.isValid()) {
+        days=date1.diff(date2, 'days')
+    }
 
 
     var hotels=[];

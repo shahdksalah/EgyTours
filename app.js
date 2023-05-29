@@ -65,7 +65,7 @@ app.use("/",indexRoute);
 app.use("/activities",activitiesRoute);
 app.use("/hotels",hotelsRoute);
 app.use("/addactivity",addActivityRoute);
-app.use("/addhotel",addHotelRoute);s
+app.use("/addhotel",addHotelRoute);
 app.use("/luxor",luxorRoute);
 app.use("/editactivities",editactivitiesRoute);
 app.use("/edithotels",edithotelsRoute);

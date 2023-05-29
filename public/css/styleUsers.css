@@ -1,3 +1,12 @@
+body{
+  background-color:rgb(222, 221, 214) ;
+  color:rgb(54, 36, 27);
+}
+
+form{
+  background-color:rgb(222, 221, 214) ;
+  border:none;
+}
 #container{
     display: flex;
 }
@@ -10,7 +19,7 @@
 }
 .form{
   width:400px;
-  border:2px solid rgb(54, 36, 27);
+  
 }
 #uform{
   width:500px;
@@ -145,6 +154,14 @@
 #updateType{
   width:90px;
   margin-left: 190px;
+}
+div input{
+  border:3px solid #a78c4c;
+padding:10px;
+color:#a78c4c;
+box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+border-radius:20px;
+width:90%;
 }
 
 *{box-sizing: border-box}

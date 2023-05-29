@@ -29,9 +29,6 @@
 
 }
 
-textarea {
-    height: 303x;
-}
 
 .dropbtn {
     background-color: rgb(54, 36, 27);
@@ -75,3 +72,22 @@ textarea {
 .error-message {
     color: red
 }
+
+textarea,div input{
+    border:3px solid #a78c4c;
+    padding:10px;
+    color:#a78c4c;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:20px;
+    width:500px;
+}
+#sub{
+    background-color: rgb(54, 36, 27);
+    color: white;
+    border: none;
+    cursor: pointer;
+    width:10%;
+    height:40%;
+    border-radius: 10px;
+    margin-top:2%;
+    }

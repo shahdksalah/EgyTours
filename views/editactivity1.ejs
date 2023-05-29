@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/styleAddActivity.css">
     <link rel="stylesheet" href="/css/styleForm.css">
     <link rel="stylesheet" href="/css/styleEditActivities.css">
+    <link rel="stylesheet" href="/css/styleHF_ALL.css">
     <link rel="stylesheet" href="/css/styleDatePicker.css">
     <%}%>
         <script src=
@@ -29,13 +30,10 @@
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
 
     <% if(activity[0]!=="" ){%>
-        <div class="h">
-            <div class="admin">ADMIN</div>
-        </div>
+
+        <%- include("partials/adminHeader.ejs") %>
 
         <div class="main-content">
-
-            <%- include("partials/adminHeader.ejs") %>
             <script src="/js/EditActivites.js"></script>
             <div class="right">
                 <div id="cont">

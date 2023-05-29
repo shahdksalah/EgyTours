@@ -6,7 +6,7 @@ router.get('/', async function (req, res) {
     var Activities = [];
     Activities = await Activity.find();
     res.render("activities", { activities: (Activities === 'undefined' ? "" : Activities),
-    user: (!req.session.authenticated) ? "" : req.session.user  });
+    user: (!req.session.authenticated) ? "" : req.session.user,msg:""});
 });
 
 router.get('/:name', async function (req, res) {
@@ -14,7 +14,7 @@ router.get('/:name', async function (req, res) {
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
     res.render("activity1", { activity1: (Activities === 'undefined' ? "" : Activities),
-    user: (!req.session.authenticated) ? "" : req.session.user  });
+    user: (!req.session.authenticated) ? "" : req.session.user,msg:"" });
 });
 
 router.post('/:name', async function (req, res) {
@@ -51,6 +51,11 @@ router.post('/:name', async function (req, res) {
 
 router.post('/:name/submit', async function (req, res) {
 
+    var Activities = [];
+    var url = req.params.name;
+    Activities = await Activity.find({ "Name": url });
+   
+
     console.log(req.body.name2);
     var name = req.body.name2;
     var num = req.body.num;
@@ -81,18 +86,21 @@ router.post('/:name/submit', async function (req, res) {
         if (date === k) {
             console.log(x[0].DatesDetails[s].split(' ')[1]);
             console.log(num);
-            if (parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]) <= request.body.Aparticipants) {
-                var newnum = x[0].DatesDetails[s].split(' ')[1] + num;
+            console.log("number:");
+            console.log( parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]));
+            console.log(x[0].MaxParticipants);
+            if (parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]) <= x[0].MaxParticipants) {
+                var newnum = parseInt(x[0].DatesDetails[s].split(' ')[1] )+ parseInt(num);
                 console.log(newnum);
 
-                if (newnum < request.body.Aparticipants) {
+                if (newnum < x[0].MaxParticipants) {
                     ret = date + " " + newnum;
                     ret.toString();
                     console.log(ret);
                     found = "true";
                     number = s;
                 }
-                else if(newnum === request.body.Aparticipants)
+                else if(newnum === x[0].MaxParticipants)
                 {
                     found1="true";
                     number=s;
@@ -123,11 +131,11 @@ router.post('/:name/submit', async function (req, res) {
         console.log(Act);
         //window.location.reload();
         */
-        res.render("activity1",{activities: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:""});
+        res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available"});
     }
 
-    if(found1 === "true")
+    else if(found1 === "true")
     {
         /*
         for (var i = 0; i < x[0].DatesDetails.length; i++) {
@@ -142,16 +150,16 @@ router.post('/:name/submit', async function (req, res) {
         const Act = await Activity.findOneAndUpdate(filter, update);
         console.log(Act);
         */
-        res.render("activity1",{activities: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:""});
+        res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available"});
        //window.location.reload();
     }
 
-    if(found2==="true")
+    else if(found2==="true")
     {
         //.location.reload();
-        res.render("activity1",{activities: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Not Available,Fully Booked"});
+        res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Not Available"});
     }
 
 

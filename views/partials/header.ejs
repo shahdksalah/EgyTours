@@ -4,6 +4,8 @@
             <div class="logoHead">
                 <img id="logo" src="/images/homepage/logo.png" alt="logo" width="100px">
             </div>
+            
+            
             <nav class="topnav">
                 <% if(user===""){ %>
                     <button onclick="show('signin')">Sign In</button>  
@@ -21,11 +23,18 @@
                         </div>
                     </div>   
                 <% } %>
-                <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
-                <a href="/activities"> <i class="fa-regular fa-heart"></i> </a>
-                <a href="/cart"> <i class="fa-solid fa-cart-shopping"></i></a>
-                <a href="/"> <i class="fa-solid fa-house fa-fw"></i> </a>
-                <input id="searchbar" type="text" placeholder="Search" >
+                
+                <% if(user!=="" && user.Type==="admin"){%>
+                    <span class="admin" >
+                    <a href="/adminboard" > Admin </a>
+                    </span>
+                <% } %>
+         
+                <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
+                <a href="/activities" class="links"> <i class="fa-regular fa-heart"></i> </a>
+                <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
+                <input id="searchbar" type="text" placeholder="Search" style="margin-top: 2.7%; margin-right: 5%;" >
             </nav>
             
         </header>
@@ -37,7 +46,6 @@
         <div class="buttons">
             <button onclick="location.href='hotels';"> <i class="fa fa-thumbs-up"></i> Hotels</button>
             <button onclick="location.href='activities';"> <i class="fa-solid fa-person-running"></i>Activities</button>
-            <button onclick="location.href='food';"> <i class="fa-solid fa-utensils"></i> Food</button>
         </div>
     </div>
 
@@ -97,7 +105,7 @@
 
             <div class="input-group">
             <label for="number">Phone Number</label>
-            <input id="number" type="number" placeholder="Enter Phone Number" name="number">
+            <input id="number" type="text" placeholder="Enter Phone Number" name="number">
             <span class="error-message"></span>
             </div>
             

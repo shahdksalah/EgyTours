@@ -7,7 +7,8 @@ var db = mongoose.connection;
 const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const lodash = require('lodash');
-const session = require('express-session');
+const bcrypt = require("bcrypt");
+
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 let path = require('path');
@@ -43,6 +44,8 @@ router.post('/', urlencodedParser, [
 
 ], (request, response) => {
   console.log("entered");
+  let hashedPass;
+  const saltRounds = 10;
 
   const errors = validationResult(request)
   if (!errors.isEmpty()) {
@@ -51,12 +54,18 @@ router.post('/', urlencodedParser, [
   else if (request.body.psw !== request.body.confpsw)
     console.log("error");
   else {
+    bcrypt
+  .hash(request.body.psw, saltRounds)
+  .then(hash => {
+    hashedPass=hash;
+
+    console.log('Hash ', hashedPass)
     const userdetails = new User({
       Username: request.body.unam,
       Email: request.body.email,
       PhoneNumber: request.body.number,
-      Password: request.body.psw,
-      ConfPassword: request.body.confpsw,
+      Password: hashedPass,
+      ConfPassword: hashedPass,
       Type: request.body.type
     });
 
@@ -65,6 +74,9 @@ router.post('/', urlencodedParser, [
         console.log('user added');
         response.redirect("/");
       });
+  })
+  .catch(err => console.error(err.message))
+ 
 
   }
 });
@@ -85,13 +97,22 @@ router.post('/login', urlencodedParser, [
   }
   else{
   console.log("entered");
-  var query = { Username: request.body.username, Password: request.body.password };
+  var query = { Username: request.body.username};
   User.find(query)
     .then(result => {
+    bcrypt
+    .compare(request.body.password, result[0].Password)
+    .then(res => {
+      console.log(res) 
+      if(res){
       console.log(result[0]);
       request.session.user = result[0];
       request.session.authenticated = true;
-      response.redirect("/");
+      response.redirect('back')
+      }
+    })
+    .catch(err => console.error(err.message)) 
+
     });
   }
 });

@@ -27,9 +27,10 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
-
-
-function bookHotel(){
+if(typeof documents!=='undefined'){
+let bookingForm=documents.getElementById("bForm");
+}
+bookingForm.addEventListener('submit',Event=>{
   let book = document.getElementById('booking');
   let ci = document.getElementById('checkIn');
   let co = document.getElementById('checkOut');

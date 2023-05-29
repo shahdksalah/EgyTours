@@ -62,7 +62,6 @@
     </div>
 
 
-
     <div class="h">
         <div class="admin">ADMIN</div>
         <button onclick="viewChat('chatbox')"><i class="fa-regular fa-comment"></i>
@@ -70,33 +69,7 @@
     
     <script src="/js/chat.js"></script>
     <div class="main-content">
-
-        <div class="nav">
-            <button class ="btn1">Home</button>
-            <button class ="btn1" onclick="drop()"> + Add </button>
-            <div id="dropdown">
-                <ul class="dropdown-list">
-                    <li><a href="/AddHotel">Hotels</a></li>
-                    <li><a href="/AddActivity">Activites</a> </li>
-                    <li><a href="/addcities">cities</a> </li>
-                </ul>
-            </div>
-            <button class ="btn1" onclick="drop2()"> + Edit</button>
-            <div id="dropdown2">
-                <ul class="dropdown-list">
-                    <li><a href="EditHotels.html">Hotels</a></li>
-                    <li><a href="EditActivities.html">Activites</a> </li>
-                </ul>
-            </div>
-            <button class="btn1"  onclick="location.href='Users.html';">Users</button>
-            <button class ="btn1">Weekly Summary</button>
-        </div>
-        <script src="/js/AdminDashboardJS.js"></script>
-    
-
-
-
-
+        <%- include("partials/adminHeader.ejs") %>
         <div class="right">
             <h1 class="head">TOP ACTIVITIES</h1>
             <div class="first">

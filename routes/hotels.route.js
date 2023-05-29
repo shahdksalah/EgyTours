@@ -1,6 +1,7 @@
 const express=require('express')
 const router=express.Router()
 const Hotel = require('../models/hotel.schema.js');
+const hotelController=require('../controllers/hotelsController.js')
 
 
 router.get('/', async function(req,res)
@@ -46,5 +47,8 @@ router.post('/:name',async function(req,res){
     } 
 
 });
+
+router.post('/:name/add',hotelController.addToCart)
+
 
 module.exports=router;

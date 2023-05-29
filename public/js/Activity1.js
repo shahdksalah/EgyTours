@@ -1,16 +1,18 @@
 
-function view()
+const but= document.getElementById('check');
+console.log(but);
+but.addEventListener("submit", (e) =>
 {
-  if(validated()){
-    document.getElementById("avail").style.display="block";
-
+  e.preventDefault();
+    console.log("heyy");
     document.querySelector("#num1").textContent=document.querySelector("#dropbtn").value;
-
     let sum=document.querySelector("#num1").textContent*document.querySelector("#price1").textContent;
     document.querySelector("#total1").textContent=sum;
 
-  }
-}
+
+});
+
+
 
 function validated(){
   let people = document.getElementById("dropbtn");

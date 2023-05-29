@@ -13,14 +13,14 @@ router.get('/', async function(req,res)
     
 });
 
-router.get('/:name', async function(req,res){
+router.get('/:name/:id', async function(req,res){
     var Hotels=[];
     var url = req.params.name; 
     Hotels=await Hotel.find({"Name":url});
     res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user });
 });
 
-router.post('/:name',async function(req,res){
+router.post('/:name/:id',async function(req,res){
     var arr=[];
     var Hotels=[];
     var query1=req.body.hotel;
@@ -48,7 +48,7 @@ router.post('/:name',async function(req,res){
 
 });
 
-router.post('/:name/add',hotelController.addToCart)
+router.post('/:name/:id/add',hotelController.addToCart)
 
 
 module.exports=router;

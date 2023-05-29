@@ -119,7 +119,6 @@
                 </tr>
             </table>
             </div>
-         <script src="/js/jazhotel.js"></script>
          
         <div class="about">
           <div>
@@ -265,10 +264,6 @@
           </datalist>
           <div id="ad-error" class="error-message">
           </div>
-          </div>
-          
-
-        <div>
             <input id="dropbtn2" list="Children" placeholder="Children">
             <datalist id="Children">
               <option value="1"></option>
@@ -301,12 +296,30 @@
           </datalist>
           <div id="r-error" class="error-message">
           </div>
+          <input id="dropbtn4" list="Types" placeholder="Room Type">
+        <datalist id="Types">
+          <% if(hotel1[0]!==""){%>
+            <% let rooms = hotel1[0].RoomTypes%>
+            <% rooms.forEach((room)=>{%>
+              <% if(room){%>
+                <option value="<%=room.Name%>"></option>
+              <%}%>
+              
+            <%})%>
+          <%}%>
+        </datalist>
+        <div id="t-error" class="error-message">
         </div>
+      </div>
           
           
         </div>
         <div>
-          <button id="book" onclick="bookHotel()">Add To Cart</button>
+          <button id="book" onclick="bookHotel()">Check Availability</button>
+        </div>
+
+        <div id="available">
+          <span id="availerror"></span>
         </div>
       </div>
         
@@ -315,7 +328,10 @@
      </div>
 
      <div style="margin-top: 6%;">
+      <% if(hotel1[0].Reviews.length !==0){%>
         <h2 style="margin-left:200px;">Reviews</h2>
+      <%}%>
+        
     </div>
 
     <div class="first"> 

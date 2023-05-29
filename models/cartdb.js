@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 app.use(express.urlencoded({extended:true}));
 
 class hotelBooking{
-    constructor(checkIn,checkOut,adults,children,rooms){
+    constructor(name,checkIn,checkOut,adults,children,rooms){
+        this.name=name;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.adults = adults;

@@ -1,4 +1,3 @@
-const Hotel = require('../models/hotel.schema.js');
 
 const updateHotel = async (req,res)=>{
     var types=[];

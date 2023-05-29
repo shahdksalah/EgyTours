@@ -12,10 +12,12 @@
     color: white;
     border: none;
     cursor: pointer;
-    width:10%;
     height:40%;
     border-radius: 10px;
     margin-top:2%;
+    padding:7px;
+    width:150px;
+    margin-left:20%;
     }
   .rating i{
     color:rgb(238, 203, 5);
@@ -115,7 +117,7 @@
       margin-left: 0%;
     }
     .booking{
-      margin-top: 15%;
+      margin-top: 10%;
       display: block;
     }
     #inout{
@@ -145,7 +147,7 @@
       box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
       padding: 20px;
       width:700px;
-      height:250px;
+      height:380px;
       display: block;
     }
     .error-message{
@@ -153,21 +155,24 @@
     }
     #reserv{
       display:flex; 
+      margin-left:18%;
+      gap:10px;
     }
   
-    #dropbtn1, #dropbtn2, #dropbtn3,#checkIn,#checkOut,#book,#addrev{
+    #dropbtn1, #dropbtn2, #dropbtn3,#dropbtn4,#checkIn,#checkOut,#book,#addrev{
       border:3px solid #a78c4c;
       padding:10px;
-      color:#a78c4c;
+      color: black;
       box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-      border-radius:20px;
+      border-radius:17px;
       width:200px;
     }
     #book{
       background-color: rgb(54, 36, 27);
       cursor: pointer;
       margin-left:35%;
-      margin-top:5%;
+      margin-top:3%;
+      color:white;
     }
 
   
@@ -184,9 +189,12 @@
   }
   .addReviews{
     gap:20px;
-    padding-right:10px;
     margin-bottom:10%;
     margin-left:200px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    width:300px;
+    padding:20px;
+    border-radius: 15px;
   }
   .R{
     font-size:13px ;

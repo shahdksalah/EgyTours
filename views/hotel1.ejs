@@ -103,6 +103,7 @@
               </div>
             </div>
             <div>
+
             <table class="grid">
                 <tr>
                     <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[0]%>" alt="jaz hotel image" onclick="currentSlide(1)"></td>
@@ -219,7 +220,7 @@
           </div>
          </div>
         <div class="booking">
-        <form id="bForm" action="<%=hotel1[0].Name%>/add" method="post">
+        <form id="bForm" action="<%=hotel1[0].Name%>/<%=hotel1[0]._id%>" method="post">
           <div id="inout">
 
             <div id="in">
@@ -265,7 +266,7 @@
           </datalist>
           <div id="ad-error" class="error-message">
           </div>
-            <input id="dropbtn2" list="Children" placeholder="Children">
+            <input id="dropbtn2" list="Children" placeholder="Children" name="children">
             <datalist id="Children">
               <option value="1"></option>
               <option value="2"></option>
@@ -297,7 +298,7 @@
           </datalist>
           <div id="r-error" class="error-message">
           </div>
-          <input id="dropbtn4" list="Types" placeholder="Room Type">
+          <input id="dropbtn4" list="Types" placeholder="Room Type" name="roomType">
         <datalist id="Types">
           <% if(hotel1[0]!==""){%>
             <% let rooms = hotel1[0].RoomTypes%>
@@ -381,7 +382,7 @@
 
       <div class="addReviews">
         <h3>Add Review</h3>
-        <form method="post" action="/hotels/:<%=hotel1[0].Name %>" id="form">
+        <form method="post" action="" id="form">
           <input type="text" name="hotel" id="hotel" value="<%=hotel1[0].Name %>">
         <textarea cols="60" rows="5" id="addrev" name="addrev"></textarea>
         <h3>Rating</h3>

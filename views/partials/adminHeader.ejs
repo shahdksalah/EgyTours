@@ -1,22 +1,106 @@
 
-<div class="nav" style="height:2400px;">
-    <button class ="btn1" onclick="location.href='AdminDashboard.html';">Home</button>
-    <button class ="btn1" onclick="drop()"> + Add </button>
-    <div id="dropdown">
-        <ul class="dropdown-list">
-            <li><a href="/AddHotel">Hotels</a></li>
-            <li><a href="/AddActivity">Activites</a> </li>
-            <li><a href="/addcities">Cities</a> </li>
+<script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fa-sharp fa-solid fa-plane-departure"></i></span>
+                    <span class="title"><strong>EGYTOURS</strong></span>
+                </a>
+            </li>
+            <li>
+                <a href="/adminboard">
+                    <span class="icon"><i class="fa-solid fa-house"></i></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li style="margin-top:20px;">
+                <a href="#" onclick="drop()">
+                    <span class="icon" style="margin-bottom:10px;"><i class="fa-solid fa-hotel"></i></span>
+                    <span class="title" style="padding-bottom:10px;"> Hotels </span>
+                    </a>
+                </li>
+                    <div id="dropdown" >
+                        <ul class="dropdown-list">
+                            <div onclick="location.href='/addhotel'">
+                                <li id="list" style="margin-top:20px; margin-bottom:0px; height:20px;" >
+                                <a >
+                                    <span  ><i class="fa-light fa-plus" ></i></span>
+                                    <span>Add</span>
+                                </a>
+                            </li>
+                            </div>
+                            <div onclick="location.href='/edithotels'">
+                            <li style=" margin-top:10px; pointer-events:none">
+                                <a style="height:20px; " >
+                                <span><i class="fa-solid fa-pen-to-square"></i></span>
+                                    <span class="t">Edit</span>
+                            </a> 
+                            </li>
+                            </div>
+                        </ul>
+                    </div>
+               
+               
+            <li style="margin-top:20px;">
+                <a href="#" onclick="drop2()">
+                    <span class="icon" style="margin-bottom:10px;"><i class="fa-sharp fa-solid fa-bus"></i></span>
+                    <span class="title" >Activities</span>
+                </a>
+                </li>
+                <div id="dropdown2" >
+                    <ul class="dropdown-list">
+                        <div onclick="location.href='/addactivity'">
+                        <li id="list" style="margin-top:20px; margin-bottom:0px; height:20px;">
+                            <a>
+                                <span><i class="fa-light fa-plus" ></i></span>
+                                <span>Add</span>
+                            </a>
+                        </li>
+                    </div>
+                    <div onclick="location.href='/editactivities'">
+                        <li style="margin-top:10px; pointer-events:none" >
+                            <a style="height:20px; ">
+                            <span><i class="fa-solid fa-pen-to-square" ></i></span>
+                            <span class="t">Edit</span>
+                        </a> 
+                    </li>
+                    </div>
+                    </ul>
+                </div>
+
+                <li style="margin-top:20px;">
+                    <a href="#" onclick="drop3()">
+                        <span class="icon" style="margin-bottom:10px;"><i class="fa-solid fa-city"></i></span>
+                        <span class="title" >Cities</span>
+                    </a>
+                </li>
+                    <div id="dropdown3" onclick="location.href='/addcities'">
+                        <ul class="dropdown-list">
+                            <li id="list" style="margin-top:20px;">
+                                <a>
+                                    <span><i class="fa-light fa-plus" ></i></span>
+                                    <span>Add</span>
+                                </a>
+                            </li>
+                    </ul>
+                    </div>
+
+            <li style="margin-top:20px;" >
+                <a href='/users' >
+                    <span class="icon"><i class="fa-solid fa-users"></i></span>
+                    <span class="title">Users</span>
+                </a>
+            </li>
+            <li style="margin-top:20px;" >
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-comments"></i></span>
+                    <span class="title">Chat</span>
+                </a>
+            </li>
         </ul>
     </div>
-    <button class ="btn1" onclick="drop2()"> + Edit</button>
-    <div id="dropdown2">
-        <ul class="dropdown-list">
-            <li><a href="/editactivities">Hotels</a></li>
-            <li><a href="/edithotels">Activites</a> </li>
-        </ul>
-    </div>
-    <button class="btn1"  onclick="location.href='/users';">Users</button>
-    <button class ="btn1">Weekly Summary</button>
 </div>
+
 <script src="../js/AdminDashboardJS.js"></script>

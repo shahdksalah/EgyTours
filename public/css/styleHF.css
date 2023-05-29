@@ -240,26 +240,9 @@ footer{
 
 #dropdown-content a:hover {background-color: #f1f1f1;}
   
-  .dropdown:hover .dropbtn {
+.dropdown:hover .dropbtn {
     background-color: rgb(214, 53, 17);
     color: white;
     cursor: pointer;
 }
 
-.admin{
-    width: 90px;
-    position: absolute;
-    left:70%;
-    top:1.7%;
-    height: 30px;
-}
-.admin a{
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-}
-
-.admin a:hover{
-    background-color: transparent;
-    color: rgb(214, 53, 17);
-}

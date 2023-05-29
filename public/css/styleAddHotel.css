@@ -4,6 +4,10 @@
     margin-top: 2%;
 }
 
+#hotel,#form{
+    background-color:transparent;
+    border:none;
+}
 #buttons button {
     border-radius: 17px;
     background-color: rgb(54, 36, 27);

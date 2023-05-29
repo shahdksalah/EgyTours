@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="/css/styleAdminDashboard.css">
     <link rel="stylesheet" href="/css/styleAddActivity.css">
     <link rel="stylesheet" href="./css/styleForm.css">
-    <link rel="stylesheet" href="/css/styleEditActivities.css">
+ 
+    <link rel="stylesheet" href="/css/styleEditHotels.css">
+   
 </head>
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
@@ -17,18 +19,20 @@
     <%- include("partials/adminHeader.ejs") %>
         <div class="main-content">
     
-           
-
-        <h1 id="Edit"><ins>Edit Activities</ins></h1>
         
-<div class="Right">
-    <div class="view">
-        <div id="search">
-            <div id="sBar">
-                <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Activities..">
-            </div>
-        </div>
+        <div class="right">
+            <div id="cont">
+                <div>
+                    <h1>Edit Activities</h1>
+                </div>
+
+                <div class="view">
+                    <div id="search">
+                        <div id="sBar">
+                            <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Hotels..">
+                        </div>
+                    </div>
 
         <ul id="myUL">
             <% if(activities!=="") {%>

@@ -26,3 +26,7 @@ cursor: pointer;
 li{
     margin:10px
 }
+#form{
+    background-color:transparent;
+            border:none;
+}

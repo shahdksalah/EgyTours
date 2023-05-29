@@ -1,17 +1,4 @@
 
-const but= document.getElementById('check');
-console.log(but);
-but.addEventListener("submit", (e) =>
-{
-  e.preventDefault();
-    console.log("heyy");
-    document.querySelector("#num1").textContent=document.querySelector("#dropbtn").value;
-    let sum=document.querySelector("#num1").textContent*document.querySelector("#price1").textContent;
-    document.querySelector("#total1").textContent=sum;
-
-
-});
-
 
 
 function validated(){
@@ -35,4 +22,3 @@ function validated(){
   return valid;
 
 }
-

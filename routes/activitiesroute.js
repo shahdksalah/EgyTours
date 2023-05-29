@@ -132,7 +132,7 @@ router.post('/:name/submit', async function (req, res) {
         //window.location.reload();
         */
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available"});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num});
     }
 
     else if(found1 === "true")
@@ -151,7 +151,7 @@ router.post('/:name/submit', async function (req, res) {
         console.log(Act);
         */
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available"});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num});
        //window.location.reload();
     }
 

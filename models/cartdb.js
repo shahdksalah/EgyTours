@@ -24,9 +24,9 @@ const cartSchema=new Schema({
         required:true,
     },
     hotels:{
-        type:Array,
+        
     }
 },{timestamp:true});
 
 const Cart= mongoose.model('Cart',cartSchema);
-module.exports=Cart,hotelBooking;
+module.exports={Cart,hotelBooking};

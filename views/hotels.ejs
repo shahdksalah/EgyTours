@@ -23,7 +23,7 @@
             <% let id=1; %>
             <% hotels.forEach((hotel) => { %>
                 <h2 id='name'+ <%= id %> class="h2hotels"><%=hotel.Name%></h2>
-            <div class="btn" onclick="location.href= '/hotels/<%=hotel.Name%>/<%=hotel._id%>'">
+            <div class="btn" onclick="location.href= '/hotels/<%=hotel.Name%>'">
                 <div class="image">
                     <img src="/images/Hotels/<%=hotel.Picture[0]%>" >
                 </div>

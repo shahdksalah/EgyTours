@@ -32,6 +32,7 @@ const addToCart=async(req,res)=>{
         adults:req.body.adults,
         rooms:req.body.rooms,
         roomType:req.body.roomType,
+        price:price,
     }
     
     var query = { Userid: req.session.user._id};

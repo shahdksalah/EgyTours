@@ -48,7 +48,11 @@
                 
                 <div>
                     <% hotels.forEach((hotel)=>{ %>
+<<<<<<< HEAD
                     <input type="checkbox" style="width:10px;" id=<%= hotel.Name %> name="hot" value=<%= hotel.Name %>>
+=======
+                    <input type="checkbox" id=<%= hotel.Name %> name="hot" value=<%= hotel.Name %> >
+>>>>>>> 07083ef590e72f24541f627b51c3a541be534128
                     <label><%=hotel.Name %></label><br>
                     <% }) %>
                     <textarea name="hotels" id="selectedHotels" cols="30" rows="10" style="display: none;"></textarea>
@@ -61,7 +65,11 @@
                 </div>
                 <div>
                     <% activities.forEach((activ)=>{ %>
+<<<<<<< HEAD
                         <input type="checkbox" style="width:10px;" id=<%= activ.Name %> name="hot" value=<%= activ.Name %> >
+=======
+                        <input type="checkbox" id=<%= activ.Name %> name="act" value=<%= activ.Name %>>
+>>>>>>> 07083ef590e72f24541f627b51c3a541be534128
                         <label><%=activ.Name %></label><br>
                         <% }) %>
                     <textarea name="activities1" id="selectedActivities" cols="30" rows="10" style="display: none;"></textarea>

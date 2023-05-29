@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
     <link rel="stylesheet" href="/css/styleActivities.css">
     <link rel="stylesheet" href="/css/luxor.css">
@@ -14,230 +14,119 @@
 
 <body>
     <%- include("partials/headerPages.ejs") %>
-    <div>
-        <div class="page-title">
-            <div class="title-text">
-                <h3>Things to do in</h3>
-                <h1>Luxor,Egypt</h1>
-            </div>
-        </div>
-    </div>
-
-    <div><h1>Activities</h1></div>
-    <script src="https://kit.fontawesome.com/3472d45ca0.js" crossorigin="anonymous"></script>
-    <div class="mainscroll">
         <div>
-            <button class="icon" onclick="scrolll()"><i class="fa-sharp fa-solid fa-arrow-left"></i> </button>
-        </div>
-        <div class="cover">
-            <div class="activities">
-                <div class="scroll-images">
-                    <div class="act">
-                        <div class="first">
-                            <div class="pic1">
-                                <button class="btn">
-                                    <img class="imgs" src="../Images/Luxorimages/nile cruise.jpg" alt="nile cruise" width="250 px"
-                                        height="243 px">
-                                    <h4 id="ftxt">MULTI-DAY Trip</h4>
-                                    <h4 id="ftxt">From Luxor:3-Night Nile Cruise to Aswan</h4>
-                                    <span class="rating1">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                    </span>
-                                    <h5>3.9 (76 reviews)</h5>
-                                    <h4 id="Ltxt">For 3500$ per person</h4>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="act2">
-                        <div class="first">
-                            <div class="pic1">
-                                <button class="btn">
-                                    <img src="../Images/Luxorimages/valley of the kings.jpg" alt="valley of the kings" width="250 px"
-                                        height="243 px">
-                                    <h4 id="ftxt">Day Trip</h4>
-                                    <h4 id="ftxt">From Luxor: Valley of the Kings Full-Day Trip</h4>
-                                    <span class="rating1">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </span>
-                                    <h5>5.0 (400 reviews)</h5>
-                                    <h4 id="Ltxt">For 5500$ per person</h4>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="act3">
-                        <div class="first">
-                            <div class="pic1">
-                                <button class="btn">
-                                    <img src="../Images/Luxorimages/air balloons.jpg" alt="valley of the kings" width="250 px"
-                                        height="243 px">
-                                    <h4 id="ftxt">Day Trip</h4>
-                                    <h4 id="ftxt">From Luxor:Hot Air Balloon Ride over Luxor</h4>
-                                    <span class="rating1">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </span>
-                                    <h5>4.5 (205 reviews)</h5>
-                                    <h4 id="Ltxt">For 5500$ per person</h4>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="act4">
-                        <div class="first">
-                            <div class="pic1">
-                                <button class="btn">
-                                    <img src="../Images/Luxorimages/temple-of-deir-al-bahri.jpg" alt="temple-of-deir-al-bahri"
-                                        width="250 px" height="243 px">
-                                    <h4 id="ftxt">Day Trip</h4>
-                                    <h4 id="ftxt">From Luxor:Temple of Deir al-Bahri</h4>
-                                    <span class="rating1">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                    </span>
-                                    <h5>3.0 (58 reviews)</h5>
-                                    <h4 id="Ltxt">For 500$ per person</h4>
-                                    <br>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="page-title">
+                <div class="title-text">
+                    <h3>Things to do in</h3>
+                    <h1>Luxor,Egypt</h1>
                 </div>
             </div>
         </div>
-        <div>
-            <button class="icon" onclick="scrolllr()"><i class="fa-sharp fa-solid fa-arrow-right"></i> </button>
-        </div>
-        <script src="/js/scrolll.js"></script>
-    </div>
 
-    <div><h1>Hotels</h1></div>
-    <div class="mainscroll1">
-        <div>
-            <button class="icon" onclick="scrolll2()"><i class="fa-sharp fa-solid fa-arrow-left"></i> </button>
+        <h1 class="head">Luxor Activities</h1>
+
+
+        <div class="first">
+            <% if(activities1!=="" ) { %>
+                <% let id=1; %>
+                    <% activities1.forEach((activity)=> { %>
+                        <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
+                            <div>
+                                <img src="/images/activities/<%=activity.Picture[1]%>" width="300 px" height="200 px">
+                            </div>
+
+                            <div>
+                                <h5>
+                                    <%=activity.Type%>
+                                </h5>
+                                <h4>
+                                    <%=activity.Header%>
+                                </h4>
+                                <h5>
+                                    <%=activity.Duration%>
+                                </h5>
+                                <h5><mark>
+                                        <%=activity.Advantage%>
+                                    </mark></h5>
+                            </div>
+                            <div>
+                                <% if(activity.Rate==="0" ) { %>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <% } %>
+                                        <% if(activity.Rate==="1" ) { %>
+                                            <i class="fa-solid fa-star"></i>
+                                            <% } %>
+                                                <% if(activity.Rate==="2" ) { %>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <% } %>
+                                                        <% if(activity.Rate==="3" ) { %>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <% } %>
+                                                                <% if(activity.Rate==="4" ) { %>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <% } %>
+                                                                        <% if(activity.Rate==="5" ){ %>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <% } %>
+                            </div>
+                            <div>
+                                <h3>From E£ <%=activity.Price%> per person</h3>
+                            </div>
+                        </div>
+                        <% id++; %>
+                            <% }); %>
+                                <% } %>
         </div>
-        <div class="cover1">
-            <div class="activities1">
-                <div class="scroll-images1">
-                    <div class="act">
-                        <div class="first">
-                            <div class="pic1">
-                                <button class="btn">
-                                    <img class="imgs" src="../Images/Luxorimages/steigenberger-nile-palace.jpg" alt="steigenberger" width="250 px"
-                                        height="243 px">
-                                    <h4 id="ftxt">Steigenberger Nile Palace Luxor</h4>
-                                    <h4 id="ftxt">Khaled Ben El Walid Street,Luxor 85111 Egypt</h4>
-                                    <span class="rating1">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                    </span>
-                                    <h5>4.9 (200 reviews)</h5>
-                                    <h4 id="Ltxt">For 3500$ per night</h4>
-                                </button>
+        <h1 class="head">Luxor Hotels</h1>
+        <div class="first">
+            <% if(hotels!=="" ) { %>
+                <% let id1=1; %>
+                    <% hotels.forEach((ht)=> { %>
+                        <div class="btn">
+                            <div>
+                                <img src="/images/Hotels/<%=ht.Picture[0]%>" width="300 px" height="200 px">
                             </div>
-                        </div>
-                    </div>
-    
-                    <div class="act2">
-                        <div class="first">
-                            <div class="pic1">
-                                <button class="btn">
-                                    <img src="../Images/Luxorimages/sonesta-st-george-hotel.jpg" alt="sonesta" width="250 px"
-                                        height="243 px">
-                                    <h4 id="ftxt">Sonesta St. George Hotel Luxor</h4>
-                                    <h4 id="ftxt">Corniche El Nile Street,Luxor Egypt</h4>
-                                    <br>
-                                    <span class="rating1">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </span>
-                                    <h5>5.0 (2000 reviews)</h5>
-                                    <h4 id="Ltxt">For 5500$ per night</h4>
-                                </button>
+
+                            <div>
+                                <h5>
+                                    <%=ht.Name%>
+                                </h5>
+                                <h4>
+                                    <%=ht.Location%>
+                                </h4>
+                                <h5>
+                                    <%=ht.PropertyAmen%>
+                                </h5>
+                                <h5>
+                                    <%=ht.RoomFeatures%>
+                                </h5>
                             </div>
+                            
+
                         </div>
-                    </div>
-                    <div class="act3">
-                        <div class="first">
-                            <div class="pic1">
-                                <button class="btn">
-                                    <img src="../Images/Luxorimages/Hilton.jpg" alt="Hilton" width="250 px"
-                                        height="243 px">
-                                    <h4 id="ftxt">Hilton Luxor Resort & Spa</h4>
-                                    <h4 id="ftxt">New Karnak,Luxor Egypt</h4>
-                                    <br>
-                                    <span class="rating1">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </span>
-                                    <h5>4.2 (752 reviews)</h5>
-                                    <h4 id="Ltxt">For 4500$ per person</h4>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="act4">
-                        <div class="first">
-                            <div class="pic1">
-                                <button class="btn">
-                                    <img src="../Images/Luxorimages/Sofitel.jpg" alt="Sofitel"
-                                        width="250 px" height="243 px">
-                                    <h4 id="ftxt">Sofitel Winter Palace Luxor</h4>
-                                    <h4 id="ftxt">17 Corniche El Nile Street,Luxor Egypt</h4>
-                                    <span class="rating1">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                    </span>
-                                    <h5>3.0 (58 reviews)</h5>
-                                    <h4 id="Ltxt">For 500$ per person</h4>
-                                    <br>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <% id1++; %>
+                            <% }); %>
+                                <% } %>
         </div>
-        <div>
-            <button class="icon" onclick="scrolllr2()"><i class="fa-sharp fa-solid fa-arrow-right"></i> </button>
-        </div>
-        <script src="/js/scrolll.js"></script>
-    </div>
 
 
 
-    <%- include("partials/footer.ejs") %>
-    
+        <%- include("partials/footer.ejs") %>
+
 </body>
 
 </html>

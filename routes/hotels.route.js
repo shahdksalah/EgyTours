@@ -22,7 +22,7 @@ router.get('/:name', async function(req,res){
 
 router.post('/:name', hotelController.postReview);
 
-router.post('/:name/add',hotelController.addToCart)
+router.post('/:name/:id',hotelController.addToCart)
 
 
 module.exports=router;

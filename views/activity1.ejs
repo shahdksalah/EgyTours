@@ -189,7 +189,7 @@
        
         
 
-      <%if(msg==="Available") { %>
+      <%if(msg==="Available" && num!==0) { %>
       <div id="avail">
         <h2><ins>Available</ins></h2>
         <div class="duration">
@@ -201,11 +201,12 @@
         </div>
         <div class ="price">
           <span>Total Price: </span>
-          <span id="num1"> </span>
+          <span id="num1"> <%=num%> </span>
           <span>*</span>
           <span id="price1"><%=activity1[0].Price%></span>
           <span>=</span>
-          <span id="total1"> </span>
+          <% let sum = num * activity1[0].Price; %>
+          <span id="total1"> <%=sum%> </span>
       </div>
         
         <div style="text-align: center; margin-top:15px;">

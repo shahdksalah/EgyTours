@@ -48,7 +48,7 @@ router.post('/:name',async function(req,res){
 
 });
 
-router.post('/:id',hotelController.addToCart)
+router.post('/:name/:id',hotelController.addToCart)
 
 
 module.exports=router;

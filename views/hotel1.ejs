@@ -1,391 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=hotel1[0].Name%></title>
 
-    <link rel="stylesheet" href="/css/styleHF_ALL.css">
-    <link rel="stylesheet" href="/css/styleForm.css">
-    <link rel="stylesheet" href="/css/styleHotelTemplate.css">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%=hotel1[0].Name%>
+  </title>
+
+  <link rel="stylesheet" href="/css/styleHF_ALL.css">
+  <link rel="stylesheet" href="/css/styleForm.css">
+  <link rel="stylesheet" href="/css/styleHotelTemplate.css">
 
 </head>
-<body>
-    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
 
-    <%- include("partials/headerPages.ejs") %>
+<body>
+  <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+
+  <%- include("partials/headerPages.ejs") %>
 
     <div class="page">
-        <div class="hotel">
-            <div>
-              <% if(hotel1!=="") {%>
-                  <h1><%=hotel1[0].Name %></h1>
-                <% }; %> 
-           </div>
-               <span class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
-                </span>
-                &nbsp;
-                <span>
-                    14,010 reviews
-                </span>  
-             
-            <div>
-              <% if(hotel1!=="") {%>
-                  <p><%=hotel1[0].Location %></p>
-            <% } %> 
-            </div>
-         </div>
-        <div class="grid">
-          
-            <div class="mySlides">
-              
-                <div class="numbertext">1 / 10</div>
-                <div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[0]%>">
-                </div>
-                
-              </div>
-            
-              <div class="mySlides">
-                <div class="numbertext">2 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[1]%>">
-              </div>
-            
-              <div class="mySlides">
-                <div class="numbertext">3 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[2]%>">
-              </div>
-            
-              <div class="mySlides">
-                <div class="numbertext">4 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[3]%>">
-              </div>
-            
-              <div class="mySlides">
-                <div class="numbertext">5 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[4]%>">
-              </div>
-            
-              <div class="mySlides">
-                <div class="numbertext">6 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[5]%>">
-              </div>
 
-              <div class="mySlides">
-                <div class="numbertext">7 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[6]%>">
-              </div>
+      <div class="hotel">
+        <div>
+          <% if(hotel1!=="" ) {%>
+            <h1>
+              <%=hotel1[0].Name %>
+            </h1>
+            <% }; %>
+        </div>
+        
+        
 
-              <div class="mySlides">
-                <div class="numbertext">7 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[7]%>">
-              </div>
+        <div>
+          <% if(hotel1!=="" ) {%>
+            <p>
+              <%=hotel1[0].Location %>
+            </p>
+            <% } %>
+        </div>
+      </div>
 
-              <div class="mySlides">
-                <div class="numbertext">7 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[8]%>">
-              </div>
+      <div class="grid">
 
-              <div class="mySlides">
-                <div class="numbertext">7 / 10</div>
-                  <img src="/images/Hotels/<%=hotel1[0].Picture[9]%>">
-              </div>
-
-              <div>
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-              </div>
-            </div>
-            <div>
-            <table class="grid">
-                <tr>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[0]%>" alt="jaz hotel image" onclick="currentSlide(1)"></td>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[1]%>" alt="jaz hotel image" onclick="currentSlide(2)"></td>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[2]%>" alt="jaz hotel image" onclick="currentSlide(3)"></td>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[3]%>" alt="jaz hotel image" onclick="currentSlide(4)"></td>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[4]%>" alt="jaz hotel image" onclick="currentSlide(5)"></td>
-                </tr>
-                <tr>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[5]%>" alt="jaz hotel image" onclick="currentSlide(6)"></td>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[6]%>" alt="jaz hotel image" onclick="currentSlide(7)"></td>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[7]%>" alt="jaz hotel image" onclick="currentSlide(8)"></td>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[8]%>" alt="jaz hotel image" onclick="currentSlide(9)"></td>
-                    <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[9]%>" alt="jaz hotel image" onclick="currentSlide(10)"></td>
-                </tr>
-            </table>
-            </div>
-         
-        <div class="about">
+        <div class="mySlides">
+          <div class="numbertext">1 / 10</div>
           <div>
-            <h1>About</h1>
-            <hr>
+            <img src="/images/Hotels/<%=hotel1[0].Picture[0]%>">
           </div>
-          <div class="rat">
-            <span>
-              <strong>4.5</strong>
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">2 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[1]%>">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">3 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[2]%>">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">4 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[3]%>">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">5 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[4]%>">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">6 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[5]%>">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">7 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[6]%>">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">7 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[7]%>">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">7 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[8]%>">
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">7 / 10</div>
+          <img src="/images/Hotels/<%=hotel1[0].Picture[9]%>">
+        </div>
+
+        <div class="moveslides">
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <table>
+          <tr>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[0]%>" alt="jaz hotel image"
+                onclick="currentSlide(1)"></td>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[1]%>" alt="jaz hotel image"
+                onclick="currentSlide(2)"></td>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[2]%>" alt="jaz hotel image"
+                onclick="currentSlide(3)"></td>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[3]%>" alt="jaz hotel image"
+                onclick="currentSlide(4)"></td>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[4]%>" alt="jaz hotel image"
+                onclick="currentSlide(5)"></td>
+          </tr>
+          <tr>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[5]%>" alt="jaz hotel image"
+                onclick="currentSlide(6)"></td>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[6]%>" alt="jaz hotel image"
+                onclick="currentSlide(7)"></td>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[7]%>" alt="jaz hotel image"
+                onclick="currentSlide(8)"></td>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[8]%>" alt="jaz hotel image"
+                onclick="currentSlide(9)"></td>
+            <td><img class="demo" src="/images/Hotels/<%=hotel1[0].Picture[9]%>" alt="jaz hotel image"
+                onclick="currentSlide(10)"></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="about">
+        <div>
+          <h1>About</h1>
+          <hr>
+        </div>
+        <div class="rat">
+          <% if(hotel1[0].Reviews.length!==0){%>
+                <% let revs = hotel1[0].Reviews%>
+                <% let sum=0%>
+                <% revs.forEach((rev)=>{%>
+                <% sum = sum + parseInt(rev.Rating);%>
+                <%})%>
+                <% let avg = sum / hotel1[0].Reviews.length;%>
+              <span>
+                <strong style="font-size: 50px;"><%=avg%></strong>
             </span>
             <div id="exc">
-              <div><h3>Excellent</h3></div>
+                <h3>
+                <% if(avg === 5){%>
+                  Excellent
+                <%}%>
+                <% if(avg === 4){%>
+                  Very Good
+                <%}%>
+                <% if(avg === 3){%>
+                  Good
+                <%}%>
+                <% if(avg === 2){%>
+                  Okay
+                <%}%>
+                <% if(avg === 1){%>
+                  Needs Improvement
+                <%}%>
+                <% if(sum === 0){%>
+                  No Reviews Yet
+                <%}%>
+              </h3>
+            
               <span class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
+                  <% for(var i=0; i<avg; i++){%>
+                    <i class="fa-solid fa-star"></i>
+                    <%}%>
               </span>
-            </div>
+
+              <span>
+                <%=hotel1[0].Reviews.length%>
+                <% if(hotel1[0].Reviews.length > 1) {%>
+                   reviews
+                <%}%>
+                <% if(hotel1[0].Reviews.length == 1) {%>
+                  review
+               <%}%>
+              </span>
+            <%}%>
+        </div>
+      </div>
+        <div class="inf">
+          <div class="text">
+            <% if(hotel1!=="" ) {%>
+              <% let id=1; %>
+                <% hotel1.forEach((hotel)=> { %>
+                  <p id=<%=id %>><%=hotel.About %>
+                  </p>
+                  <% id++; %>
+                    <% }); %>
+                      <% } %>
+
           </div>
 
-          <div class="inf">
-            <div class="text">
-              <% if(hotel1!=="") {%>
+          <div class="list1">
+            <div>Property amenities</div>
+            <ul>
+              <% if(hotel1!=="" ) {%>
                 <% let id=1; %>
-                <% hotel1.forEach((hotel) => { %>
-                  <p id=<%= id %>><%=hotel.About %></p>
-                <% id++; %>
-                <% }); %>
-            <% } %> 
-              
-            </div>
-
-            <div  class="list1">
-              <div>Property amenities</div>
-              <ul>
-                <% if(hotel1!=="") {%>
-                  <% let id=1; %>
                   <% let amen=0; %>
-                  <% hotel1.forEach((hotel) => { %>
-                    <% let name = hotel.PropertyAmen.split(',') %>
-                    <% name.forEach((am) =>{ %>
-                      <% if(am){ %>
-                        <li id=<%= id %>><%=am %> </li>
-                      <%}%>
-                      
-                    <% }) %>
-                  <% id++; %>
-                  <% amen++; %>
-                  <% }); %>
-              <% } %> 
+                    <% hotel1.forEach((hotel)=> { %>
+                      <% let name=hotel.PropertyAmen.split(',') %>
+                        <% name.forEach((am)=>{ %>
+                          <% if(am){ %>
+                            <li id=<%=id %>><%=am %>
+                            </li>
+                            <%}%>
 
-              </ul>
-            </div>
+                              <% }) %>
+                                <% id++; %>
+                                  <% amen++; %>
+                                    <% }); %>
+                                      <% } %>
 
-            <div  class="list1">
-              <div>Room feautures</div>
-              <ul>
-                <% if(hotel1!=="") {%>
-                  <% let id=1; %>
-                  <% let amen=0; %>
-                  <% hotel1.forEach((hotel) => { %>
-                    <% let name = hotel.RoomFeatures.split(',') %>
-                    <% name.forEach((feat) =>{ %>
-                      <% if(feat){ %>
-                        <li id=<%= id %>><%=feat %> </li>
-                      <%}%>
-                    <% }) %>
-                  <% id++; %>
-                  <% amen++; %>
-                  <% }); %>
-              <% } %> 
-
-              </ul>
-            </div>
-
-            <div  class="list1">
-              <div>Room types</div>
-              <ul>
-                <% if(hotel1!=="") {%>
-                  <% let id=1; %>
-                  <% let amen=0; %>
-                  <% hotel1.forEach((hotel) => { %>
-                    <% let name = hotel.RoomTypes %>
-                    <% name.forEach((type) =>{ %>
-                      <% if(type){ %>
-                        <li id=<%= id %>><%=type.Name%> - <%=type.Price%>LE Per Night</li>
-                      <%}%>
-                    <% }) %>
-                  <% id++; %>
-                  <% amen++; %>
-                  <% }); %>
-              <% } %> 
-              </ul>
-            </div>
+            </ul>
           </div>
-         </div>
-        <div class="booking">
+
+          <div class="list1">
+            <div>Room feautures</div>
+            <ul>
+              <% if(hotel1!=="" ) {%>
+                <% let id=1; %>
+                  <% let amen=0; %>
+                    <% hotel1.forEach((hotel)=> { %>
+                      <% let name=hotel.RoomFeatures.split(',') %>
+                        <% name.forEach((feat)=>{ %>
+                          <% if(feat){ %>
+                            <li id=<%=id %>><%=feat %>
+                            </li>
+                            <%}%>
+                              <% }) %>
+                                <% id++; %>
+                                  <% amen++; %>
+                                    <% }); %>
+                                      <% } %>
+
+            </ul>
+          </div>
+
+          <div class="list1">
+            <div>Room types</div>
+            <ul>
+              <% if(hotel1!=="" ) {%>
+                <% let id=1; %>
+                  <% let amen=0; %>
+                    <% hotel1.forEach((hotel)=> { %>
+                      <% let name=hotel.RoomTypes %>
+                        <% name.forEach((type)=>{ %>
+                          <% if(type){ %>
+                            <li id=<%=id %>><%=type.Name%> - <%=type.Price%>LE Per Night</li>
+                            <%}%>
+                              <% }) %>
+                                <% id++; %>
+                                  <% amen++; %>
+                                    <% }); %>
+                                      <% } %>
+            </ul>
+          </div>
+        </div>
+      
+      <% if(user.Type !=="admin" || user === ""){%>  
+      <div class="booking">
         <form id="bForm" action="<%=hotel1[0].Name%>/add" method="post">
           <div id="inout">
 
             <div id="in">
               <div>
-                  <label for="checkIn" class="l">Check In</label>
-                  <input type="date" id="checkIn" name="checkIn">
+                <label for="checkIn" class="l">Check In</label>
+                <input type="date" id="checkIn" name="checkIn">
 
-                  <div id="ci-error" class="error-message">
-                  </div>
+                <div id="ci-error" class="error-message">
+                </div>
               </div>
-              
             </div>
 
             <div id="out">
               <div>
-                  <label for="checkOut" class="l">Check Out</label>
-                  <input type="date" id="checkOut" name="checkOut">
+                <label for="checkOut" class="l">Check Out</label>
+                <input type="date" id="checkOut" name="checkOut">
 
-                  <div id="co-error" class="error-message">
-                  </div>
-             </div>
-             
-             </div>
+                <div id="co-error" class="error-message">
+                </div>
+              </div>
+            </div>
 
           </div>
 
+          <div id="reserv">
+            <div>
+              <input id="dropbtn1" list="Adults" placeholder="Adults" name="adults">
+              <datalist id="Adults">
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10"></option>
+              </datalist>
+              <div id="ad-error" class="error-message">
+              </div>
+              <input id="dropbtn2" list="Children" placeholder="Children">
+              <datalist id="Children">
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10"></option>
+              </datalist>
+              <div id="chi-error" class="error-message">
+              </div>
+            </div>
 
-          
-        <div id="reserv">
+            <div>
+              <input id="dropbtn3" list="Rooms" placeholder="Rooms" name="rooms">
+              <datalist id="Rooms">
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10"></option>
+              </datalist>
+              <div id="r-error" class="error-message">
+              </div>
+              <input id="dropbtn4" list="Types" placeholder="Room Type">
+              <datalist id="Types">
+                <% if(hotel1[0]!=="" ){%>
+                  <% let rooms=hotel1[0].RoomTypes%>
+                    <% rooms.forEach((room)=>{%>
+                      <% if(room){%>
+                        <option value="<%=room.Name%>"></option>
+                        <%}%>
+
+                          <%})%>
+                            <%}%>
+              </datalist>
+              <div id="t-error" class="error-message">
+              </div>
+            </div>
+
+          </div>
           <div>
-            <input id="dropbtn1" list="Adults" placeholder="Adults" name="adults">
-          <datalist id="Adults">
-            <option value="1"></option>
-            <option value="2"></option>
-            <option value="3"></option>
-            <option value="4"></option>
-            <option value="5"></option>
-            <option value="6"></option>
-            <option value="7"></option>
-            <option value="8"></option>
-            <option value="9"></option>
-            <option value="10"></option>
-          </datalist>
-          <div id="ad-error" class="error-message">
+            <button id="book" onclick="bookHotel()">Check Availability</button>
+            <span id="availerror"></span>
           </div>
-            <input id="dropbtn2" list="Children" placeholder="Children">
-            <datalist id="Children">
-              <option value="1"></option>
-              <option value="2"></option>
-              <option value="3"></option>
-              <option value="4"></option>
-              <option value="5"></option>
-              <option value="6"></option>
-              <option value="7"></option>
-              <option value="8"></option>
-              <option value="9"></option>
-              <option value="10"></option>
-            </datalist>
-            <div id="chi-error" class="error-message">
-        </div>
-      </div>
-        <div>
-            <input id="dropbtn3" list="Rooms" placeholder="Rooms" name="rooms">
-          <datalist id="Rooms">
-            <option value="1"></option>
-            <option value="2"></option>
-            <option value="3"></option>
-            <option value="4"></option>
-            <option value="5"></option>
-            <option value="6"></option>
-            <option value="7"></option>
-            <option value="8"></option>
-            <option value="9"></option>
-            <option value="10"></option>
-          </datalist>
-          <div id="r-error" class="error-message">
-          </div>
-          <input id="dropbtn4" list="Types" placeholder="Room Type">
-        <datalist id="Types">
-          <% if(hotel1[0]!==""){%>
-            <% let rooms = hotel1[0].RoomTypes%>
-            <% rooms.forEach((room)=>{%>
-              <% if(room){%>
-                <option value="<%=room.Name%>"></option>
-              <%}%>
-              
-            <%})%>
-          <%}%>
-        </datalist>
-        <div id="t-error" class="error-message">
-        </div>
-      </div>
-          
-          
-        </div>
-        <div>
-          <button id="book" onclick="bookHotel()">Check Availability</button>
-        </div>
 
-        <div id="available">
-          <span id="availerror"></span>
-        </div>
+        </form>
       </div>
-        
-        <script src="/js/jazhotel.js"></script>
-    </form>
-     </div>
-
-     <div style="margin-top: 6%;">
-      <% if(hotel1[0].Reviews.length !==0){%>
-        <h2 style="margin-left:200px;">Reviews</h2>
       <%}%>
-        
-    </div>
+      <script src="/js/jazhotel.js"></script>
 
-    <div class="first"> 
-        <% let start=0; %>
-        <% while(start < hotel1[0].Reviews.length) { %>
-            <div class="reviews">     
-               <div class="rev">
+      <% if(hotel1[0].Reviews.length !==0){%>
+        <div style="margin-top: 6%;">
+          <h2>Reviews</h2>
+        </div>
+        <div class='first'>
+          <% revs=hotel1[0].Reviews%>
+            <% revs.forEach((rev)=>{%>
+              <div class="reviews">
+                <div class="rev">
+                  <h6 class="R"><%=user.Username%> wrote a review at <%=rev.Date%></h6>
+                </div>
+                <div class="rating">
+                  <% let rates=rev.Rating;%>
+                    <% for(var i=0; i<rates; i++){%>
+                      <i class="fa-solid fa-star"></i>
+                      <%}%>
+                </div>
+                <div>
+                  <p>
+                    <%=rev.Comment%>
+                  </p>
+                </div>
+              </div>
+              <%})%>
+        </div>
+        <%}%>
 
-                   <h6 class="R">Jan Erik L wrote a review at  <%=hotel1[0].Reviews[start]%></h6>
-                   <% start=start+1 %>
-               </div>
-               <div class="rating">
-                <% if(hotel1[0].Reviews[start]==="1") { %>
-                  <i class="fa-solid fa-star"></i>
-                  <% } %>
-                  <%  if(hotel1[0].Reviews[start]==="2") { %>
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <% } %>
-                   <% if(hotel1[0].Reviews[start]==="3") { %>
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <% } %>
-                   <% if(hotel1[0].Reviews[start]==="4") { %>
-                    <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <i class="fa-solid fa-star"></i>
-                   <% } %>
-                   <% if(hotel1[0].Reviews[start]==="5"){ %>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <% } %>
-
-               </div>
-               <% start=start+1 %>
-                   <p class="R"> <%=hotel1[0].Reviews[start] %></p>
-                   <% start=start+1 %>
-           </div>
-       <% } %>
-   </div>
-
-      <div class="addReviews">
-        <h3>Add Review</h3>
-        <form method="post" action="/hotels/:<%=hotel1[0].Name %>" id="form">
-          <input type="text" name="hotel" id="hotel" value="<%=hotel1[0].Name %>">
-        <textarea cols="60" rows="5" id="addrev" name="addrev"></textarea>
-        <h3>Rating</h3>
-        <input id="dropbtn3" list="Rating" placeholder="Rating" name="rating">
+        <% if(user.Type !=="admin"|| user === ""){%>
+        <div class="addReviews">
+          <h3>Add Review</h3>
+          <form method="post" action="" id="form">
+            <input type="text" name="hotel" id="hotel" value="<%=hotel1[0].Name %>">
+            <textarea cols="60" rows="5" id="addrev" name="comment"></textarea>
+            <h3>Rating</h3>
+            <input id="dropbtn5" list="Rating" placeholder="Rating" name="rating">
             <datalist id="Rating">
               <option value="1"></option>
               <option value="2"></option>
@@ -393,12 +412,15 @@
               <option value="4"></option>
               <option value="5"></option>
             </datalist>
-        <div><button type="submit" id="sub" name="sub" onclick="addReview()">submit</button></div>
+            <div><button type="submit" class="subutton " name="sub" onclick="addReview()">submit</button></div>
+            <span id="reverror"><%=msg%></span>
 
-        </form>
-      </div>
-
-      <%- include("partials/footer.ejs") %>
+          </form>
+        </div>
+        <%}%>
+</div>
+        <%- include("partials/footer.ejs") %>
 
 </body>
+
 </html>

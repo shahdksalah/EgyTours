@@ -14,6 +14,8 @@
     <h1 style="margin-left:2%;">Shopping Cart</h1>
     <div class="cart">
         <div class="left">
+            <% if(hotels!=""){ %>
+                <% hotels.forEach(hotel=>{%>    
             <div class="items" id="item1">
                 <div class="image">
                     <div>
@@ -74,8 +76,9 @@
                     <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('item1')"></i>
                     <p>$ 897.25</p>
                 </div>
-            
             </div>
+               <% }) %>
+            <% } %>
         
 
         <div class="items" id="item2">

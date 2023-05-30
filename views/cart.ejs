@@ -8,35 +8,36 @@
 <body>
 
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
-
+ 
     <%- include("partials/headerPages.ejs") %>
 
     <h1 style="margin-left:2%;">Shopping Cart</h1>
+    <% var j=0; %>
+    <% var id=1; %>
     <div class="cart">
-        <div class="left">
+        <div class="left" id="<% id %>">
             <% if(hotels!="" && cart!=""){ %>
-                <% for(var i=0;i<hotels.length;i++){%>  
-                    <% console.log(i) %>  
+                <%hotels.forEach((hotel)=>{%>  
             <div class="items" >
                 <div class="image">
                     <div>
-                        <img src="../images/Hotels/<%= hotels[i].Picture[0] %>" alt="icon" style="width:250px; height:200px;">
+                        <img src="../images/Hotels/<%= hotel.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
                     </div>
                 </div>
                 <div class="item-info">
         
                     <div>
-                        <h2><%= hotels[i].Name %></h2>
+                        <h2><%= hotel.Name %></h2>
                     </div>
                     
                     <div class="section">
-                        <% if(hotels[i].Reviews.length!==0){%>
-                              <% let revs = hotels[i].Reviews%>
+                        <% if(hotel.Reviews.length!==0){%>
+                              <% let revs = hotel.Reviews%>
                               <% let sum=0%>
                               <% revs.forEach((rev)=>{%>
                               <% sum = sum + parseInt(rev.Rating);%>
                               <%})%>
-                              <% let avg = sum / hotels[i].Reviews.length;%>
+                              <% let avg = sum / hotel.Reviews.length;%>
                             <span>
                               <p style="font-size: 50px;"><%=avg%></p>
                            </span>
@@ -49,11 +50,11 @@
                             </span>
               
                             <span>
-                              <%=hotels[0].Reviews.length%>
-                              <% if(hotels[i].Reviews.length > 1) {%>
+                              <%=hotel.Reviews.length%>
+                              <% if(hotel.Reviews.length > 1) {%>
                                  reviews
                               <%}%>
-                              <% if(hotels[i].Reviews.length == 1) {%>
+                              <% if(hotel.Reviews.length == 1) {%>
                                 review
                              <%}%>
                             </span>
@@ -66,7 +67,7 @@
                             <i class="fa-solid fa-people-group"></i>
                         </div>
                         <div>
-                            <p><%= cart.Hotels[i].adults %> Adults, <%= cart.Hotels[i].children %> Children</p> 
+                            <p><%= cart.Hotels[j].adults %> Adults, <%= cart.Hotels[j].children %> Children</p> 
                         </div>
                     </div>
                     
@@ -75,7 +76,7 @@
                             <i class="fa-solid fa-calendar-days"></i>
                         </div>
                         <div>
-                            <p> From: <%=cart.Hotels[i].checkIn %>  To: <%=cart.Hotels[i].checkOut %></p>
+                            <p> From: <%=cart.Hotels[j].checkIn %>  To: <%=cart.Hotels[j].checkOut %></p>
                         </div>
                     </div>
                     
@@ -84,7 +85,7 @@
                             <i class="fa-solid fa-bed"></i>
                         </div>
                         <div>
-                            <p>Rooms: <%= cart.Hotels[i].rooms %>x <%=cart.Hotels[i].roomType  %></p>
+                            <p>Rooms: <%= cart.Hotels[j].rooms %>x <%=cart.Hotels[j].roomType  %></p>
                         </div>
                     </div>
 
@@ -101,10 +102,12 @@
                     
                 <div class="item-right">
                     <!-- <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('item1')"></i> -->
-                    <p>$ <%= cart.Hotels[i].price %></p>
+                    <p>$ <%= cart.Hotels[j].price %></p>
                 </div>
             </div>
-               <% }%>
+             <% j=j+1; %>
+             <% id++;s %>
+               <% })%>
             <% } %>
         </div>
 

@@ -16,14 +16,16 @@ router.get('/', async function(req,res)
             var counter=0;
             var length=cart.Hotels.length;
             cart.Hotels.forEach( async hotel=>{
+                
               await Hotel.find().where("_id").equals(hotel.id)
               .then(resu=>{
+                console.log(1);
                    console.log("hotel added");
                    hotels.push(resu[0]);
                    counter++;
-                   if(counter===length-1){
+                   if(counter===length){
+                    console.log("hotels:")
                         console.log(hotels);
-                        console.log(cart);
                         res.render("cart", {user: (!req.session.authenticated) ? "" : req.session.user,
                         cart:cart,hotels:hotels} );
                    }

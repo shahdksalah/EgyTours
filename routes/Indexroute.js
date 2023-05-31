@@ -8,53 +8,53 @@ const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const lodash = require('lodash');
 const bcrypt = require("bcrypt");
-const city=require('../models/addcitiesdb.js');
-const hotels=require('../models/hotel.schema.js');
-const activities=require('../models/activity.schema.js');
+const city = require('../models/addcitiesdb.js');
+const hotels = require('../models/hotel.schema.js');
+const activities = require('../models/activity.schema.js');
 
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 let path = require('path');
+router.use(bodyParser.json());
 
 
-
-router.get('/',async function (req, res){
-  var array=[]; 
-  array=await city.find();
-  res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user , cities:array});
+router.get('/', async function (req, res) {
+  var array = [];
+  array = await city.find();
+  res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array });
 });
 
-router.get('/cities/:name', async function(req,res){
-  var disphotel=[];
-  var dispactiv=[];
+router.get('/cities/:name', async function (req, res) {
+  var disphotel = [];
+  var dispactiv = [];
   var hotloc;
   var cityname;
-  var cities1=[];
-  var Hotels=[];
-  var activ=[];
+  var cities1 = [];
+  var Hotels = [];
+  var activ = [];
   var url = req.params.name;
 
-  Hotels=await hotels.find();
-  activ=await activities.find();
-  cities1=await city.find({"Name":url});
+  Hotels = await hotels.find();
+  activ = await activities.find();
+  cities1 = await city.find({ "Name": url });
 
-  Hotels.forEach((hotels1)=>{
-    hotloc=hotels1.Location;
-    if(hotloc.includes(url)){
+  Hotels.forEach((hotels1) => {
+    hotloc = hotels1.Location;
+    if (hotloc.includes(url)) {
       disphotel.push(hotels1);
     }
   })
-  activ.forEach((activ1)=>{
-    cityname=activ1.Name;
-    if(cityname.includes(url)){
+  activ.forEach((activ1) => {
+    cityname = activ1.Name;
+    if (cityname.includes(url)) {
       dispactiv.push(activ1);
     }
   })
-  
-  console.log(Hotels);
-  console.log(activ);
-  res.render("cities",{ user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
-  avtivities:activ,hotels:Hotels});
+
+  res.render("cities", {
+    user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
+    avtivities: activ, hotels: Hotels
+  });
 });
 
 
@@ -93,65 +93,79 @@ router.post('/', urlencodedParser, [
     console.log("error");
   else {
     bcrypt
-  .hash(request.body.psw, saltRounds)
-  .then(hash => {
-    hashedPass=hash;
+      .hash(request.body.psw, saltRounds)
+      .then(hash => {
+        hashedPass = hash;
 
-    console.log('Hash ', hashedPass)
-    const userdetails = new User({
-      Username: request.body.unam,
-      Email: request.body.email,
-      PhoneNumber: request.body.number,
-      Password: hashedPass,
-      ConfPassword: hashedPass,
-      Type: request.body.type
-    });
+        console.log('Hash ', hashedPass)
+        const userdetails = new User({
+          Username: request.body.unam,
+          Email: request.body.email,
+          PhoneNumber: request.body.number,
+          Password: hashedPass,
+          ConfPassword: hashedPass,
+          Type: request.body.type
+        });
 
-    userdetails.save()
-      .then((result) => {
-        console.log('user added');
-        response.redirect("/");
-      });
-  })
-  .catch(err => console.error(err.message))
- 
+        userdetails.save()
+          .then((result) => {
+            console.log('user added');
+            response.redirect("/");
+          });
+      })
+      .catch(err => console.error(err.message))
+
 
   }
 });
 
-
+const checkUN =  (req,res)=>{
+  var query = { Username: req.body.Username };
+    User.find(query)
+        .then(result => {
+            if (result.length > 0) {
+                res.send('taken');
+            }
+            else {
+                res.send('available');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+router.post('/checkUN', checkUN);
 
 
 router.post('/login', urlencodedParser, [
   check('username', 'Username is empty')
     .exists(),
-  check('password', 'password is empty')
+  check('password', 'Password is empty')
     .exists()
 ], (request, response) => {
   const errors = validationResult(request)
   if (!errors.isEmpty()) {
-      const alert = errors.array();
-      console.log(alert[0]);
+    const alert = errors.array();
+    console.log(alert[0]);
   }
-  else{
-  console.log("entered");
-  var query = { Username: request.body.username};
-  User.find(query)
-    .then(result => {
-    bcrypt
-    .compare(request.body.password, result[0].Password)
-    .then(res => {
-      console.log(res) 
-      if(res){
-      console.log(result[0]);
-      request.session.user = result[0];
-      request.session.authenticated = true;
-      response.redirect('back')
-      }
-    })
-    .catch(err => console.error(err.message)) 
+  else {
+    console.log("entered");
+    var query = { Username: request.body.username };
+    User.find(query)
+      .then(result => {
+        bcrypt
+          .compare(request.body.password, result[0].Password)
+          .then(res => {
+            if (res) {
+              console.log(result[0]);
+              request.session.user = result[0];
+              request.session.authenticated = true;
+              response.redirect('back')
+            }
+          })
+          .catch(err => console.error(err.message))
 
-    });
+      });
   }
 });
 

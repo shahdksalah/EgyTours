@@ -4,11 +4,7 @@ const Hotel = require('../models/hotel.schema.js');
 const nodemailer = require('nodemailer');
 
 const viewForm=async (req,res)=>{
-    const errors = validationResult(request)
-  if (!errors.isEmpty()) {
-    console.log(errors.array());
-  }
-  else{
+  
     let cart;
     let hotels=[];
     if(req.session.authenticated){    //user signed in
@@ -36,10 +32,15 @@ const viewForm=async (req,res)=>{
             })      
         })
     }
-  }
+  
 }
 
 const pay=async(req,res)=>{
+    const errors = validationResult(request)
+    if (!errors.isEmpty()) {
+      console.log(errors.array());
+    }
+    else{
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -93,6 +94,7 @@ const pay=async(req,res)=>{
     .catch(error=>{
         console.log(error);
     })
+}
 }
 
 module.exports={viewForm,pay};

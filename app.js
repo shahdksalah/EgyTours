@@ -1,7 +1,6 @@
 const express=require('express')
 const app=express();
 const mongoose=require('mongoose');
-const User= require('./models/usersdb.js');
 const session=require('express-session');
 const PORT=8080;
 
@@ -26,11 +25,11 @@ const profileRoute=require('./routes/profileroute.js');
 const usersRoute=require('./routes/usersroute.js');
 const weeklysummaryRoute=require('./routes/weeklysumroute.js');
 const addcity=require('./routes/addcitiesroute.js');
+const paymentRoute=require('./routes/paymentroute.js')
 
 
 const bodyParser = require('body-parser');
 
-const urlencodedParser=bodyParser.urlencoded({ extended: false });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -70,6 +69,7 @@ app.use("/editactivities",editactivitiesRoute);
 app.use("/edithotels",edithotelsRoute);
 app.use("/adminboard",adminboardRoute);
 app.use("/cart",cartRoute);
+app.use("/paymentForm",paymentRoute);
 app.use("/aboutus",aboutusRoute);
 app.use("/food1",food1Route);
 app.use("/ourteam",ourteamRoute);

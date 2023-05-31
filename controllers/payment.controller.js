@@ -2,6 +2,7 @@ const Cart=require('../models/cartdb.js');
 const Bookings=require('../models/bookingdb.js');
 const Hotel = require('../models/hotel.schema.js');
 const nodemailer = require('nodemailer');
+const { validationResult } = require('express-validator');
 
 const viewForm=async (req,res)=>{
   
@@ -81,7 +82,7 @@ const pay=async(req,res)=>{
                         from: 'egyytourss@gmail.com',
                         to: req.session.user.Email,
                         subject: 'Booking Confirmed',
-                        text: 'Your booking is confirmed'
+                        text: emailText
                       };
 
                       transporter.sendMail(mailOptions, function(error, info){

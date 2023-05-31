@@ -1,6 +1,7 @@
 const Cart=require('../models/cartdb.js');
 const Bookings=require('../models/bookingdb.js');
 const Hotel = require('../models/hotel.schema.js');
+const nodemailer = require('nodemailer');
 
 const viewForm=async (req,res)=>{
     let cart;
@@ -33,6 +34,14 @@ const viewForm=async (req,res)=>{
 }
 
 const pay=async(req,res)=>{
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'egyytourss@gmail.com',
+          pass: 'rsxswraupskjwfym'
+        }
+      });
+
     var booking;
     await Cart.find().where("Userid").equals(req.session.user._id)
     .then(result=>{
@@ -48,6 +57,22 @@ const pay=async(req,res)=>{
                 await Cart.findOneAndDelete().where("Userid").equals(req.session.user._id)
                 .then(()=>{
                     console.log("cart deleted");
+                    const mailOptions = {
+                        from: 'egyytourss@gmail.com',
+                        to: req.session.user.Email,
+                        subject: 'Booking Confirmed',
+                        text: 'Your booking is confirmed'
+                      };
+
+                      transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                       console.log(error);
+                        } else {
+                          console.log('Email sent: ' + info.response);
+                          // do something useful
+                        }
+                      });
+
                     res.redirect('/');
                 })
                 .catch(err=>{

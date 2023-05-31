@@ -145,7 +145,10 @@
                 <%})%>
                 <% let avg = sum / hotel1[0].Reviews.length;%>
               <span>
-                <strong style="font-size: 50px;"><%=avg%></strong>
+                <%if(Math.floor(avg) > 0){%>
+                  <strong style="font-size: 50px;"><%=Math.floor(avg)%>/5</strong>
+                <%}%>
+                
             </span>
             <div id="exc">
                 <h3>
@@ -268,7 +271,7 @@
       
       <% if(user.Type !=="admin" || user === ""){%>  
       <div class="booking">
-        <form id="bForm" action="<%=hotel1[0].Name%>/add" method="post">
+        <form id="bForm" action="<%=hotel1[0].Name%>" method="post">
           <div id="inout">
 
             <div id="in">
@@ -371,15 +374,13 @@
       <script src="/js/jazhotel.js"></script>
 
       <% if(hotel1[0].Reviews.length !==0){%>
-        <div style="margin-top: 6%;">
           <h2>Reviews</h2>
-        </div>
         <div class='first'>
           <% revs=hotel1[0].Reviews%>
             <% revs.forEach((rev)=>{%>
               <div class="reviews">
                 <div class="rev">
-                  <h6 class="R"><%=user.Username%> wrote a review at <%=rev.Date%></h6>
+                  <h6 class="R"><%=rev.Username%> wrote a review at <%=rev.Date%></h6>
                 </div>
                 <div class="rating">
                   <% let rates=rev.Rating;%>
@@ -418,6 +419,7 @@
           </form>
         </div>
         <%}%>
+      </div>
 </div>
         <%- include("partials/footer.ejs") %>
 

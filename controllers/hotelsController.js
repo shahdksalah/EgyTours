@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Hotel = require('../models/hotel.schema.js');
 const Cart = require('../models/cartdb.js');
+const moment = require('moment');
 
 
 const getHotels = async (req, res) => {
@@ -31,7 +32,7 @@ const addToCart = async (req, res) => {
         days=date2.diff(date1, 'days')
     }
     
-     var hotel=await Hotell.find({"_id":req.params.id})
+    var hotel=await Hotel.find({"_id":req.params.id})
      .then(result=>{
         hotel=result[0];
         console.log(hotel);
@@ -106,6 +107,7 @@ const postReview = async (req, res) => {
             hour12: false,
         });
         var newrev = {
+            Username: req.session.user.Username,
             Rating: req.body.rating,
             Comment: req.body.comment,
             Date: nowdate,
@@ -122,7 +124,7 @@ const postReview = async (req, res) => {
                     .then(result => {
                         res.render("hotel1", {
                             hotel1: (Hotels === 'undefined' ? "" : Hotels),
-                            user: (!req.session.authenticated) ? "" : req.session.user, msg: ""
+                            user: (!req.session.authenticated) ? "" : req.session.user, revmsg: ""
                         });
                     })
 
@@ -138,7 +140,7 @@ const postReview = async (req, res) => {
             .then(() => {
                 res.render("hotel1", {
                     hotel1: (Hotels === 'undefined' ? "" : Hotels),
-                    user: (!req.session.authenticated) ? "" : req.session.user, msg: "You must sign in to add a review"
+                    user: (!req.session.authenticated) ? "" : req.session.user, revmsg: "You must sign in to add a review"
                 });
             }).catch(err => {
                 console.log(err);

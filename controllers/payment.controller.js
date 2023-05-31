@@ -50,10 +50,21 @@ const pay=async(req,res)=>{
       });
 
     var booking;
+    var emailText;
     await Cart.find().where("Userid").equals(req.session.user._id)
     .then(result=>{
         if(result){
             booking=result[0];
+            
+            booking.Hotels.forEach(async hotel=>{
+                var h;
+                await Hotel.find().where("_id").equals(hotel.id)
+                .then(res=>{
+                    h=res[0];
+                })
+            })
+
+
             const bookings=new Bookings({
                 Userid:booking.Userid,
                 Hotels:booking.Hotels,

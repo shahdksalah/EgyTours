@@ -5,6 +5,10 @@ const fileUpload = require('express-fileupload');
 
 router.use(fileUpload());
 
+const getAddHotel = async (req, res) => {
+    res.render("AddHotel");
+}
+
 const addHotel = async (req, res) => {
     var imgFile;
     var uploadPath;
@@ -61,4 +65,4 @@ const addHotel = async (req, res) => {
             console.log(err);
         })
 }
-module.exports={addHotel};
+module.exports={addHotel,getAddHotel};

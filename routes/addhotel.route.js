@@ -18,9 +18,7 @@ router.use((req, res, next) => {
 router.use(fileUpload());
 
 
-router.get('/', function (req, res) {
-    res.render("AddHotel");
-});
+router.get('/', addHotel.getAddHotel);
 
 router.post('/', addHotel.addHotel);
 module.exports = router;

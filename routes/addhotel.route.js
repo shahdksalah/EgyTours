@@ -35,9 +35,10 @@ router.post('/', (req, res) => {
     var paths = []; 
     for (var i = 0; i < numOfImgs; i++) {
         extension = imgFile[i].name.split('.')[1];
-        uploadPath = __dirname + '/../public/images/Hotels/' + req.body.name + (i + 1) + '.' + extension;
+        picname = req.body.name.split(" ")[0];
+        uploadPath = __dirname + '/../public/images/Hotels/' + picname + (i + 1) + '.' + extension;
         imgFile[i].mv(uploadPath);
-        paths[i] = req.body.name + (i + 1) + '.' + extension;
+        paths[i] = picname + (i + 1) + '.' + extension;
     }
 
     var types=[];
@@ -45,11 +46,13 @@ router.post('/', (req, res) => {
     var reqtypes = req.body.finaltypes.split(',');
     var reqprices = req.body.finalprices.split(',');
     var reqrooms = req.body.finalrooms.split(',');
+    var reqcaps = req.body.finalcaps.split(',');
     for(var i=0; i<reqtypes.length-1;i++){
         types[i] ={
             Name: reqtypes[i],
             Price: reqprices[i],
             Rooms: reqrooms[i],
+            Capacity: reqcaps[i],
         }
     }
 

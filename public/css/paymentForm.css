@@ -236,6 +236,18 @@ background-color:#eee;
   background-repeat: no-repeat;
   background-position: right 50px center;
 }
+.subBtn:hover{
+    cursor:pointer;
+}
+.subBtn{
+    color: #7DC855;
+    font-weight: 500;
+    font-size: 12pt;
+    background-color: transparent;
+    height:60px;
+    width: 350px;
+    border-color: transparent;
+}
 .cvv-tooltip-img {
   display: inline-block;
   vertical-align: middle;

@@ -1,4 +1,5 @@
 const Cart=require('../models/cartdb.js');
+const Bookings=require('../models/bookingdb.js');
 const Hotel = require('../models/hotel.schema.js');
 
 const viewForm=async (req,res)=>{
@@ -30,7 +31,10 @@ const viewForm=async (req,res)=>{
             
      })
 }
-
 }
 
-module.exports={viewForm};
+const pay=(req,res)=>{
+    
+}
+
+module.exports={viewForm,pay};

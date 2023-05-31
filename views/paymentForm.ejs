@@ -33,7 +33,7 @@
 
         <div class="right">
         
-            <form action="" method="post">
+            <form action="/payment" method="post">
                 
                 <div class="pymt-radio">
 
@@ -61,14 +61,14 @@
                 <div class="cc-field">
                 <div class="cc-title">Credit Card Number
                 </div>
-                <input type="text" class="input cc-txt text-validated"  />
+                <input type="text" class="input cc-txt text-validated" name="number"  />
                 </div>
                 </div>
                 <div class="row-cc">
                 <div class="cc-field">
                 <div class="cc-title">Expiry Date
                 </div>
-                <select class="input cc-ddl">
+                <select class="input cc-ddl" name="expMonth">
                 <option selected>01</option>
                 <option>02</option>
                 <option>03</option>
@@ -82,7 +82,7 @@
                 <option>11</option>
                 <option>12</option>          
                 </select>
-                <select class="input cc-ddl">
+                <select class="input cc-ddl" name="expYear">
                 <option>01</option>
                 <option>02</option>
                 <option>03</option>
@@ -119,14 +119,14 @@
                 <div class="cc-field">
                 <div class="cc-title">CVV Code<span class="numberCircle">?</span>
                 </div>
-                <input type="text" class="input cc-txt"/>
+                <input type="text" class="input cc-txt"  name="cvv"/>
                 </div>
                 </div>
                 <div class="row-cc">
                 <div class="cc-field">
                 <div class="cc-title">Name on Card
                 </div>
-                <input type="text" class="input cc-txt"/>
+                <input type="text" class="input cc-txt" name="name"/>
                 </div>
                 </div>    
 
@@ -134,7 +134,7 @@
                 <div class="button-master-container">
                 <div class="button-container"><a href="/cart">Return to Cart</a>
                 </div>
-                <div class="button-container button-finish"><a href="#">Finish Booking</a>
+                <div class="button-container button-finish"><button type="submit" class="subBtn">Finish Booking</button>
                 </div>
                 </div>
         </form>

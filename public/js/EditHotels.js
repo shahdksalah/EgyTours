@@ -92,8 +92,12 @@ function replaceInfo(id) {
 
 
 
-function replaceInfoImages(id, value, query) {
+function replaceInfoImages(id, value,inp) {
   document.getElementById(id).setAttribute('src', value);
+  let del = "\\";
+  var finalid = inp.split(del).slice(2);
+  console.log(finalid);
+  document.getElementById(id).setAttribute('alt', finalid);
 }
 
 function showInput(id, imgid) {
@@ -101,7 +105,7 @@ function showInput(id, imgid) {
   inp.hidden = false;
   inp.addEventListener('change', (event) => {
     var imgsrc = URL.createObjectURL(event.target.files[0]);
-    replaceInfoImages(imgid, imgsrc);
+    replaceInfoImages(imgid, imgsrc,inp.value);
     var img = document.getElementById(imgid);
     img.style.border = 'solid 4px red';
     inp.hidden = true;
@@ -168,39 +172,46 @@ function addItem(item, finalres, newid, list, errorid) {
 var edittype = document.getElementById('edittype');
 var editprice = document.getElementById('editprice');
 var editrooms = document.getElementById('editrooms');
+var editcaps = document.getElementById('editcaps');
 function updateType(idli) {
 
   document.getElementById('addtype').style.display="none";
   document.getElementById('errortype').style.display="none";
   document.getElementById('errorrooms').style.display="none";
+  document.getElementById('errorcap').style.display="none";
   var item = document.getElementById(idli);
   var oldtype = `${item.innerText.slice(0, item.innerText.indexOf('-') - 1)}`
   var oldprice = `${item.innerText.slice(item.innerText.indexOf('-') + 2, item.innerText.indexOf('L'))}`;
   var oldroom = `${item.innerText.slice(item.innerText.indexOf('|') + 2, item.innerText.indexOf('R')-1)}`;
+  var oldcap = `${item.innerText.slice(item.innerText.indexOf(':') + 2, item.innerText.length)}`;
 
   edittype.value = oldtype;
   editprice.value = oldprice;
   editrooms.value = oldroom;
+  editcaps.value = oldcap;
+
 
   edittype.addEventListener('change', () => {
-    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms`;
+    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms | Max. Capacity: ${editcaps.value}`;
   })
 
   editprice.addEventListener('change', () => {
-    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms`;
+    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms | Max. Capacity: ${editcaps.value}`;
   })
 
   editrooms.addEventListener('change', () => {
-    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms`;
+    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms | Max. Capacity: ${editcaps.value}`;
+  })
+  editcaps.addEventListener('change', () => {
+    item.innerText = `${edittype.value} - ${editprice.value}LE | ${editrooms.value} Rooms | Max. Capacity: ${editcaps.value}`;
   })
 
   document.getElementById('showedit').style.display = "block";
 }
 
-function removeItem(butid,liid,upd){
-  document.getElementById(butid).remove();
+function removeItem(liid,butid){
+  document.getElementById(butid.id).remove();
   document.getElementById(liid).remove();
-  document.getElementById(upd).remove();
 }
 
 var newt = 1;
@@ -208,6 +219,7 @@ function donez(newid, list) {
     var price = document.getElementById('price');
     var typein = document.getElementById('addedtype');
     var roomin = document.getElementById('rooms');
+    var capin = document.getElementById('cap');
 
     var newli;
     var updbut = document.createElement('button');
@@ -235,13 +247,15 @@ function donez(newid, list) {
     
 
     
-    if (price.value !== "") {
+    if (price.value !== "" && capin.value!=="" && roomin.value!=="") {
         newli = document.createElement('li');
         newli.setAttribute('id', newid + newt);
         document.getElementById('errortype').innerHTML = "";
-        document.getElementById('errortyperooms').innerHTML = "";
+        document.getElementById('errorrooms').innerHTML = "";
+        document.getElementById('errorcap').innerHTML = "";
+        document.getElementById('errorprice').innerHTML = "";
         document.getElementById('success').innerHTML = "Saved successfully";
-        newli.innerHTML = `${typein.value} - ${price.value}LE | ${roomin.value} Rooms`;
+        newli.innerHTML = `${typein.value} - ${price.value}LE | ${roomin.value} Rooms | Max. Capacity: ${capin.value}`;
         document.getElementById(list).appendChild(newli);
         document.getElementById(newli.id).parentNode.insertBefore(updbut, newli.nextSibling);
         document.getElementById(newli.id).parentNode.insertBefore(rembut, newli.nextSibling);
@@ -250,6 +264,7 @@ function donez(newid, list) {
         price.value = "";
         typein.value = "";
         roomin.value = "";
+        capin.value = "";
 
 
         newt++;
@@ -262,15 +277,18 @@ function donez(newid, list) {
         typein.addEventListener("keydown", () => {
             document.getElementById('success').innerHTML = "";
             document.getElementById('errortype').innerHTML = "";
-            document.getElementById('errortyperooms').innerHTML = "";
+            document.getElementById('errorrooms').innerHTML = "";
+            document.getElementById('errorcap').innerHTML = "";
         })
     }
     else if(roomin.value===""){
-      document.getElementById('errortyperooms').innerHTML = "You must enter number of rooms";
+      document.getElementById('errorrooms').innerHTML = "You must enter number of rooms";
+    }
+    else if(capin.value===""){
+      document.getElementById('errorcaps').innerHTML = "You must enter maximum capacity";
     }
     else {
-        document.getElementById('errortype').innerHTML = "You must enter a price";
-        document.getElementById('success').innerHTML = "";
+        document.getElementById('errorprice').innerHTML = "You must enter a price";
     }
 
     
@@ -305,34 +323,33 @@ function addType() {
 
 
 
-document.getElementById('form').addEventListener('submit', event => {
-  var featlist = document.getElementById(`[id^="featli"]`);
-  var feattext = documentgetElementById('finalfeats');
+document.getElementById('MYFORM').addEventListener('submit', event => {
+  var featlist = document.querySelectorAll(`[id^="featli"]`);
+  var feattext = document.getElementById('finalfeats');
 
-  var amenlist = document.getElementById(`[id^="amenli"]`);
+  var amenlist = document.querySelectorAll(`[id^="amenli"]`);
   var amentext = document.getElementById('finalamens');
 
-  var typelist = document.getElementById(`[id^="typeli"]`);
+  var typelist = document.querySelectorAll(`[id^="typeli"]`);
   var typetext = document.getElementById('finaltypes');
   var pricetext = document.getElementById('finalprices');
+  var roomtext = document.getElementById('finalrooms');
+  var captext = document.getElementById('finalcaps');
 
-  var images = document.getElementById(`[id^="img"]`);
-  var paths = document.getElementById('imgpaths');
-  images.forEach((img)=>{
-    paths.value += img.alt +',';
-  })
 
   for (var i = 0; i < featlist.length; i++) {
     feattext.value += `${featlist[i].innerHTML},`;
   }
 
-  for (var i = 0; i < amen.length; i++) {
+  for (var i = 0; i < amenlist.length; i++) {
     amentext.value += `${amenlist[i].innerHTML},`;
   }
 
-  for (var i = 0; i < type.length; i++) {
-    typetext.value += `${typelist[i].innerText.slice(0, item.innerText.indexOf('-') - 1)},`;
-    pricetext.value += `${typelist[i].innerText.slice(item.innerText.indexOf('-') + 2, item.innerText.indexOf('L'))}`;
+  for (var i = 0; i < typelist.length; i++) {
+    typetext.value += `${typelist[i].innerText.slice(0, typelist[i].innerText.indexOf('-') - 1)},`;
+    pricetext.value += `${typelist[i].innerHTML.slice(typelist[i].innerText.indexOf('-') + 2, typelist[i].innerText.indexOf('L'))},`;
+    roomtext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf('|') + 2, typelist[i].innerText.indexOf('R')-1)},`;
+    captext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf(':') + 2, typelist[i].innerText.length)},`;
   }
 
   

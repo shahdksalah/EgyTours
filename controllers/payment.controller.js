@@ -27,14 +27,41 @@ const viewForm=async (req,res)=>{
                         cart:cart,hotels:hotels} );
                    }
               })
-            })
-            
-     })
+            })      
+        })
 }
 }
 
-const pay=(req,res)=>{
-    
+const pay=async(req,res)=>{
+    var booking;
+    await Cart.find().where("Userid").equals(req.session.user._id)
+    .then(result=>{
+        if(result){
+            booking=result[0];
+            const bookings=new Bookings({
+                Userid:booking.Userid,
+                Hotels:booking.Hotels,
+            });
+            bookings.save()
+            .then(async()=>{
+                console.log("Booking saved")
+                await Cart.findOneAndDelete().where("Userid").equals(req.session.user._id)
+                .then(()=>{
+                    console.log("cart deleted");
+                    res.redirect('/');
+                })
+                .catch(err=>{
+                    console.log(err);
+                })
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+        }
+    })
+    .catch(error=>{
+        console.log(error);
+    })
 }
 
 module.exports={viewForm,pay};

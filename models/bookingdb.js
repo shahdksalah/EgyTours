@@ -9,7 +9,6 @@ app.use(express.urlencoded({extended:true}));
 const bookingSchema=new Schema({
     Userid:{
         type:String,
-        unique:true,
         trim:true,
         required:true,
     },

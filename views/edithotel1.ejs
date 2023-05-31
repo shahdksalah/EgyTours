@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="/css/styleUsers.css">
         <link rel="stylesheet" href="/css/styleAddHotel.css">
         <link rel="stylesheet" href="/css/styleAdminDashboard.css">
-        <link rel="stylesheet" href="/css/styleHF_ALL.css">
         <link rel="stylesheet" href="/css/styleEditHotels.css">
         <%}%>
 </head>
@@ -32,13 +31,14 @@
                 <div class="right">
                     <div id="cont">
                         <div>
-                            <form action="/updated/<%=hotel[0].Name%>" method="post" id="form">
+                            <form action="/edithotels/updated/<%=hotel[0].Name%>" method="post" id="MYFORM" enctype="multipart/form-data">
                                 <input type="text" style="display: none;" value="<%=hotel[0]._id%>">
                                 <div>
                                     <h2>Hotel Name</h2>
                                 </div>
                                 <div>
                                     <input type="text" id="hotelname" name="name" value='<%=hotel[0].Name%>'>
+                                    <input type="hidden" id="hotelid" name="id" value='<%=hotel[0]._id%>' >
                                 </div>
 
                                 <div>
@@ -56,17 +56,16 @@
                                         <div id="imagess">
                                             <% let id=1 %>
                                                 <% hotel[0].Picture.forEach((pic)=>{%>
-                                                    <img onclick='showInput("imginput<%=id%>","img<%=id%>")'
+                                                    <img onclick='showInput("imaginput<%=id%>","img<%=id%>")'
                                                         src="/images/Hotels/<%=pic%>" alt="<%=pic%>" id='img<%=id%>'
                                                         style="width:160px; height:130px">
                                                     <span>
-                                                        <input type="file" name="imginput" id="imginput<%=id%>"
-                                                            hidden>
+                                                        <input type="file" name=<%=pic%> id="imaginput<%=id%>" hidden>
                                                     </span>
                                                     <% id++%>
-                                                        <%})%>
+                                                    <%})%>
                                         </div>
-                                        <input type="text" style="display: none;" id="imgpaths" name="imgpaths">
+                                        <input type="text" style="display: none;" id="imagpaths" name="imgpaths">
                                     </div>
                                 </div>
 
@@ -88,10 +87,8 @@
                                             <% let amens=hotel[0].PropertyAmen.split(",")%>
                                                 <% amens.forEach((amen)=>{%>
                                                     <% if(amen.length!=0){%>
-                                                        <li id="amenli<%=id%>">
-                                                            <%=amen.trim()%>
-                                                        </li>
-                                                        <span><button type="button" id="delitem"
+                                                        <li id="amenli<%=id%>"><%=amen.trim()%></li>
+                                                        <span><button type="button" id="delitem<%=id%>"
                                                                 onclick="removeItem('amenli<%=id%>',this)">remove</button></span>
                                                         <% id++%>
                                                             <%}%>
@@ -100,9 +97,9 @@
                                 </div>
                                 <div>
                                     <textarea name="finalamens" id="finalamens" cols="15" rows="5"
-                                      style="display: none;"  ></textarea>
+                                    style="display: none;"  ></textarea>
                                     <input type="text" id="addedamen" name="propamentext">
-                                    <button id="add" type='button'
+                                    <button class="plus" id="add" type='button'
                                         onclick="addItem('addedamen','finalamens','amenlinew','i4')">+</button>
                                 </div>
 
@@ -117,11 +114,9 @@
                                             <% let feats=hotel[0].RoomFeatures.split(",")%>
                                                 <% feats.forEach((feat)=>{%>
                                                     <% if(feat.length!=0){%>
-                                                        <li id="featli<%=id%>">
-                                                            <%=feat.trim()%>
-                                                        </li>
-                                                        <span><button type="button" id="delitem"
-                                                                onclick="removeItem('featli<%=id%>',this)">remove</button></span>
+                                                        <li id="featli<%=id%>"><%=feat.trim()%></li>
+                                                        <span><button type="button" id="delitem2<%=id%>"
+                                                            onclick="removeItem('featli<%=id%>',this)">remove</button></span>
 
                                                         <% id++%>
                                                             <%}%>
@@ -133,7 +128,7 @@
                                     <textarea name="finalfeats" id="finalfeats" cols="15" rows="5"
                                     style="display: none;" ></textarea>
                                     <input type="text" id="addedfeat" name="roomfeattext">
-                                    <button id="add2" type='button'
+                                    <button class="plus" id="add2" type='button'
                                         onclick="addItem('addedfeat','finalfeats','featlinew','i5')">+</button>
                                 </div>
 
@@ -148,9 +143,7 @@
                                             <% let types=hotel[0].RoomTypes%>
                                                 <% types.forEach((type)=>{%>
                                                     <% if(type.length!=0){%>
-                                                        <li id="typeli<%=id%>">
-                                                            <%=type.Name%> - <%=type.Price%>LE | <%=type.Rooms%> Rooms
-                                                        </li>
+                                                        <li id="typeli<%=id%>"><%=type.Name%> - <%=type.Price%>LE | <%=type.Rooms%> Rooms | Max.Capacity: <%=type.Capacity%></li>
                                                         <button type="button" id="delitem<%=id%>" onclick="removeItem(this.id,'typeli<%=id%>','updatebut<%=id%>')">remove</button>
                                                         <button type="button" id="updatebut<%=id%>" onclick="updateType('typeli<%=id%>')">update</button>
                                                         <% id++%>
@@ -164,26 +157,32 @@
                                         <input type="number" id="editprice">
                                         <h4>New Rooms:</h4>
                                         <input type="number" id="editrooms">
+                                        <h4>New Capacity:</h4>
+                                        <input type="number" id="editcaps">
                                         <button type="button" onclick="updateDone()">done</button>
                                     </div>
                                 </div>
                                 <div id="addtype">
                                     <input type="text" id="addedtype" name="roomtypetext">
+                                    <span class='error-message' id="errortype"></span>
                                     <button class='plus' id="add" type='button'
                                         onclick="addType()">+</button>
                                 </div>
 
                                 <div id="showprice" style="display: none;">
-                                    <h4>Enter price per night </h4>
+                                    <h4>Enter Price Per Night </h4>
                                     <input type="number" id="price" name="typeprice">
-                                    <span class='error-message' id="errortype"></span>
-                                    <h4>Enter number of rooms </h4>
+                                    <span class='error-message' id="errorprice"></span>
+                                    <h4>Enter Number of Rooms </h4>
                                     <input type="number" id="rooms" name="typerooms">
-                                    <button class='plus' id="done" type='button' onclick="donez('typeli','i6')" style="width:100px"s>done</button>
                                     <span class='error-message' id="errorrooms"></span>
+                                    <h4>Enter Maxinum Capacity </h4>
+                                    <input type="number" id="cap" name="typecap">
+                                    <span class='error-message' id="errorcap"></span>
+                                    <button class='plus' id="done" type='button' onclick="donez('typeli','i6')" style="width:100px"s>done</button>
+                                    
                                 </div>
                                 <div id="errors">
-                                    <span class='error-message' id="errortype"></span>
                                 <span id="success" style="color:green"></span>
                                 </div>
                                 
@@ -192,8 +191,10 @@
                                 style="display: none;" ></textarea>
                                 <textarea name="finaltypes" id="finaltypes" cols="15" rows="5"
                                 style="display: none;" ></textarea>
-                                 <textarea name="finalrooms" id="finalrooms" cols="15" rows="5"
-                                 style="display: none;" ></textarea>
+                                <textarea name="finalrooms" id="finalrooms" cols="15" rows="5"
+                                style="display: none;"  ></textarea>
+                                 <textarea name="finalcaps" id="finalcaps" cols="15" rows="5"
+                                 style="display: none;"   ></textarea>
 
 
 

@@ -48,10 +48,6 @@ const HotelSchema = new Schema({
         type:Array,
         required:false
     },
-    Rate:{
-        type:String,
-        required:true
-    },
 },{timestamp:true});
 
 const Hotel= mongoose.model('Hotel',HotelSchema);

@@ -13,12 +13,12 @@
 
     <h1 style="margin-left:2%;">Shopping Cart</h1>
     <% var j=0; %>
-    <% var id=1; %>
+    <% var d=1; %>
     <div class="cart">
-        <div class="left" id="<% id %>">
+        <div class="left" >
             <% if(hotels!="" && cart!=""){ %>
                 <%hotels.forEach((hotel)=>{%>  
-            <div class="items" >
+            <div class="items" id="<%=d%>">
                 <div class="image">
                     <div>
                         <img src="../images/Hotels/<%= hotel.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
@@ -101,12 +101,12 @@
                 </div>
                     
                 <div class="item-right">
-                    <!-- <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('item1')"></i> -->
+                    <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=d%>')"></i>
                     <p>$ <%= cart.Hotels[j].price %></p>
                 </div>
             </div>
-             <% j=j+1; %>
-             <% id++;s %>
+             <% j++; %>
+             <% d++; %>
                <% })%>
             <% } %>
         </div>

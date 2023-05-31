@@ -6,6 +6,13 @@
     font-family:'Roboto';
 
 }
+h2{
+  margin:5px;
+}
+button{
+  margin:2px;
+  padding:3px;
+}
 :root{
     --blue:rgb(54, 36, 27);
     --white:rgb(222, 221, 214) ;

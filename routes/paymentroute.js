@@ -16,14 +16,13 @@ router.post('/payment', urlencodedParser, [
     check('expDay', 'Expiry Day Required')
     .exists(),
   
-    check('psw', 'Invalid Password')
+    check('cvv', 'CVV Required')
       .exists()
       .isLength({ min: 6 }),
   
-    check('confpsw', 'Invalid Password')
+    check('name', 'Card Holder Name Required')
       .exists()
-      .isLength({ min: 6 })
-  
+      .isLength({ min: 6 }) 
   
   ],paymentController.pay)
 

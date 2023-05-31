@@ -19,13 +19,6 @@ router.use((req, res, next) => {
   }
 });
 
-router.get('/',async function(req,res)
-{
-    var Users=await User.find();
-    console.log(Users);
-    res.render("users",{users:(Users==='undefined'?"":Users),userUpdated:false,msg:""});
-});
-
 router.post('/success',urlencodedParser,[
     check('uname','Username must be 3+ characters long')
     .exists()
@@ -94,6 +87,7 @@ router.post('/',urlencodedParser,[
 
 ] ,updateUser);
 
+router.get('/',getUsers);
 router.post('/delete',deleteUser);
 router.get("/toAdmin/:id", toAdmin);
 router.get("/toClient/:id", toClient);

@@ -8,37 +8,58 @@
 <body>
 
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
-
+ 
     <%- include("partials/headerPages.ejs") %>
 
     <h1 style="margin-left:2%;">Shopping Cart</h1>
+    <% var j=0; %>
+    <% var d=1; %>
     <div class="cart">
-        <div class="left">
-            <div class="items" id="item1">
+        <div class="left" >
+            <% if(hotels!="" && cart!=""){ %>
+                <%hotels.forEach((hotel)=>{%>  
+            <div class="items" id="<%=d%>">
                 <div class="image">
                     <div>
-                        <img src="../images/Fcities/hurgh icon.jpg" alt="icon" style="width:250px; height:200px;">
+                        <img src="../images/Hotels/<%= hotel.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
                     </div>
                 </div>
                 <div class="item-info">
         
                     <div>
-                        <h2>Jaz aquamarine resort</h2>
+                        <h2><%= hotel.Name %></h2>
                     </div>
                     
                     <div class="section">
-                        
-                        <div class="icon" style="margin-top:0;">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        </div>
-                        <div>
-                            <p>4.8</p>
-                        </div>
-                        
+                        <% if(hotel.Reviews.length!==0){%>
+                              <% let revs = hotel.Reviews%>
+                              <% let sum=0%>
+                              <% revs.forEach((rev)=>{%>
+                              <% sum = sum + parseInt(rev.Rating);%>
+                              <%})%>
+                              <% let avg = sum / hotel.Reviews.length;%>
+                            <span>
+                              <p style="font-size: 50px;"><%=avg%></p>
+                           </span>
+
+                            <div id="exc">           
+                            <span class="rating">
+                                <% for(var i=0; i<avg; i++){%>
+                                  <i class="fa-solid fa-star"></i>
+                                  <%}%>
+                            </span>
+              
+                            <span>
+                              <%=hotel.Reviews.length%>
+                              <% if(hotel.Reviews.length > 1) {%>
+                                 reviews
+                              <%}%>
+                              <% if(hotel.Reviews.length == 1) {%>
+                                review
+                             <%}%>
+                            </span>
+                            </div>
+                          <%}%>
                     </div>
         
                     <div class="section">
@@ -46,7 +67,7 @@
                             <i class="fa-solid fa-people-group"></i>
                         </div>
                         <div>
-                            <p>Adult (Age 12+)</p> 
+                            <p><%= cart.Hotels[j].adults %> Adults, <%= cart.Hotels[j].children %> Children</p> 
                         </div>
                     </div>
                     
@@ -55,10 +76,19 @@
                             <i class="fa-solid fa-calendar-days"></i>
                         </div>
                         <div>
-                            <p> From: Thu,March 9,2023</p> 
+                            <p> From: <%=cart.Hotels[j].checkIn %>  To: <%=cart.Hotels[j].checkOut %></p>
                         </div>
                     </div>
                     
+                    <div class="section">
+                        <div class="icon">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        <div>
+                            <p>Rooms: <%= cart.Hotels[j].rooms %>x <%=cart.Hotels[j].roomType  %></p>
+                        </div>
+                    </div>
+
                     <div class="section">
                         <div class="icon">
                             <i class="fa-solid fa-money-bill-wave"></i>
@@ -71,14 +101,17 @@
                 </div>
                     
                 <div class="item-right">
-                    <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('item1')"></i>
-                    <p>$ 897.25</p>
+                    <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=d%>')"></i>
+                    <p>$ <%= cart.Hotels[j].price %></p>
                 </div>
-            
             </div>
-        
+             <% j++; %>
+             <% d++; %>
+               <% })%>
+            <% } %>
+        </div>
 
-        <div class="items" id="item2">
+        <!-- <div class="items" id="item2">
             <div class="image">
                 <div>
                     <img src="../images/Fcities/hurgh icon.jpg" alt="icon" style="width:250px; height:200px;">
@@ -139,35 +172,35 @@
                 <p>$ 897.25</p>
             </div>
         
-        </div>
-    </div>
-    <div class="r">
-        
-        <div class="right">
-            <div style="display:flex; height:30px;">
-                <div style="flex:60%;">
-                    <h3>Total (2 items):</h3>
+        </div> -->
+    
+        <div class="r">
+            
+            <div class="right">
+                <div style="display:flex; height:30px;">
+                    <div style="flex:60%;">
+                        <h3>Total (2 items):</h3>
+                    </div>
+                    
+                    <div>
+                        <h3>
+                            $1835.50
+                        </h3>
+                    </div>
+                    
                 </div>
-                
                 <div>
-                    <h3>
-                        $1835.50
-                    </h3>
+                    
+                    <p style="font-size:15px;">All taxes and fees included</p>
                 </div>
-                
+                <div style="text-align:center;">
+                    <button>Checkout</button>
+                    <button class="clear" style="background-color: #36241b; color:white;" onclick="clr()">Clear Cart</button>
+                </div>
             </div>
-            <div>
-                
-                <p style="font-size:15px;">All taxes and fees included</p>
-            </div>
-            <div style="text-align:center;">
-                <button>Checkout</button>
-                <button class="clear" style="background-color: #36241b; color:white;" onclick="clr()">Clear Cart</button>
-            </div>
-        </div>
+            
         
-       
-    </div>
+        </div>
     </div>
         
     

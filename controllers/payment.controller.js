@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 const viewForm=async (req,res)=>{
     const errors = validationResult(request)
   if (!errors.isEmpty()) {
-    const alert = errors.array();
+    console.log(errors.array());
   }
   else{
     let cart;

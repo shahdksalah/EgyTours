@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Activity = require('../models/activity.schema.js');
+const Cart = require('../models/cartdb.js');
+
 
 const getActivity = async (req, res) => {
     var Activities = [];
@@ -18,33 +20,54 @@ const getActivity1 = async (req, res) => {
 }
 
 const postActivityReviews = async (req, res) => {
-    var arr = [];
-    var Activities = [];
-    var Activity2 = [];
-    var query1 = req.body.activity;
-    const Activity1 = await Activity.find().where("Name").equals(query1);
-    Activities = Array.from(Activity1);
-    console.log(Activities);
-    console.log(Activity1);
-    console.log(Activities[0].Reviews[0]);
+    var Activites = [];
+    var query1 = req.body.hotel;
+    const activity1 = await Hotel.find().where("Name").equals(query1);
+    Activites = Array.from(hotel1);
+    if (req.session.authenticated) {
+        allrevs = Hotels[0].Reviews;
 
-    for (var i = 0; i < Activities[0].Reviews.length; i++) {
-        arr.push(Activities[0].Reviews[i]);
+        const nowdate = new Date().toLocaleString('en-GB', {
+            hour12: false,
+        });
+        var newrev = {
+            Rating: req.body.rating,
+            Comment: req.body.comment,
+            Date: nowdate,
+        }
+
+        allrevs.push(newrev);
+
+        const filter = { Name: query1 };
+        const update = { Reviews: allrevs };
+
+        await Hotel.findOneAndUpdate(filter, update)
+            .then(async result => {
+                Hotels = await Hotel.find().where("Name").equals(query1)
+                    .then(result => {
+                        res.render("hotel1", {
+                            hotel1: (Hotels === 'undefined' ? "" : Hotels),
+                            user: (!req.session.authenticated) ? "" : req.session.user, msg: ""
+                        });
+                    })
+
+            })
+            .catch(err => {
+                console.log("update failed\n" + err);
+            })
+
+
     }
-
-
-
-    arr.push(new Date());
-    arr.push(req.body.rating);
-    arr.push(req.body.addrev);
-
-    const filter = { Name: query1 };
-    const update = { Reviews: arr };
-    if (Activity1 !== 'undefined') {
-        const Activity2 = await Activity.findOneAndUpdate(filter, update);
-        console.log(Activity2);
-        res.render.reload;
-
+    else {
+        Hotels = await Hotel.find().where("Name").equals(query1)
+            .then(() => {
+                res.render("hotel1", {
+                    hotel1: (Hotels === 'undefined' ? "" : Hotels),
+                    user: (!req.session.authenticated) ? "" : req.session.user, msg: "You must sign in to add a review"
+                });
+            }).catch(err => {
+                console.log(err);
+            })
     }
 
 }

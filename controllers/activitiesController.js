@@ -6,7 +6,7 @@ const getActivity = async (req, res) => {
     var Activities = [];
     Activities = await Activity.find();
     res.render("activities", { activities: (Activities === 'undefined' ? "" : Activities),
-    user: (!req.session.authenticated) ? "" : req.session.user,msg:""});
+    user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:""});
 }
 
 const getActivity1 = async (req, res) => {
@@ -14,39 +14,60 @@ const getActivity1 = async (req, res) => {
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
     res.render("activity1", { activity1: (Activities === 'undefined' ? "" : Activities),
-    user: (!req.session.authenticated) ? "" : req.session.user,msg:"" });
+    user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
 }
 
-const postActivityReviews = async (req, res) => {
-    var arr = [];
+const postReview = async (req, res) => {
     var Activities = [];
-    var Activity2 = [];
-    var query1 = req.body.activity;
-    const Activity1 = await Activity.find().where("Name").equals(query1);
-    Activities = Array.from(Activity1);
-    console.log(Activities);
-    console.log(Activity1);
-    console.log(Activities[0].Reviews[0]);
+    var query1 = req.params.name;
+    const activity1 = await Activity.find().where("Name").equals(query1);
+    Activities = Array.from(activity1);
+    if (req.session.authenticated) {
+        allrevs = Activities[0].Reviews;
 
-    for (var i = 0; i < Activities[0].Reviews.length; i++) {
-        arr.push(Activities[0].Reviews[i]);
+        const nowdate = new Date().toLocaleString('en-GB', {
+            hour12: false,
+        });
+        var newrev = {
+            Username:req.session.user.Username,
+            Rating: req.body.rating,
+            Comment: req.body.comment,
+            Date: nowdate,
+        }
+
+        allrevs.push(newrev);
+
+        const filter = { Name: query1 };
+        const update = { Reviews: allrevs };
+
+        await Activity.findOneAndUpdate(filter, update)
+            .then(async result => {
+                Activities = await Activity.find().where("Name").equals(query1)
+                    .then(result => {
+                        res.render("activity1", {
+                            activity1: (Activities === 'undefined' ? "" : Activities),
+                            user: (!req.session.authenticated) ? "" : req.session.user, msg: "",revmsg:""
+                        });
+                    })
+
+            })
+            .catch(err => {
+                console.log("update failed\n" + err);
+            })
+
+
     }
-
-
-
-    arr.push(new Date());
-    arr.push(req.body.rating);
-    arr.push(req.body.addrev);
-
-    const filter = { Name: query1 };
-    const update = { Reviews: arr };
-    if (Activity1 !== 'undefined') {
-        const Activity2 = await Activity.findOneAndUpdate(filter, update);
-        console.log(Activity2);
-        res.render.reload;
-
+    else {
+        Activities = await Activity.find().where("Name").equals(query1)
+            .then(() => {
+                res.render("activity1", {
+                    activity1: (Activities === 'undefined' ? "" : Activities),
+                    user: (!req.session.authenticated) ? "" : req.session.user,msg:"", revmsg: "You must sign in to add a review"
+                });
+            }).catch(err => {
+                console.log(err);
+            })
     }
-
 }
 
 const postActivityAvail = async (req, res) => {
@@ -56,12 +77,9 @@ const postActivityAvail = async (req, res) => {
     Activities = await Activity.find({ "Name": url });
    
 
-    console.log(req.body.name2);
     var name = req.body.name2;
     var num = req.body.num;
     var date = req.body.days;
-    console.log(date);
-    console.log(num);
     var X = [];
     var compare = date + " " + num;
     const x = await Activity.find().where("Name").equals(name);
@@ -84,14 +102,14 @@ const postActivityAvail = async (req, res) => {
         console.log(k);
         
         if (date === k) {
-            console.log(x[0].DatesDetails[s].split(' ')[1]);
-            console.log(num);
-            console.log("number:");
-            console.log( parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]));
-            console.log(x[0].MaxParticipants);
+            // console.log(x[0].DatesDetails[s].split(' ')[1]);
+            // console.log(num);
+            // console.log("number:");
+            // console.log( parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]));
+            // console.log(x[0].MaxParticipants);
             if (parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]) <= x[0].MaxParticipants) {
                 var newnum = parseInt(x[0].DatesDetails[s].split(' ')[1] )+ parseInt(num);
-                console.log(newnum);
+                //console.log(newnum);
 
                 if (newnum < x[0].MaxParticipants) {
                     ret = date + " " + newnum;
@@ -166,4 +184,4 @@ const postActivityAvail = async (req, res) => {
 
 }
 
-module.exports = { getActivity,getActivity1,postActivityReviews,postActivityAvail };
+module.exports = { getActivity,getActivity1,postReview,postActivityAvail };

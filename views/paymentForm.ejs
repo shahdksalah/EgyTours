@@ -19,7 +19,7 @@
             <% if(hotels!="") {%>
             <% cart.Hotels.forEach((hotel)=>{ %>
                <div class="booking">
-                  <p>* <%=hotels[i].Name%></p> 
+                  <p>Hotel: <%=hotels[i].Name%></p> 
                   <p> From: <%=hotel.checkIn %>  To: <%=hotel.checkOut %></p>
                   <p>Rooms: <%= hotel.rooms %>x <%=hotel.roomType  %></p>
                   <p>Price: <%=hotel.days%>x $<%=hotel.price/hotel.days%></p>

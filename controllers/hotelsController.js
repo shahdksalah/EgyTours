@@ -3,6 +3,24 @@ const router = express.Router()
 const Hotel = require('../models/hotel.schema.js');
 const Cart = require('../models/cartdb.js');
 
+
+const getHotels = async (req, res) => {
+
+    var Hotels=[];
+    Hotels=await Hotel.find();
+    res.render("hotels",{hotels:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: ""  });
+    
+    
+}
+
+const getHotel1 = async (req, res) => {
+    var Hotels=[];
+    var url = req.params.name; 
+    Hotels=await Hotel.find({"Name":url});
+    res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: ""  });
+}
+
+
 const addToCart = async (req, res) => {
     console.log('Entered')
     let days;
@@ -128,4 +146,4 @@ const postReview = async (req, res) => {
     }
 }
 
-module.exports = { addToCart, postReview };
+module.exports = { getHotels,getHotel1,addToCart, postReview };

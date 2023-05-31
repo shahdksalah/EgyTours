@@ -190,7 +190,7 @@ form.addEventListener('submit', (e) => {
         }
     }
 
-    if (amenlist.length == 0) {
+    if (amenlist.length == 0) { 
         document.getElementById('erroramen').innerHTML = "You must enter room features";
         error = true;
     }

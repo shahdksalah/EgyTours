@@ -2,6 +2,7 @@ const express=require('express')
 const router=express.Router();
 const paymentController=require('../controllers/payment.controller.js')
 const { check} = require('express-validator');
+const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.get('/', paymentController.viewForm);

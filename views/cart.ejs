@@ -14,6 +14,7 @@
     <h1 style="margin-left:2%;">Shopping Cart</h1>
     <% var j=0; %>
     <% var d=1; %>
+    <% var totalPrice=0; %>
     <div class="cart">
         <div class="left" >
             <% if(hotels!="" && cart!=""){ %>
@@ -102,10 +103,11 @@
                     
                 <div class="item-right">
                     <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=d%>')"></i>
-                    <p>$ <%= cart.Hotels[j].price %></p>
+                    <p>$ <%=cart.Hotels[j].price%></p>
                 </div>
             </div>
-             <% j++; %>
+             <% totalPrice+=cart.Hotels[j].price;%>
+             <% j=j+1; %>
              <% d++; %>
                <% })%>
             <% } %>
@@ -179,12 +181,12 @@
             <div class="right">
                 <div style="display:flex; height:30px;">
                     <div style="flex:60%;">
-                        <h3>Total (2 items):</h3>
+                        <h3>Total (<%=j%>):</h3>
                     </div>
                     
                     <div>
                         <h3>
-                            $1835.50
+                           $ <%=totalPrice%>
                         </h3>
                     </div>
                     

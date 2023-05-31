@@ -268,7 +268,7 @@
       
       <% if(user.Type !=="admin" || user === ""){%>  
       <div class="booking">
-        <form id="bForm" action="<%=hotel1[0].Name%>/add" method="post">
+        <form id="bForm" action="<%=hotel1[0].Name%>/<%=hotel1[0]._id%>" method="post">
           <div id="inout">
 
             <div id="in">
@@ -310,7 +310,7 @@
               </datalist>
               <div id="ad-error" class="error-message">
               </div>
-              <input id="dropbtn2" list="Children" placeholder="Children">
+              <input id="dropbtn2" list="Children" placeholder="Children" name="children">
               <datalist id="Children">
                 <option value="1"></option>
                 <option value="2"></option>
@@ -343,7 +343,7 @@
               </datalist>
               <div id="r-error" class="error-message">
               </div>
-              <input id="dropbtn4" list="Types" placeholder="Room Type">
+              <input id="dropbtn4" list="Types" placeholder="Room Type" name="roomType">
               <datalist id="Types">
                 <% if(hotel1[0]!=="" ){%>
                   <% let rooms=hotel1[0].RoomTypes%>

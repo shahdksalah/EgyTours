@@ -21,7 +21,6 @@ router.get('/:name', async function(req,res){
 });
 
 router.post('/:name', hotelController.postReview);
-
 router.post('/:name/:id',hotelController.addToCart)
 
 

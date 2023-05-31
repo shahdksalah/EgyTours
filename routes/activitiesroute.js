@@ -8,7 +8,7 @@ router.get('/', activityController.getActivity);
 
 router.get('/:name',activityController.getActivity1)
 
-router.post('/:name', activityController.postActivityReviews);
+router.post('/:name', activityController.postReview);
 
 router.post('/:name/submit',activityController.postActivityAvail);
 

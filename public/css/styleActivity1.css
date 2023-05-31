@@ -1,42 +1,40 @@
-.body{
-    padding-left: 100px;
-    font-family: Arial, Helvetica, sans-serif;
-   }
-   .grid{
-    margin-bottom:30%;
+.body {
+  padding-left: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .next {
-    border-radius: 3px 0 0 3px;
-    position:relative;
-    top:200px;
-    left:475px;
- }
- .prev{
-    position:relative;
-    top:200px;
- }
- td button{
-    padding:0px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+  border-radius: 3px 0 0 3px;
+  position: relative;
+  left: 475px;
 }
+
+.prev {}
+
+td button {
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .mySlides {
-    position:absolute;
-    display: none;
-    width:565px;
-    height:400px;
+  display: none;
+  width: 565px;
+  height: 400px;
 }
-.mySlides img{
-    width:400px;
-    height:400px;
+
+.mySlides img {
+  width: 400px;
+  height: 400px;
 }
-.prev,.next {
+
+.prev,
+.next {
   cursor: pointer;
   width: auto;
   padding: 16px;
-  margin-top: -50px;
   background-color: rgba(176, 176, 176, 0.463);
   color: white;
   font-weight: bold;
@@ -45,133 +43,193 @@
   user-select: none;
   -webkit-user-select: none;
 }
-.prev:hover,.next:hover {
+
+.prev:hover,
+.next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.pointers {
+  position: absolute;
+  margin-top: -205px;
+}
 
 .numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-  }
-span{
-    font-size:18px;
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: relative;
+  color: black;
 }
-.group
-{
-    padding:6px;
-    padding-left: 6px;
+
+span {
+  font-size: 18px;
 }
-.text,.w, .more
-{
-    font-size:8px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight:normal;
+
+.group {
+  padding: 6px;
+  padding-left: 6px;
 }
-.w{
-    width:800px;
+
+.text,
+.w,
+.more {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
 }
-.more{
-    padding:25px;
+
+.text {
+  width: 50%;
+  margin-top: 30px;
 }
-.rating i{
-color:rgb(238, 203, 5);
+
+.w {
+  width: 800px;
 }
-.book{
-    color:black;
-    display:flex;
-    padding-bottom:4%;
+
+.more {
+  padding: 25px;
 }
-#dropbtn,#dat,#check,#dropbtn1{
-border:3px solid #a78c4c;
-padding:10px;
-color:#a78c4c;
-box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-border-radius:20px;
-width:200px;
-margin-right: 10px;
+
+.rating i {
+  color: rgb(238, 203, 5);
 }
-.reviews{
-width:200px;
-box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-  border-radius:20px;
-  width:250px;
+
+.book {
+  color: black;
+  display: flex;
+  padding-bottom: 4%;
+}
+
+#dropbtn,
+#dat,
+#check,
+#dropbtn1 {
+  border: 3px solid #a78c4c;
   padding: 10px;
-}  
-#check{
-    background-color: rgb(54, 36, 27);
-    font-size: 16px;
-}
-#check:hover{
-    cursor: pointer;
-    background-color: rgb(16, 6, 1);
-}
-#avail{
-    padding:10px;
-    background-color: rgb(239, 239, 236);
-    border-radius: 10px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.3);
-    width:300px;
-    height:200px;
-
-}
-#avail button{
-    background-color: rgb(54, 36, 27);
-    color:white;
-    border: none;
-    border-radius: 10px;
-    padding:5px;
-    width:100px;
-}
-.duration,.cancel,.Adultprice,.Childprice,.total
-{
-margin-bottom:5%;
+  color: #a78c4c;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  width: 200px;
+  margin-right: 10px;
 }
 
+.reviews {
+  width: 200px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  width: 250px;
+  padding: 10px;
+}
 
-  .check-error{
-    color:red;
-    text-align: center;
-    margin-top:2%;
+#check {
+  background-color: rgb(54, 36, 27);
+  font-size: 16px;
+}
 
-  }
-  #activity{
-    display:none;
-    }
-    .addReviews{
-        gap:20px;
-        padding-right:10px;
-        margin-bottom:10%;
-        margin-left:120px;
+#check:hover {
+  cursor: pointer;
+  background-color: rgb(16, 6, 1);
+}
 
-      }
+#avail {
+  padding: 10px;
+  background-color: rgb(239, 239, 236);
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  height: 200px;
 
-      #dropbtn3,#addrev{
-        border:3px solid #a78c4c;
-        padding:10px;
-        color:#a78c4c;
-        box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-        border-radius:20px;
-        width:200px;
-      }
-      #sub{
-        background-color: rgb(54, 36, 27);
-        color: white;
-        border: none;
-        cursor: pointer;
-        width:10%;
-        height:40%;
-        border-radius: 10px;
-        margin-top:2%;
-        }
-        #form{
-            background-color:transparent;
-            border:none;
-        }
-        .R{
-             font-size:13px;
-        }
-    
+}
+
+#avail button {
+  background-color: rgb(54, 36, 27);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100px;
+}
+
+.duration,
+.cancel,
+.Adultprice,
+.Childprice,
+.total {
+  margin-bottom: 5%;
+}
+
+
+.check-error {
+  color: red;
+  text-align: center;
+  margin-top: 2%;
+
+}
+
+#activity {
+  display: none;
+}
+
+.addReviews {
+  gap: 20px;
+  padding-right: 10px;
+  margin-bottom: 10%;
+  margin-left: 120px;
+
+}
+
+#dropbtn3,
+#addrev {
+  border: 3px solid #a78c4c;
+  padding: 10px;
+  color: #a78c4c;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  width: 200px;
+}
+
+#sub {
+  background-color: rgb(54, 36, 27);
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  height: 40%;
+  border-radius: 10px;
+  margin-top: 2%;
+}
+
+#form {
+  background-color: transparent;
+  border: none;
+}
+
+.addReviews {
+  width: 30%;
+  border-radius: 15px;
+  gap: 20px;
+  margin-bottom: 7%;
+  margin-top: 5%;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  width: 300px;
+  padding: 20px;
+  border-radius: 15px;
+}
+.first{
+  overflow-x:visible;
+  height:60%;
+}
+.subutton{
+  padding:6px;
+}
+
+.addReviews form {
+  border: none;
+
+
+}
+
+.R {
+  font-size: 13px;
+}

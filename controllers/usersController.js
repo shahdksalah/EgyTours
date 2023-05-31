@@ -1,5 +1,14 @@
 const User = require('../models/usersdb.js');
 const { check, validationResult } = require('express-validator');
+
+const getUsers = async (req, res) => {
+    var Users=await User.find();
+    console.log(Users);
+    res.render("users",{users:(Users==='undefined'?"":Users),userUpdated:false,msg:""});
+}
+
+
+
 const updateUser = async (req, res) => {
     console.log("entered");
     const errors = validationResult(req);
@@ -64,4 +73,4 @@ const toClient = async (req, res) => {
         });
 };
 
-module.exports = { updateUser, deleteUser, toAdmin, toClient };
+module.exports = { getUsers,updateUser, deleteUser, toAdmin, toClient };

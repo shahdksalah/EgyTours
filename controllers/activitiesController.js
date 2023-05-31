@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Activity = require('../models/activity.schema.js');
+const Cart = require('../models/cartdb.js');
+
 
 const getActivity = async (req, res) => {
     var Activities = [];
@@ -35,6 +37,7 @@ const postReview = async (req, res) => {
             Date: nowdate,
         }
 
+        allrevs.push(newrev);
         allrevs.push(newrev);
 
         const filter = { Name: query1 };

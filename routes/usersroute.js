@@ -7,7 +7,7 @@ var db = mongoose.connection;
 const bodyParser=require('body-parser');
 const{check,validationResult} =require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
-const {updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
+const {getUsers,updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
 router.use(bodyParser.json());
 
 router.use((req, res, next) => {
@@ -17,13 +17,6 @@ router.use((req, res, next) => {
   else {
       res.render('err', { err: 'You are not an Admin', user: (!req.session.authenticated) ? "" : req.session.user  })
   }
-});
-
-router.get('/',async function(req,res)
-{
-    var Users=await User.find();
-    console.log(Users);
-    res.render("users",{users:(Users==='undefined'?"":Users),userUpdated:false,msg:""});
 });
 
 router.post('/success',urlencodedParser,[
@@ -94,6 +87,7 @@ router.post('/',urlencodedParser,[
 
 ] ,updateUser);
 
+router.get('/',getUsers);
 router.post('/delete',deleteUser);
 router.get("/toAdmin/:id", toAdmin);
 router.get("/toClient/:id", toClient);

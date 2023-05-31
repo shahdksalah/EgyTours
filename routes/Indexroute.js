@@ -9,6 +9,8 @@ const { check, validationResult } = require('express-validator');
 const lodash = require('lodash');
 const bcrypt = require("bcrypt");
 const city=require('../models/addcitiesdb.js');
+const hotels=require('../models/hotel.schema.js');
+const activities=require('../models/activity.schema.js');
 
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -20,6 +22,39 @@ router.get('/',async function (req, res){
   var array=[]; 
   array=await city.find();
   res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user , cities:array});
+});
+
+router.get('/cities/:name', async function(req,res){
+  var disphotel=[];
+  var dispactiv=[];
+  var hotloc;
+  var cityname;
+  var cities1=[];
+  var Hotels=[];
+  var activ=[];
+  var url = req.params.name;
+
+  Hotels=await hotels.find();
+  activ=await activities.find();
+  cities1=await city.find({"Name":url});
+
+  Hotels.forEach((hotels1)=>{
+    hotloc=hotels1.Location;
+    if(hotloc.includes(url)){
+      disphotel.push(hotels1);
+    }
+  })
+  activ.forEach((activ1)=>{
+    cityname=activ1.Name;
+    if(cityname.includes(url)){
+      dispactiv.push(activ1);
+    }
+  })
+  
+  console.log(Hotels);
+  console.log(activ);
+  res.render("cities",{ user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
+  avtivities:activ,hotels:Hotels});
 });
 
 

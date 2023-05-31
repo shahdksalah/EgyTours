@@ -27,9 +27,9 @@
 
 
         <div class="first">
-            <% if(activities1!=="" ) { %>
+            <% if(activities!=="" ) { %>
                 <% let id=1; %>
-                    <% activities1.forEach((activity)=> { %>
+                    <% activities.forEach((activity)=> { %>
                         <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
                             <div>
                                 <img src="/images/activities/<%=activity.Picture[1]%>" width="300 px" height="200 px">

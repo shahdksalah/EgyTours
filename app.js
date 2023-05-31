@@ -26,6 +26,7 @@ const usersRoute=require('./routes/usersroute.js');
 const weeklysummaryRoute=require('./routes/weeklysumroute.js');
 const addcity=require('./routes/addcitiesroute.js');
 const paymentRoute=require('./routes/paymentroute.js')
+const confirmPaymentRoute=require('./routes/confirmPaymentroute.js')
 
 
 const bodyParser = require('body-parser');
@@ -70,6 +71,7 @@ app.use("/edithotels",edithotelsRoute);
 app.use("/adminboard",adminboardRoute);
 app.use("/cart",cartRoute);
 app.use("/paymentForm",paymentRoute);
+app.use("/confirmpayment",confirmPaymentRoute);
 app.use("/aboutus",aboutusRoute);
 app.use("/food1",food1Route);
 app.use("/ourteam",ourteamRoute);

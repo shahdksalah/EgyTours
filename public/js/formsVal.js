@@ -19,7 +19,7 @@ class validateForm{
     }
     validateFields(field){
         count++;
-        if(field.value.length===0){
+        if(typeof field.value==='undefined'){
             this.setStatus(field, field.previousElementSibling.innerText + ' cannot be blank',"error");
         }
         else if(field.type ==="email"){

@@ -67,6 +67,7 @@ router.post('/', (req, res) => {
         PropertyAmen: req.body.finalamens,
         RoomFeatures: req.body.finalfeats,
         RoomTypes: types,
+        Rate:request.body.rate,
     })
     hotel.save()
         .then(result => {

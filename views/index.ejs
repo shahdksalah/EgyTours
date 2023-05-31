@@ -8,14 +8,13 @@
     <link rel="stylesheet" type="text/css" href="/css/styleCities.css">
     <link rel="stylesheet" type="text/css" href="/css/styleForm.css">
     <link rel="stylesheet" type="text/css" href="/css/styleBody.css">
+   
     
 </head>
-<body>
-   <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
-    
+<body> 
+ 
    <%- include("partials/header.ejs") %>
     <div class="why-choose-us">
-      <script src="https://kit.fontawesome.com/3472d45ca0.js" crossorigin="anonymous"></script>
       <span class="all">
           <div class="first">
               <img src="/images/icons/icons8-satisfaction-64.png" alt="experience">
@@ -66,63 +65,15 @@
 <div class="allimages">
         <h1 id="tex1">Cities in Egypt </h1>
       <div class = "row">
-          <button>
-          <div class="container1">
-              <img  src="/images/Fcities/siwa.jpg" alt="Siwa">
-              <div class="centered">Siwa</div>   
-          </div>
-          </button>
+          <% cities.forEach((cit)=>{ %>
+            <button onclick="location.href= '/cities/<%=cit.Name%>'">
+            <div class="container1">
+                <img  src="/images/Fcities/<%=cit.picture%>">
+                <div class="centered"><%=cit.Name%></div>
+            </div>
+            </button>
+            <% }) %>
 
-          <button>
-          <div class="container1"> 
-              <img  src="/images/Fcities/Alexandria.jpg" alt="Alexandria">
-              <div class="centered">Alexandria</div>    
-          </div>
-          </button> 
-
-          <button>
-          <div class="container1">
-              <img  src="/images/Fcities/aswan.jpg" alt="Aswan">
-              <div class="centered">Aswan</div>
-          </div>
-          </button>
-
-          <button>
-          <div class="container1">
-              <img  src="/images/Fcities/hurghada.jpg" alt="Hurghada">
-              <div class="centered">Hurghada</div>
-          </div>
-          </button>
-        </div>
-      <div class="row">
-          <button>
-          <div class="container1">
-              
-              <img  src="/images/Fcities/giza.jpg" alt="Giza">
-              <div class="centered">Giza</div>
-          </div>
-          </button>
-          
-          <button onclick="location.href='luxor.html';">
-          <div class="container1">
-              <img  src="/images/Fcities/luxor.jpg" alt="Luxor">
-              <div class="centered">Luxor</div>
-          </div>
-          </button>
-
-          <button>
-          <div class="container1">            
-              <img  src="/images/Fcities/kom ombo.jpg" alt="Kom Ombo">
-              <div class="centered">Kom-Ombo</div>
-          </div>
-          </button>
-           
-          <button>
-          <div class="container1">
-              <img  src="/images/Fcities/dahab.jpg" alt="Dahab">
-              <div class="centered">Dahab</div>
-          </div>
-          </button>
         </div>
 </div>
 <%- include("partials/footer.ejs") %>

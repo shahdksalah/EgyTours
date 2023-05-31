@@ -1,10 +1,8 @@
 const express=require('express')
-const router=express.Router()
+const router=express.Router();
+const cartController=require('../controllers/cartController.js')
 
 
-router.get('/',function(req,res)
-{
-    res.render("cart", {user: (!req.session.authenticated) ? "" : req.session.user} );
-});
+router.get('/', cartController.viewCart);
 
 module.exports=router;

@@ -1,4 +1,4 @@
-const express=require('express');
+const express=require('express')
 const app=express();
 const mongoose=require('mongoose');
 const User= require('./models/usersdb.js');
@@ -13,7 +13,7 @@ const activitiesRoute=require('./routes/activitiesroute.js');
 const hotelsRoute=require('./routes/hotels.route.js');
 const addActivityRoute=require('./routes/addactivityroute.js');
 const addHotelRoute=require('./routes/addhotel.route.js');
-const luxorRoute=require('./routes/luxorroute.js');
+const citiesRoute=require('./routes/luxorroute.js');
 const editactivitiesRoute=require('./routes/editactivitiesroute.js');
 const edithotelsRoute=require('./routes/edithotels.route.js');
 const adminboardRoute=require('./routes/adminboardroute.js');
@@ -65,7 +65,7 @@ app.use("/activities",activitiesRoute);
 app.use("/hotels",hotelsRoute);
 app.use("/addactivity",addActivityRoute);
 app.use("/addhotel",addHotelRoute);
-app.use("/luxor",luxorRoute);
+app.use("/cities",citiesRoute);
 app.use("/editactivities",editactivitiesRoute);
 app.use("/edithotels",edithotelsRoute);
 app.use("/adminboard",adminboardRoute);

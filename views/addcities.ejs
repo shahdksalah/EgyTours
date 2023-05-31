@@ -21,10 +21,11 @@
 
             <div class="right">
                 <div id="container">
+                    <h2><ins>Add City:</ins></h2>
                     <form id="form" method="post" action="/addcities/submit" enctype="multipart/form-data">
                         <div>
                             <label for="name">
-                                <h2>city Name</h2>
+                                <h2>City Name</h2>
                             </label>
                             <input type="text" name="cityname" id="name">
                             <span class="error-message"></span>
@@ -47,7 +48,7 @@
                 
                 <div>
                     <% hotels.forEach((hotel)=>{ %>
-                    <input type="checkbox" id=<%= hotel.Name %> name="hot" value=<%= hotel.Name %>>
+                    <input type="checkbox" style="width:10px;" id=<%= hotel.Name %> name="hot" value=<%= hotel.Name %>>
                     <label><%=hotel.Name %></label><br>
                     <% }) %>
                     <textarea name="hotels" id="selectedHotels" cols="30" rows="10" style="display: none;"></textarea>
@@ -60,12 +61,12 @@
                 </div>
                 <div>
                     <% activities.forEach((activ)=>{ %>
-                        <input type="checkbox" id=<%= activ.Name %> name="hot" value=<%= activ.Name %>>
+                        <input type="checkbox" style="width:10px;" id=<%= activ.Name %> name="hot" value=<%= activ.Name %> >
                         <label><%=activ.Name %></label><br>
                         <% }) %>
                     <textarea name="activities1" id="selectedActivities" cols="30" rows="10" style="display: none;"></textarea>
                 </div>
-                <button type="submit" >Save</button>
+                <button type="submit" id="sub" style="height:30px;" >Save</button>
                 </form>
                 <script src="/js/cities.js"  type="text/javascript"> </script>
             </div>

@@ -75,72 +75,46 @@
             <div class="right">
                 <h1 class="head">TOP ACTIVITIES</h1>
                 <div class="first">
+                    <% if(Activities!=="") {%>
+                        <% let id1=0; %>
+                        <%topactivities.forEach((topactivity) => { %>
+                            <%let rate1=activityratings[id1]; %>
+                        <% Activities.forEach((Activity) => { %>
+                            <% console.log(Activity.Name.split(',')); %>
+                            <% console.log(topactivity.split(',')); %>
+                            <% if( (Activity.Name.split(',').toString()) === (topactivity.split(',').toString()) ) { %>
                     <div class="btn">
                         <div>
-                            <img src="../images/cities/SAFARI.jpg" alt="safari" width="300 px" height="200 px">
+                            <img src="/images/activities/<%=Activity.Picture[0]%>" width="260 px" height="200 px" >
                         </div>
 
                         <div>
-                            <h5>ADVENTURE</h5>
-                            <h4>From Cairo:4x4 Desert Safari, Sandsurf, and Camel Ride </h4>
+                            <h5><%=Activity.Header%></h5>
+                            <h4><%=Activity.Advantage%> </h4>
                         </div>
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i><span style="margin-left:2%;">4.0</span>
-                        </div>
+                        <span class="rating">
+                            <% for(var k =0; k < rate1;k++){ %>
+                                <i class="fa-solid fa-star"></i>
+                                <% } %>
+                            </span>
 
                     </div>
-
-                    <div class="btn">
-                        <div>
-                            <img src="../images/cities/PYRAMIDS.jpg" alt="pyramids" width="300 px" height="200 px">
-                        </div>
-                        <div>
-                            <h5>GUIDED TOUR</h5>
-                            <h4>From Cairo: Half Day Tour to Pyramids of Giza and the Sphinx </h4>
-                        </div>
-
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i><span style="margin-left:2%;">4.5</span>
-                        </div>
-                    </div>
-
-
-                    <div class="btn">
-                        <div>
-                            <img src="../images/cities/QAITBAY.jpg" alt="citadel qaitbay" width="300 px"
-                                height="200 px">
-                        </div>
-                        <div>
-                            <h5>DAY TRIP</h5>
-                            <h4>From Cairo: Full Day Tour of Historical Alexandria </h4>
-                        </div>
-
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i><span style="margin-left:2%;">5.0</span>
-
-                        </div>
-                    </div>
+                    <% } %>
+                    <% id1++; %>
+                    <% }); %>
+                    <% }); %>
+                <% } %> 
+                    
                 </div>
+                
 
 
                 <h1 class="head">TOP HOTELS</h1>
                 <div class="first">
                     <% if(Hotels!=="") {%>
-                        <% let id=0; %>
+                        <% let id2=0; %>
                         <%tophotels.forEach((tophotel) => { %>
-                            <%let rate=ratings[id]; %>
+                            <%let rate2=hotelratings[id2]; %>
                         <% Hotels.forEach((hotel) => { %>
                             <% console.log(hotel.Name.split(',')); %>
                             <% console.log(tophotel.split(',')); %>
@@ -156,7 +130,7 @@
                         </div>
 
                         <span class="rating">
-                        <% for(var k =0; k < rate;k++){ %>
+                        <% for(var k =0; k < rate2;k++){ %>
                             <i class="fa-solid fa-star"></i>
                             <% } %>
                         </span>
@@ -164,14 +138,14 @@
                         </div>
                         <% } %>
                         <% console.log ("hi") %>
-                        <% id++; %>
+                        <% id2++; %>
                         <% }); %>
                         <% }); %>
                     <% } %> 
                     </div>
 
                 </div>
-
+            </div>
             </div>
 
 </body>

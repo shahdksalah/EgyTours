@@ -6,7 +6,6 @@ function addItem(item, finalres, newid, list, errorid) {
     var data = document.getElementById(item).value;
     var it = document.getElementById(item);
     if (data !== "") {
-        document.getElementById(finalres).value += data + ',';
         var newli = document.createElement('li');
         if (newid.includes('feat')) {
             newli.setAttribute('id', newid + newf);
@@ -22,21 +21,17 @@ function addItem(item, finalres, newid, list, errorid) {
 
         var rembut = document.createElement('button');
         rembut.setAttribute('type', "button");
-        if(newid.includes('feat')){
-            rembut.setAttribute('id','featbut'+newf);
+        if (newid.includes('feat')) {
+            rembut.setAttribute('id', 'featbut' + newf);
         }
-        else{
-            rembut.setAttribute('id','amenbut'+newa);
+        else {
+            rembut.setAttribute('id', 'amenbut' + newa);
         }
-        
+
         rembut.classList.add('plus');
         rembut.style.width = "80px";
         rembut.innerHTML = 'remove';
         rembut.addEventListener('click', event => {
-            
-            var newtext = document.getElementById(finalres).value.replace(`${newli.innerHTML},`, "");
-            document.getElementById(finalres).value = newtext;
-            
 
             document.getElementById(rembut.id).remove();
             document.getElementById(newli.id).remove();
@@ -61,6 +56,7 @@ function donez(newid, list) {
     var price = document.getElementById('price');
     var typein = document.getElementById('addedtype');
     var roomin = document.getElementById('rooms');
+    var capin = document.getElementById('cap');
 
     var newli;
 
@@ -74,38 +70,26 @@ function donez(newid, list) {
         document.getElementById('showprice').style.display = "none";
 
         document.getElementById('success').innerHTML = "";
-        var newtext = document.getElementById('finalprices').value.replace(`${newli.innerHTML.slice(newli.innerHTML.indexOf('-') + 2, newli.innerHTML.indexOf('L'))},`, "");
-        document.getElementById('finalprices').value = newtext;
-        
-
-        var newtext2 = document.getElementById('finaltypes').value.replace(`${newli.innerHTML.slice(0, newli.innerHTML.indexOf('-') - 1)},`, "");
-        document.getElementById('finaltypes').value = newtext2;
-
-        var newtext3 = document.getElementById('finaltypes').value.replace(`${newli.innerHTML.slice(newli.innerHTML.indexOf('|') + 2, newli.innerHTML.indexOf('R') - 1)},`, "");
-        document.getElementById('finalrooms').value = newtext3;
-        
-
         document.getElementById(newli.id).remove();
         document.getElementById(rembut.id).remove();
     })
 
-    
-    if (price.value !== "" && roomin.value!=="") {
+
+    if (price.value !== "" && roomin.value !== "" && capin.value !== "") {
         newli = document.createElement('li');
         newli.setAttribute('id', newid + newt);
-        document.getElementById('finalprices').value += `${price.value},`;
-        document.getElementById('finaltypes').value += `${typein.value},`;
-        document.getElementById('finalrooms').value += `${roomin.value},`;
-        document.getElementById('errortype').innerHTML = "";
         document.getElementById('errorrooms').innerHTML = "";
+        document.getElementById('errorcap').innerHTML = "";
+        document.getElementById('errorprice').innerHTML = "";
         document.getElementById('success').innerHTML = "Saved successfully";
-        newli.innerHTML = `${typein.value} - ${price.value}LE | ${roomin.value} Rooms`;
+        newli.innerHTML = `${typein.value} - ${price.value}LE | ${roomin.value} Rooms | Max. Capacity: ${capin.value}`;
         document.getElementById(list).appendChild(newli);
         document.getElementById(newli.id).parentNode.insertBefore(rembut, newli.nextSibling);
 
         price.value = "";
         typein.value = "";
         roomin.value = "";
+        capin.value = "";
 
         newt++;
 
@@ -115,20 +99,20 @@ function donez(newid, list) {
 
         typein.addEventListener("keydown", () => {
             document.getElementById('success').innerHTML = "";
-            document.getElementById('errortype').innerHTML = "";
+            document.getElementById('errorprice').innerHTML = "";
             document.getElementById('errorrooms').innerHTML = "";
         })
     }
-    else if(roomin.value !==""){
+    else if (roomin.value !== "") {
         document.getElementById('errorrooms').innerHTML = "You must enter number of rooms";
         document.getElementById('success').innerHTML = "";
     }
     else {
-        document.getElementById('errortype').innerHTML = "You must enter a price";
+        document.getElementById('errorprice').innerHTML = "You must enter a price";
         document.getElementById('success').innerHTML = "";
     }
 
-    
+
 
 }
 
@@ -136,17 +120,18 @@ function donez(newid, list) {
 
 function addType() {
     var letters = /^[A-Za-z]+$/;
-    
-    if(document.getElementById('addedtype').value===""){
+
+    if (document.getElementById('addedtype').value === "") {
         document.getElementById('errortype').innerHTML = "You must enter a room type";
     }
     else if (!document.getElementById('addedtype').value.match(letters)) {
         document.getElementById('errortype').innerHTML = "Room Type not valid";
     }
-    else{
+    else {
+        document.getElementById('errortype').innerHTML = "";
         document.getElementById("showprice").style.display = "block";
     }
-    
+
 
 }
 
@@ -182,51 +167,52 @@ form.addEventListener('submit', (e) => {
         error = true;
     }
 
-    var amen = document.getElementsByName('amen')
-    var textamen = document.getElementById('finalamens')
-    var rf = document.getElementsByName('feat');
-    var textrf = document.getElementById('finalfeats');
-    var rt = document.getElementsByName('type');
-    var textrt = document.getElementById('finalfeats');
 
-    if (textamen.value !== "") {
+    var featlist = document.querySelectorAll(`[id^="featli"]`);
+    var feattext = document.getElementById('finalfeats');
 
-        for (var i = 0; i < amen.length; i++) {
-            if (amen[i].checked)
-                textamen.value += `${amen[i].value}, `;
+    var amenlist = document.querySelectorAll(`[id^="amenli"]`);
+    var amentext = document.getElementById('finalamens');
 
-        }
-    }
-    else {
-        document.getElementById('erroramen').innerHTML = "You must enter atleast 1 amenity";
+    var typelist = document.querySelectorAll(`[id^="typeli"]`);
+    var typetext = document.getElementById('finaltypes');
+    var pricetext = document.getElementById('finalprices');
+    var roomtext = document.getElementById('finalrooms');
+    var captext = document.getElementById('finalcaps');
+
+    if (featlist.length == 0) {
+        document.getElementById('errorfeat').innerHTML = "You must enter room features";
         error = true;
     }
-
-    if (textrf.value !== "") {
-
-        for (var j = 0; j < rf.length; j++) {
-            if (rf[j].checked)
-                textrf.value += `${rf[j].value}, `;
-
+    else {
+        for (var i = 0; i < featlist.length; i++) {
+            feattext.value += `${featlist[i].innerHTML},`;
         }
     }
-    else {
-        document.getElementById('errorfeat').innerHTML = "You must enter atleast 1 feature";
+
+    if (amenlist.length == 0) {
+        document.getElementById('erroramen').innerHTML = "You must enter room features";
         error = true;
     }
-
-    if (textrt.value !== "") {
-
-        for (var k = 0; k < rt.length; k++) {
-            if (rt[k].checked)
-                textrt.value += `${rt[k].value}, `;
-
+    else {
+        for (var i = 0; i < amenlist.length; i++) {
+            amentext.value += `${amenlist[i].innerHTML},`;
         }
     }
-    else {
-        document.getElementById('errortype').innerHTML = "You must enter atleast 1 type";
+
+    if (typelist.length == 0) {
+        document.getElementById('errortype').innerHTML = "You must enter room features";
         error = true;
     }
+    else {
+        for (var i = 0; i < typelist.length; i++) {
+            typetext.value += `${typelist[i].innerText.slice(0, typelist[i].innerText.indexOf('-') - 1)},`;
+            pricetext.value += `${typelist[i].innerHTML.slice(typelist[i].innerText.indexOf('-') + 2, typelist[i].innerText.indexOf('L'))},`;
+            roomtext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf('|') + 2, typelist[i].innerText.indexOf('R') - 1)},`;
+            captext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf(':') + 2, typelist[i].innerText.length - 1)},`;
+        }
+    }
+
 
 
     if (error == true) {

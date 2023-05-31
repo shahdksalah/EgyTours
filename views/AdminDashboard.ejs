@@ -144,9 +144,107 @@
                     <% } %> 
                     </div>
 
+            
+        
+            <h1 class="head">WEEKLY HOTELS REVIEWS:</h1>
+                <div class="first">
+                    <% if(Hotels!=="") {%>
+                    <% const nowdate = new Date().toLocaleString('en-GB', {hour12: false,});%>
+                    <% const currday =nowdate.split("/")[0];%>
+                    <% const currmonth =nowdate.split("/")[1];%>
+                    <% const curryear =nowdate.split("/")[2].split(',')[0];%>
+                    <% var currdate = new Date(curryear,currmonth-1,currday ); %>
+                    <% let id3=0; %>
+                     <% Hotels.forEach((hotel) => { %>
+                    <% revs=hotel.Reviews%>
+                    <% revs.forEach((rev)=>{%>
+                    <% const day =rev.Date.split("/")[0];%>
+                    <% const month =rev.Date.split("/")[1];%>
+                    <% const year = rev.Date.split("/")[2].split(',')[0];%>
+                    <% var revdate = new Date(year,month-1,day ); %>
+                    <%var diffTime=Math.abs(currdate-revdate);%>
+                    <% var diffDays=Math.ceil(diffTime/(1000*60*60*24));%>
+                    <% if( diffDays<=7 ) { %>
+                        <div class="btn">
+                            <div class="rev">
+                                <%=hotel.Name%>
+                            </div>
+                            <div class="rev" style="margin-bottom:6px;">
+                                <%var daterev= rev.Date.split(',')[0];%>
+                              <h6 class="R"> at <%=daterev%> </h6>
+                            </div>
+                            <span class="rating">
+                              <% let rates=rev.Rating;%>
+                                <% for(var i=0; i<rates; i++){%>
+                                  <i class="fa-solid fa-star"></i>
+                                  <%}%>
+                                </span>
+                            <div>
+                              <p>
+                                <%=rev.Comment%>
+                              </p>
+                            </div>
+                          </div>
+                    <% } %>
+                    <% }); %>
+                    <% id3++; %>
+                    <% }); %>
+                    <% } %>
+
+                        </div>    
+
+                <h1 class="head">WEEKLY ACTIVITIES REVIEWS:</h1>
+                <div class="first">
+                    <% if(Activities!=="") {%>
+                    <% const nowdate = new Date().toLocaleString('en-GB', {hour12: false,});%>
+                    <% const currday =nowdate.split("/")[0];%>
+                    <% const currmonth =nowdate.split("/")[1];%>
+                    <% const curryear =nowdate.split("/")[2].split(',')[0];%>
+                    <% var currdate = new Date(curryear,currmonth-1,currday ); %>
+                    <% let id4=0; %>
+                     <% Activities.forEach((activity) => { %>
+                    <% revs=activity.Reviews%>
+                    <% revs.forEach((rev)=>{%>
+                    <% const day =rev.Date.split("/")[0];%>
+                    <% const month =rev.Date.split("/")[1];%>
+                    <% const year = rev.Date.split("/")[2].split(',')[0];%>
+                    <% var revdate = new Date(year,month-1,day ); %>
+                    <%var diffTime=Math.abs(currdate-revdate);%>
+                    <% var diffDays=Math.ceil(diffTime/(1000*60*60*24));%>
+                    <% if( diffDays<=7 ) { %>
+                        <div class="btn">
+                            <div class="rev">
+                                <%=activity.Header%>
+                            </div>
+                            <div class="rev" style="margin-bottom:6px;">
+                                <%var daterev= rev.Date.split(',')[0];%>
+                              <h6 class="R"> <%=rev.Username%> wrote a review at <%=daterev%> </h6>
+                            </div>
+                            <span class="rating">
+                              <% let rates=rev.Rating;%>
+                                <% for(var i=0; i<rates; i++){%>
+                                  <i class="fa-solid fa-star"></i>
+                                  <%}%>
+                                </span>
+                            <div>
+                              <p>
+                                <%=rev.Comment%>
+                              </p>
+                            </div>
+                          </div>
+                    <% } %>
+                    <% }); %>
+                    <% id4++; %>
+                    <% }); %>
+                    <% } %>
+
+                        </div> 
+                    </div>
                 </div>
-            </div>
-            </div>
+
+
+
+
 
 </body>
 

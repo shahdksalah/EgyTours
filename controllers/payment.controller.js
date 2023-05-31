@@ -50,7 +50,7 @@ const pay=async(req,res)=>{
       });
 
     var booking;
-    var emailText;
+    var emailText="Your payment with the following details is confirmed\n";
     await Cart.find().where("Userid").equals(req.session.user._id)
     .then(result=>{
         if(result){
@@ -61,9 +61,11 @@ const pay=async(req,res)=>{
                 await Hotel.find().where("_id").equals(hotel.id)
                 .then(res=>{
                     h=res[0];
+                    emailText+=("Hotel: "+h.Name+"\n"+"From: "+hotel.checkIn+"  To: "+hotel.checkOut+"\n"
+                    +"Room(s): "+hotel.rooms+"x "+hotel.roomType+"\n"+"Price: "+hotel.price+"\n");
                 })
             })
-
+            emailText+="\nPayment Method: Credit Card";
 
             const bookings=new Bookings({
                 Userid:booking.Userid,

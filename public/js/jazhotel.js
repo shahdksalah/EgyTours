@@ -28,8 +28,8 @@ function showSlides(n) {
 }
 
 if(typeof documents!=='undefined'){
-let bookingForm=documents.getElementById("bForm");
-}
+var bookingForm=documents.getElementById("bForm");
+
 bookingForm.addEventListener('submit',Event=>{
   let book = document.getElementById('booking');
   let ci = document.getElementById('checkIn');
@@ -73,14 +73,15 @@ bookingForm.addEventListener('submit',Event=>{
   else{
     document.getElementById('r-error').innerHTML="";
   }
+
   if(t.value.length==0){
     document.getElementById('t-error').innerHTML="Choose Room Type";
   }
   else{
     document.getElementById('t-error').innerHTML="";
   }
+})
 }
-
 /*
 function addReview()
 {

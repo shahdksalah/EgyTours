@@ -35,18 +35,15 @@
         <textarea id="ActName" rows="3" cols="60" name="Aname"></textarea>
         <h3>Header: </h3>
         <textarea id="ActHeader" rows="3" cols="60" name="Aheader"></textarea>
-        <h3>Days:</h3>
-        <input id="dropbtn" list="Days" placeholder="Number of Days" name="Days">
-        <datalist id="Days">
-          <option value="DAY TRIP"></option>
-          <option value="MULTI-DAY TRIP"></option>
-          </datalist>
+
+        <input type="hidden" id="dropbtn" list="Days" placeholder="Number of Days" name="Days" value="DAY TRIP">
+
         <h3>Type:</h3>
         <textarea id="ActType" rows="2" cols="25" name="Atype"></textarea>
         <input type="text" name="rate" value="0" style="display:none;">
         <h3>Images </h3>
         <div>
-            <input type="file" id="imgs" name="imgs" multiple>
+            <input type="file" id="imgs" name="imgs" multiple style="width:500px;">
         </div>
         <h3>Advantage:</h3>
         <input type="text" id="adv" name="adv">
@@ -73,12 +70,12 @@
         <h3>Price per person: </h3>
         <input type="text" name="price" id="price">
         <h3>Available dates: </h3>
-        <div class="container">
+        <div class="container" style="width:470px;">
             <input type="text" class="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px";>
         </div>	
         
-        <div class="subres"><input type="submit" name="submit" id="submit" >
-        <button onclick="reset()" id="reset">Reset</button></div>
+        <input type="submit" name="submit" id="submit1" >
+        <button onclick="reset()" id="reset1">Reset</button></div>
         </form>
     </div>
     <script src="/js/AddActivityJS.js"></script>

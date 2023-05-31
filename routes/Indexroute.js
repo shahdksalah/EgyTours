@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const lodash = require('lodash');
 const bcrypt = require("bcrypt");
+const city=require('../models/addcitiesdb.js');
 
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -15,8 +16,10 @@ let path = require('path');
 
 
 
-router.get('/', function (req, res){
-  res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user });
+router.get('/',async function (req, res){
+  var array=[]; 
+  array=await city.find();
+  res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user , cities:array});
 });
 
 

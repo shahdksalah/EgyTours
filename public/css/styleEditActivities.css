@@ -1,3 +1,15 @@
+body{
+    color:rgb(54, 36, 27);
+}
+textarea,input,div input{
+    border:3px solid #a78c4c;
+    padding:10px;
+    color:#a78c4c;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:20px;
+    width:500px;
+}
+
 #updateInfo{
     display:none;
     margin-left:-200px;
@@ -5,14 +17,24 @@
 #Edit{
     margin-left:4%;
 }
-#submit,#reset,.cancelbtn,.deletebtn{
+#submit,#reset,.cancelbtn,.deletebtn,#submit1{
     background-color: rgb(54, 36, 27);
 color: white;
 border: none;
 cursor: pointer;
 width: 10%;
+height:1%;
 border-radius: 10px;
 margin-left:0px;
+}
+#reset1{
+    background-color: rgb(54, 36, 27);
+color: white;
+border: none;
+cursor: pointer;
+width: 10%;
+height:35px;
+border-radius: 10px;
 }
 .cancelbtn,.deletebtn{
     width: 20%;

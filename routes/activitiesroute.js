@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Activity = require('../models/activity.schema.js');
-const activityController=require('../controllers/activitiesController.js')
+const activityController=require('../controllers/activitiesController.js');
 
 
 router.get('/', activityController.getActivity);

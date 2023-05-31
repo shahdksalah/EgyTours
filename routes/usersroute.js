@@ -7,7 +7,7 @@ var db = mongoose.connection;
 const bodyParser=require('body-parser');
 const{check,validationResult} =require('express-validator');
 const urlencodedParser=bodyParser.urlencoded({ extended: false });
-const {updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
+const {getUsers,updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
 router.use(bodyParser.json());
 
 router.use((req, res, next) => {

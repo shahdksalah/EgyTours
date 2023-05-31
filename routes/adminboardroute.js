@@ -64,8 +64,8 @@ router.get('/', async function (req, res) {
     }
 
 
-    res.render("AdminDashBoard",{Hotels:Hotels,Activities:Activities,tophotels:tophotelnames,hotelratings:avghotelratings,
-        topactivities:topactivitynames,activityratings:avgactivityratings});
+    res.render("AdminDashBoard",{Hotels:Hotels,Activities:Activities,tophotels:tophotelnames,
+        hotelratings:avghotelratings,topactivities:topactivitynames,activityratings:avgactivityratings});
 
 });
 

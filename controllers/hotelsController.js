@@ -2,9 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Hotel = require('../models/hotel.schema.js');
 const Cart = require('../models/cartdb.js');
-<<<<<<< HEAD
-const moment=require('moment')
-=======
 const moment = require('moment');
 
 
@@ -24,7 +21,6 @@ const getHotel1 = async (req, res) => {
     res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: ""  });
 }
 
->>>>>>> 52c0db17ba18f72bb96adde7524ff37db76d414a
 
 const addToCart = async (req, res) => {
     console.log('Entered')
@@ -36,11 +32,7 @@ const addToCart = async (req, res) => {
         days=date2.diff(date1, 'days')
     }
     
-<<<<<<< HEAD
      var hotel=await Hotel.find().where("_id").equals(req.params.id)
-=======
-    var hotel=await Hotel.find({"_id":req.params.id})
->>>>>>> 52c0db17ba18f72bb96adde7524ff37db76d414a
      .then(result=>{
         hotel=result[0];
         console.log(hotel);

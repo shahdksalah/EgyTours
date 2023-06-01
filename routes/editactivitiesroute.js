@@ -32,6 +32,12 @@ router.get('/:name', async function (req, res) {
     res.render("editactivity1", { activity: (Activities === 'undefined' ? "" : Activities) });
 });
 
+router.get('/delete/:id', async function(req,res){
+    var act = await Activity.findByIdAndDelete(req.params.id);
+    if(act)
+        res.redirect('back');
+})
+
 router.post('/updated/:name', async function (req, res) {
     var Activities = [];
     var query = req.params.name;

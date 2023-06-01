@@ -17,11 +17,6 @@ const ActivitySchema = new Schema ({
         trim:true,
         required:true,
     },
-    Days:{
-        type:String,
-        trim:true,
-        required:true,
-    },
     Type:{
         type:String,
         required:true,

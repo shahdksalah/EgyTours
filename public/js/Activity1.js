@@ -22,3 +22,9 @@ function validated(){
   return valid;
 
 }
+
+function sendForm(){
+  document.getElementById("participants").value=document.getElementById("dropbtn").value;
+  document.getElementById("date").value=document.getElementById("days").value;
+  return true;
+}

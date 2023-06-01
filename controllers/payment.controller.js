@@ -94,7 +94,7 @@ const pay=async(req,res)=>{
                         }
                       });
 
-                    res.redirect('/');
+                    res.render("confirmPayment")
                 })
                 .catch(err=>{
                     console.log(err);

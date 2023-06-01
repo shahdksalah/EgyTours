@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,62 +8,60 @@
     <title>Edit Activities</title>
     <link rel="stylesheet" href="/css/styleUsers.css">
     <link rel="stylesheet" href="/css/styleAdminDashboard.css">
-    <link rel="stylesheet" href="/css/styleAddActivity.css">
-    <link rel="stylesheet" href="./css/styleForm.css">
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
     <link rel="stylesheet" href="/css/styleEditHotels.css">
-   
+
 </head>
+
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
- 
+
     <%- include("partials/adminHeader.ejs") %>
         <div class="main-content">
-    
-        
-        <div class="right">
-            <div id="cont">
-                <div>
-                    <h1>Edit Activities</h1>
-                </div>
-
-                <div class="view">
-                    <div id="search">
-                        <div id="sBar">
-                            <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
-                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Hotels..">
-                        </div>
+            <div class="right">
+                <div id="cont">
+                    <div style="margin-bottom: 15px;">
+                        <h1>Edit Activities</h1>
                     </div>
 
-        <ul id="myUL">
-            <% if(activities!=="") {%>
-                <% let id=1; %>
-                <% activities.forEach((activity) => { %>
-                    <li id=<%=activity.Name.split()%> onmouseover =" updateDeleteButtons(id)" onmouseleave="exit(id)"><%=activity.Name%>
-                        <button onclick="location.href= '/editactivities/<%=activity.Name%>'">Update </button> 
-                        <button onclick="location.href= '/deleteactivities/<%=activity.Name%>'">Delete</button ></a></li>
-                <% id++; %>
-                <% }); %>
-            <% } %> 
-        </ul>
-    </div>
+                    <div class="view">
+                        <div id="search">
+                            <div id="sBar">
+                                <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search for Hotels..">
+                            </div>
+                        </div>
 
+                        <ul id="myUL">
+                            <% if(activities!=="" ) {%>
+                                <% let id=1; %>
+                                    <% activities.forEach((activity)=> { %>
+                                        <li name='list' id=<%=activity.Name.split()%> onmouseover ="
+                                            updateDeleteButtons(id)" onmouseleave="exit(id)"><%=activity.Name%>
+                                                <button
+                                                    onclick="location.href= '/editactivities/<%=activity.Name%>'">Edit
+                                                </button>
+                                                <button onclick='Delete("<%=activity._id%>")'>Delete</button></a></li>
+                                        <% id++; %>
+                                            <% }); %>
+                                                <% } %>
+                        </ul>
+                    </div>
+                </div>
+                <div id="deleteActivity" style="display: none;">
+                    <h1>Delete Activity</h1>
+                    <p>Are you sure you want to delete this Activity?</p>
 
+                    <div class="clearfix">
+                        <button type="button" class="cancelbtn" onclick="cancel()">Cancel</button>
+                        <button type="button" class="deletebtn" id="delbut">Delete</button>
+                        <div id="msg" display="none">Activity deleted successfully</div>
+                    </div>
 
-    <div id="c">
-        <h1>Delete Activity</h1>
-        <p>Are you sure you want to delete this Activity?</p>
-
-        <div class="clearfix">
-        <button type="button" class="cancelbtn" onclick="cancel()">Cancel</button>
-        <button type="button" class="deletebtn" onclick="del()">Delete</button>
-        <div id="msg" display="none">Activity deleted successfully</div>
-        </div>
-
-    </div>
-</div>
-</div>
-    <script src="/js/user.js"></script>
-    <script src="/js/EditActivities.js"></script>
+                </div>
+            </div>
+            <script src="/js/EditActivities.js"></script>
 </body>
+
 </html>

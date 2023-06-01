@@ -9,10 +9,12 @@ function addItem(item, finalres, newid, list, errorid) {
         var newli = document.createElement('li');
         if (newid.includes('feat')) {
             newli.setAttribute('id', newid + newf);
+            newli.setAttribute('name', newid);
             newf++;
         }
         else {
             newli.setAttribute('id', newid + newa);
+            newli.setAttribute('name', newid);
             newa++;
         }
 
@@ -78,18 +80,17 @@ function donez(newid, list) {
     if (price.value !== "" && roomin.value !== "" && capin.value !== "") {
         newli = document.createElement('li');
         newli.setAttribute('id', newid + newt);
+        newli.setAttribute('name', newid);
         document.getElementById('errorrooms').innerHTML = "";
         document.getElementById('errorcap').innerHTML = "";
         document.getElementById('errorprice').innerHTML = "";
         document.getElementById('success').innerHTML = "Saved successfully";
         newli.innerHTML = `${typein.value} - ${price.value}LE | ${roomin.value} Rooms | Max. Capacity: ${capin.value}`;
+
         document.getElementById(list).appendChild(newli);
         document.getElementById(newli.id).parentNode.insertBefore(rembut, newli.nextSibling);
 
-        price.value = "";
-        typein.value = "";
-        roomin.value = "";
-        capin.value = "";
+
 
         newt++;
 
@@ -101,15 +102,27 @@ function donez(newid, list) {
             document.getElementById('success').innerHTML = "";
             document.getElementById('errorprice').innerHTML = "";
             document.getElementById('errorrooms').innerHTML = "";
+            document.getElementById('errorcap').innerHTML = "";
         })
     }
-    else if (roomin.value !== "") {
+    if (roomin.value == "") {
         document.getElementById('errorrooms').innerHTML = "You must enter number of rooms";
         document.getElementById('success').innerHTML = "";
     }
-    else {
+    if (price.value == "") {
         document.getElementById('errorprice').innerHTML = "You must enter a price";
         document.getElementById('success').innerHTML = "";
+    }
+    if (capin.value == "") {
+        document.getElementById('errorcap').innerHTML = "You must enter capacity";
+        document.getElementById('success').innerHTML = "";
+    }
+
+    if (document.getElementById('success').innerHTML.includes("success")) {
+        price.value = "";
+        typein.value = "";
+        roomin.value = "";
+        capin.value = "";
     }
 
 
@@ -135,39 +148,8 @@ function addType() {
 
 }
 
-var form = document.getElementById("hotel");
-form.addEventListener('submit', (e) => {
+document.getElementById('hotel').addEventListener('submit', e => {
     var error = false;
-    var name = document.getElementById('name');
-    var loc = document.getElementById('location');
-    var imgs = document.getElementById('imgs');
-    var about = document.getElementById('about');
-
-    if (name.value === "") {
-        document.getElementById('error-name').innerHTML = "You must enter hotel name";
-        error = true;
-    }
-
-    if (loc.value === "") {
-        document.getElementById('error-loc').innerHTML = "You must enter hotel location";
-        error = true;
-    }
-
-    if (imgs.value === "") {
-        document.getElementById('error-imgs').innerHTML = "You must upload images";
-        error = true;
-    }
-    else if (imgs.files.length < 10) {
-        document.getElementById('error-imgs').innerHTML = "You must upload atleast 10 images";
-        error = true;
-    }
-
-    if (about.value === "") {
-        document.getElementById('error-about').innerHTML = "You much enter hotel description";
-        error = true;
-    }
-
-
     var featlist = document.querySelectorAll(`[id^="featli"]`);
     var feattext = document.getElementById('finalfeats');
 
@@ -181,7 +163,6 @@ form.addEventListener('submit', (e) => {
     var captext = document.getElementById('finalcaps');
 
     if (featlist.length == 0) {
-        document.getElementById('errorfeat').innerHTML = "You must enter room features";
         error = true;
     }
     else {
@@ -190,8 +171,7 @@ form.addEventListener('submit', (e) => {
         }
     }
 
-    if (amenlist.length == 0) { 
-        document.getElementById('erroramen').innerHTML = "You must enter room features";
+    if (amenlist.length == 0) {
         error = true;
     }
     else {
@@ -201,7 +181,6 @@ form.addEventListener('submit', (e) => {
     }
 
     if (typelist.length == 0) {
-        document.getElementById('errortype').innerHTML = "You must enter room features";
         error = true;
     }
     else {
@@ -213,24 +192,5 @@ form.addEventListener('submit', (e) => {
         }
     }
 
-
-
-    if (error == true) {
-        e.preventDefault();
-    }
-    else {
-        document.getElementById('errortype').innerHTML = "";
-        document.getElementById('errorrooms').innerHTML = "";
-        document.getElementById('errorfeat').innerHTML = "";
-        document.getElementById('erroramen').innerHTML = "";
-        document.getElementById('error-name').innerHTML = "";
-        document.getElementById('error-loc').innerHTML = "";
-        document.getElementById('error-imgs').innerHTML = "";
-        document.getElementById('error-about').innerHTML = "";
-
-    }
-
-
 })
-
 

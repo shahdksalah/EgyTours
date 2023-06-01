@@ -5,10 +5,10 @@ const Activity = require('../models/activity.schema.js');
 const mongoose = require('mongoose');
 var db = mongoose.connection;
 const bodyParser = require('body-parser');
-const { check, validationResult } = require('express-validator');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const fileUpload = require('express-fileupload');
 
 router.use(bodyParser.json());
+
 
 router.use((req, res, next) => {
     if (req.session.user !== undefined && req.session.user.Type === 'admin') {
@@ -32,8 +32,13 @@ router.get('/:name', async function (req, res) {
     res.render("editactivity1", { activity: (Activities === 'undefined' ? "" : Activities) });
 });
 
+router.use(fileUpload());
+
 router.post('/updated/:name', async function (req, res) {
+
+
     var Activities = [];
+
     var query = req.params.name;
     Activities = await Activity.find().where("Name").equals(query);
 

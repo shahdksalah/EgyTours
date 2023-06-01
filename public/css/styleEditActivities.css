@@ -10,6 +10,17 @@ textarea,input,div input{
     width:500px;
 }
 
+#editdates
+{
+    border:3px solid #a78c4c;
+    padding:4px;
+    color:#a78c4c;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:20px;
+    width:120px;
+    height:30px;
+}
+
 #updateInfo{
     display:none;
     margin-left:-200px;

@@ -69,25 +69,25 @@
                             <div>
                                 <input type="text" id="ActivityType" name="ActivityType" value='<%=activity[0].Type%>'>
                             </div>
-                            <div>
                                 <div>
-                                    <h2>Images</h2>
-                                </div>
-                                <div>
-                                    <div id="imagess">
-                                        <% let id=1 %>
-                                            <% activity[0].Picture.forEach((pic)=>{%>
-                                                <img onclick='showInput("imginput<%=id%>","img<%=id%>")'
-                                                    src="/images/activities/<%=pic%>" alt="<%=pic%>" id='img<%=id%>'
-                                                    style="width:160px; height:130px">
-                                                <span>
-                                                    <input type="file" name="<%=pic%>" id="imginput<%=id%>"
-                                                        hidden>
-                                                </span>
-                                                <% id++%>
-                                                    <%})%>
+                                    <div>
+                                        <h2>Images</h2>
                                     </div>
-                                    <input type="text" style="display: none;" id="imgpaths" name="imgpaths">
+                                    <div>
+                                        <div id="imagess">
+                                            <% let id=1 %>
+                                                <% activity[0].Picture.forEach((pic)=>{%>
+                                                    <img onclick='showInput("imaginput<%=id%>","img<%=id%>")'
+                                                        src="/images/activities/<%=pic%>" alt="<%=pic%>" id='img<%=id%>'
+                                                        style="width:160px; height:130px">
+                                                    <span>
+                                                        <input type="file" name=<%=pic%> id="imaginput<%=id%>" hidden>
+                                                    </span>
+                                                    <% id++%>
+                                                    <%})%>
+                                        </div>
+                                        <input type="text" style="display: none;" id="imagpaths" name="imgpaths">
+                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -170,7 +170,7 @@
                                         <button type="button" onclick="updateDate('showdate<%=id%>','confirm<%=id%>')" >Update</button> 
                                         <button type="button" onclick="deleteDate('dateli<%=id%>')">Delete</button >
                                     <span><input type="date" style="display:none;width:150px;" id="showdate<%=id%>" placeholder="choose a date"></span>
-                                    <span><button type="button" style="display:none" id="confirm<%=id%>" onclick="confirmDate(this.id,'dateinput<%=id%>','showdateli<%=id%>')">Confirm</button></span>
+                                    <span><button type="button" style="display:none" id="confirm<%=id%>" onclick="confirmDate(this.id,'dateinput<%=id%>','showdate<%=id%>')">Confirm</button></span>
                                 </li>
                                     <% id++%>
                                     <%}%>
@@ -178,8 +178,13 @@
                             </div>
                             <div><h2>Add Dates:</h2></div>
                             <div class="container" >
-                                <input type="text" class="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px";>
+                                <input type="text" class="form-control date" id="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px";>
                             </div>	
+
+                            <textarea name="alldates" id="alldates" cols="15" rows="5"
+                            ></textarea>
+
+                            <div id="editdates" onclick="editdates()" >Edit all dates</div>
                             
                             <div id="buttons">
                                 <span>
@@ -196,9 +201,9 @@
             </div>
         </div>
         <%}%>
-
-        <script src="/js/AddActivityJS.js"></script>
         <script src="/js/EditActivites.js"></script>
+        <script src="/js/AddActivityJS.js"></script>
+        
     </body>
 
     </html>

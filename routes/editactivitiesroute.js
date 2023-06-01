@@ -89,7 +89,6 @@ router.post('/updated/:name', async function (req, res) {
     await Activity.findByIdAndUpdate(req.body.id, {
         Name: req.body.Cityname,
         Header: req.body.Activityname,
-        Days: req.body.Days,
         Type: req.body.ActivityType,
         Rate: req.body.rate,
         Advantage: req.body.ActivityAdv,

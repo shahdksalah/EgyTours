@@ -187,4 +187,56 @@ const postActivityAvail = async (req, res) => {
 
 }
 
+const addToCart = async (req, res) => {
+    
+     var activity=await Activity.find().where("_id").equals(req.params.id)
+     .then(result=>{
+        activity=result[0];
+        console.log(activity);
+     })
+     
+
+    var activities=[];
+
+    var activ={
+        id:req.params.id,
+        participants:req.body.participants,
+        date:req.body.date
+    }
+    if(req.session.authenticated){
+    var query = { User: req.session.user._id};
+    Cart.find(query)
+    .then( async result=>{
+        var crt=result[0];
+       if(crt){
+        activities=result[0].Activities;
+        activities.push(activ);
+        
+        await Cart.findByIdAndUpdate(result[0]._id, {
+            Activities: activities
+        })
+        .then(result=>{
+            res.redirect('back');
+        })
+
+       }
+       else{
+          activities[0]=activ;
+          if(req.session.user){
+            const cart= new Cart({
+                User:req.session.user._id,
+                Activities:activities,
+            });
+            cart.save()
+            .then(result=>{
+                console.log("Hotel added");
+                res.redirect('back')
+            })
+        }
+       }
+    })
+
+} 
+}
+
 module.exports = { getActivity,getActivity1,postReview,postActivityAvail };

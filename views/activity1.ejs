@@ -150,7 +150,7 @@
           <h2>Book Now</h2>
           <div class="book" id="book">
             <div>
-              <input id="dropbtn" list="Adults" placeholder="Participants " name="num">
+              <input id="dropbtn"  list="Adults" placeholder="Participants " name="num">
               <datalist id="Adults">
                 <option value="1"></option>
                 <option value="2"></option>
@@ -166,7 +166,7 @@
               <div id="msg" class="check-error"></div>
             </div>
             <div>
-              <select name="days" id="days" style="margin-top:5px;">
+              <select name="days"  id="dropbtn" style="margin-top:5px;">
                 <%for(var j=0;j< activity1[0].DatesDetails.length; j++) {%>
                   <% var b=activity1[0].DatesDetails[j].split(' ')[0]; %>
                   <option value=<%=b %>><%=b %> </option>
@@ -184,7 +184,8 @@
         
 
       <%if(msg==="Available" && num!==0) { %>
-        <form action="<%=activity1[0].Name%>/<%=activity1[0]._id%>" method="post" id="subForm" onsubmit="return sendForm()">
+        <form action="<%=activity1[0]._id%>" method="post" id="subForm" onsubmit="return sendForm()"
+          style="border: none;">
       <div id="avail">
         <h2>Available</h2>
         <div class="duration">
@@ -207,7 +208,7 @@
          <input type="hidden" id="date" name="date">
         
         <div style="text-align: center; margin-top:15px;">
-          <button type="submit" style="width:150px">Add To Cart</button>
+          <button type="submit" style="width:150px;cursor: pointer;">Add To Cart</button>
         </div>
 
       </div>

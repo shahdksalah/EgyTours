@@ -24,7 +24,7 @@ function validated(){
 }
 
 function sendForm(){
-  document.getElementById("participants").value=document.getElementById("dropbtn").value;
-  document.getElementById("date").value=document.getElementById("days").value;
+  document.getElementById("participants").value=document.getElementsByName("num").value;
+  document.getElementById("date").value=document.getElementsByName("days").value;
   return true;
 }

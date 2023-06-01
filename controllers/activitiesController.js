@@ -189,10 +189,11 @@ const postActivityAvail = async (req, res) => {
 
 const addToCart = async (req, res) => {
     
-     var activity=await Activity.find().where("_id").equals(req.params.id)
+     await Activity.find().where("_id").equals(req.params.id)
      .then(result=>{
+        if(result){
         activity=result[0];
-        console.log(activity);
+        }
      })
      
 

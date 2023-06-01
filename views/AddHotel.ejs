@@ -6,142 +6,152 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Hotel</title>
+
     <link rel="stylesheet" href="../css/styleUsers.css">
     <link rel="stylesheet" href="../css/styleAddHotel.css">
     <link rel="stylesheet" href="../css/styleAdminDashboard.css">
-    
+
 
 </head>
 
 <body>
-    
+
     <%- include("partials/adminHeader.ejs") %>
-    <div class="main-content">
+        <div class="main-content">
             <div class="right">
-                <div id="container">
-                    <form id="hotel" method="post" action="/AddHotel" enctype="multipart/form-data">
-                        
-                        <div>
-                            <label for="name">
-                                <h2>Hotel Name</h2>
-                            </label>
-                            <input type="text" name="name" id="name"></input>
-                            <p class='error-message' id="error-name"></p>
+                <%if(alert !=undefined){%>
+                    <% alert.forEach((alr)=>{%>
+                        <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            <%=alr.msg%>
                         </div>
-
-                        <div>
-                            <label for="location">
-                                <h2>Location</h2>
-                            </label>
-                            <input type="text" name="location" id="location"></input>
-                            <p class='error-message' id="error-loc"></p>
-                        </div>
-                        <div>
-                            <h2>Images (10)</h2>
-                        </div>
-                        <div>
-                            <div>
-                                <input type="file" id="imgs" name="imgs" multiple>
-                            </div>
-                            <span class='error-message' id="error-imgs"></span>
-                        </div>
+                        <%})%>
+                            <%}%>
 
 
-                        <div>
-                            <h2>About</h2>
-                        </div>
-                        <div>
-                            <textarea name="about" id="about" cols="150" rows="15"></textarea>
-                            <div class='error-message' id="error-about"></div>
-                        </div>
+                                <div id="container">
+                                    <form id="hotel" method="post" action="/AddHotel" enctype="multipart/form-data">
+
+                                        <div>
+                                            <label for="name">
+                                                <h2>Hotel Name</h2>
+                                            </label>
+                                            <input type="text" name="name" id="name"></input>
+                                            <p class='error-message' id="error-name"></p>
+                                        </div>
+
+                                        <div>
+                                            <label for="location">
+                                                <h2>Location</h2>
+                                            </label>
+                                            <input type="text" name="location" id="location"></input>
+                                            <p class='error-message' id="error-loc"></p>
+                                        </div>
+                                        <div>
+                                            <h2>Images (10)</h2>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <input type="file" id="imgs" name="imgs" multiple>
+                                            </div>
+                                            <span class='error-message' id="error-imgs"></span>
+                                        </div>
 
 
-                        <div id="items">
-                            <div>
-                                <h2>Property Amenities</h2>
-                            </div>
-                            <div>
-                                <div>
-                                    <ul id="li1"></ul>
+                                        <div>
+                                            <h2>About</h2>
+                                        </div>
+                                        <div>
+                                            <textarea name="about" id="about" cols="150" rows="15"></textarea>
+                                            <div class='error-message' id="error-about"></div>
+                                        </div>
+
+
+                                        <div id="items">
+                                            <div>
+                                                <h2>Property Amenities</h2>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    <ul id="li1"></ul>
+                                                </div>
+                                                <textarea name="finalamens" id="finalamens" cols="15" rows="5"
+                                                    style="display: none;"></textarea>
+                                                <input type="text" id="addedamen" name="propamentext">
+                                                <button class='plus' id="add" type='button'
+                                                    onclick="addItem('addedamen','finalamens','amenlinew','li1','erroramen')">+</button>
+                                                <span class='error-message' id="erroramen"></span>
+                                            </div>
+
+                                            <div>
+                                                <h2>Room Features</h2>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    <ul id="li2"></ul>
+                                                </div>
+                                                <textarea name="finalfeats" id="finalfeats" cols="15" rows="5"
+                                                    style="display: none;"></textarea>
+                                                <input type="text" id="addedfeat" name="roomfeattext">
+                                                <button class='plus' id="add2" type='button'
+                                                    onclick="addItem('addedfeat','finalfeats','featlinew','li2','errorfeat')">+</button>
+                                                <span class='error-message' id="errorfeat" style="color:red"></span>
+                                            </div>
+
+                                            <div>
+                                                <h2>Room Types</h2>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    <ul id="li3"></ul>
+                                                </div>
+
+                                                <div id="addtype">
+                                                    <input type="text" id="addedtype" name="roomtypetext">
+                                                    <button class='plus' id="add" type='button'
+                                                        onclick="addType('typelinew','li3')">+</button>
+                                                    <span class='error-message' id="errortype"></span>
+
+                                                </div>
+
+                                                <div id="showprice" style="display: none;">
+                                                    <h4>Enter Price Per Night </h4>
+                                                    <input type="number" id="price" name="typeprice">
+                                                    <span class='error-message' id="errorprice"></span>
+                                                    <h4>Enter Number of Rooms </h4>
+                                                    <input type="number" id="rooms" name="typerooms">
+                                                    <span class='error-message' id="errorrooms"></span>
+                                                    <h4>Enter Maxinum Capacity </h4>
+                                                    <input type="number" id="cap" name="typecap">
+                                                    <span class='error-message' id="errorcap"></span>
+                                                    <button class='plus' id="done" type='button'
+                                                        onclick="donez('typelinew','li3')" style="width:100px"
+                                                        s>done</button>
+
+                                                </div>
+
+                                                <span id="success" style="color:green"></span>
+
+                                                <input type="text" name="finalprices" id="finalprices" hidden>
+                                                <input type="text" name="finaltypes" id="finaltypes" hidden>
+                                                <input type="text" name="finalrooms" id="finalrooms" hidden>
+                                                <input type="text" name="finalcaps" id="finalcaps" hidden>
+
+                                            </div>
+                                        </div>
+
+                                        <div id="buttons">
+                                            <button type="submit"
+                                                style="width:120px; margin-top: 15px; height:35px; border-radius: 17px;">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <textarea name="finalamens" id="finalamens" cols="15" rows="5"
-                                style="display: none;"   ></textarea>
-                                <input type="text" id="addedamen" name="propamentext">
-                                <button class='plus' id="add" type='button'
-                                    onclick="addItem('addedamen','finalamens','amenlinew','li1','erroramen')">+</button>
-                                <span class='error-message' id="erroramen"></span>
-                            </div>
-
-                            <div>
-                                <h2>Room Features</h2>
-                            </div>
-                            <div>
-                                <div>
-                                    <ul id="li2"></ul>
-                                </div>
-                                <textarea name="finalfeats" id="finalfeats" cols="15" rows="5"
-                                style="display: none;"    ></textarea>
-                                <input type="text" id="addedfeat" name="roomfeattext">
-                                <button class='plus' id="add2" type='button'
-                                    onclick="addItem('addedfeat','finalfeats','featlinew','li2','errorfeat')">+</button>
-                                <span class='error-message' id="errorfeat" style="color:red"></span>
-                            </div>
-
-                            <div>
-                                <h2>Room Types</h2>
-                            </div>
-                            <div>
-                                <div>
-                                    <ul id="li3"></ul>
-                                </div>
-
-                                <div id="addtype">
-                                    <input type="text" id="addedtype" name="roomtypetext">
-                                    <button class='plus' id="add" type='button'
-                                        onclick="addType('typelinew','li3')">+</button>
-                                    <span class='error-message' id="errortype"></span>
-
-                                </div>
-
-                                <div id="showprice" style="display: none;">
-                                    <h4>Enter Price Per Night </h4>
-                                    <input type="number" id="price" name="typeprice">
-                                    <span class='error-message' id="errorprice"></span>
-                                    <h4>Enter Number of Rooms </h4>
-                                    <input type="number" id="rooms" name="typerooms">
-                                    <span class='error-message' id="errorrooms"></span>
-                                    <h4>Enter Maxinum Capacity </h4>
-                                    <input type="number" id="cap" name="typecap">
-                                    <span class='error-message' id="errorcap"></span>
-                                    <button class='plus' id="done" type='button' onclick="donez('typelinew','li3')" style="width:100px"s>done</button>
-                                    <span class='error-message' id="errorrooms"></span>
-                                </div>
-                                
-                                <span id="success" style="color:green"></span>
-
-                                <textarea name="finalprices" id="finalprices" cols="15" rows="5"
-                                style="display: none;" ></textarea>
-                                <textarea name="finaltypes" id="finaltypes" cols="15" rows="5"
-                                style="display: none;" ></textarea>
-                                <textarea name="finalrooms" id="finalrooms" cols="15" rows="5"
-                                style="display: none;" ></textarea>
-                                <textarea name="finalcaps" id="finalcaps" cols="15" rows="5"
-                                style="display: none;" ></textarea>
-
-                            </div>
-                        </div>
-
-                        <div id="buttons">
-                            <button type="submit"
-                                style="width:120px; margin-top: 15px; height:35px; border-radius: 17px;">Submit</button>
-                        </div>
-                    </form>
-                </div>
 
             </div>
-    </div>
+        </div>
 
-    <script src="../js/addHotelJS.js"></script>
+        <script src="../js/addHotelJS.js"></script>
+        <script src="../js/addhotel.formval.js"></script>
 </body>
 
 </html>

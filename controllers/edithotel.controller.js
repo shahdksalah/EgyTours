@@ -5,8 +5,8 @@ const fileUpload = require('express-fileupload');
 
 router.use(fileUpload());
 
-const updateHotel = async (req,res)=>{
-    var caption = req.body.about.substring(0, 50) + "...";
+const updateHotel = async (req, res) => {
+    var caption = req.body.about.substring(0, 70) + "...";
     if (!req.files || Object.keys(req.files).length == 0) {
 
     }
@@ -37,7 +37,6 @@ const updateHotel = async (req,res)=>{
         }
     }
 
-
     var Hotels = [];
     var query = req.params.name;
     Hotels = await Hotel.findByIdAndUpdate(req.body.id, {
@@ -50,11 +49,12 @@ const updateHotel = async (req,res)=>{
         RoomTypes: types,
     })
         .then(async result => {
-            Hotels = await Hotel.find().where("Name").equals(query)
-                .then(() => {
-                    res.render("hotel1", { hotel1: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
+            await Hotel.find().where("Name").equals(query)
+                .then((result) => {
+                    res.render("hotel1", { hotel1: (result === 'undefined' ? "" : result), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
                 })
         })
+
 
 }
 

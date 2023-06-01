@@ -42,6 +42,7 @@ const pay=async(req,res)=>{
       console.log(errors.array());
     }
     else{
+      var totalPrice=0;
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -64,6 +65,7 @@ const pay=async(req,res)=>{
                     h=res[0];
                     emailText+=("Hotel: "+h.Name+"\n"+"From: "+hotel.checkIn+"  To: "+hotel.checkOut+"\n"
                     +"Room(s): "+hotel.rooms+"x "+hotel.roomType+"\n"+"Price: "+hotel.price+"\n");
+                     totalPrice+=hotel.price;
                 })
             })
 
@@ -94,7 +96,7 @@ const pay=async(req,res)=>{
                         }
                       });
 
-                    res.render("confirmPayment")
+                    res.render("confirmPayment",{price:totalPrice,card:req.body.number})
                 })
                 .catch(err=>{
                     console.log(err);

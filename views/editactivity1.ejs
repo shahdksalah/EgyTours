@@ -40,7 +40,7 @@
                 <div id="cont">
                     <div>
                         <form action="/editactivities/updated/<%=activity[0].Name%>" method="post" id="form" enctype="multipart/form-data" style="background-color:transparent; border:none;">
-                            <input type="text" style="display: none;" value="<%=activity[0]._id%>">
+                            <input type="text" name="id" style="display: none;" value="<%=activity[0]._id%>">
                             <div>
                                 <h2>City's Name: </h2>
                             </div>
@@ -182,7 +182,7 @@
                             </div>	
 
                             <textarea name="alldates" id="alldates" cols="15" rows="5"
-                            ></textarea>
+                            style="display:none;"></textarea>
 
                             <div id="editdates" onclick="editdates()" >Edit all dates</div>
                             

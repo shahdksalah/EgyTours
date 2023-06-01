@@ -24,7 +24,6 @@
           
           <div class="card__body">
             
-            <img src="http://nathgreen.co.uk/assets/img/nath.jpg" class="card__avatar">
             <div class="card__recipient-info">
               <!-- <p class="card__recipient">Nath Green</p> -->
               <% if(user!=="") {%>
@@ -40,7 +39,7 @@
               <div class="card__card-details">
                 <p class="card__card-type">Credit / debit card</p>
                 <% if(card!="") {%>
-                <p class="card__card-number">Visa ending in **<%card.slice(-2)%></p>  
+                <p class="card__card-number">Visa ending in **<%=card.slice(-2)%></p>  
                 <% } %>        
               </div>
             </div>

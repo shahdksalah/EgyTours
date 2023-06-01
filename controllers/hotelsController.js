@@ -58,7 +58,7 @@ const addToCart = async (req, res) => {
         price:price,
         days:days,
     }
-    
+    if(req.session.authenticated){
     var query = { User: req.session.user._id};
     Cart.find(query)
     .then( async result=>{
@@ -90,6 +90,8 @@ const addToCart = async (req, res) => {
         }
        }
     })
+
+}
      
 
   

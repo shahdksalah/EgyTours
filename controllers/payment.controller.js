@@ -86,7 +86,7 @@ const pay = async (req, res) => {
               bookings.save()
                 .then(async () => {
                   console.log("Booking saved")
-                  await Cart.findOneAndDelete().where("Userid").equals(req.session.user._id)
+                  await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
                     .then(() => {
                       console.log("cart deleted");
                       emailText += "\nPayment Method: Credit Card";

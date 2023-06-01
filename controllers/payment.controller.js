@@ -37,7 +37,7 @@ const viewForm=async (req,res)=>{
 }
 
 const pay=async(req,res)=>{
-    const errors = validationResult(request)
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors.array());
     }

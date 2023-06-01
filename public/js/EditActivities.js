@@ -37,23 +37,23 @@ function myFunction() {
   }
 }
 
-function updateDeleteButtons(index){
- let a;
- a=document.getElementById(index);
- a.getElementsByTagName("button")[0].style.display="flex";
- a.getElementsByTagName("button")[1].style.display="flex";
+function updateDeleteButtons(index) {
+  let a;
+  a = document.getElementById(index);
+  a.getElementsByTagName("button")[0].style.display = "flex";
+  a.getElementsByTagName("button")[1].style.display = "flex";
 }
 
-function exit(index){
-    a=document.getElementById(index);
-    a.getElementsByTagName("button")[0].style.display="none";
-    a.getElementsByTagName("button")[1].style.display="none";
+function exit(index) {
+  a = document.getElementById(index);
+  a.getElementsByTagName("button")[0].style.display = "none";
+  a.getElementsByTagName("button")[1].style.display = "none";
 }
 
 function Delete(id) {
   document.getElementById("deleteActivity").style.display = "block";
-  document.getElementById('delbut').addEventListener('click', e=>{
-    location.href='editactivities/delete/'+id;
+  document.getElementById('delbut').addEventListener('click', e => {
+    location.href = 'editactivities/delete/' + id;
   })
 }
 
@@ -74,3 +74,44 @@ function showInput(id, imgid) {
   })
 }
 
+function editdates() {
+  var count = 0;
+  var arr = [];
+  var date = document.querySelectorAll(`[id^="dateinput"]`);
+  var adddates = document.getElementById("form-control date");
+  var alldates = document.getElementById("alldates");
+
+  console.log(adddates.value);
+  console.log(adddates.value.length);
+
+
+  for (var j = 0; j < adddates.value.length; j++) {
+    if (adddates.value[j] === ",") {
+      count++;
+    }
+  }
+
+  for (var k = 0; k <= count; k++) {
+    arr.push(adddates.value.split(',')[k]);
+  }
+
+
+
+  console.log(date);
+
+
+  for (var i = 0; i < date.length; i++) {
+    alldates.value += `${date[i].value},`;
+  }
+
+  for (var z = 0; z < arr.length; z++) {
+    alldates.value += `${arr[z]},`;
+  }
+
+  console.log(alldates.value);
+
+
+
+
+
+}

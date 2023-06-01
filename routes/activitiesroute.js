@@ -12,5 +12,7 @@ router.post('/:name', activityController.postReview);
 
 router.post('/:name/submit',activityController.postActivityAvail);
 
+router.post('/:name/:id',activityController.addToCart)
+
 module.exports=router;
 

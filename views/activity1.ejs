@@ -184,7 +184,7 @@
         
 
       <%if(msg==="Available" && num!==0) { %>
-        <form action="" method="post" id="subForm" onsubmit="return sendForm()">
+        <form action="<%=activity1[0].Name%>/<%=activity1[0]._id%>" method="post" id="subForm" onsubmit="return sendForm()">
       <div id="avail">
         <h2>Available</h2>
         <div class="duration">

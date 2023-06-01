@@ -239,4 +239,4 @@ const addToCart = async (req, res) => {
 } 
 }
 
-module.exports = { getActivity,getActivity1,postReview,postActivityAvail };
+module.exports = { getActivity,getActivity1,postReview,postActivityAvail,addToCart };

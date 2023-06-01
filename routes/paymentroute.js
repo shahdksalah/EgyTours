@@ -11,20 +11,11 @@ router.post('/payment', urlencodedParser, [
       .exists()
     ,
   
-    check('expMonth', 'Expiry Month Required')
-    .exists(),
-    
-  
-    check('expDay', 'Expiry Day Required')
-    .exists(),
-  
     check('cvv', 'CVV Required')
-      .exists()
-      .isLength({ min: 6 }),
+      .exists(),
   
     check('name', 'Card Holder Name Required')
       .exists()
-      .isLength({ min: 6 }) 
   
   ],paymentController.pay)
 

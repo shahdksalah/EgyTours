@@ -223,7 +223,7 @@ const addToCart = async (req, res) => {
             cart.save()
             .then(result=>{
                 console.log("Activity added");
-                res.redirect('back');
+                res.redirect('/');
             })
         }
        }

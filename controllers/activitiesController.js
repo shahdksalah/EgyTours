@@ -153,7 +153,7 @@ const postActivityAvail = async (req, res) => {
         //window.location.reload();
         */
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,revmsg:""});
     }
 
     else if(found1 === "true")
@@ -172,7 +172,7 @@ const postActivityAvail = async (req, res) => {
         console.log(Act);
         */
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,revmsg:""});
        //window.location.reload();
     }
 
@@ -180,7 +180,7 @@ const postActivityAvail = async (req, res) => {
     {
         //.location.reload();
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Not Available"});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Not Available",revmsg:""});
     }
 
 

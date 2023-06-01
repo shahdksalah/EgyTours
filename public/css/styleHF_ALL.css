@@ -157,9 +157,7 @@ form input{
     flex:60%;
     margin-top:10px;
 }
-#myHeader button:hover{
-    color:rgb(177, 165, 109);
-}
+
 #myHeader img{
     width:60px;
 }
@@ -171,13 +169,13 @@ form input{
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     font-size: 20px;
-    margin-top:3%;
+    margin-top:2.5%;
     margin-left:20px;
     position: relative;
     right:40px;
 }
 .topnav input{
-    border-radius: 15px;
+    border-radius: 10px;
     border: none;
     position: absolute;
     right:10px;
@@ -194,11 +192,16 @@ form input{
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    margin-top:-5%;
+    margin-top:-4%;
     position: relative;
     right: 200px;
-    margin-right:17%;
+    margin-right:10%;
     margin-left:25%;
+}
+.topnav button:hover{
+    background-color: rgb(177, 165, 109);;
+    cursor: pointer;
+    color:#36241b;
 }
 .topnav button{
     float:right;
@@ -222,6 +225,8 @@ form input{
 .buttons{
     flex:31%;
     margin-top:5px;
+    margin-left:170px;
+
 }
 .buttons button{
     border-radius: 8px;
@@ -235,15 +240,14 @@ form input{
     background-color: transparent;
     text-align: center;
   }
+.buttons button:hover{
+    color:rgb(177, 165, 109);
+}
 .topnav a:hover {
     color:rgb(177, 165, 109);
     background-color: transparent;
-    margin-top:5px;
 }
-.topnav button:hover{
-    color: rgb(177, 165, 109);;
-    cursor: pointer;
-}
+
 
 
 

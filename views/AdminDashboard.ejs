@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin DashBoard</title>
-    
+
     <link rel="stylesheet" href="/css/styleActivities.css">
     <link rel="stylesheet" href="/css/styleAdminDashboard.css">
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
@@ -13,8 +14,9 @@
 
 </head>
 <style>
-    
+
 </style>
+
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
 
@@ -26,7 +28,8 @@
             <div class="left-message" id="left-message">
                 <div class="msg-id">
                     <div>
-                        <img src="../images/profile.jpg" alt="person" width="25px" height="25px" style="border-radius: 15px; border: none;">
+                        <img src="../images/profile.jpg" alt="person" width="25px" height="25px"
+                            style="border-radius: 15px; border: none;">
                     </div>
                 </div>
                 <div class="msgcontent">
@@ -41,9 +44,10 @@
             <div class="right-message" id="right-message">
                 <div class="msg-id">
                     <div>
-                        <img src="../images/profile.jpg" alt="person" width="25px" height="25px" style="border-radius: 15px; border: none;">
+                        <img src="../images/profile.jpg" alt="person" width="25px" height="25px"
+                            style="border-radius: 15px; border: none;">
                     </div>
-                    
+
                 </div>
                 <div class="msgcontent">
                     <div>
@@ -56,144 +60,192 @@
             </div>
         </div>
         <div class="type-msg">
-            <input type="text" placeholder="Enter Message.." id="msg"><span><button onclick="sendMsg()">^</button></span>
-            
+            <input type="text" placeholder="Enter Message.." id="msg"><span><button
+                    onclick="sendMsg()">^</button></span>
+
         </div>
     </div>
 
 
-    
+
     <script src="/js/chat.js"></script>
     <%- include("partials/adminHeader.ejs") %>
-    <div class="main-content">
+        <div class="main-content">
 
-        <div class="right">
-            <h1 class="head">TOP ACTIVITIES</h1>
-            <div class="first">
-                <div class="btn">
-                    <div>
-                        <img src="../images/cities/SAFARI.jpg" alt="safari" width="300 px" height="200 px">
+            <div class="right">
+                <h1 class="head">TOP ACTIVITIES</h1>
+                <div class="first">
+                    <% if(Activities!=="") {%>
+                        <% let id1=0; %>
+                        <%topactivities.forEach((topactivity) => { %>
+                            <%let rate1=activityratings[id1]; %>
+                        <% Activities.forEach((Activity) => { %>
+                            <% console.log(Activity.Name.split(',')); %>
+                            <% console.log(topactivity.split(',')); %>
+                            <% if( (Activity.Name.split(',').toString()) === (topactivity.split(',').toString()) ) { %>
+                    <div class="btn">
+                        <div>
+                            <img src="/images/activities/<%=Activity.Picture[0]%>" width="260 px" height="200 px" >
+                        </div>
+
+                        <div>
+                            <h5><%=Activity.Header%></h5>
+                            <h4><%=Activity.Advantage%> </h4>
+                        </div>
+                        <span class="rating">
+                            <% for(var k =0; k < rate1;k++){ %>
+                                <i class="fa-solid fa-star"></i>
+                                <% } %>
+                            </span>
+
                     </div>
-            
-                <div>
-                    <h5>ADVENTURE</h5>
-                    <h4>From Cairo:4x4 Desert Safari, Sandsurf, and Camel Ride </h4>
+                    <% } %>
+                    <% id1++; %>
+                    <% }); %>
+                    <% }); %>
+                <% } %> 
+                    
                 </div>
-            <div class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i><span style="margin-left:2%;">4.0</span>
-            </div>
+                
+
+
+                <h1 class="head">TOP HOTELS</h1>
+                <div class="first">
+                    <% if(Hotels!=="") {%>
+                        <% let id2=0; %>
+                        <%tophotels.forEach((tophotel) => { %>
+                            <%let rate2=hotelratings[id2]; %>
+                        <% Hotels.forEach((hotel) => { %>
+                            <% console.log(hotel.Name.split(',')); %>
+                            <% console.log(tophotel.split(',')); %>
+                            <% if( (hotel.Name.split(',').toString()) === (tophotel.split(',').toString()) ) { %>
+                    <div class="btn">
+                        <div>
+                            <img src="/images/Hotels/<%=hotel.Picture[0]%>" width="260 px" height="200 px" >
+                        </div>
+
+                        <div>
+                            <h3><%=hotel.Name%></h3>
+                            <h4><%=hotel.Location%> </h4>
+                        </div>
+
+                        <span class="rating">
+                        <% for(var k =0; k < rate2;k++){ %>
+                            <i class="fa-solid fa-star"></i>
+                            <% } %>
+                        </span>
+                         
+                        </div>
+                        <% } %>
+                        <% console.log ("hi") %>
+                        <% id2++; %>
+                        <% }); %>
+                        <% }); %>
+                    <% } %> 
+                    </div>
+
             
-            </div>
         
-                <div class="btn">
-                    <div>
-                        <img src="../images/cities/PYRAMIDS.jpg" alt="pyramids" width="300 px" height="200 px" >
+            <h1 class="head">WEEKLY HOTELS REVIEWS:</h1>
+                <div class="first">
+                    <% if(Hotels!=="") {%>
+                    <% const nowdate = new Date().toLocaleString('en-GB', {hour12: false,});%>
+                    <% const currday =nowdate.split("/")[0];%>
+                    <% const currmonth =nowdate.split("/")[1];%>
+                    <% const curryear =nowdate.split("/")[2].split(',')[0];%>
+                    <% var currdate = new Date(curryear,currmonth-1,currday ); %>
+                    <% let id3=0; %>
+                     <% Hotels.forEach((hotel) => { %>
+                    <% revs=hotel.Reviews%>
+                    <% revs.forEach((rev)=>{%>
+                    <% const day =rev.Date.split("/")[0];%>
+                    <% const month =rev.Date.split("/")[1];%>
+                    <% const year = rev.Date.split("/")[2].split(',')[0];%>
+                    <% var revdate = new Date(year,month-1,day ); %>
+                    <%var diffTime=Math.abs(currdate-revdate);%>
+                    <% var diffDays=Math.ceil(diffTime/(1000*60*60*24));%>
+                    <% if( diffDays<=7 ) { %>
+                        <div class="btn">
+                            <div class="rev">
+                                <%=hotel.Name%>
+                            </div>
+                            <div class="rev" style="margin-bottom:6px;">
+                                <%var daterev= rev.Date.split(',')[0];%>
+                              <h6 class="R"> at <%=daterev%> </h6>
+                            </div>
+                            <span class="rating">
+                              <% let rates=rev.Rating;%>
+                                <% for(var i=0; i<rates; i++){%>
+                                  <i class="fa-solid fa-star"></i>
+                                  <%}%>
+                                </span>
+                            <div>
+                              <p>
+                                <%=rev.Comment%>
+                              </p>
+                            </div>
+                          </div>
+                    <% } %>
+                    <% }); %>
+                    <% id3++; %>
+                    <% }); %>
+                    <% } %>
+
+                        </div>    
+
+                <h1 class="head">WEEKLY ACTIVITIES REVIEWS:</h1>
+                <div class="first">
+                    <% if(Activities!=="") {%>
+                    <% const nowdate = new Date().toLocaleString('en-GB', {hour12: false,});%>
+                    <% const currday =nowdate.split("/")[0];%>
+                    <% const currmonth =nowdate.split("/")[1];%>
+                    <% const curryear =nowdate.split("/")[2].split(',')[0];%>
+                    <% var currdate = new Date(curryear,currmonth-1,currday ); %>
+                    <% let id4=0; %>
+                     <% Activities.forEach((activity) => { %>
+                    <% revs=activity.Reviews%>
+                    <% revs.forEach((rev)=>{%>
+                    <% const day =rev.Date.split("/")[0];%>
+                    <% const month =rev.Date.split("/")[1];%>
+                    <% const year = rev.Date.split("/")[2].split(',')[0];%>
+                    <% var revdate = new Date(year,month-1,day ); %>
+                    <%var diffTime=Math.abs(currdate-revdate);%>
+                    <% var diffDays=Math.ceil(diffTime/(1000*60*60*24));%>
+                    <% if( diffDays<=7 ) { %>
+                        <div class="btn">
+                            <div class="rev">
+                                <%=activity.Header%>
+                            </div>
+                            <div class="rev" style="margin-bottom:6px;">
+                                <%var daterev= rev.Date.split(',')[0];%>
+                              <h6 class="R"> <%=rev.Username%> wrote a review at <%=daterev%> </h6>
+                            </div>
+                            <span class="rating">
+                              <% let rates=rev.Rating;%>
+                                <% for(var i=0; i<rates; i++){%>
+                                  <i class="fa-solid fa-star"></i>
+                                  <%}%>
+                                </span>
+                            <div>
+                              <p>
+                                <%=rev.Comment%>
+                              </p>
+                            </div>
+                          </div>
+                    <% } %>
+                    <% }); %>
+                    <% id4++; %>
+                    <% }); %>
+                    <% } %>
+
+                        </div> 
                     </div>
-                <div>
-                    <h5>GUIDED TOUR</h5>
-                    <h4>From Cairo: Half Day Tour to Pyramids of Giza and the Sphinx </h4>
                 </div>
-                
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i><span style="margin-left:2%;">4.5</span>
-                </div>
-            </div>
-    
-            
-                <div class="btn">
-                <div>
-                    <img src="../images/cities/QAITBAY.jpg" alt="citadel qaitbay" width="300 px" height="200 px">
-                </div>
-                <div>
-                    <h5>DAY TRIP</h5>
-                    <h4>From Cairo: Full Day Tour of Historical Alexandria </h4>
-                </div>
-                    
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i><span style="margin-left:2%;">5.0</span>
-                    
-                    </div>
-                </div>
-            </div>
-    
-    
-            <h1 class="head">TOP HOTELS</h1>
-            <div class="first">
-            <div class="btn">
-                <div>
-                    <img src="../images/Hotels/jaz hotel.jpeg" alt="jaz hotel" width="300 px" height="200 px">
-                </div>
-            
-            <div>
-                <h3>Jazz Makadina Hotel</h3>
-                <h4>From Cairo:3-4 days next to beach and swimming pool </h4>
-            </div>
-            <div class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i><span style="margin-left:2%;">4.0</span>
-            </div>
-            <div>
-                
-            </div>
-            </div>
-        
-            <div class="btn">
-                    <div>
-                        <img src="../images/Hotels/fourseasons alex.jpg" alt="four seasons hotel" width="300 px" height="200 px" >
-                    </div>
-                <div>
-                    <h3>Four Seasons Hotel</h3>
-                    <h4>From Cairo:2-3 days visiting all the historic tours </h4>
-                </div>
-                
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i><span style="margin-left:2%;">4.5</span>
-                </div>
-            </div>
-    
-            
-            <div class="btn">
-                <div>
-                    <img src="../images/Hotels/hilton luxor hotel.jpeg" alt="hilton luxor" width="300 px" height="200 px">
-                </div>
-                <div>
-                    <h3>Hilton Luxor Hotel</h3>
-                    <h4>From Cairo:5-6 days enjoying the greatest view ever </h4>
-                </div>
-                    
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i><span style="margin-left:2%;">5.0</span>
-                </div>
-            </div>
-            </div>
 
 
-        </div>
 
-    </div>
+
 
 </body>
+
 </html>

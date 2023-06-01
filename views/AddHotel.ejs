@@ -6,27 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Hotel</title>
-    <link rel="stylesheet" href="../css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="../css/styleUsers.css">
     <link rel="stylesheet" href="../css/styleAddHotel.css">
+    <link rel="stylesheet" href="../css/styleAdminDashboard.css">
+    
 
 </head>
 
 <body>
-
+    
     <%- include("partials/adminHeader.ejs") %>
     <div class="main-content">
-
-        
             <div class="right">
                 <div id="container">
-                    <h2><ins>Add Hotel</ins></h2>
                     <form id="hotel" method="post" action="/AddHotel" enctype="multipart/form-data">
                         
                         <div>
                             <label for="name">
                                 <h2>Hotel Name</h2>
                             </label>
-                            <textarea name="name" id="name" cols="60" rows="2"></textarea>
+                            <input type="text" name="name" id="name"></input>
                             <p class='error-message' id="error-name"></p>
                         </div>
 
@@ -34,7 +33,7 @@
                             <label for="location">
                                 <h2>Location</h2>
                             </label>
-                            <textarea name="location" id="location" cols="60" rows="3"></textarea>
+                            <input type="text" name="location" id="location"></input>
                             <p class='error-message' id="error-loc"></p>
                         </div>
                         <div>

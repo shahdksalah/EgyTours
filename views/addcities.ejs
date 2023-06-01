@@ -61,7 +61,7 @@
                 </div>
                 <div>
                     <% activities.forEach((activ)=>{ %>
-                        <input type="checkbox" style="width:10px;" id=<%= activ.Name %> name="hot" value=<%= activ.Name %> >
+                        <input type="checkbox" style="width:10px;" id=<%= activ.Name %> name="act" value=<%= activ.Name %> >
                         <label><%=activ.Name %></label><br>
                         <% }) %>
                     <textarea name="activities1" id="selectedActivities" cols="30" rows="10" style="display: none;"></textarea>

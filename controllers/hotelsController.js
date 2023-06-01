@@ -2,7 +2,29 @@ const express = require('express')
 const router = express.Router()
 const Hotel = require('../models/hotel.schema.js');
 const Cart = require('../models/cartdb.js');
+<<<<<<< HEAD
 const moment=require('moment')
+=======
+const moment = require('moment');
+
+
+const getHotels = async (req, res) => {
+
+    var Hotels=[];
+    Hotels=await Hotel.find();
+    res.render("hotels",{hotels:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: ""  });
+    
+    
+}
+
+const getHotel1 = async (req, res) => {
+    var Hotels=[];
+    var url = req.params.name; 
+    Hotels=await Hotel.find({"Name":url});
+    res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: ""  });
+}
+
+>>>>>>> 52c0db17ba18f72bb96adde7524ff37db76d414a
 
 const addToCart = async (req, res) => {
     console.log('Entered')
@@ -14,7 +36,11 @@ const addToCart = async (req, res) => {
         days=date2.diff(date1, 'days')
     }
     
+<<<<<<< HEAD
      var hotel=await Hotel.find().where("_id").equals(req.params.id)
+=======
+    var hotel=await Hotel.find({"_id":req.params.id})
+>>>>>>> 52c0db17ba18f72bb96adde7524ff37db76d414a
      .then(result=>{
         hotel=result[0];
         console.log(hotel);
@@ -89,6 +115,7 @@ const postReview = async (req, res) => {
             hour12: false,
         });
         var newrev = {
+            Username: req.session.user.Username,
             Rating: req.body.rating,
             Comment: req.body.comment,
             Date: nowdate,
@@ -105,7 +132,7 @@ const postReview = async (req, res) => {
                     .then(result => {
                         res.render("hotel1", {
                             hotel1: (Hotels === 'undefined' ? "" : Hotels),
-                            user: (!req.session.authenticated) ? "" : req.session.user, msg: ""
+                            user: (!req.session.authenticated) ? "" : req.session.user, revmsg: ""
                         });
                     })
 
@@ -121,7 +148,7 @@ const postReview = async (req, res) => {
             .then(() => {
                 res.render("hotel1", {
                     hotel1: (Hotels === 'undefined' ? "" : Hotels),
-                    user: (!req.session.authenticated) ? "" : req.session.user, msg: "You must sign in to add a review"
+                    user: (!req.session.authenticated) ? "" : req.session.user, revmsg: "You must sign in to add a review"
                 });
             }).catch(err => {
                 console.log(err);
@@ -129,4 +156,4 @@ const postReview = async (req, res) => {
     }
 }
 
-module.exports = { addToCart, postReview };
+module.exports = { getHotels,getHotel1,addToCart, postReview };

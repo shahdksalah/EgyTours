@@ -49,10 +49,13 @@ const HotelSchema = new Schema({
         type:Array,
         required:false
     },
+<<<<<<< HEAD
     // Rate:{
     //     type:String,
     //     required:false
     // },
+=======
+>>>>>>> 52c0db17ba18f72bb96adde7524ff37db76d414a
 },{timestamp:true});
 
 const Hotel= mongoose.model('Hotel',HotelSchema);

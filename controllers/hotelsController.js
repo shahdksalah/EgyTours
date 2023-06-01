@@ -32,7 +32,7 @@ const addToCart = async (req, res) => {
         days=date2.diff(date1, 'days')
     }
     
-    var hotel=await Hotel.find({"_id":req.params.id})
+     var hotel=await Hotel.find().where("_id").equals(req.params.id)
      .then(result=>{
         hotel=result[0];
         console.log(hotel);
@@ -44,10 +44,9 @@ const addToCart = async (req, res) => {
      })
      
 
-
     var hotels=[];
 
-    var Hotel={
+    var Hotell={
         id:req.params.id,
         checkIn:req.body.checkIn,
         checkOut:req.body.checkOut,
@@ -57,6 +56,7 @@ const addToCart = async (req, res) => {
         rooms:req.body.rooms,
         roomType:req.body.roomType,
         price:price,
+        days:days,
     }
     
     var query = { Userid: req.session.user._id};
@@ -65,7 +65,7 @@ const addToCart = async (req, res) => {
         var crt=result[0];
        if(crt){
         hotels=result[0].Hotels;
-        hotels.push(Hotel);
+        hotels.push(Hotell);
         
         await Cart.findByIdAndUpdate(result[0]._id, {
             Hotels: hotels
@@ -76,7 +76,7 @@ const addToCart = async (req, res) => {
 
        }
        else{
-          hotels[0]=Hotel;
+          hotels[0]=Hotell;
           if(req.session.user){
             const cart= new Cart({
                 Userid:req.session.user._id,

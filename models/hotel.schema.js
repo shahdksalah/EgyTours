@@ -11,6 +11,7 @@ const HotelSchema = new Schema({
         type:String,
         trim:true,
         required:true,
+        unique:true,
     },
     Location:{
         type:String,
@@ -48,6 +49,10 @@ const HotelSchema = new Schema({
         type:Array,
         required:false
     },
+    // Rate:{
+    //     type:String,
+    //     required:false
+    // },
 },{timestamp:true});
 
 const Hotel= mongoose.model('Hotel',HotelSchema);

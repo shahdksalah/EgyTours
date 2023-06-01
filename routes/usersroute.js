@@ -17,6 +17,7 @@ router.use((req, res, next) => {
   else {
       res.render('err', { err: 'You are not an Admin', user: (!req.session.authenticated) ? "" : req.session.user  })
   }
+
 });
 
 router.post('/success',urlencodedParser,[

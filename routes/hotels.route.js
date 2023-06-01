@@ -10,7 +10,6 @@ router.get('/',hotelController.getHotels);
 router.get('/:name', hotelController.getHotel1);
 
 router.post('/:name', hotelController.postReview);
-
 router.post('/:name/:id',hotelController.addToCart)
 
 

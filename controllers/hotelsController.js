@@ -58,8 +58,8 @@ const addToCart = async (req, res) => {
         price:price,
         days:days,
     }
-    
-    var query = { Userid: req.session.user._id};
+    if(req.session.authenticated){
+    var query = { User: req.session.user._id};
     Cart.find(query)
     .then( async result=>{
         var crt=result[0];
@@ -79,7 +79,7 @@ const addToCart = async (req, res) => {
           hotels[0]=Hotell;
           if(req.session.user){
             const cart= new Cart({
-                Userid:req.session.user._id,
+                User:req.session.user._id,
                 Hotels:hotels,
             });
             cart.save()
@@ -90,6 +90,8 @@ const addToCart = async (req, res) => {
         }
        }
     })
+
+}
      
 
   

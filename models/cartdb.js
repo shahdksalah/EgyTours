@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended:true}));
 
 
 const cartSchema=new Schema({
-    Userid:{
+    User:{
         type:String,
         unique:true,
         trim:true,

@@ -7,7 +7,7 @@ const viewCart=async function(req,res)
     let hotels=[];
     if(req.session.authenticated){    //user signed in
         console.log("authenticated")
-        await Cart.find().where("Userid").equals(req.session.user._id)  //user has items in cart
+        await Cart.find().where("User").equals(req.session.user._id)  //user has items in cart
        .then( result=>{
             cart=result[0];
             var counter=0;

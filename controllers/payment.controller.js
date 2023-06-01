@@ -66,7 +66,6 @@ const pay=async(req,res)=>{
                     +"Room(s): "+hotel.rooms+"x "+hotel.roomType+"\n"+"Price: "+hotel.price+"\n");
                 })
             })
-            emailText+="\nPayment Method: Credit Card";
 
             const bookings=new Bookings({
                 Userid:booking.Userid,
@@ -78,6 +77,7 @@ const pay=async(req,res)=>{
                 await Cart.findOneAndDelete().where("Userid").equals(req.session.user._id)
                 .then(()=>{
                     console.log("cart deleted");
+                    emailText+="\nPayment Method: Credit Card";
                     const mailOptions = {
                         from: 'egyytourss@gmail.com',
                         to: req.session.user.Email,

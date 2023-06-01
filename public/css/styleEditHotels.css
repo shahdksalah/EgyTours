@@ -9,8 +9,8 @@
 
 #sIcon {
     position: absolute;
-    left: 22%;
-    top: 24%;
+    left: 6%;
+    top: 29%;
 }
 
 #c {
@@ -30,8 +30,8 @@ img :hover {
     cursor: pointer;
 }
 
-li {
-    margin: 10px
+#i4 li, #i5 li, #i6 li{
+    margin: 6px
 }
 
 #form {

@@ -189,14 +189,6 @@ const postActivityAvail = async (req, res) => {
 
 const addToCart = async (req, res) => {
     
-     await Activity.find().where("_id").equals(req.params.id)
-     .then(result=>{
-        if(result){
-        activity=result[0];
-        }
-     })
-     
-
     var activities=[];
 
     var activ={
@@ -230,8 +222,8 @@ const addToCart = async (req, res) => {
             });
             cart.save()
             .then(result=>{
-                console.log("Hotel added");
-                res.redirect('back')
+                console.log("Activity added");
+                res.redirect('back');
             })
         }
        }

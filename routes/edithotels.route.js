@@ -4,7 +4,7 @@ const Hotel = require('../models/hotel.schema.js');
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 const fileUpload = require('express-fileupload');
-const editHotel = require('../controllers/edithotel.controller.js');
+const {updateHotel} = require('../controllers/edithotel.controller.js');
 
 router.use(fileUpload());
 
@@ -23,6 +23,12 @@ router.get('/', async function (req, res) {
     res.render("edithotels", { hotels: (Hotels === 'undefined' ? "" : Hotels) });
 });
 
+router.get('/delete/:id', async function (req,res){
+    var delHotel = await Hotel.findByIdAndDelete(req.params.id);
+    if(delHotel)
+        res.redirect('back');
+})
+
 router.get('/:name', async function (req, res) {
     var Hotels = [];
     var url = req.params.name;
@@ -30,6 +36,6 @@ router.get('/:name', async function (req, res) {
     res.render("edithotel1", { hotel: (Hotels === 'undefined' ? "" : Hotels) });
 });
 
-router.post('/updated/:name', editHotel.updateHotel);
+router.post('/updated/:name', updateHotel);
 
 module.exports = router;    

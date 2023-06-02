@@ -101,6 +101,67 @@
         background-color: #e8e6e6;
         border-radius: 10px;
     }
+    #logo
+    {
+        width:100px;
+    }
+    #search
+    {
+        flex:67%;
+    }
+    .nav{
+        flex:16%;
+    }
+
+    @media screen and (max-width: 1020px)
+    {
+        body {
+            width:100%;
+        }
+        #logo{
+            width:300%;
+        }
+        .nav
+        {
+
+            height:20%;
+            display:flex;
+        }
+        #search
+        {
+            position:relative;
+            left:50%;
+            top:51%;
+            flex:60%;
+            width:30%;
+            height:60%;
+        }
+        #searchbar
+        {
+            width:180%;
+        }
+        header
+        {
+            margin-right:1%;
+        }
+        #dis{
+            position:relative;
+            bottom:20px;
+            font-size:25px;
+        }
+        #but
+        {
+          margin-top:-83%;
+          width:30%;
+          margin-left:-17%;
+          font-size:16px;
+          height:140%;
+        }
+        #tex1
+        {
+            font-size:22px;
+        }
+    }
 </style>
 
 <script>
@@ -113,7 +174,7 @@
 <div class="bgVisit">
     <header class="myHeader" id="myHeader" style="display: flex;">
         <div class="logoHead" style="flex:10%;">
-            <img id="logo" src="/images/homepage/logo.png" alt="logo" width="100px">
+            <img id="logo" src="/images/homepage/logo.png" alt="logo">
         </div>
 
         <% if(user!=="" && user.Type==="admin" ){%>
@@ -124,14 +185,14 @@
 
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                 <script src="/js/ajax-SEARCH.js"></script>
-                <div id='search' style="flex:67%">
+                <div id='search'>
                     <input id="searchbar" name="searchbar" type="text" placeholder="Search..">
                     <div id="searchResults" class="dropdown-content">
                     </div>
                 </div>
 
 
-                <nav style="flex:16%" class="nav">
+                <nav class="nav">
 
                     <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
                     <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
@@ -168,12 +229,12 @@
     </header>
 
     <div class="slogan">
-        <h2> Discover An All New Egypt</h2>
+        <h2 id="dis"> Discover An All New Egypt</h2>
     </div>
 
     <div class="buttons">
-        <button onclick="location.href='hotels';"> <i class="fa fa-thumbs-up"></i> Hotels</button>
-        <button onclick="location.href='activities';"> <i class="fa-solid fa-person-running"></i>Activities</button>
+        <button onclick="location.href='hotels';" id="but"> <i class="fa fa-thumbs-up"></i> Hotels</button>
+        <button onclick="location.href='activities';" id="but"> <i class="fa-solid fa-person-running"></i>Activities</button>
     </div>
 </div>
 

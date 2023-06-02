@@ -192,12 +192,12 @@ const postActivityAvail = async (req, res) => {
 const addToCart = async (req, res) => {
     
     var activities=[];
-
+    var p=req.body.price*1;
     var activ={
         id:req.params.id,
         participants:req.body.participants,
         date:req.body.date,
-        price:req.body.price
+        price:p
     }
     if(req.session.authenticated){
     var query = { User: req.session.user._id};

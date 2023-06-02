@@ -210,8 +210,11 @@ const addToCart = async (req, res) => {
         await Cart.findByIdAndUpdate(result[0]._id, {
             Activities: activities
         })
-        .then(result=>{
-            res.redirect('back');
+        .then(async result=>{
+            let Act = [];
+                Act = await Activity.find();
+                res.render("activity1", { activity1: (Act === 'undefined' ? "" : Act),
+                user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
         })
 
        }
@@ -225,9 +228,9 @@ const addToCart = async (req, res) => {
             cart.save()
             .then(async result=>{
                 console.log("Activity added");
-                let Activities = [];
-                Activities = await Activity.find();
-                res.render("activity1", { activity1: (Activities === 'undefined' ? "" : Activities),
+                let Act = [];
+                Act = await Activity.find();
+                res.render("activity1", { activity1: (Act === 'undefined' ? "" : Act),
                 user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
             })
         }

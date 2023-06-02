@@ -66,7 +66,7 @@
         <h1 id="tex1">Cities in Egypt </h1>
       <div class = "row">
           <% cities.forEach((cit)=>{ %>
-            <button onclick="location.href= '/cities/<%=cit.Name%>'">
+            <button onclick="location.href= '/cities/<%=cit.Name%>'" style="cursor: pointer;">
             <div class="container1">
                 <img  src="/images/cities/<%=cit.picture[0]%>" alt="<%=cit.Name%>">
                 <div class="centered"><%=cit.Name%></div>

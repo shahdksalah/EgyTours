@@ -15,6 +15,9 @@ body{
     display: block;
     margin-bottom: 140px;
 }
+.title-text{
+    margin-top: -43%;
+}
 
 .title-text h3{
     padding-top:30%;

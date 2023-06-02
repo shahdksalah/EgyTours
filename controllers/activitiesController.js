@@ -196,7 +196,8 @@ const addToCart = async (req, res) => {
     var activ={
         id:req.params.id,
         participants:req.body.participants,
-        date:req.body.date
+        date:req.body.date,
+        price:req.body.price
     }
     if(req.session.authenticated){
     var query = { User: req.session.user._id};

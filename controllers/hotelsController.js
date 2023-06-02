@@ -7,18 +7,18 @@ const moment = require('moment');
 
 const getHotels = async (req, res) => {
 
-    var Hotels=[];
-    Hotels=await Hotel.find();
-    res.render("hotels",{hotels:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: ""  });
-    
-    
+    var Hotels = [];
+    Hotels = await Hotel.find();
+    res.render("hotels", { hotels: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
+
+
 }
 
 const getHotel1 = async (req, res) => {
-    var Hotels=[];
-    var url = req.params.name; 
-    Hotels=await Hotel.find({"Name":url});
-    res.render("hotel1",{hotel1:(Hotels==='undefined'?"":Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: ""  });
+    var Hotels = [];
+    var url = req.params.name;
+    Hotels = await Hotel.find({ "Name": url });
+    res.render("hotel1", { hotel1: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
 }
 
 
@@ -29,72 +29,72 @@ const addToCart = async (req, res) => {
     var date1 = moment(req.body.checkIn);
     var date2 = moment(req.body.checkOut);
     if (date1.isValid() && date2.isValid()) {
-        days=date2.diff(date1, 'days')
+        days = date2.diff(date1, 'days')
     }
-    
-     var hotel=await Hotel.find().where("_id").equals(req.params.id)
-     .then(result=>{
-        hotel=result[0];
-        console.log(hotel);
-        hotel.RoomTypes.forEach((room)=>{
-            if(room.Name===req.body.roomType){
-               price=room.Price*req.body.rooms*days;
-            }
-         })
-     })
-     
 
-    var hotels=[];
-
-    var Hotell={
-        id:req.params.id,
-        checkIn:req.body.checkIn,
-        checkOut:req.body.checkOut,
-        days:days,
-        children:req.body.children,
-        adults:req.body.adults,
-        rooms:req.body.rooms,
-        roomType:req.body.roomType,
-        price:price,
-        days:days,
-    }
-    if(req.session.authenticated){
-    var query = { User: req.session.user._id};
-    Cart.find(query)
-    .then( async result=>{
-        var crt=result[0];
-       if(crt){
-        hotels=result[0].Hotels;
-        hotels.push(Hotell);
-        
-        await Cart.findByIdAndUpdate(result[0]._id, {
-            Hotels: hotels
-        })
-        .then(result=>{
-            res.redirect('back');
-        })
-
-       }
-       else{
-          hotels[0]=Hotell;
-          if(req.session.user){
-            const cart= new Cart({
-                User:req.session.user._id,
-                Hotels:hotels,
-            });
-            cart.save()
-            .then(result=>{
-                console.log("Hotel added");
-                res.redirect('back')
+    var hotel = await Hotel.find().where("_id").equals(req.params.id)
+        .then(result => {
+            hotel = result[0];
+            console.log(hotel);
+            hotel.RoomTypes.forEach((room) => {
+                if (room.Name === req.body.roomType) {
+                    price = room.Price * req.body.rooms * days;
+                }
             })
-        }
-       }
-    })
+        })
 
-}
-     
 
-  
+    var hotels = [];
+
+    var Hotell = {
+        id: req.params.id,
+        checkIn: req.body.checkIn,
+        checkOut: req.body.checkOut,
+        days: days,
+        children: req.body.children,
+        adults: req.body.adults,
+        rooms: req.body.rooms,
+        roomType: req.body.roomType,
+        price: price,
+        days: days,
+    }
+    if (req.session.authenticated) {
+        var query = { User: req.session.user._id };
+        Cart.find(query)
+            .then(async result => {
+                var crt = result[0];
+                if (crt) {
+                    hotels = result[0].Hotels;
+                    hotels.push(Hotell);
+
+                    await Cart.findByIdAndUpdate(result[0]._id, {
+                        Hotels: hotels
+                    })
+                        .then(result => {
+                            res.redirect('back');
+                        })
+
+                }
+                else {
+                    hotels[0] = Hotell;
+                    if (req.session.user) {
+                        const cart = new Cart({
+                            User: req.session.user._id,
+                            Hotels: hotels,
+                        });
+                        cart.save()
+                            .then(result => {
+                                console.log("Hotel added");
+                                res.redirect('back')
+                            })
+                    }
+                }
+            })
+
+    }
+
+
+
 }
 
 const postReview = async (req, res) => {
@@ -150,4 +150,4 @@ const postReview = async (req, res) => {
     }
 }
 
-module.exports = { getHotels,getHotel1,addToCart, postReview };
+module.exports = { getHotels, getHotel1, addToCart, postReview };

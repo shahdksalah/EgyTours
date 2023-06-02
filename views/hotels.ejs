@@ -1,70 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotels</title>
-   
+
     <link rel="stylesheet" type="text/css" href="/css/styleForm.css">
     <link rel="stylesheet" type="text/css" href="/css/styleHotels.css">
     <link rel="stylesheet" type="text/css" href="/css/styleHF_ALL.css">
-    
+    <style>
+        #searchhotels {
+            position: relative;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-right: 20px;
+            border: none;
+            padding: 5px;
+            width:90%;
+            height:33px;
+            box-sizing: border-box;
+        }
+        #searchhotels:focus {
+            outline: 3px solid #ddd;
+        }
+
+        #search{
+            float:right;
+            width:40%;
+        }
+
+    </style>
+    <script>
+        function filter(){
+            var query = document.getElementById('searchhotels').value.toUpperCase();
+            var hotels = document.getElementsByClassName('btn');
+            var titles = document.getElementsByName('title');
+            for (let index = 0; index < hotels.length; index++) {
+                const element = hotels[index];
+                const head = titles[index];
+                var id = element.id.toUpperCase();
+                console.log(query);
+                if(id.includes(query)){
+                    console.log(head);
+                    element.style.display='flex';
+                    head.style.display = 'block';
+                }
+                else{
+                    console.log('other')
+                    element.style.display='none';
+                    head.style.display='none';
+                }
+                
+            }
+        }
+    </script>
 </head>
+
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
 
     <%- include("partials/headerPages.ejs") %>
-
-
-    <div id="parent">
-        <% if(hotels!=="") {%>
-            <% let id=1; %>
-            <% hotels.forEach((hotel) => { %>
-                <h2 id='name'+ <%= id %> class="h2hotels"><%=hotel.Name%></h2>
-            <div class="btn" onclick="location.href= '/hotels/<%=hotel.Name%>'">
-                <div class="image">
-                    <img src="/images/Hotels/<%=hotel.Picture[0]%>" >
+        <div id="search">
+            <input id="searchhotels" name="searchhotels" onkeyup=filter() type="text" placeholder="Search Hotels">
+                <div id="searchResults" class="dropdown-content">
                 </div>
-                <div class="cols">
-                    <div>
-                       
-                    </div>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
-                        <div>
-                            <p>14,010 reviews</p>
-                        </div>  
-                    </div>
-                    <div>
-                        <p><%=hotel.Location%></p>
-                    </div>
-                    
-                        <div style="display:flex">
-                            <i class="fa-solid fa-comment" style="margin-top:2%;"></i>
-                            <span><p>1,324 mentions of egypt</p></span>
+        </div>
+
+        <div id="parent">
+            <% if(hotels!=="" ) {%>
+                <% let id=1; %>
+                    <% hotels.forEach((hotel)=> { %>
+                        <h2 id='name' + <%=id %> name='title' class="h2hotels"><%=hotel.Name%>
+                        </h2>
+                        <div class="btn" type="button" id="<%=hotel.Name%>" onclick="location.href= '/hotels/<%=hotel.Name%>'">
+                            
+                            <div class="image">
+                                <img src="/images/Hotels/<%=hotel.Picture[0]%>">
+                            </div>
+                            <div class="cols">
+                                <div>
+
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                    <div>
+                                        <p>14,010 reviews</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>
+                                        <%=hotel.Location%>
+                                    </p>
+                                </div>
+
+                                <div style="display:flex">
+                                    <i class="fa-solid fa-comment" style="margin-top:2%;"></i>
+                                    <span>
+                                        <p>1,324 mentions of egypt</p>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p>
+                                        <%=hotel.Caption%>
+                                    </p>
+                                </div>
+                            </div>
+
+
                         </div>
 
-                        <div>
-                            <p><%=hotel.Caption%></p>
-                        </div>
-                    </div>
-                   
-                   
-                </div>
-           
 
-            <% id++; %>
-            <% }); %>
-        <% } %> 
-    </div>
-            
+                        <% id++; %>
+                            <% }); %>
+                                <% } %>
+        </div>
 
-    <%- include("partials/footer.ejs") %>
+
+        <%- include("partials/footer.ejs") %>
 
 </body>
+
 </html>

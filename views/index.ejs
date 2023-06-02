@@ -68,7 +68,7 @@
           <% cities.forEach((cit)=>{ %>
             <button onclick="location.href= '/cities/<%=cit.Name%>'">
             <div class="container1">
-                <img  src="/images/Fcities/<%=cit.picture%>">
+                <img  src="/images/cities/<%=cit.picture[0]%>" alt="<%=cit.Name%>">
                 <div class="centered"><%=cit.Name%></div>
             </div>
             </button>

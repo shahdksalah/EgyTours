@@ -15,10 +15,12 @@ const viewCart = async function (req, res) {
 
       await Cart.find().where("User").equals(req.session.user._id)  //user has items in cart
         .then(result => {
+          if(result.length!==0){
           cart = result[0];
-          if (result.length > 1) {
+          length = cart.Hotels.length + cart.Activities.length;
+          }
+          if (result.length > 0) {
             hasItems = true;
-            length = cart.Hotels.length + cart.Activities.length;
             resolve(
               cart.Hotels.forEach(async hotel => {
 

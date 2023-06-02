@@ -72,6 +72,12 @@ const viewCart = async function (req, res) {
                 });
               }
             }
+            else{
+              res.render("cart", {
+                user: (!req.session.authenticated) ? "" : req.session.user,
+                cart: cart, hotels: hotels, activities: activities
+              });
+            }
           })
           .catch(err => {
             console.log(err);
@@ -80,7 +86,6 @@ const viewCart = async function (req, res) {
     })
   }
   else {
-    console.log("entered final else")
     res.render("cart", {
       user: (!req.session.authenticated) ? "" : req.session.user,
       cart: "", hotels: "", activities: ""

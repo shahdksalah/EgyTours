@@ -36,12 +36,23 @@ router.get('/delete/:id', async function(req,res){
     var act = await Activity.findByIdAndDelete(req.params.id);
     if(act)
         res.redirect('back');
-})
+});
+
+router.use(fileUpload());
 
 router.post('/updated/:name', async function (req, res) {
 
+
+    var Activities = [];
+
+    var query = req.params.name;
+    Activities = await Activity.find().where("Name").equals(query);
+    console.log(Activities[0].DatesDetails[0].split(" ")[0].toString());
+
+
     var date=req.body.alldates.length;
     var dates=req.body.alldates;
+    console.log(dates);
     var arr=[];
     var arr2=[];
     var count=0;
@@ -51,22 +62,30 @@ router.post('/updated/:name', async function (req, res) {
         count++;
       }
     }
+    var m;
     console.log(count);
-    for(var k =0;k<count;k++)
+    for(var k =0,j=0;k<count,j<Activities[0].DatesDetails.length;k++,j++)
     {
-      arr.push(dates.split(',')[k]+" "+ "0");
+        var date1=Activities[0].DatesDetails[j].split(" ")[0];
+        var date2=dates.split(",")[k];
+      
+      if( date1 === date2 )
+      {
+        arr.push(date2+" "+Activities[0].DatesDetails[j].split(" ")[1]);
+      }
+      m = k;
+
     }
 
-    for(var s=0;s<arr.length;s++)
+    for(var s=m+1;s<count;s++)
     {
-        console.log(arr[s]);
+        arr.push(dates.split(",")[s]+" "+"0");
     }
-  
 
-    var Activities = [];
-
-    var query = req.params.name;
-    Activities = await Activity.find().where("Name").equals(query);
+    for(var d=0;d<arr.length;d++)
+    {
+        console.log(arr[d]);
+    }
 
 
     if (!req.files || Object.keys(req.files).length == 0) {

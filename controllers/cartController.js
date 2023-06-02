@@ -54,7 +54,6 @@ const viewCart = async function (req, res) {
     })
 
     promise1.then(() => {
-       console.log(cart.Activities);
       cart.Activities.forEach(async activity => {
         await Activity.find().where("_id").equals(activity.id)
           .then(resul => {

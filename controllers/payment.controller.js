@@ -112,7 +112,7 @@ const pay = async (req, res) => {
       .then(async result => {
         if (result) {
           booking = result[0];
-
+          if(booking.Hotels.length!=0){
           booking.Hotels.forEach(async hotel => {
             var h;
             await Hotel.find().where("_id").equals(hotel.id)
@@ -123,6 +123,20 @@ const pay = async (req, res) => {
                 totalPrice += hotel.price;
               })
           })
+        }
+        if(booking.Activities.length!=0){
+          booking.Activities.forEach(async activity => {
+            var a;
+            await Activity.find().where("_id").equals(hotel.id)
+              .then(async res => {
+                a = res[0];
+                emailText += ("Activity Name: " + a.Name + "\n" + "Date: " + activity.date +"\n"
+                + "From: " + a.Starttime + "  To: " + a.Endtime + "\n"
+                   + "\n" + "Price: " + activity.price + "\n");
+                totalPrice += activity.price;
+              })
+          })
+        }
 
           await Bookings.find()
             .then(resu => {
@@ -134,6 +148,7 @@ const pay = async (req, res) => {
                 bookingNo: num,
                 User: booking.User,
                 Hotels: booking.Hotels,
+                Activities:booking.Activities
               });
               bookings.save()
                 .then(async () => {

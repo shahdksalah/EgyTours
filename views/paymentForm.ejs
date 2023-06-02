@@ -35,7 +35,7 @@
                       <p>Activity Name: <%=activities[i].Name%></p> 
                       <p>Date: <%= activity.date %></p>
                       <p> From: <%=activities[i].Starttime %>  To: <%=activities[i].Endtime %></p>
-                      <p>Price: <%=activity.participants%>x $<%=activity.participants*activities[i].price%></p>
+                      <p>Price: <%=activity.participants%>x $<%=activity.price/activity.participants%></p>
                    </div>
                    <% totalPrice+=activity.price %>
                 <% }) %>

@@ -36,7 +36,6 @@ const postCities = async (request, response) => {
     __dirname +
     "/../public/images/cities/" +
     request.body.cityname +
-    1 +
     "." +
     ext;
   imgFile.mv(uploadPath);

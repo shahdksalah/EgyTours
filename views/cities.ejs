@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
     <link rel="stylesheet" href="/css/styleActivities.css">
-    <link rel="stylesheet" href="/css/luxor.css">
+    <link rel="stylesheet" href="/css/styleCity.css">
     <link rel="stylesheet" href="/css/user/styleForm.css">
 </head>
 
@@ -16,15 +16,15 @@
     <%- include("partials/headerPages.ejs") %>
         <div>
             <div class="page-title">
-                <img src="." alt="">
+                <img src="/images/cities/<%=city.picture[0]%>" alt="">
                 <div class="title-text">
                     <h3>Things to do in</h3>
-                    <h1>Luxor,Egypt</h1>
+                    <h1><%=city.Name%>,Egypt</h1>
                 </div>
             </div>
         </div>
 
-        <h1 class="head">Luxor Activities</h1>
+        <h1 class="head"><%=city.Name%> Activities</h1>
 
 
         <div class="first">
@@ -92,7 +92,7 @@
                             <% }); %>
                                 <% } %>
         </div>
-        <h1 class="head">Luxor Hotels</h1>
+        <h1 class="head"><%=city.Name%> Hotels</h1>
         <div class="first">
             <% if(hotels!=="" ) { %>
                 <% let id1=1; %>

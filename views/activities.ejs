@@ -11,24 +11,79 @@
     <link rel="stylesheet" type="text/css" href="/css/styleHF_ALL.css">
     <link rel="stylesheet" type="text/css" href="/css/styleActivities.css">
 
+    <style>
+        #searchacts{
+            position: relative;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-right: 20px;
+            border: none;
+            padding: 5px;
+            width:90%;
+            height:33px;
+            box-sizing: border-box;
+        }
+        #searchacts:focus {
+            outline: 3px solid #ddd;
+        }
+
+        #search{
+            float:right;
+            width:40%;
+        }
+
+        #nomatch{
+            display: none;
+        }
+    </style>
+    <script>
+        function filter(){
+            var match = false;
+            var query = document.getElementById('searchacts').value.toUpperCase();
+            var acts = document.getElementsByClassName('btn');
+            for (let index = 0; index < acts.length; index++) {
+                const element = acts[index];
+                var id = element.id.toUpperCase();
+                if(id.includes(query)){
+                    element.style.display='block';
+                    match = true;
+                }
+                else{
+                    element.style.display='none';
+                }
+            }
+            if(!match){
+                document.getElementById('nomatch').style.display='block';
+            }
+            else{
+                document.getElementById('nomatch').style.display='none';
+            }
+        }
+    </script>
 </head>
 
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
 
     <%- include("partials/headerPages.ejs") %>
-
-    <h1 class="head">Unforgettable Activities</h1>
-
-
-    <div class="first">
-        <% if(activities!=="") { %>
-            <% let id=1; %>
-            <% activities.forEach((activity) => { %>
-        <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
-            <div>
-                <img src="/images/activities/<%=activity.Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">
+    <div id="search">
+        <input id="searchacts" name="searchacts" onkeyup=filter() type="text" placeholder="Search Activities">
+            <div id="searchResults" class="dropdown-content">
             </div>
+    </div>
+    <div class="page">
+        <h1 class="head">Activities</h1>
+        <div id="nomatch">
+            <h2>Nothing matches your search...</h2>
+        </div>
+        <div class="first">
+            <% if(activities!=="") { %>
+                <% let id=1; %>
+                <% activities.forEach((activity) => { %>
+                <div class="btn" id="<%=activity.Name%>" onclick="location.href= '/activities/<%=activity.Name%>'">
+                <div>
+                    <img src="/images/activities/<%=activity.Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">
+                </div>
 
             <div>
                 <h5><%=activity.Type%></h5>
@@ -36,49 +91,40 @@
                 <h5><%=activity.Duration%></h5>
                 <h5><mark><%=activity.Advantage%></mark></h5>
             </div>
-            <div>
-                <% if(activity.Rate === "0") { %>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <% } %>
-                <% if(activity.Rate==="1") { %>
-                    <i class="fa-solid fa-star"></i>
-                    <% } %>
-                    <%  if(activity.Rate==="2") { %>
-                     <i class="fa-solid fa-star"></i>
-                     <i class="fa-solid fa-star"></i>
-                     <% } %>
-                     <% if(activity.Rate==="3") { %>
-                     <i class="fa-solid fa-star"></i>
-                     <i class="fa-solid fa-star"></i>
-                     <i class="fa-solid fa-star"></i>
-                     <% } %>
-                     <% if(activity.Rate==="4") { %>
-                      <i class="fa-solid fa-star"></i>
-                     <i class="fa-solid fa-star"></i>
-                     <i class="fa-solid fa-star"></i>
-                     <i class="fa-solid fa-star"></i>
-                     <% } %>
-                     <% if(activity.Rate==="5"){ %>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <% } %>
+            <% if(activity.Reviews.length > 0){%>
+            <div class="rating">
+                <%let revs = activity.Reviews;%>
+                <% let sum =0;%>
+                <% revs.forEach((rev)=>{%>
+                    <%sum+= parseInt(rev.Rating);%>
+                <%})%>
+                <%let avg = sum / (activity.Reviews.length)%>
+                <% if(parseInt(avg) > 0){%>
+                    <% for (let i = 0; i < avg; i++) {%>
+                        <i class="fa-solid fa-star" style="color: rgb(238, 203, 5);"></i>
+                    <%}%>
+                    <div>
+                        
+                        <p><span><i class="fa-sharp fa-solid fa-comments" style="color:black"></i></span> <%=activity.Reviews.length%> Reviews</p>
+                        
+                    </div>
+                    
             </div>
+            <%}%>
+            <%}else{%>
+                <div>
+                    <p>No Reviews Yet</p>
+                </div>
+            <%}%>
             <div>
-                <h3>From E£ <%=activity.Price%> per person</h3>
+                <h4><%=activity.Price%>LE per person</h4>
             </div>
         </div>
         <% id++; %>
         <% }); %>
     <% } %> 
     </div>
-
+</div>
     <%- include("partials/footer.ejs") %>
 
 </body>

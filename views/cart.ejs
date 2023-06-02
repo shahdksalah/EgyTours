@@ -18,7 +18,7 @@
     <div class="cart">
         <div class="left" >
             <% if(hotels!="" && cart!=""){ %>
-                <%hotels.forEach((hotel)=>{%>  
+                 <%hotels.forEach((hotel)=>{%>  <!--showing hotels' cart -->
             <div class="items" id="<%=d%>">
                 <div class="image">
                     <div>
@@ -112,32 +112,53 @@
                <% })%>
             <% } %>
         </div>
-
-        <!-- <div class="items" id="item2">
+        
+        <%var id=1; %>
+        <%var n=0; %>
+        <% if(activities!="" && cart!=""){ %>
+            <%activities.forEach((activity)=>{%>   <!--showing activities cart -->
+        <div class="items" id="<%=id%>">
             <div class="image">
                 <div>
-                    <img src="../images/Fcities/hurgh icon.jpg" alt="icon" style="width:250px; height:200px;">
+                    <img src="../images/activities/<%=activity.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
                 </div>
             </div>
             <div class="item-info">
     
                 <div>
-                    <h2>Jaz aquamarine resort</h2>
+                    <h2><%= activity.Name %></h2>
                 </div>
                 
                 <div class="section">
-                    
-                    <div class="icon" style="margin-top:0;">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
-                    </div>
-                    <div>
-                        <p>4.8</p>
-                    </div>
-                    
+                    <% if(activity.Reviews.length!==0){%>
+                        <% let revs = hotel.Reviews%>
+                        <% let sum=0%>
+                        <% revs.forEach((rev)=>{%>
+                        <% sum = sum + parseInt(rev.Rating);%>
+                        <%})%>
+                        <% let avg = sum / activity.Reviews.length;%>
+                      <span>
+                        <p style="font-size: 50px;"><%=avg%></p>
+                     </span>
+
+                      <div id="exc">           
+                      <span class="rating">
+                          <% for(var m=0; m<avg; m++){%>
+                            <i class="fa-solid fa-star"></i>
+                            <%}%>
+                      </span>
+        
+                      <span>
+                        <%=activity.Reviews.length%>
+                        <% if(activity.Reviews.length > 1) {%>
+                           reviews
+                        <%}%>
+                        <% if(activity.Reviews.length == 1) {%>
+                          review
+                       <%}%>
+                      </span>
+                      </div>
+                    <%}%>
                 </div>
     
                 <div class="section">
@@ -174,7 +195,9 @@
                 <p>$ 897.25</p>
             </div>
         
-        </div> -->
+        </div>
+        <% }) %>
+        <% } %>
     
         <div class="r">
             

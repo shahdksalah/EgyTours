@@ -1,12 +1,11 @@
 function hideItem(id){
     let item = document.getElementById(id);
     item.style.display="none";
+
     var data=id
     $.ajax({
             url: 'cart/removeBooking',
             method: 'POST',
-            //contentType: 'application/json',
-            //JSON.stringify({sentId:data})
             data:{sentId:data},
             success:function(response){
                 if(response=="empty"){

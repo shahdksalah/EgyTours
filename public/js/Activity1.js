@@ -22,3 +22,11 @@ function validated(){
   return valid;
 
 }
+
+// document.getElementById("subForm").addEventListener('submit',Event=>{
+//   document.getElementById("participants").value=document.getElementsByName("num").value;
+//   document.getElementById("date").value=document.getElementsByName("days").value;
+//   return true;
+// })
+  
+

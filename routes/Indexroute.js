@@ -13,6 +13,7 @@ const hotels = require('../models/hotel.schema.js');
 const activities = require('../models/activity.schema.js');
 
 
+
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 let path = require('path');
 router.use(bodyParser.json());
@@ -24,19 +25,49 @@ router.get('/', async function (req, res) {
   res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array });
 });
 
+router.post('/searchHotels', (req, res) => {
+  var query = req.body.Name.trim();
+  if (query) {
+    hotels.find({ Name: { $regex: new RegExp(query + '.*', 'i') } }).exec()
+      .then(result => {
+        activities.find({ Name: { $regex: new RegExp(query + '.*', 'i') } }).exec()
+          .then(resu => {
+            var items = [];
+            for (let index = 0; index < result.length; index++) {
+              items.push(result[index]);
+            }
+            for (let index = 0; index < resu.length; index++) {
+              items.push(resu[index]);
+            }
+            if (items.length > 0) {
+              res.send(items);
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  else {
+    res.send("");
+  }
+});
+
 router.get('/cities/:name', async function (req, res) {
   var disphotel = [];
   var dispactiv = [];
   var hotloc;
   var cityname;
-  var cities1 = [];
+  var cities1 ;
   var Hotels = [];
   var activ = [];
   var url = req.params.name;
 
   Hotels = await hotels.find();
   activ = await activities.find();
-  cities1 = await city.find({ "Name": url });
 
   Hotels.forEach((hotels1) => {
     hotloc = hotels1.Location;
@@ -51,10 +82,17 @@ router.get('/cities/:name', async function (req, res) {
     }
   })
 
-  res.render("cities", {
-    user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
-    avtivities: activ, hotels: Hotels
-  });
+   await city.find({ "Name": url })
+  .then(result=>{
+    if(result.length>0){
+        cities1=result[0];
+        res.render("cities", {
+          user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
+          activities: activ, hotels: Hotels,city:cities1
+        });
+    }
+  })
+
 });
 
 
@@ -119,20 +157,20 @@ router.post('/', urlencodedParser, [
   }
 });
 
-const checkUN =  (req,res)=>{
+const checkUN = (req, res) => {
   var query = { Username: req.body.Username };
-    User.find(query)
-        .then(result => {
-            if (result.length > 0) {
-                res.send('taken');
-            }
-            else {
-                res.send('available');
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
+  User.find(query)
+    .then(result => {
+      if (result.length > 0) {
+        res.send('taken');
+      }
+      else {
+        res.send('available');
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
 router.post('/checkUN', checkUN);
 

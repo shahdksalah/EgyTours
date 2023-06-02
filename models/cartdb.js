@@ -15,6 +15,9 @@ const cartSchema=new Schema({
     },
     Hotels:{
         type:Array,
+    },
+    Activities:{
+        type:Array,
     }
 },{timestamp:true});
 

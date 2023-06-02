@@ -22,33 +22,35 @@
     <div class="body">
       <div class="group">
         <input type="text" value="<%=activity1[0].Name%>" name="name" hidden>
-          <% if(activity1[0]!=="" ) { %>
-            <h1>
-              <%=activity1[0].Header%>
-            </h1>
-            <% } %>
-        <span>
-          <% if(activity1[0]!=="" ) { %>
-            <%=activity1[0].Days %>
-              <% } %>
-        </span> &nbsp;
-        <span class="rating">
-          <% if(activity1[0] !=="" ) {%>
-              <% let revs = activity1[0].Reviews%>
-              <% let sum=0%>
-              <% revs.forEach((rev)=>{%>
-              <% sum = sum + parseInt(rev.Rating);%>
-              <%})%>
-              <% let avg = sum / activity1[0].Reviews.length;%>
-              <% for(var i=0; i<Math.floor(avg); i++){%>
-                <i class="fas fa-star"></i>
-                <%}%>
-                <%if(Math.floor(avg) > 0){%>
-                  <span><%=Math.floor(avg)%>/5</span>
-                <%}%>
-            <% } %>
-        </span>
-        &nbsp;
+        <% if(activity1[0]!=="" ) { %>
+          <h1>
+            <%=activity1[0].Header%>
+          </h1>
+          <% } %>
+            <span>
+              <% if(activity1[0]!=="" ) { %>
+                <%=activity1[0].Days %>
+                  <% } %>
+            </span> &nbsp;
+            <span class="rating">
+              <% if(activity1[0] !=="" ) {%>
+                <% let revs=activity1[0].Reviews%>
+                  <% let sum=0%>
+                    <% revs.forEach((rev)=>{%>
+                      <% sum=sum + parseInt(rev.Rating);%>
+                        <%})%>
+                          <% let avg=sum / activity1[0].Reviews.length;%>
+                            <% for(var i=0; i<Math.floor(avg); i++){%>
+                              <i class="fas fa-star"></i>
+                              <%}%>
+                                <%if(Math.floor(avg)> 0){%>
+                                  <span>
+                                    <%=Math.floor(avg)%>/5
+                                  </span>
+                                  <%}%>
+                                    <% } %>
+            </span>
+            &nbsp;
       </div>
       <br>
       <div class="grid">
@@ -142,13 +144,13 @@
 
       </div>
 
-      <% if(user !=="admin"){%>
+      <% if(user !=="admin" ){%>
         <form method="post" action="/activities/<%=activity1[0].Name%>/submit" id="form">
           <input type="text" id="name" value=<%=activity1[0].Name%> name="name2" style="display:none">
           <h2>Book Now</h2>
           <div class="book" id="book">
             <div>
-              <input id="dropbtn" list="Adults" placeholder="Participants " name="num">
+              <input id="dropbtn"  list="Adults" placeholder="Participants " name="num">
               <datalist id="Adults">
                 <option value="1"></option>
                 <option value="2"></option>
@@ -164,7 +166,7 @@
               <div id="msg" class="check-error"></div>
             </div>
             <div>
-          <select name="days" id="dropbtn" style="margin-top:5px;">
+              <select name="days"  id="dropbtn" style="margin-top:5px;">
                 <%for(var j=0;j< activity1[0].DatesDetails.length; j++) {%>
                   <% var b=activity1[0].DatesDetails[j].split(' ')[0]; %>
                   <option value=<%=b %>><%=b %> </option>
@@ -182,8 +184,10 @@
         
 
       <%if(msg==="Available" && num!==0) { %>
+        <form  id="subForm"  action="<%=activity1[0]._id%>"  method="post"
+          style="border: none;">
       <div id="avail">
-        <h2>Confirm</h2>
+        <h2>Available</h2>
         <div class="duration">
         <span><strong>FROM: </strong></span>
         <span> <%=activity1[0].Starttime%></span>
@@ -200,13 +204,19 @@
           <% sum = num * activity1[0].Price; %>
           <span id="total1"> <%=sum%> </span>
       </div>
+         <input type="hidden" id="participants" name="participants" value="<%=num%>">
+         <input type="hidden" id="date" name="date" value="<%=day%>">
+         <input type="hidden" id="price" name="price" value="<%=sum%>" >
         
         <div style="text-align: center; margin-top:15px;">
-          <button style="width:150px">Add To Cart</button>
+          <button type="submit" style="width:150px;cursor: pointer;">Add To Cart</button>
         </div>
 
       </div>
-      <% } %>
+    </form>
+    <script src="/js/Activity1.js"></script>
+
+    <% } %>
 
       <%if(msg==="Not Available") { %>
         <div id="avail">
@@ -220,59 +230,64 @@
         <div style="margin-top: 6%;">
           <h2>Reviews</h2>
         </div>
-        <div class='first'>
-          <% revs=activity1[0].Reviews%>
-            <% revs.forEach((rev)=>{%>
-              <div class="reviews">
-                <div class="rev">
-                  <h6 class="R"><%=user.Username%> wrote a review at <%=rev.Date%></h6>
-                </div>
-                <div class="rating">
-                  <% let rates=rev.Rating;%>
-                    <% for(var i=0; i<rates; i++){%>
-                      <i class="fa-solid fa-star"></i>
-                      <%}%>
-                </div>
-                <div>
-                  <p>
-                    <%=rev.Comment%>
-                  </p>
-                </div>
-              </div>
-              <%})%>
-        </div>
-        <%}%>
-        
+        <div class=' first'>
+                    <% revs=activity1[0].Reviews%>
+                      <% revs.forEach((rev)=>{%>
+                        <div class="reviews">
+                          <div class="rev">
+                            <h6 class="R">
+                              <%=user.Username%> wrote a review at <%=rev.Date%>
+                            </h6>
+                          </div>
+                          <div class="rating">
+                            <% let rates=rev.Rating;%>
+                              <% for(var i=0; i<rates; i++){%>
+                                <i class="fa-solid fa-star"></i>
+                                <%}%>
+                          </div>
+                          <div>
+                            <p>
+                              <%=rev.Comment%>
+                            </p>
+                          </div>
+                        </div>
+                        <%})%>
+            </div>
+            <%}%>
+
+          </div>
+
+          <% if(user.Type !=="admin" || user==="" ){%>
+            <div class="addReviews">
+              <h3>Add Review</h3>
+              <form method="post" action="" id="revform">
+                <input type="text" name="activity" id="activity" value="<%=activity1[0].Name%>">
+                <textarea cols="60" rows="5" id="addrev" name="comment"></textarea>
+                <h3>Rating</h3>
+                <input id="dropbtn3" list="Rating" placeholder="Rating" name="rating">
+                <datalist id="Rating">
+                  <option value="1"></option>
+                  <option value="2"></option>
+                  <option value="3"></option>
+                  <option value="4"></option>
+                  <option value="5"></option>
+                </datalist>
+                <div><button type="submit" class="subutton " name="sub" onclick="addReview()">submit</button></div>
+                <% if(revmsg!==undefined) { %>
+                  <span id="reverror">
+                    <%=revmsg%>
+                  </span>
+                  <% } %>
+
+              </form>
+            </div>
+            <%}%>
     </div>
-
-    <% if(user.Type !=="admin"|| user === ""){%>
-      <div class="addReviews">
-        <h3>Add Review</h3>
-        <form method="post" action="" id="revform">
-          <input type="text" name="activity" id="activity" value="<%=activity1[0].Name%>">
-          <textarea cols="60" rows="5" id="addrev" name="comment"></textarea>
-          <h3>Rating</h3>
-          <input id="dropbtn3" list="Rating" placeholder="Rating" name="rating">
-          <datalist id="Rating">
-            <option value="1"></option>
-            <option value="2"></option>
-            <option value="3"></option>
-            <option value="4"></option>
-            <option value="5"></option>
-          </datalist>
-          <div><button type="submit" class="subutton " name="sub" onclick="addReview()">submit</button></div>
-          <% if(revmsg!==undefined) { %>
-          <span id="reverror"><%=revmsg%></span>
-          <% } %>
-
-        </form>
-      </div>
-      <%}%>
-  </div>
     <script src="/js/jazhotel.js"></script>
     <script src="/js/Activity1.js"></script>
 
     <%- include("partials/footer.ejs") %>
 
 </body>
+
 </html>

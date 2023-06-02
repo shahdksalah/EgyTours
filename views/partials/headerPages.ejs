@@ -16,7 +16,7 @@
             <%} else{%>
                 <div calss="dropdown" onmouseleave="hideDropdown()" onmouseenter="displayDropdown()">
                     <button class="dropbtn"  >
-                        logged in as <%=user.Username%></button>
+                        <%=user.Username%></button>
                     <div id="dropdown-content" >
                         <div class="de">
                         <a href="/profile">My Profile</a>
@@ -32,7 +32,7 @@
             <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
             <a href="/cart"> <i class="fa-solid fa-cart-shopping"></i></a>
             <a href="/"> <i class="fa-solid fa-house fa-fw"></i> </a>
-            <input id="searchbar" type="text" placeholder="Search" >
+            <!-- <input id="searchbar" type="text" placeholder="Search" > -->
         </div>
         <script src="/js/popupJS.js" type="text/javascript"></script>
     </div>

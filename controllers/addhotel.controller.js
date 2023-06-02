@@ -24,9 +24,14 @@ const validateHotel = () => {
             .isString()
             .withMessage("Location must be a string"),
 
-        body('imgs')
-            .isLength({ min: 10 })
-            .withMessage('You must upload 10 images'),
+        // body('imgs')
+        //     .isLength({ min: 10 })
+        //     .withMessage('You must upload 10 images'),
+
+        // body('imgs')
+        //     .custom((value, {req})=>{
+        //         if(!req.files || req.files.length <10) throw new Error("You must upload 10 images")
+        //     }),
 
         body('about')
             .exists({ checkFalsy: true })

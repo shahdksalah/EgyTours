@@ -9,10 +9,9 @@ body{
     overflow: auto;
 }
 .page-title{
-    background-image: url(bgluxor2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    height:650px;
+    height:500px;
     display: block;
 }
 .title-text h3{

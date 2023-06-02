@@ -29,14 +29,13 @@ router.get('/cities/:name', async function (req, res) {
   var dispactiv = [];
   var hotloc;
   var cityname;
-  var cities1 = [];
+  var cities1 ;
   var Hotels = [];
   var activ = [];
   var url = req.params.name;
 
   Hotels = await hotels.find();
   activ = await activities.find();
-  cities1 = await city.find({ "Name": url });
 
   Hotels.forEach((hotels1) => {
     hotloc = hotels1.Location;
@@ -51,10 +50,17 @@ router.get('/cities/:name', async function (req, res) {
     }
   })
 
-  res.render("cities", {
-    user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
-    activities: activ, hotels: Hotels
-  });
+   await city.find({ "Name": url })
+  .then(result=>{
+    if(result.length>0){
+        cities1=result[0];
+        res.render("cities", {
+          user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
+          activities: activ, hotels: Hotels
+        });
+    }
+  })
+
 });
 
 

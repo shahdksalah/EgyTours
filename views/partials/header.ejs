@@ -3,10 +3,11 @@
     #searchbar {
         position: relative;
         top: 25%;
-        border-radius: 10px;
+        border-radius: 7px;
         border: none;
         padding: 5px;
         width: 30%;
+        float: right;
     }
 
     .nav {
@@ -30,15 +31,18 @@
         height: 30px;
         padding: 0;
     }
+
     .sign button:hover {
         background-color: rgb(214, 53, 17);
         color: white;
     }
-   .admin{
-    flex:5%;
-    margin-top:1.5%;
-   }
-    .admin button{
+
+    .admin {
+        flex: 5%;
+        margin-top: 1.5%;
+    }
+
+    .admin button {
         color: rgb(54, 36, 27);
         background-color: white;
         border: none;
@@ -48,20 +52,59 @@
         border-radius: 10px;
         height: 30px;
     }
+
     .admin button:hover {
         background-color: rgb(214, 53, 17);
         color: white;
     }
-#dropdown-content{
-    height:200px;
-}
-ul{
-    height:500px;
-}
+
+    #dropdown-content {
+        height: 200px;
+    }
+
+    ul {
+        height: 500px;
+    }
+
+    #searchbar:focus {
+        outline: 3px solid #ddd;
+    }
+
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        position: relative;
+        background-color: #f6f6f6;
+        width: 31.5%;
+        float: right;
+        top: 52.5%;
+        left: 31.3%;
+        z-index: 0;
+        border-radius: 10px;
+
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 9px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    #s {
+        color: rgb(133, 133, 133);
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #e8e6e6;
+        border-radius: 10px;
+    }
 </style>
 
 <script>
-    function nodrop(){
+    function nodrop() {
         document.getElementById("dropdown-content").style.display("flex");
         document.getElementById("dropdown-content").style.opacity = 1;
     }
@@ -78,44 +121,49 @@ ul{
                 <button onclick="location.href= '/adminboard'"> Admin Dashboard</button>
             </div>
             <% } %>
-        <div style="flex:70%">
-            <input id="searchbar" type="text" placeholder="Search" style="float: right;">
-        </div>
 
-
-        <nav style="flex:13%" class="nav">
-
-            <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
-            <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
-            <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
-        </nav>
-        <div style="flex:7%" class="sign">
-
-
-            <% if(user==="" ){ %>
-                <span><button onclick="show('signin')">Sign In</button> </span>
-                <%} else{%>
-                    <div calss="dropdown" >
-                        <button class="dropbtn">
-                            <%=user.Username%>
-                        </button>
-                        <div id="dropdown-content" style="display: block;">
-                            <ul>
-                                <li class="sub-item">
-                                  <p>Dashboard</p>
-                                </li>
-                                <li class="sub-item">
-                                  <p>View Profile</p>
-                                </li>
-                                <li class="sub-item">
-                                  <p>Logout</p>
-                                </li>
-                              </ul>
-                        </div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                <script src="/js/ajax-SEARCH.js"></script>
+                <div id='search' style="flex:67%">
+                    <input id="searchbar" name="searchbar" type="text" placeholder="Search..">
+                    <div id="searchResults" class="dropdown-content">
                     </div>
-                    <% } %>
-                    
-        </div>
+                </div>
+
+
+                <nav style="flex:16%" class="nav">
+
+                    <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
+                    <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
+                </nav>
+                <div style="flex:7%" class="sign">
+
+
+                    <% if(user==="" ){ %>
+                        <span><button onclick="show('signin')">Sign In</button> </span>
+                        <%} else{%>
+                            <div calss="dropdown">
+                                <button class="dropbtn">
+                                    <%=user.Username%>
+                                </button>
+                                <div id="dropdown-content" style="display: block;">
+                                    <ul>
+                                        <li class="sub-item">
+                                            <p>Dashboard</p>
+                                        </li>
+                                        <li class="sub-item">
+                                            <p>View Profile</p>
+                                        </li>
+                                        <li class="sub-item">
+                                            <p>Logout</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <% } %>
+
+                </div>
 
     </header>
 

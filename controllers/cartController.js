@@ -123,13 +123,13 @@ const removeFromCart=async (req,res)=>{
             console.log("Entered")
             await Cart.findByIdAndDelete(cart._id)
             .then(()=>{
-              console.log("successful")
-              res.send("successful");
+              console.log("empty");
+              res.send("empty");
             })
           }
-          // else{
-          // res.send("successful");
-          // }
+          else{
+          res.send("successful");
+          }
         })
       }
   })

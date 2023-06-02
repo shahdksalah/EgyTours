@@ -9,6 +9,10 @@ function hideItem(id){
             //JSON.stringify({sentId:data})
             data:{sentId:data},
             success:function(response){
+                if(response=="empty"){
+                    $('.r').css("display", "none");
+                    $('#empty').css("display", "block");
+                }
                 console.log(response);
             }
     })

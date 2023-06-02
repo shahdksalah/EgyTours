@@ -33,7 +33,7 @@ const viewForm = async (req, res) => {
                       hotels.push(resu[0]);
                       counter++;
 
-                      if(activities!=""){
+                      if (activities != "") {
                         res.render("paymentForm", {
                           user: (!req.session.authenticated) ? "" : req.session.user,
                           cart: cart, hotels: hotels, activities: activities
@@ -107,40 +107,59 @@ const pay = async (req, res) => {
 
     var booking;
     var num = 0;
+    var n;
+    var d;
+    var datesArr;
+    var filter;
+    var update;
     var emailText = "Your payment with the following details is confirmed\n";
     await Cart.find().where("User").equals(req.session.user._id)
       .then(async result => {
+        
         if (result) {
           booking = result[0];
-          if(booking.Hotels.length!=0){
-          booking.Hotels.forEach(async hotel => {
-            var h;
-            await Hotel.find().where("_id").equals(hotel.id)
-              .then(async res => {
-                h = res[0];
-                emailText += ("Hotel: " + h.Name + "\n" + "From: " + hotel.checkIn + "  To: " + hotel.checkOut + "\n"
-                  + "Room(s): " + hotel.rooms + "x " + hotel.roomType + "\n" + "Price: " + hotel.price + "\n");
-                totalPrice += hotel.price;
-              })
-          })
-        }
-        if(booking.Activities.length!=0){
-          booking.Activities.forEach(async activity => {
-            var a;
-            await Activity.find().where("_id").equals(hotel.id)
-              .then(async res => {
-                a = res[0];
-                emailText += ("Activity Name: " + a.Name + "\n" + "Date: " + activity.date +"\n"
-                + "From: " + a.Starttime + "  To: " + a.Endtime + "\n"
-                   + "\n" + "Price: " + activity.price + "\n");
-                totalPrice += activity.price;
-              })
-          })
-        }
+          if (booking.Hotels.length != 0) {
+            booking.Hotels.forEach(async hotel => {
+              var h;
+              await Hotel.find().where("_id").equals(hotel.id)
+                .then(async res => {
+                  h = res[0];               //send an email with hotel booking details
+                  emailText += ("Hotel: " + h.Name + "\n" + "From: " + hotel.checkIn + "  To: " + hotel.checkOut + "\n"
+                    + "Room(s): " + hotel.rooms + "x " + hotel.roomType + "\n" + "Price: " + hotel.price + "\n\n");
+                  totalPrice += hotel.price;
+                })
+            })
+          }
+          if (booking.Activities.length != 0) {
+            booking.Activities.forEach(async activity => {
+              var a;
+              await Activity.find().where("_id").equals(activity.id)
+                .then(async res => {
+                  a = res[0];      //send an email with activity booking details
+                  emailText += ("Activity Name: " + a.Name + "\n" + "Date: " + activity.date + "\n"
+                    + "From: " + a.Starttime + "  To: " + a.Endtime
+                    + "\n" + "Price: " + activity.price + "\n\n");
+                  totalPrice += activity.price;
+
+                  datesArr = a.DatesDetails;       //update remaining spots left in activities
+                  for (var j = 0; j < datesArr.length; j++) {
+                    d = datesArr[j].slice(' ');
+                    if (d == activity.date) {
+                      n = datesArr[j].slice(' ')[1];
+                      n += activity.participants;
+                      datesArr[j] = d + " " + n;
+                      console.log(datesArr[j]);
+                      filter = { Name: a.Name };
+                      update = { DatesDetails: datesArr };
+                    }
+                  }
+                })
+            })
+          }
 
           await Bookings.find()
             .then(resu => {
-              if (resu.length>0) {
+              if (resu.length > 0) {
                 num = resu[resu.length - 1].bookingNo;
                 num++;
               }
@@ -148,13 +167,13 @@ const pay = async (req, res) => {
                 bookingNo: num,
                 User: booking.User,
                 Hotels: booking.Hotels,
-                Activities:booking.Activities
+                Activities: booking.Activities
               });
               bookings.save()
                 .then(async () => {
                   console.log("Booking saved")
                   await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
-                    .then(() => {
+                    .then(async() => {
                       console.log("cart deleted");
                       emailText += "\nPayment Method: Credit Card";
                       const mailOptions = {
@@ -172,7 +191,15 @@ const pay = async (req, res) => {
                         }
                       });
 
-                      res.render("confirmPayment", { user: (!req.session.authenticated) ? "" : req.session.user,price: totalPrice, card: req.body.number })
+                      await Activity.findOneAndUpdate(filter, update)
+                      .then(() => {
+                        console.log("activity updated successfully");
+                      })
+                      .catch(err => {
+                        console.log(err);
+                      })
+
+                      res.render("confirmPayment", { user: (!req.session.authenticated) ? "" : req.session.user, price: totalPrice, card: req.body.number })
                     })
                     .catch(err => {
                       console.log(err);

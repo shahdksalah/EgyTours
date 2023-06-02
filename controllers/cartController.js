@@ -14,6 +14,12 @@ const viewCart = async function (req, res) {
 
       await Cart.find().where("User").equals(req.session.user._id)  //user has items in cart
         .then(result => {
+          if(result.length===0){
+            res.render("cart", {     //user's cart is empty
+              user: (!req.session.authenticated) ? "" : req.session.user,
+              cart: "", hotels: "", activities: ""
+            })
+          }
           if (result.length !== 0) {
             cart = result[0];
             length = cart.Hotels.length + cart.Activities.length;

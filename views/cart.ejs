@@ -111,10 +111,10 @@
              <% d++; %>
                <% })%>
             <% } %>
-        </div>
+        
         
         <%var id=1; %>
-        <%var n=0; %>
+        <%j=0; %>
         <% if(activities!="" && cart!=""){ %>
             <%activities.forEach((activity)=>{%>   <!--showing activities cart -->
         <div class="items" id="<%=id%>">
@@ -163,10 +163,10 @@
     
                 <div class="section">
                     <div class="icon">
-                        <i class="fa-solid fa-people-group"></i>
+                        <i class="fa-solid fa-calendar-days"></i>
                     </div>
                     <div>
-                        <p>From: <%=activity.Starttime%>  To:<%=activity.Endtime%></p> 
+                        <p>Date: <%=cart.Activities[j].date%></p> 
                     </div>
                 </div>
                 
@@ -175,16 +175,16 @@
                         <i class="fa-solid fa-calendar-days"></i>
                     </div>
                     <div>
-                        <p>Date: <%=cart.Activities[n].date%></p> 
+                        <p>From: <%=activity.Starttime%>  To:<%=activity.Endtime%></p> 
                     </div>
                 </div>
 
                 <div class="section">
                     <div class="icon">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-people-group"></i>
                     </div>
                     <div>
-                        <p>Participants: <%=cart.Activities[n].participants%></p> 
+                        <p>Participants: <%=cart.Activities[j].participants%></p> 
                     </div>
                 </div>
                 
@@ -201,14 +201,15 @@
                 
             <div class="item-right">
                 <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=id%>')"></i>
-                <p>Price: $<%=cart.Activities[n].price%> </p>
+                <p>Price: $<%=cart.Activities[j].price%> </p>
             </div>
         </div>
-        <% totalPrice+=cart.Activities[n].price;%>
-        <% n++;%>
+        <%totalPrice+=cart.Activities[j].price;%>
+        <% j++;%>
         <% id++;%>
         <% }) %>
         <% } %>
+    </div>
     
         <div class="r">
             
@@ -220,7 +221,7 @@
                     
                     <div>
                         <h3>
-                           $ <%=totalPrice%>
+                           $<%=totalPrice%>
                         </h3>
                     </div>
                     

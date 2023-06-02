@@ -31,28 +31,32 @@
             width:40%;
         }
 
+        #nomatch{
+            display: none;
+        }
+
     </style>
     <script>
         function filter(){
+            var match = false;
             var query = document.getElementById('searchhotels').value.toUpperCase();
             var hotels = document.getElementsByClassName('btn');
-            var titles = document.getElementsByName('title');
             for (let index = 0; index < hotels.length; index++) {
                 const element = hotels[index];
-                const head = titles[index];
                 var id = element.id.toUpperCase();
-                console.log(query);
                 if(id.includes(query)){
-                    console.log(head);
                     element.style.display='flex';
-                    head.style.display = 'block';
+                    match = true;
                 }
                 else{
-                    console.log('other')
                     element.style.display='none';
-                    head.style.display='none';
                 }
-                
+            }
+            if(!match){
+                document.getElementById('nomatch').style.display='block';
+            }
+            else{
+                document.getElementById('nomatch').style.display='none';
             }
         }
     </script>
@@ -69,57 +73,68 @@
         </div>
 
         <div id="parent">
+            
             <% if(hotels!=="" ) {%>
                 <% let id=1; %>
+                <h1>Hotels</h1>
                     <% hotels.forEach((hotel)=> { %>
-                        <h2 id='name' + <%=id %> name='title' class="h2hotels"><%=hotel.Name%>
-                        </h2>
+                        
+                        <div id="nomatch">
+                            <h2>Nothing matches your search...</h2>
+                        </div>
                         <div class="btn" type="button" id="<%=hotel.Name%>" onclick="location.href= '/hotels/<%=hotel.Name%>'">
                             
                             <div class="image">
                                 <img src="/images/Hotels/<%=hotel.Picture[0]%>">
                             </div>
+                            
                             <div class="cols">
-                                <div>
-
-                                </div>
+                                <h2 id='name' + <%=id %> name='title' class="h2hotels"><%=hotel.Name%>
+                                </h2>
+                                <% if(hotel.Reviews.length > 0){%>
                                 <div class="rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                    <div>
-                                        <p>14,010 reviews</p>
-                                    </div>
+                                    <%let revs = hotel.Reviews;%>
+                                    <% let sum =0;%>
+                                    <% revs.forEach((rev)=>{%>
+                                        <%sum+= parseInt(rev.Rating);%>
+                                    <%})%>
+                                    <%let avg = sum/ (hotel.Reviews.length)%>
+                                    <% if(parseInt(avg) > 0){%>
+                                        <% for (let i = 0; i < avg; i++) {%>
+                                            <i class="fa-solid fa-star"></i>
+                                        <%}%>
+                                        <div>
+                                            
+                                            <p><span><i class="fa-sharp fa-solid fa-comments" style="color:black"></i></span><%=hotel.Reviews.length%> Reviews</p>
+                                            
+                                        </div>
+                                        
                                 </div>
+                                <%}%>
+                                <%}else{%>
+                                    <div>
+                                        <p>No Reviews Yet</p>
+                                    </div>
+                                <%}%>
                                 <div>
                                     <p>
-                                        <%=hotel.Location%>
+                                        <span><i class="fa-sharp fa-solid fa-location-dot"></i></span> <%=hotel.Location%>
                                     </p>
                                 </div>
-
-                                <div style="display:flex">
-                                    <i class="fa-solid fa-comment" style="margin-top:2%;"></i>
-                                    <span>
-                                        <p>1,324 mentions of egypt</p>
-                                    </span>
-                                </div>
-
                                 <div>
                                     <p>
+                                        <span><i class="fa-sharp fa-solid fa-circle-info"></i></span>
                                         <%=hotel.Caption%>
+                                        <p>Read more..</p>
                                     </p>
                                 </div>
                             </div>
-
-
                         </div>
 
 
-                        <% id++; %>
-                            <% }); %>
-                                <% } %>
+                    <% id++; %>
+                <% }); %>
+            <% } %>
         </div>
 
 

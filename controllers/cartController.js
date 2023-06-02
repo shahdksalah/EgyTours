@@ -106,18 +106,40 @@ const removeFromCart=async (req,res)=>{
   console.log(req.body.sentId);
   console.log("Menna");
   var hotels=[];
+  var activities=[];
   var cart;
   await Cart.find().where("User").equals(req.session.user._id) 
   .then(async (result)=>{
       if(result.length>0){
         cart=result[0];
-        for(var j=0;j<cart.Hotels.length;j++){
+        for(var j=0;j<cart.Hotels.length;j++){  //if removed booking is an hotel
           if(req.body.sentId-1!=j){
             hotels.push(cart.Hotels[j]);
           }
         }
         cart.Hotels=hotels;
         await Cart.findOneAndUpdate({User: req.session.user._id},{Hotels:hotels})
+        .then(async ()=>{  
+          if(cart.Hotels.length===0 && cart.Activities.length===0){
+            console.log("Entered")
+            await Cart.findByIdAndDelete(cart._id)
+            .then(()=>{
+              console.log("empty");
+              res.send("empty");
+            })
+          }
+          else{
+          res.send("successful");
+          }
+        })
+
+        for(var k=0;k<cart.Activities.length;k++){
+          if(req.body.sentId-cart.Hotels.length-1!=k){
+            activities.push(cart.Activities[k]);
+          }
+        }
+        cart.Activities=activities;
+        await Cart.findOneAndUpdate({User: req.session.user._id},{Activities:activities})
         .then(async ()=>{
           if(cart.Hotels.length===0 && cart.Activities.length===0){
             console.log("Entered")

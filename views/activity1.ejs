@@ -184,7 +184,7 @@
         
 
       <%if(msg==="Available" && num!==0) { %>
-        <form  id="subForm" onsubmit="return sendForm()" action="<%=activity1[0]._id%>"  method="post"
+        <form  id="subForm"  action="<%=activity1[0]._id%>"  method="post"
           style="border: none;">
       <div id="avail">
         <h2>Available</h2>
@@ -204,8 +204,8 @@
           <% sum = num * activity1[0].Price; %>
           <span id="total1"> <%=sum%> </span>
       </div>
-         <input type="hidden" id="participants" name="participants">
-         <input type="hidden" id="date" name="date">
+         <input type="text" id="participants" name="participants" value="<%=num%>">
+         <input type="text" id="date" name="date" value="<%=day%>">
         
         <div style="text-align: center; margin-top:15px;">
           <button type="submit" style="width:150px;cursor: pointer;">Add To Cart</button>

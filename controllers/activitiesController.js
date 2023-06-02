@@ -49,7 +49,7 @@ const postReview = async (req, res) => {
                     .then(result => {
                         res.render("activity1", {
                             activity1: (Activities === 'undefined' ? "" : Activities),
-                            user: (!req.session.authenticated) ? "" : req.session.user, msg: "",revmsg:""
+                            user: (!req.session.authenticated) ? "" : req.session.user, msg: "",revmsg:"",num:""
                         });
                     })
 
@@ -66,7 +66,7 @@ const postReview = async (req, res) => {
                 res.render("activity1", {
                     activity1: (Activities === 'undefined' ? "" : Activities),
                     user: (!req.session.authenticated) ? "" : req.session.user,msg:"", revmsg: "You must sign in to add a review"
-                });
+                ,num:""});
             }).catch(err => {
                 console.log(err);
             })
@@ -153,7 +153,8 @@ const postActivityAvail = async (req, res) => {
         //window.location.reload();
         */
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,revmsg:""});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,
+        day:req.body.days,revmsg:""});
     }
 
     else if(found1 === "true")
@@ -172,7 +173,8 @@ const postActivityAvail = async (req, res) => {
         console.log(Act);
         */
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,revmsg:""});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,day:req.body.days
+        ,revmsg:""});
        //window.location.reload();
     }
 
@@ -221,9 +223,12 @@ const addToCart = async (req, res) => {
                 Activities:activities,
             });
             cart.save()
-            .then(result=>{
+            .then(async result=>{
                 console.log("Activity added");
-                res.redirect('/');
+                let Activities = [];
+                Activities = await Activity.find();
+                res.render("activity1", { activity1: (Activities === 'undefined' ? "" : Activities),
+                user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
             })
         }
        }

@@ -3,24 +3,25 @@ const Hotel = require('../models/hotel.schema.js');
 const Activity = require('../models/activity.schema.js');
 
 const viewCart = async function (req, res) {
-  var empty = false;
   var cart;
   var hotels = [];
   var activities = [];
   var length;
   var counter = 0;
+  var cont = false;
   if (req.session.authenticated) {    //user signed in
     console.log("authenticated")
     const promise1 = new Promise(async (resolve, reject) => {
 
       await Cart.find().where("User").equals(req.session.user._id)  //user has items in cart
         .then(result => {
+
           if (result.length !== 0) {
             cart = result[0];
             length = cart.Hotels.length + cart.Activities.length;
+            cont = true;
           }
           if (result.length > 0) {
-            hasItems = true;
             resolve(
               cart.Hotels.forEach(async hotel => {
 
@@ -31,7 +32,7 @@ const viewCart = async function (req, res) {
                       hotels.push(resu[0]);
                       counter++;
 
-                      if(activities!=""){
+                      if (activities != "") {
                         res.render("cart", {
                           user: (!req.session.authenticated) ? "" : req.session.user,
                           cart: cart, hotels: hotels, activities: activities
@@ -64,6 +65,7 @@ const viewCart = async function (req, res) {
     })
 
     promise1.then(() => {
+      if(cont){
       cart.Activities.forEach(async activity => {
         await Activity.find().where("_id").equals(activity.id)
           .then(resul => {
@@ -83,6 +85,13 @@ const viewCart = async function (req, res) {
             console.log(err);
           })
       })
+    }
+    else{
+      res.render("cart", {     //user's cart is empty
+        user: (!req.session.authenticated) ? "" : req.session.user,
+        cart: "", hotels: "", activities: ""
+      })
+    }
     })
   }
   else {

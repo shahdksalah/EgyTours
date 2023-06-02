@@ -14,6 +14,7 @@
     <h1 style="margin-left:2%;">Shopping Cart</h1>
     <% var j=0; %>
     <% var d=1; %>
+    <% var count=0; %>
     <% var totalPrice=0; %>
     <div class="cart">
         <div class="left" >
@@ -29,38 +30,6 @@
         
                     <div>
                         <h2><%= hotel.Name %></h2>
-                    </div>
-                    
-                    <div class="section">
-                        <% if(hotel.Reviews.length!==0){%>
-                              <% let revs = hotel.Reviews%>
-                              <% let sum=0%>
-                              <% revs.forEach((rev)=>{%>
-                              <% sum = sum + parseInt(rev.Rating);%>
-                              <%})%>
-                              <% let avg = sum / hotel.Reviews.length;%>
-                            <span>
-                              <p style="font-size: 50px;"><%=avg%></p>
-                           </span>
-
-                            <div id="exc">           
-                            <span class="rating">
-                                <% for(var i=0; i<avg; i++){%>
-                                  <i class="fa-solid fa-star"></i>
-                                  <%}%>
-                            </span>
-              
-                            <span>
-                              <%=hotel.Reviews.length%>
-                              <% if(hotel.Reviews.length > 1) {%>
-                                 reviews
-                              <%}%>
-                              <% if(hotel.Reviews.length == 1) {%>
-                                review
-                             <%}%>
-                            </span>
-                            </div>
-                          <%}%>
                     </div>
         
                     <div class="section">
@@ -107,8 +76,9 @@
                 </div>
             </div>
              <% totalPrice+=cart.Hotels[j].price;%>
-             <% j=j+1; %>
+             <% j++; %>
              <% d++; %>
+             <% count++; %>
                <% })%>
             <% } %>
         
@@ -127,38 +97,6 @@
     
                 <div>
                     <h2><%= activity.Name %></h2>
-                </div>
-                
-                <div class="section">
-                    <% if(activity.Reviews.length!==0){%>
-                        <% let revs = hotel.Reviews%>
-                        <% let sum=0%>
-                        <% revs.forEach((rev)=>{%>
-                        <% sum = sum + parseInt(rev.Rating);%>
-                        <%})%>
-                        <% let avg = sum / activity.Reviews.length;%>
-                      <span>
-                        <p style="font-size: 50px;"><%=avg%></p>
-                     </span>
-
-                      <div id="exc">           
-                      <span class="rating">
-                          <% for(var m=0; m<avg; m++){%>
-                            <i class="fa-solid fa-star"></i>
-                            <%}%>
-                      </span>
-        
-                      <span>
-                        <%=activity.Reviews.length%>
-                        <% if(activity.Reviews.length > 1) {%>
-                           reviews
-                        <%}%>
-                        <% if(activity.Reviews.length == 1) {%>
-                          review
-                       <%}%>
-                      </span>
-                      </div>
-                    <%}%>
                 </div>
     
                 <div class="section">
@@ -207,6 +145,7 @@
         <%totalPrice+=cart.Activities[j].price;%>
         <% j++;%>
         <% id++;%>
+        <% count++; %>
         <% }) %>
         <% } %>
     </div>
@@ -216,7 +155,7 @@
             <div class="right">
                 <div style="display:flex; height:30px;">
                     <div style="flex:60%;">
-                        <h3>Total (<%=j%>):</h3>
+                        <h3>Total (<%=count%>):</h3>
                     </div>
                     
                     <div>

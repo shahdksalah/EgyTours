@@ -36,7 +36,7 @@
         <div>
           <% if(hotel1!=="" ) {%>
             <p>
-              <%=hotel1[0].Location %>
+             <span><i class="fa-solid fa-location-dot"></i></span> <%=hotel1[0].Location %>
             </p>
             <% } %>
         </div>
@@ -133,7 +133,7 @@
 
       <div class="about">
         <div>
-          <h1>About</h1>
+          <h1><span><i class="fa-solid fa-circle-info"></i></span> About</h1>
           <hr>
         </div>
         <div class="rat">
@@ -172,7 +172,7 @@
                     <i class="fa-solid fa-star"></i>
                     <%}%>
               </span>
-
+ 
               <span>
                 <%=hotel1[0].Reviews.length%>
                 <% if(hotel1[0].Reviews.length > 1) {%>
@@ -199,7 +199,7 @@
           </div>
 
           <div class="list1">
-            <div>Property amenities</div>
+            <div><span><i class="fa-solid fa-hotel"></i></span> Property Amenities</div>
             <ul>
               <% if(hotel1!=="" ) {%>
                 <% let id=1; %>
@@ -222,7 +222,7 @@
           </div>
 
           <div class="list1">
-            <div>Room feautures</div>
+            <div><span><i class="fa-solid fa-bed"></i></span> Room Features</div>
             <ul>
               <% if(hotel1!=="" ) {%>
                 <% let id=1; %>
@@ -244,7 +244,7 @@
           </div>
 
           <div class="list1">
-            <div>Room types</div>
+            <div><span><i class="fa-sharp fa-solid fa-money-bill"></i></span> Room Prices</div>
             <ul>
               <% if(hotel1!=="" ) {%>
                 <% let id=1; %>
@@ -375,13 +375,16 @@
             <% revs.forEach((rev)=>{%>
               <div class="reviews">
                 <div class="rev">
-                  <h6 class="R"><%=rev.Username%> wrote a review at <%=rev.Date%></h6>
+                  <p style="font-size: 15px;">
+                   <span><i style="font-size: 19px;" class="fa-solid fa-user fa-2xs"></i><%=rev.Username%></span>  wrote a review at <%=rev.Date%>
+                  </p>
                 </div>
                 <div class="rating">
                   <% let rates=rev.Rating;%>
                     <% for(var i=0; i<rates; i++){%>
                       <i class="fa-solid fa-star"></i>
                       <%}%>
+                      <span style="font-size: 14px;"><%=rev.Rating%>/5</span>
                 </div>
                 <div>
                   <p>

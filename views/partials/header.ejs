@@ -58,13 +58,10 @@
         color: white;
     }
 
-    #dropdown-content {
+    #dropdown {
         height: 200px;
     }
 
-    ul {
-        height: 500px;
-    }
 
     #searchbar:focus {
         outline: 3px solid #ddd;
@@ -85,11 +82,13 @@
     }
 
     /* Links inside the dropdown */
-    .dropdown-content a {
-        color: black;
+    #searchItem {
+        background-color: #f9f9f9;
         padding: 9px 16px;
         text-decoration: none;
         display: block;
+        color: rgb(48, 31, 22);
+        border-radius: 10px;
     }
 
     #s {
@@ -97,9 +96,13 @@
     }
 
     /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {
-        background-color: #e8e6e6;
-        border-radius: 10px;
+    #searchItem:hover {
+        background-color: #e4e3e3;
+        color: orangered;
+    }
+
+    .sticky .dropdown-content {
+        top:61%;
     }
     #logo
     {
@@ -208,7 +211,7 @@
                                 <button class="dropbtn">
                                     <%=user.Username%>
                                 </button>
-                                <div id="dropdown-content" style="display: block;">
+                                <div id="dropdown">
                                     <ul>
                                         <li class="sub-item">
                                             <p>Dashboard</p>

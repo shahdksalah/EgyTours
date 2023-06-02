@@ -144,7 +144,7 @@
 
       </div>
 
-      <% if(user !=="admin" ){%>
+      <% if(user.Type !=="admin" ){%>
         <form method="post" action="/activities/<%=activity1[0].Name%>/submit" id="form">
           <input type="text" id="name" value=<%=activity1[0].Name%> name="name2" style="display:none">
           <h2>Book Now</h2>
@@ -235,15 +235,16 @@
                       <% revs.forEach((rev)=>{%>
                         <div class="reviews">
                           <div class="rev">
-                            <h6 class="R">
-                              <%=user.Username%> wrote a review at <%=rev.Date%>
-                            </h6>
+                            <p style="font-size: 15px;">
+                             <span><i style="font-size: 19px;" class="fa-solid fa-user fa-2xs"></i><%=rev.Username%></span>  wrote a review at <%=rev.Date%>
+                            </p>
                           </div>
                           <div class="rating">
                             <% let rates=rev.Rating;%>
                               <% for(var i=0; i<rates; i++){%>
                                 <i class="fa-solid fa-star"></i>
                                 <%}%>
+                                <span style="font-size: 14px;"><%=rev.Rating%>/5</span>
                           </div>
                           <div>
                             <p>

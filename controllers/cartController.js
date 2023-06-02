@@ -102,4 +102,37 @@ const viewCart = async function (req, res) {
   }
 }
 
-module.exports = { viewCart };
+const removeFromCart=async (req,res)=>{
+  console.log(req.body.sentId);
+  console.log("Menna");
+  var hotels=[];
+  var cart;
+  await Cart.find().where("User").equals(req.session.user._id) 
+  .then(async (result)=>{
+      if(result.length>0){
+        cart=result[0];
+        for(var j=0;j<cart.Hotels.length;j++){
+          if(req.body.sentId-1!=j){
+            hotels.push(cart.Hotels[j]);
+          }
+        }
+        cart.Hotels=hotels;
+        await Cart.findOneAndUpdate({User: req.session.user._id},{Hotels:hotels})
+        .then(async ()=>{
+          if(cart.Hotels.length===0 && cart.Activities.length===0){
+            console.log("Entered")
+            await Cart.findByIdAndDelete(cart._id)
+            .then(()=>{
+              console.log("successful")
+              res.send("successful");
+            })
+          }
+          // else{
+          // res.send("successful");
+          // }
+        })
+      }
+  })
+}
+
+module.exports = { viewCart,removeFromCart};

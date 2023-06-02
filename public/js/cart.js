@@ -3,12 +3,13 @@ function hideItem(id){
     item.style.display="none";
     var data=id
     $.ajax({
-        url: '/removeBooking',
+            url: 'cart/removeBooking',
             method: 'POST',
-            contentType: 'application/json',
-            data: data,
+            //contentType: 'application/json',
+            //JSON.stringify({sentId:data})
+            data:{sentId:data},
             success:function(response){
-                console.log("item deleted");
+                console.log(response);
             }
     })
      

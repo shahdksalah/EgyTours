@@ -27,6 +27,19 @@
                <% totalPrice+=hotel.price %>
             <% }) %>
             <% } %>
+             
+            <% i=0; %>
+            <% if(activities!="") {%>
+                <% cart.Activities.forEach((activity)=>{ %>
+                   <div class="booking">
+                      <p>Activity Name: <%=activities[i].Name%></p> 
+                      <p>Date: <%= activity.date %></p>
+                      <p> From: <%=activities[i].Starttime %>  To: <%=activities[i].Endtime %></p>
+                      <p>Price: <%=activity.participants%>x $<%=activity.price/activity.participants%></p>
+                   </div>
+                   <% totalPrice+=activity.price %>
+                <% }) %>
+            <% } %>
             <hr>
             <p>Total Price: $<%=totalPrice%></p>
         </div>

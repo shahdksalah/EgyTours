@@ -1,6 +1,17 @@
 function hideItem(id){
     let item = document.getElementById(id);
     item.style.display="none";
+    var data=id
+    $.ajax({
+        url: '/removeBooking',
+            method: 'POST',
+            contentType: 'application/json',
+            data: data,
+            success:function(response){
+                console.log("item deleted");
+            }
+    })
+     
 }
 
 function clr(){

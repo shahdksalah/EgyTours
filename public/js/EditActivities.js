@@ -109,9 +109,6 @@ function editdates() {
   }
 
   console.log(alldates.value);
-
-
-
-
+  console.log(alldates.value.length);
 
 }

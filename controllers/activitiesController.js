@@ -49,7 +49,7 @@ const postReview = async (req, res) => {
                     .then(result => {
                         res.render("activity1", {
                             activity1: (Activities === 'undefined' ? "" : Activities),
-                            user: (!req.session.authenticated) ? "" : req.session.user, msg: "",revmsg:""
+                            user: (!req.session.authenticated) ? "" : req.session.user, msg: "",revmsg:"",num:""
                         });
                     })
 
@@ -66,7 +66,7 @@ const postReview = async (req, res) => {
                 res.render("activity1", {
                     activity1: (Activities === 'undefined' ? "" : Activities),
                     user: (!req.session.authenticated) ? "" : req.session.user,msg:"", revmsg: "You must sign in to add a review"
-                });
+                ,num:""});
             }).catch(err => {
                 console.log(err);
             })
@@ -153,7 +153,8 @@ const postActivityAvail = async (req, res) => {
         //window.location.reload();
         */
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,revmsg:""});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,
+        day:req.body.days,revmsg:""});
     }
 
     else if(found1 === "true")
@@ -172,7 +173,8 @@ const postActivityAvail = async (req, res) => {
         console.log(Act);
         */
         res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,revmsg:""});
+        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,day:req.body.days
+        ,revmsg:""});
        //window.location.reload();
     }
 
@@ -187,4 +189,56 @@ const postActivityAvail = async (req, res) => {
 
 }
 
-module.exports = { getActivity,getActivity1,postReview,postActivityAvail };
+const addToCart = async (req, res) => {
+    
+    var activities=[];
+    var p=(req.body.price*1);
+    var activ={
+        id:req.params.id,
+        participants:req.body.participants,
+        date:req.body.date,
+        price:p
+    }
+    if(req.session.authenticated){
+    var query = { User: req.session.user._id};
+    Cart.find(query)
+    .then( async result=>{
+        var crt=result[0];
+       if(crt){
+        activities=result[0].Activities;
+        activities.push(activ);
+        
+        await Cart.findByIdAndUpdate(result[0]._id, {
+            Activities: activities
+        })
+        .then(async result=>{
+            let Act = [];
+                Act = await Activity.find();
+                res.render("activity1", { activity1: (Act === 'undefined' ? "" : Act),
+                user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
+        })
+
+       }
+       else{
+          activities[0]=activ;
+          if(req.session.user){
+            const cart= new Cart({
+                User:req.session.user._id,
+                Activities:activities,
+            });
+            cart.save()
+            .then(async result=>{
+                console.log("Activity added");
+                let Act = [];
+                Act = await Activity.find();
+                res.render("activity1", { activity1: (Act === 'undefined' ? "" : Act),
+                user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
+            })
+        }
+       }
+    })
+
+} 
+}
+
+module.exports = { getActivity,getActivity1,postReview,postActivityAvail,addToCart };

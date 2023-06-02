@@ -34,8 +34,6 @@
         <%- include("partials/adminHeader.ejs") %>
 
         <div class="main-content">
-            <input type="text" value=<%=activity[0]._id%> name="id" hidden>
-            <script src="/js/EditActivites.js"></script>
             <div class="right">
                 <div id="cont">
                     <div>
@@ -44,6 +42,7 @@
                             <div>
                                 <h2>City's Name: </h2>
                             </div>
+                            <script src="/js/EditActivities.js"></script>
                             <div>
                                 <input type="text" id="Cityname" name="Cityname" value='<%=activity[0].Name%>'>
                             </div>
@@ -53,16 +52,7 @@
                             <div>
                                 <input type="text" id="Activityname" name="Activityname" value='<%=activity[0].Header%>'>
                             </div>
-                            <div>
-                                <h2>Days: </h2>
-                            </div>
-                            <div>
-                                <input id="dropbtn" list="Days" placeholder="Number of Days" name="Days" value='<%=activity[0].Days%>'>
-                                <datalist id="Days">
-                                  <option value="DAY TRIP"></option>
-                                  <option value="MULTI-DAY TRIP"></option>
-                                  </datalist>
-                            </div>
+                           
                             <div>
                                 <h2>Type: </h2>
                             </div>
@@ -181,8 +171,7 @@
                                 <input type="text" class="form-control date" id="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px";>
                             </div>	
 
-                            <textarea name="alldates" id="alldates" cols="15" rows="5"
-                            style="display:none;"></textarea>
+                            <textarea name="alldates" id="alldates" cols="15" rows="5"></textarea>
 
                             <div id="editdates" onclick="editdates()" >Edit all dates</div>
                             
@@ -201,8 +190,8 @@
             </div>
         </div>
         <%}%>
-        <script src="/js/EditActivites.js"></script>
-        <script src="/js/AddActivityJS.js"></script>
+        <script src="/js/EditActivities.js"></script>
+        
         
     </body>
 

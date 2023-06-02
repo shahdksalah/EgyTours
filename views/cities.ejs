@@ -16,7 +16,7 @@
     <%- include("partials/headerPages.ejs") %>
         <div>
             <div class="page-title">
-                <img src="/images/cities/<%=city.picture[0]%>" alt="<%=city.Name%>">
+                <img src="/images/cities/<%=city.picture[0]%>" alt="<%=city.Name%>" id="mainpic">
                 <div class="title-text">
                     <h3>Things to do in</h3>
                     <h1><%=city.Name%>,Egypt</h1>
@@ -33,7 +33,7 @@
                     <% activities.forEach((activity)=> { %>
                         <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
                             <div>
-                                <img src="/images/activities/<%=activity.Picture[1]%>" width="300 px" height="200 px">
+                                <img src="/images/activities/<%=activity.Picture[1]%>" width="300 px" height="200 px" class="img">
                             </div>
 
                             <div>
@@ -99,7 +99,7 @@
                     <% hotels.forEach((ht)=> { %>
                         <div class="btn">
                             <div>
-                                <img src="/images/Hotels/<%=ht.Picture[0]%>" width="300 px" height="200 px">
+                                <img src="/images/Hotels/<%=ht.Picture[0]%>" width="300 px" height="200 px" class="img">
                             </div>
 
                             <div>

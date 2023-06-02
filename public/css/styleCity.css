@@ -15,10 +15,7 @@ body{
     display: block;
     margin-bottom: 140px;
 }
-.page-title img{
-    max-height: 400px;
-    width: 100%;
-}
+
 .title-text h3{
     padding-top:30%;
     font-size:50px;
@@ -70,7 +67,7 @@ font-size:70px;
     position:relative;
     bottom:-6px;
 }
-img:hover{
+.img:hover{
     transform:scale(0.9456);
 }
 #ftxt{
@@ -185,5 +182,10 @@ h5{
     border-radius: 25px;
     padding: 10px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#mainpic{
+    max-height: 400px;
+    width: 100%;
 }
 

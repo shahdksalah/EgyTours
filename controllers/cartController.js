@@ -6,7 +6,9 @@ const viewCart = async function (req, res) {
   let hasItems=false;
   let cart;
   let hotels = [];
-  let activities
+  let activities=[];
+  var length;
+  var counter = 0;
   if (req.session.authenticated) {    //user signed in
     console.log("authenticated")
     const promise1=new Promise(async (resolve,reject)=>{
@@ -16,8 +18,7 @@ const viewCart = async function (req, res) {
           if(result.length>1){
           hasItems=true;
           cart = result[0];
-          var counter = 0;
-          var length = cart.Hotels.length+cart.Activities.length;
+           length = cart.Hotels.length+cart.Activities.length;
           cart.Hotels.forEach(async hotel => {
   
             await Hotel.find().where("_id").equals(hotel.id)

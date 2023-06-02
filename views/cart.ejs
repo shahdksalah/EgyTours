@@ -201,10 +201,12 @@
                 
             <div class="item-right">
                 <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=id%>')"></i>
-                <p>$ 897.25</p>
+                <p>Price: $<%=cart.Activities[n].price%> </p>
             </div>
-        
         </div>
+        <% totalPrice+=cart.Activities[n].price;%>
+        <% n++;%>
+        <% id++;%>
         <% }) %>
         <% } %>
     

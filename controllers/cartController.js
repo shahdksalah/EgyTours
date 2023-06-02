@@ -15,9 +15,9 @@ const viewCart = async function (req, res) {
 
       await Cart.find().where("User").equals(req.session.user._id)  //user has items in cart
         .then(result => {
-          if(result.length!==0){
-          cart = result[0];
-          length = cart.Hotels.length + cart.Activities.length;
+          if (result.length !== 0) {
+            cart = result[0];
+            length = cart.Hotels.length + cart.Activities.length;
           }
           if (result.length > 0) {
             hasItems = true;
@@ -30,28 +30,29 @@ const viewCart = async function (req, res) {
                       console.log("hotel added");
                       hotels.push(resu[0]);
                       counter++;
+
+                      if (cart.Activities.length === 0) {   //don't go to promise1.then if no activities added in cart
+                        res.render("cart", {
+                          user: (!req.session.authenticated) ? "" : req.session.user,
+                          cart: cart, hotels: hotels, activities: activities
+                        });
+                      }
                     }
                   })
                   .catch(err => {
                     console.log(err);
                   })
               })
+
             )
           }
-          else{
-            resolve();
+          else {
+            resolve();   //cart.hotels is empty,complete promise1.then to see if cart.activities avail
           }
-          // else{          
-          //   console.log("entered here") ;        //user signed in but doesn't have items in cart
-          //   res.render("cart", {
-          //     user: (!req.session.authenticated) ? "" : req.session.user,
-          //     cart: "", hotels: "", activities: ""
-          //   })
-          // }
         })
-      .catch(err => {    
-            console.log(err);
-      })    
+        .catch(err => {
+          console.log(err);
+        })
 
     })
 
@@ -63,20 +64,12 @@ const viewCart = async function (req, res) {
               console.log("activity added");
               activities.push(resul[0]);
               counter++;
-              if (counter === length) {
-                console.log("hotels:")
-                console.log(hotels);
+              if (counter === length) {    //every item in cart is added to its array, ready to display cart
                 res.render("cart", {
                   user: (!req.session.authenticated) ? "" : req.session.user,
                   cart: cart, hotels: hotels, activities: activities
                 });
               }
-            }
-            else{
-              res.render("cart", {
-                user: (!req.session.authenticated) ? "" : req.session.user,
-                cart: cart, hotels: hotels, activities: activities
-              });
             }
           })
           .catch(err => {
@@ -86,7 +79,7 @@ const viewCart = async function (req, res) {
     })
   }
   else {
-    res.render("cart", {
+    res.render("cart", {     //user not signed in
       user: (!req.session.authenticated) ? "" : req.session.user,
       cart: "", hotels: "", activities: ""
     })

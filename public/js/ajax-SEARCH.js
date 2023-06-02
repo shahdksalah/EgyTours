@@ -20,10 +20,10 @@ $(document).ready(function () {
                 for (let index = 0; index < parseInt(length); index++) {
                     const item = response[index];
                     if (item.RoomTypes) {
-                        html += (`<a href='/hotels/${item.Name}'>${item.Name}<span id='s'>        hotel</span></a>`);
+                        html += (`<a id='searchItem' href='/hotels/${item.Name}'>${item.Name}<span id='s'>        hotel</span></a>`);
                     }
                     if (item.Advantage) {
-                        html += (`<a href='/activities/${item.Name}'>${item.Name}<span id='s'>         activity</span></a>`);
+                        html += (`<a id='searchItem' href='/activities/${item.Name}'>${item.Name}<span id='s'>         activity</span></a>`);
                     }
 
                 }

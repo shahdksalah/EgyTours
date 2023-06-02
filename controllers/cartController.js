@@ -31,6 +31,13 @@ const viewCart = async function (req, res) {
                       hotels.push(resu[0]);
                       counter++;
 
+                      if(activities!=""){
+                        res.render("cart", {
+                          user: (!req.session.authenticated) ? "" : req.session.user,
+                          cart: cart, hotels: hotels, activities: activities
+                        });  //if promise.then is executed first
+                      }
+
                       if (cart.Activities.length === 0) {   //don't go to promise1.then if no activities added in cart
                         res.render("cart", {
                           user: (!req.session.authenticated) ? "" : req.session.user,

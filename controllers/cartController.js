@@ -3,7 +3,6 @@ const Hotel = require('../models/hotel.schema.js');
 const Activity = require('../models/activity.schema.js');
 
 const viewCart = async function (req, res) {
-  var empty = false;
   var cart;
   var hotels = [];
   var activities = [];
@@ -20,7 +19,6 @@ const viewCart = async function (req, res) {
             length = cart.Hotels.length + cart.Activities.length;
           }
           if (result.length > 0) {
-            hasItems = true;
             resolve(
               cart.Hotels.forEach(async hotel => {
 

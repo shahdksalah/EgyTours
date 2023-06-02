@@ -3,7 +3,7 @@ const Hotel = require('../models/hotel.schema.js');
 const Activity = require('../models/activity.schema.js');
 
 const viewCart = async function (req, res) {
-  let hasItems=false;
+  var empty=false;
   let cart;
   let hotels = [];
   let activities=[];
@@ -35,20 +35,25 @@ const viewCart = async function (req, res) {
           })
           }
         })
+        // .catch(err => {    user signed in but doesn't have items in cart
+        //    empty=true;
+        // })    
       )
       reject(
-        res.render("cart", {
-          user: (!req.session.authenticated) ? "" : req.session.user,
-          cart: cart, hotels:"",activities:""
-        })
+          //user not signed in
+          res.render("cart", {
+            user: (!req.session.authenticated) ? "" : req.session.user,
+            cart: "", hotels: "",activities:""
+          })
+    
       )
-      // .catch(err => {    //user signed in but doesn't have items in cart
-        
-      // })     
+     
+       
       
     })
 
     promise1.then(()=>{
+      
         cart.Activities.forEach(async activity=>{
           await Activity.find().where("_id").equals(activity.id)  
           .then(resul => {
@@ -71,15 +76,13 @@ const viewCart = async function (req, res) {
           })
         })
     })
-      
-  }
-  else {   //user not signed in
+  } 
+  else{
     res.render("cart", {
       user: (!req.session.authenticated) ? "" : req.session.user,
-      cart: "", hotels: ""
-    });
-  }
-
+      cart: "", hotels: "",activities:""
+    })
+  }    
 }
 
 module.exports = { viewCart };

@@ -98,6 +98,29 @@ form.addEventListener('submit', (e) => {
         error = true;
     }
 
+    if (error == true) {
+        e.preventDefault();
+    }
+    else {
+        document.getElementById('error-name').innerHTML = "";
+        document.getElementById('error-header').innerHTML = "";
+        document.getElementById('error-type').innerHTML = "";
+        document.getElementById('error-imgs').innerHTML = "";
+        document.getElementById('error-adv').innerHTML = "";
+        document.getElementById('error-brief').innerHTML = "";
+        document.getElementById('error-details').innerHTML = "";
+        document.getElementById('error-plan').innerHTML = "";
+        document.getElementById('error-cancel').innerHTML = "";
+        document.getElementById('error-duration').innerHTML = "";
+        document.getElementById('error-pickup').innerHTML = "";
+        document.getElementById('error-max').innerHTML = "";
+        document.getElementById('error-start').innerHTML = "";
+        document.getElementById('error-end').innerHTML = "";
+        document.getElementById('error-price').innerHTML = "";
+        document.getElementById('error-dates').innerHTML = "";
+    }
+
+
 
 
 

@@ -71,6 +71,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="/js/ajax-LOGIN.js"></script>
+<script src="/js/ajax-SIGNUP.js"></script>
 <script src="/js/ajax-UN.js"></script>
 <script src="/js/popupJS.js" type="text/javascript"></script>
 <div class="signup" id="signup">
@@ -85,31 +86,32 @@
             <div class="input-group">
                 <label for="uname">Username</label>
                 <input id="uname" type="text" placeholder="Enter Username" name="unam">
-                <span class="error-message"></span>
+                <span class="error-message" id="unam"></span>
+                <span class="error-message" id="result"></span>
             </div>
 
             <div class="input-group">
                 <label for="femail">Email</label>
                 <input id="femail" type="email" placeholder="Enter Email" name="email">
-                <span class="error-message"></span>
+                <span class="error-message" id="em"></span>
             </div>
 
             <div class="input-group">
                 <label for="number">Phone Number</label>
                 <input id="number" type="text" placeholder="Enter Phone Number" name="number">
-                <span class="error-message"></span>
+                <span class="error-message" id="nu"></span>
             </div>
 
             <div class="input-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" placeholder="Enter Password" name="psw">
-                <span class="error-message"></span>
+                <span class="error-message" id="pa"></span>
             </div>
 
             <div class="input-group">
                 <label for="password-confirmation">Password Confirmation</label>
                 <input id="password-confirmation" type="password" placeholder="Repeat Password" name="confpsw">
-                <span class="error-message"></span>
+                <span class="error-message" id="pc"></span>
             </div>
 
             <input type="hidden" name="type" value="client">

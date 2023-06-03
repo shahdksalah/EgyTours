@@ -12,7 +12,12 @@ form input{
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-
+#signupform{
+    height:562px;
+}
+#sub{
+    margin-top:25px;
+}
 .error-message{
     height:15px;
     color:red;
@@ -79,7 +84,7 @@ form input{
     padding:10px;
 }
 .signup{
-    height: 570px;
+    height: 590px;
     top:20%;
 }
 #signin:after, #signup:after {

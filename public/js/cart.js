@@ -13,20 +13,10 @@ function hideItem(id){
                     $('#empty').css("display", "block");
                 }
                 if(response=="success"){
-                    var total=0;
-                    var objects = $(".price").html();
-                    console.log(objects);
-                     if(objects.isArray){
-                        objects.forEach(obj=>{
-                            var price=obj.split(' ')[1];
-                            total+=price;
-                        })
-                     }
-                     else{
-                        total=objects.split(' ')[1];
-                     }
+                    
                         
-                    $('#total').html('$ '+total );
+                    var tl=$('#total').html();
+                    var total=t.substring(1);
                     var count=$('#cnt').html();
                     count--;
                     $('#cnt').html(count);

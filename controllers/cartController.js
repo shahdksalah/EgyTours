@@ -65,33 +65,33 @@ const viewCart = async function (req, res) {
     })
 
     promise1.then(() => {
-      if(cont){
-      cart.Activities.forEach(async activity => {
-        await Activity.find().where("_id").equals(activity.id)
-          .then(resul => {
-            if (resul.length > 0) {
-              console.log("activity added");
-              activities.push(resul[0]);
-              counter++;
-              if (counter === length) {    //every item in cart is added to its array, ready to display cart
-                res.render("cart", {
-                  user: (!req.session.authenticated) ? "" : req.session.user,
-                  cart: cart, hotels: hotels, activities: activities
-                });
+      if (cont) {
+        cart.Activities.forEach(async activity => {
+          await Activity.find().where("_id").equals(activity.id)
+            .then(resul => {
+              if (resul.length > 0) {
+                console.log("activity added");
+                activities.push(resul[0]);
+                counter++;
+                if (counter === length) {    //every item in cart is added to its array, ready to display cart
+                  res.render("cart", {
+                    user: (!req.session.authenticated) ? "" : req.session.user,
+                    cart: cart, hotels: hotels, activities: activities
+                  });
+                }
               }
-            }
-          })
-          .catch(err => {
-            console.log(err);
-          })
-      })
-    }
-    else{
-      res.render("cart", {     //user's cart is empty
-        user: (!req.session.authenticated) ? "" : req.session.user,
-        cart: "", hotels: "", activities: ""
-      })
-    }
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        })
+      }
+      else {
+        res.render("cart", {     //user's cart is empty
+          user: (!req.session.authenticated) ? "" : req.session.user,
+          cart: "", hotels: "", activities: ""
+        })
+      }
     })
   }
   else {
@@ -102,59 +102,67 @@ const viewCart = async function (req, res) {
   }
 }
 
-const removeFromCart=async (req,res)=>{
+const removeFromCart = async (req, res) => {
   console.log(req.body.sentId);
   console.log("Menna");
-  var hotels=[];
-  var activities=[];
+  var hotels = [];
+  var activities = [];
   var cart;
-  await Cart.find().where("User").equals(req.session.user._id) 
-  .then(async (result)=>{
-      if(result.length>0){
-        cart=result[0];
-        for(var j=0;j<cart.Hotels.length;j++){  //if removed booking is an hotel
-          if(req.body.sentId-1!=j){
+  await Cart.find().where("User").equals(req.session.user._id)
+    .then(async (result) => {
+      if (result.length > 0) {
+        cart = result[0];
+        for (var j = 0; j < cart.Hotels.length; j++) {  //if removed booking is an hotel
+          if (req.body.sentId - 1 != j) {
             hotels.push(cart.Hotels[j]);
           }
         }
-        cart.Hotels=hotels;
-        await Cart.findOneAndUpdate({User: req.session.user._id},{Hotels:hotels})
-        .then(async ()=>{  
-          if(cart.Hotels.length===0 && cart.Activities.length===0){
-            console.log("Entered")
-            await Cart.findByIdAndDelete(cart._id)
-            .then(()=>{
-              console.log("empty");
-              res.send("empty");
-            })
-          }
-          else{
-          res.send("success");
-          }
+        cart.Hotels = hotels;
+        await Cart.findOneAndUpdate({ User: req.session.user._id }, { Hotels: hotels }, {
+          new: true
         })
+          .then(async (res) => {
+            if (res.length > 0) {
+              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
+                console.log("Entered")
+                await Cart.findByIdAndDelete(cart._id)
+                  .then(() => {
+                    console.log("empty");
+                    res.send("empty");
+                  })
+              }
+              else {
+                res.send("success");
+              }
+            }
+          })
 
-        for(var k=0;k<cart.Activities.length;k++){
-          if(req.body.sentId-cart.Hotels.length-1!=k){
+        for (var k = 0; k < cart.Activities.length; k++) {
+          if (req.body.sentId - cart.Hotels.length - 1 != k) {
             activities.push(cart.Activities[k]);
           }
         }
-        cart.Activities=activities;
-        await Cart.findOneAndUpdate({User: req.session.user._id},{Activities:activities})
-        .then(async ()=>{
-          if(cart.Hotels.length===0 && cart.Activities.length===0){
-            console.log("Entered")
-            await Cart.findByIdAndDelete(cart._id)
-            .then(()=>{
-              console.log("empty");
-              res.send("empty");
-            })
-          }
-          else{
-          res.send("success");
-          }
+        cart.Activities = activities;
+        await Cart.findOneAndUpdate({ User: req.session.user._id }, { Activities: activities }, {
+          new: true
         })
+          .then(async (res) => {
+            if (res.length > 0) {
+              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
+                console.log("Entered")
+                await Cart.findByIdAndDelete(cart._id)
+                  .then(() => {
+                    console.log("empty");
+                    res.send("empty");
+                  })
+              }
+              else {
+                res.send("success");
+              }
+            }
+          })
       }
-  })
+    })
 }
 
-module.exports = { viewCart,removeFromCart};
+module.exports = { viewCart, removeFromCart };

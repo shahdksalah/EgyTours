@@ -1,23 +1,24 @@
-
-.allimages{
-    width:100%;
+.allimages {
+    width: 100%;
     display: block;
     background-color: rgba(158, 152, 141, 0.577);
-    padding:10px;
+    padding: 10px;
 }
-.row{
-    width:100%;
-    margin:5px;
+
+.row {
+    width: 100%;
+    margin: 5px;
     position: relative;
     left: 3%;
-    
+
 }
-.row button{
-    border:none;
-    margin:5px;
+
+.row button {
+    border: none;
+    margin: 5px;
     border-radius: 5px;
     background-color: transparent;
-    padding:5px;
+    padding: 5px;
 }
 
 
@@ -30,23 +31,27 @@
     font-weight: bold;
     margin: 5px;
 }
-.container1 img{
+
+.container1 img {
     width: 320px;
     height: 200px;
     transition: transform 0.20s;
     opacity: 80%;
     border-radius: 5px;
 }
-.container1 img:hover{
+
+.container1 img:hover {
     transform: scale(1.03);
 }
+
 .centered {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-#tex1{
+
+#tex1 {
     position: relative;
     text-align: left;
     padding-left: 15px;

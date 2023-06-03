@@ -108,6 +108,7 @@ const removeFromCart = async (req, res) => {
   var hotels = [];
   var activities = [];
   var cart;
+  var item="";
   await Cart.find().where("User").equals(req.session.user._id)
     .then(async (result) => {
       if (result.length > 0) {
@@ -116,22 +117,25 @@ const removeFromCart = async (req, res) => {
           if (req.body.sentId - 1 != j) {
             hotels.push(cart.Hotels[j]);
           }
+          else{
+            item="hotel"
+          }
         }
         cart.Hotels = hotels;
         await Cart.findOneAndUpdate({ User: req.session.user._id }, { Hotels: hotels }, {
           new: true
         })
-          .then(async (res) => {
-            if (res.length > 0) {
+          .then(async (re) => {
+            if(item==="hotel"){
               if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
-                console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("empty");
+                    console.log("empty hotel");
                     res.send("empty");
                   })
               }
               else {
+                console.log("success hotel");
                 res.send("success");
               }
             }
@@ -141,22 +145,26 @@ const removeFromCart = async (req, res) => {
           if (req.body.sentId - cart.Hotels.length - 1 != k) {
             activities.push(cart.Activities[k]);
           }
+          else{
+            item="activity";
+          }
         }
         cart.Activities = activities;
         await Cart.findOneAndUpdate({ User: req.session.user._id }, { Activities: activities }, {
           new: true
         })
-          .then(async (res) => {
-            if (res.length > 0) {
+          .then(async (re) => {
+            if (item==="activity") {
               if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
                 console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("empty");
+                    console.log("empty activity");
                     res.send("empty");
                   })
               }
               else {
+                console.log("success activity");
                 res.send("success");
               }
             }

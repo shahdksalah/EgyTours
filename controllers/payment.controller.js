@@ -150,8 +150,8 @@ const pay = async (req, res) => {
                       var newdates = {
                         date: d,
                         max:n
-                      }
-                      datesArr[j].push(newdates);
+                      };
+                      datesArr[j]=newdates;
                       console.log(datesArr[j]);
                       filter = { Name: a.Name };
                       update = { DatesDetails: datesArr };

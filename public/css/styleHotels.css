@@ -62,3 +62,15 @@ p{
 }
 
 
+@media screen and (max-width: 1020px)
+{
+
+    .image img{
+width:350%;
+height:100%;
+    }
+
+    .cols{
+        margin-left:40%;
+    }
+}

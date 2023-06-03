@@ -1,3 +1,5 @@
+/*
+
 var form = document.getElementById("form");
 form.addEventListener('submit', (e) => {
     var error = false;
@@ -126,3 +128,4 @@ form.addEventListener('submit', (e) => {
 
 
 })
+*/

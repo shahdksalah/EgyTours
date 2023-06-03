@@ -79,7 +79,7 @@ const validateActivity = () => {
           body('Aparticipants')
           .exists({ checkFalsy: true })
           .withMessage('Max number of participants is required')
-          .isString()
+          .isNumeric()
           .withMessage("Max number of participants must be a number"),
 
 
@@ -93,10 +93,11 @@ const validateActivity = () => {
 
           body('price')
           .exists({ checkFalsy: true })
+          .withMessage('Price is required')
           .isNumeric()
-          .withMessage('Price is required'),
+          .withMessage('Price must be a number'),
 
-          body('dates')
+          body('Dates')
           .exists({ checkFalsy: true })
           .withMessage('Date is required'),
 

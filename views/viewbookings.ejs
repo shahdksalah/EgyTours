@@ -23,8 +23,15 @@
         <% if(bookings!=="") { %>
             <% let id=1; %>
             <% bookings.forEach((booking) => { %>
-            <% 
-                <div class="btn" id="<%=activity.Name%>" onclick="location.href= '/activities/<%=activity.Name%>'">
+            <% if(booking.User === users._id) { %>
+                <h2><%=users.Username%></h2>
+
+                <% if(bookings.hotels!=="") { %>
+                <% let id2=1; %>
+                <% bookings.hotels.forEach((bookhotels) => { %>
+                <div class="hotelinfo">
+                    <h5><%=bookhotels</h5>
+                </div>
 
 </body>
 </html>

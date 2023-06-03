@@ -3,7 +3,7 @@ $(document).ready(function () {
         e.preventDefault();
         var data = $('#searchbar').val();
         $.ajax({
-            url: '/searchHotels',
+            url: '/searchHandler',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ Name: data }),
@@ -20,10 +20,10 @@ $(document).ready(function () {
                 for (let index = 0; index < parseInt(length); index++) {
                     const item = response[index];
                     if (item.RoomTypes) {
-                        html += (`<a id='searchItem' href='/hotels/${item.Name}'>${item.Name}<span id='s'>        hotel</span></a>`);
+                        html += (`<a id='searchItem' href='/hotels/${item.Name}'>${item.Name}<span id='s'> hotel</span></a>`);
                     }
                     if (item.Advantage) {
-                        html += (`<a id='searchItem' href='/activities/${item.Name}'>${item.Name}<span id='s'>         activity</span></a>`);
+                        html += (`<a id='searchItem' href='/activities/${item.Name}'>${item.Name}<span id='s'> activity</span></a>`);
                     }
 
                 }

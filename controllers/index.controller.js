@@ -5,21 +5,33 @@ const router = express.Router();
 const hotels = require('../models/hotel.schema.js');
 const activities = require('../models/activity.schema.js');
 const bcrypt = require("bcrypt");
+const { body, validationResult } = require('express-validator');
 
 const checkUN = (req, res) => {
-    var query = { Username: req.body.Username };
-    User.find(query)
-        .then(result => {
-            if (result.length > 0) {
-                res.send('taken');
-            }
-            else {
-                res.send('available');
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    if (req.body.Username !== "" && !/\s/.test(req.body.Username) && req.body.Username.length >= 5) {
+        var query = { Username: req.body.Username };
+        User.find(query)
+            .then(result => {
+                if (result.length > 0) {
+                    res.send('taken');
+                }
+                else {
+                    res.send('available');
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+    else if (/\s/.test(req.body.Username)) {
+        res.send("invalid");
+    }
+    else if (req.body.Username.length < 5) {
+        res.send('too short');
+    }
+    else {
+        res.send("empty");
+    }
 }
 
 const validateLogin = async (req, res) => {
@@ -53,7 +65,7 @@ const validateLogin = async (req, res) => {
         console.log(query);
         await User.find(query)
             .then(async result => {
-                if(!result) res.send('not found');
+                if (!result) res.send('not found');
                 await bcrypt.compare(req.body.Password, result[0].Password)
                     .then(async resu => {
                         if (!resu) {
@@ -65,7 +77,8 @@ const validateLogin = async (req, res) => {
                             req.session.authenticated = true;
                             var array = [];
                             array = await city.find();
-                            res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array});
+                            res.redirect('back');
+                            //res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alerts: "" });
                         }
                     })
                     .catch(err => console.log("1" + err));
@@ -106,4 +119,96 @@ const searchHandler = async (req, res) => {
     }
 }
 
-module.exports = { validateLogin, checkUN, searchHandler };
+const validateSignUp = () => {
+    return [
+        body('Username')
+            .exists({ checkFalsy: true })
+            .withMessage('Username cannot be blank')
+            .bail()
+            .isLength({ min: 5 })
+            .withMessage('Username should be 5+ characters'),
+
+        body('Email')
+            .exists({ checkFalsy: true })
+            .withMessage('Email cannot be empty')
+            .bail()
+            .isEmail()
+            .withMessage('Email is invalid'),
+
+        body('Number')
+            .exists({ checkFalsy: true })
+            .withMessage('Phone number cannot be blank')
+            .bail()
+            .isMobilePhone()
+            .withMessage('Phone number is invalid'),
+
+        body('Password')
+            .exists({ checkFalsy: true })
+            .withMessage('Password cannot be blank')
+            .bail()
+            .isLength({ min: 6 })
+            .withMessage('Password must be 6+ characters'),
+
+        body('PasswordConf')
+            .exists({ checkFalsy: true })
+            .withMessage('Password confirmation cannot be blank')
+            .bail()
+            .isLength({ min: 6 })
+            .withMessage('Password confirmation must be 6+ characters')
+            .bail()
+            .custom((value, { req }) => value === req.body.psw)
+            .withMessage("Passwords do not match"),
+    ]
+
+
+}
+
+// const userSignUp = async (req, res) => {
+//     try {
+//         console.log('inside');
+//         var array = [];
+//         array = await city.find();
+//         const errors = validationResult(req);
+//         if (!errors.isEmpty()) {
+
+//             var alerts = errors.array();
+//             console.log(alerts);
+            
+//             res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alerts: alerts });
+//         }
+//         else {
+//             console.log("signing up");
+//             let hashedPass;
+//             const saltRounds = 10;
+//             bcrypt
+//                 .hash(req.body.psw, saltRounds)
+//                 .then(hash => {
+//                     hashedPass = hash;
+//                     console.log('Hash ', hashedPass);
+
+//                     var user = new User({
+//                         Username: req.body.uname,
+//                         Email: req.body.email,
+//                         PhoneNumber: req.body.number,
+//                         Password: hashedPass,
+//                         ConfPassword: hashedPass,
+//                         Type: req.body.type
+
+//                     })
+//                     user.save()
+//                         .then((result) => {
+//                             console.log("user added and logged in");
+//                             req.session.user = result;
+//                             req.session.authenticated = true;
+//                             res.redirect("back");
+//                         })
+//                 })
+//         }
+
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// }
+
+module.exports = { validateLogin, checkUN, searchHandler, validateSignUp };

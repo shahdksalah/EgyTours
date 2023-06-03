@@ -9,12 +9,21 @@ $(document).ready(function () {
             data: JSON.stringify({ Username: data }),
             success: function (response) {
                 $('#result').html('Username is ' + response);
+                $("#usererror").html("");
+                $("#unam").html("");
 
-                if (response == 'taken') {
+                if (response == 'taken' || response=='invalid' || response=='too short') {
                     $('#result').css("color", "red");
+                    $("#usererror").html("");
+                    $("#unam").html("");
                 }
-                else {
+                else if(response=='available'){
                     $('#result').css("color", "green");
+                    $("#usererror").html("");
+                    $("#unam").html("");
+                }
+                else{
+                    $("#result").html("");
                 }
             },
             error:function(err){

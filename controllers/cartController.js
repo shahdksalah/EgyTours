@@ -175,4 +175,14 @@ const removeFromCart = async (req, res) => {
     })
 }
 
-module.exports = { viewCart, removeFromCart };
+const clearCart=async(req,res)=>{
+      await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
+      .then(()=>{
+        res.render("cart", {     
+          user: (!req.session.authenticated) ? "" : req.session.user,
+          cart: "", hotels: "", activities: ""
+        })
+      })
+}
+
+module.exports = { viewCart, removeFromCart,clearCart };

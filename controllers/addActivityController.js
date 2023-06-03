@@ -11,6 +11,42 @@ const getAddActivity = async (req, res) => {
   res.render("AddActivity", { alert: undefined });
 }
 
+const validateActivity = () => {
+  return [
+      body('Aname')
+          .exists({ checkFalsy: true })
+          .withMessage('City name is required')
+          .isString()
+          .withMessage("City name must be a string"),
+      
+          body('Aheader')
+          .exists({ checkFalsy: true })
+          .withMessage('Header is required')
+          .isString()
+          .withMessage("Header must be a string"),
+
+          body('Atype')
+          .exists({ checkFalsy: true })
+          .withMessage('Type is required')
+          .isString()
+          .withMessage("Type must be a string"),
+
+          body('adv')
+          .exists({ checkFalsy: true })
+          .withMessage('Advantage is required')
+          .isString()
+          .withMessage("Advantage must be a string"),
+
+          body('Abrief')
+          .exists({ checkFalsy: true })
+          .withMessage('Brief details is required')
+          .isString()
+          .withMessage("Brief details must be a string"),
+
+
+  ]
+}
+
 
 const postAddActivity = async (req, res) => {
   try {

@@ -58,6 +58,47 @@ form.addEventListener('submit', (e) => {
         error = true;
     }
 
+    if (cancel.value === "") {
+        document.getElementById('error-cancel').innerHTML = "You must enter activity's cancellation details";
+        error = true;
+    }
+
+    if (duration.value === "") {
+        document.getElementById('error-duration').innerHTML = "You must enter activity's duration details";
+        error = true;
+    }
+
+    if (pickup.value === "") {
+        document.getElementById('error-pickup').innerHTML = "You must enter activity's pickup details";
+        error = true;
+    }
+
+    if (max.value === "") {
+        document.getElementById('error-max').innerHTML = "You must enter activity's max number of participants";
+        error = true;
+    }
+
+    if (start.value === "") {
+        document.getElementById('error-start').innerHTML = "You must enter activity's start time";
+        error = true;
+    }
+
+    if (end.value === "") {
+        document.getElementById('error-end').innerHTML = "You must enter activity's end time";
+        error = true;
+    }
+
+    if (price.value === "") {
+        document.getElementById('error-price').innerHTML = "You must enter activity's price";
+        error = true;
+    }
+
+    if (availdates.value === "") {
+        document.getElementById('error-dates').innerHTML = "You must enter activity's dates";
+        error = true;
+    }
+
+
 
 
 

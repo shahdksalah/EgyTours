@@ -125,7 +125,7 @@ const removeFromCart = async (req, res) => {
         await Cart.findOneAndUpdate({ User: req.session.user._id }, { Hotels: hotels }, {
           new: true
         })
-          .then(async (re) => {
+          .then(async () => {
             if(item==="hotel"){
               if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
                 await Cart.findByIdAndDelete(cart._id)
@@ -153,7 +153,7 @@ const removeFromCart = async (req, res) => {
         await Cart.findOneAndUpdate({ User: req.session.user._id }, { Activities: activities }, {
           new: true
         })
-          .then(async (re) => {
+          .then(async () => {
             if (item==="activity") {
               if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
                 console.log("Entered")

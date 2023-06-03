@@ -3,6 +3,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 const fileUpload = require('express-fileupload');
+const Booking= require('../models/bookingdb.js');
+const User=require("../models/usersdb.js");
 
 router.use(fileUpload());
 
@@ -19,5 +21,10 @@ router.use((req, res, next) => {
 router.get('/', async function (req, res) {
     var Bookings = [];
     Bookings = await Booking.find();
-    res.render("viewbookings", { bookings: (Bookings === 'undefined' ? "" : Bookings) });
+    var Users = [];
+    Users = await User.find();
+    res.render("viewbookings", { bookings: (Bookings === 'undefined' ? "" : Bookings) },
+    { users:(Users === 'undefined' ? "" : Users)});
 });
+
+module.exports = router;

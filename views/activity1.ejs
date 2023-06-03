@@ -167,8 +167,8 @@
             </div>
             <div>
               <select name="days"  id="dropbtn" style="margin-top:5px;">
-                <%for(var j=0;j< activity1[0].DatesDetails.length; j++) {%>
-                  <% var b=activity1[0].DatesDetails[j].split(' ')[0]; %>
+                <%for(var i=0;i< activity1[0].DatesDetails.length; i++) { %>
+                  <% var b=activity1[0].DatesDetails[i].date; %>
                   <option value=<%=b %>><%=b %> </option>
               <% } %>
               </select>

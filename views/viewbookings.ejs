@@ -13,66 +13,95 @@
     <link rel="stylesheet" type="text/css" href="/css/styleActivities.css">
 
 </head>
+<style>
+    .right{
+        margin-left:300px;
+        display:flex;
+
+    }
+</style>
 
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
 
 
     <%- include("partials/adminHeader.ejs") %>
-
-    <div id="parent" style="margin-left:300px;">
+    <h1 style="margin-left:300px;">BOOKINGS:</h1>
+    <div class="right">
+        
+  <%var name;%>
         <% if(bookings!=="") { %>
+            
             <% let id=1; %>
             <% bookings.forEach((booking) => { %>
+               
             <% users.forEach((user) => { %>
             <% if(booking.User == user._id) { %>
-                <h2 style="margin-left:30px;"><%=user.Username%></h2>
+                
+                <%name=user.Username; %>
             <% } %>
             <% }) %> 
-            <div class="cols" style="width:400px;" id="btn">
-                <% if(booking.Hotels!=="") { %>
-                <% booking.Hotels.forEach((bookhotels) => { %> 
+            
+           
+                <% if(booking.Hotels[0] !== undefined) { %>
+                    <% if(booking.Hotels[0])
+                    <div id="btn" style="margin-right:30px;">
                 <% hotels.forEach((hotel) => { %>
-                 <% if(bookhotels.id == hotel._id) { %>
+                 <% if(booking.Hotels[0].id == hotel._id) { %>
+                    <h1><%=name%></h1>
                     <h2><%=hotel.Name%></h2>
                 <% } %>
                 <% }) %>
+                    
                     <strong>Check in:</strong>
-                    <%=bookhotels.checkIn %>
+                    <%=booking.Hotels[0].checkIn %>
                     <strong>Check out:</strong>
-                    <%=bookhotels.checkOut %>
+                    <%=booking.Hotels[0].checkOut %>
                     <strong>Days:</strong>
-                    <%=bookhotels.days %>
+                    <%=booking.Hotels[0].days %>
                     <br>
                     <strong>Children:</strong>
-                    <%=bookhotels.children %>
+                    <%=booking.Hotels[0].children %>
                     <strong>Adults:</strong>
-                    <%=bookhotels.adults %>
+                    <%=booking.Hotels[0].adults %>
                     <br>
                     <strong>Rooms:</strong>
-                    <%=bookhotels.rooms %>
+                    <%=booking.Hotels[0].rooms %>
                     <strong>RoomType:</strong>
-                    <%=bookhotels.roomType %>
+                    <%=booking.Hotels[0].roomType %>
                     <br>
                     <strong>Price:</strong>
-                    <%=bookhotels.price %>
-            </div>
-                <%id++;%>
-                <% }) %>
+                    <%=booking.Hotels[0].price %>
+                 </div>    
+
                 <% } %>
-                <div class="cols" style="width:400px;" id="btn">
-                    <% if(booking.Activities!=="") { %>
-                    <% booking.Hotels.forEach((bookhotels) => { %> 
-                    <% hotels.forEach((hotel) => { %>
-                     <% if(bookhotels.id == hotel._id) { %>
-                        <h2><%=hotel.Name%></h2>
+                
+               
+                    <% if(booking.Activities[0]!== undefined) { %>
+                        <div id="btn" style="margin-right:30px;">
+                    <% activities.forEach((activity) => { %>
+                     <% if( booking.Activities[0].id == activity._id) { %>
+                        <h1><%=name%></h1>
+                        <h2><%=activity.Header%></h2>
                     <% } %>
                     <% }) %>
+                    <strong>Participants:</strong>
+                    <%=booking.Activities[0].participants %>
+                    <strong>Date:</strong>
+                    <%=booking.Activities[0].date %>
+                    <strong>Price:</strong>
+                    <%=booking.Activities[0].price %>
+                    <br>
+                    
+                </div>
+                <% } %>
+                <% id++; %>
                 <% }) %>
                 <% } %>
-            </div>
+            
+    
 
-
+    </div>
 
 </body>
 </html>

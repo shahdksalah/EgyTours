@@ -10,7 +10,7 @@ function addItem(item, finalres, newid, list, errorid) {
         if (newid.includes('feat')) {
             newli.setAttribute('id', newid + newf);
             newli.setAttribute('name', newid);
-            newf++;
+            newf++; 
         }
         else {
             newli.setAttribute('id', newid + newa);

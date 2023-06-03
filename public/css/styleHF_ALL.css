@@ -14,7 +14,7 @@ body{
     width: 400px;
     left: 46%;
     margin-left: -150px;
-    height: 515px;
+    height: 497px;
     top: 25%;
     margin-top: -100px;
     z-index: 20;
@@ -74,8 +74,8 @@ form input{
 .subutton {
     background-color: rgb(54, 36, 27);
     color: white;
-    padding: 14px 20px;
     margin-left:20%;
+    margin-top:2%;
     border: none;
     cursor: pointer;
     width: 60%;

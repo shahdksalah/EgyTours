@@ -16,7 +16,7 @@ form.addEventListener('submit', (e) => {
         error = true;
     }
 
-    if (imgs.value === "") {
+    if (imgs.value === "") { 
         document.getElementById('error-imgs').innerHTML = "You must upload 10 images";
         error = true;
     }
@@ -47,33 +47,15 @@ form.addEventListener('submit', (e) => {
         document.getElementById('errorfeat').innerHTML = "You must enter room features";
         error = true;
     }
-    else {
-        for (var i = 0; i < featlist.length; i++) {
-            feattext.value += `${featlist[i].innerHTML},`;
-        }
-    }
 
     if (amenlist.length == 0) { 
         document.getElementById('erroramen').innerHTML = "You must enter room features";
         error = true;
     }
-    else {
-        for (var i = 0; i < amenlist.length; i++) {
-            amentext.value += `${amenlist[i].innerHTML},`;
-        }
-    }
 
     if (typelist.length == 0) {
         document.getElementById('errortype').innerHTML = "You must enter room features";
         error = true;
-    }
-    else {
-        for (var i = 0; i < typelist.length; i++) {
-            typetext.value += `${typelist[i].innerText.slice(0, typelist[i].innerText.indexOf('-') - 1)},`;
-            pricetext.value += `${typelist[i].innerHTML.slice(typelist[i].innerText.indexOf('-') + 2, typelist[i].innerText.indexOf('L'))},`;
-            roomtext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf('|') + 2, typelist[i].innerText.indexOf('R') - 1)},`;
-            captext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf(':') + 2, typelist[i].innerText.length)},`;
-        }
     }
 
 

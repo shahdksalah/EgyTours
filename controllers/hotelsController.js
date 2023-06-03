@@ -126,7 +126,7 @@ const postReview = async (req, res) => {
                     .then(result => {
                         res.render("hotel1", {
                             hotel1: (Hotels === 'undefined' ? "" : Hotels),
-                            user: (!req.session.authenticated) ? "" : req.session.user, revmsg: ""
+                            user: (!req.session.authenticated) ? "" : req.session.user, msg: ""
                         });
                     })
 
@@ -142,7 +142,7 @@ const postReview = async (req, res) => {
             .then(() => {
                 res.render("hotel1", {
                     hotel1: (Hotels === 'undefined' ? "" : Hotels),
-                    user: (!req.session.authenticated) ? "" : req.session.user, revmsg: "You must sign in to add a review"
+                    user: (!req.session.authenticated) ? "" : req.session.user, msg: "You must sign in to add a review"
                 });
             }).catch(err => {
                 console.log(err);

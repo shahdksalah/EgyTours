@@ -84,7 +84,7 @@ const postActivityAvail = async (req, res) => {
     var num = req.body.num;
     var date = req.body.days;
     var X = [];
-    var compare = date + " " + num;
+    var compare = date;
     const x = await Activity.find().where("Name").equals(name);
 
     X = Array.from(x);
@@ -101,22 +101,16 @@ const postActivityAvail = async (req, res) => {
     var found2 = "false";
 
     for (var s = 0; s < x[0].DatesDetails.length; s++) {
-        var k = x[0].DatesDetails[s].split(' ')[0];
+        var k = x[0].DatesDetails[s].date;
         console.log(k);
         
         if (date === k) {
-            // console.log(x[0].DatesDetails[s].split(' ')[1]);
-            // console.log(num);
-            // console.log("number:");
-            // console.log( parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]));
-            // console.log(x[0].MaxParticipants);
-            if (parseInt(num)+parseInt(x[0].DatesDetails[s].split(' ')[1]) <= x[0].MaxParticipants) {
-                var newnum = parseInt(x[0].DatesDetails[s].split(' ')[1] )+ parseInt(num);
+            if (parseInt(num)+parseInt(x[0].DatesDetails[s].max) <= x[0].MaxParticipants) {
+                var newnum = parseInt(x[0].DatesDetails[s].max )+ parseInt(num);
                 //console.log(newnum);
 
                 if (newnum < x[0].MaxParticipants) {
-                    ret = date + " " + newnum;
-                    ret.toString();
+                    ret = date;
                     console.log(ret);
                     found = "true";
                     number = s;

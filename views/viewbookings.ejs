@@ -44,7 +44,14 @@
             
            
                 <% if(booking.Hotels[0] !== undefined) { %>
-                    <% if(booking.Hotels[0])
+                    <% const date = new Date().getTime();%>
+                    <%console.log(date)%>
+                    <% const year =booking.Hotels[0].checkOut.split("-")[0]; %>
+                    <% const month =booking.Hotels[0].checkOut.split("-")[1]; %>
+                    <% const day = booking.Hotels[0].checkOut.split("-")[2]; %>
+                    <% const checkout = new Date(year,month-1,day ).getTime(); %>
+                    <%console.log(checkout)%>
+                    <% if(checkout > date) { %>
                     <div id="btn" style="margin-right:30px;">
                 <% hotels.forEach((hotel) => { %>
                  <% if(booking.Hotels[0].id == hotel._id) { %>
@@ -73,11 +80,19 @@
                     <strong>Price:</strong>
                     <%=booking.Hotels[0].price %>
                  </div>    
-
+                <% } %>
                 <% } %>
                 
                
                     <% if(booking.Activities[0]!== undefined) { %>
+                        <% const dat = new Date().getTime();%>
+                        <%console.log(dat)%>
+                        <% const d =booking.Activities[0].date.split("-")[0]; %>
+                        <% const m =booking.Activities[0].date.split("-")[1]; %>
+                        <% const y = booking.Activities[0].date.split("-")[2]; %>
+                        <% const Actdate = new Date(y,m-1,d).getTime(); %>
+                        <%console.log(Actdate)%>
+                        <% if(Actdate > dat) { %>
                         <div id="btn" style="margin-right:30px;">
                     <% activities.forEach((activity) => { %>
                      <% if( booking.Activities[0].id == activity._id) { %>
@@ -94,6 +109,7 @@
                     <br>
                     
                 </div>
+                <% } %>
                 <% } %>
                 <% id++; %>
                 <% }) %>

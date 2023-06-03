@@ -143,11 +143,15 @@ const pay = async (req, res) => {
 
                   datesArr = a.DatesDetails;       //update remaining spots left in activities
                   for (var j = 0; j < datesArr.length; j++) {
-                    d = datesArr[j].split(' ')[0];
+                    d = datesArr[j].date;
                     if (d == activity.date) {
-                      n = parseInt(datesArr[j].split(' ')[1]);
+                      n = parseInt(datesArr[j].max);
                       n +=parseInt(activity.participants);
-                      datesArr[j] = (d + " " + n);
+                      var newdates = {
+                        date: d,
+                        max:n
+                      }
+                      datesArr[j].push(newdates);
                       console.log(datesArr[j]);
                       filter = { Name: a.Name };
                       update = { DatesDetails: datesArr };

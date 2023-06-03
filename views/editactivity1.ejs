@@ -16,13 +16,22 @@
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
     <link rel="stylesheet" href="/css/styleDatePicker.css">
     <%}%>
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" >
+        </script>
+          
         <script src=
-        "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" >
-            </script>
-              
-            <script src=
-        "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js" >
-            </script>
+    "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js" >
+        </script> 
+
+    <style>
+        .datepicker
+        {
+            margin-left:600px;
+            margin-top:0px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -151,10 +160,10 @@
                             </div>
                             <div>
                                             <% id=1 %>
-                                            <% let dates=activity[0].DatesDetails%>
+                                            <% let dates=activity[0].DatesDetails %>
                                             <% dates.forEach((date)=>{%>
                                             <% if(dates.length!=0){%>
-                                            <% var b=date.split(' ')[0]; %>
+                                            <% var b=date.date %>
                                     <li id="dateli<%=id%>">
                                     <input type="text" value="<%=b%>" id="dateinput<%=id%>" style="width:120px;">
                                         <button type="button" onclick="updateDate('showdate<%=id%>','confirm<%=id%>')" >Update</button> 
@@ -167,11 +176,11 @@
                                     <%})%>
                             </div>
                             <div><h2>Add Dates:</h2></div>
-                            <div class="container" >
-                                <input type="text" class="form-control date" id="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px";>
+                            <div class="container">
+                                <input type="text" class="form-control date" id="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px;">
                             </div>	
 
-                            <textarea name="alldates" id="alldates" cols="15" rows="5"></textarea>
+                            <textarea name="alldates" id="alldates" cols="15" rows="5" style="display:none;"></textarea>
 
                             <div id="editdates" onclick="editdates()" >Edit all dates</div>
                             

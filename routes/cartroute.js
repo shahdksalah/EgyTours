@@ -5,5 +5,6 @@ const cartController=require('../controllers/cartController.js')
 
 router.get('/', cartController.viewCart);
 router.post('/removeBooking',cartController.removeFromCart)
+router.post('/clearCart',cartController.clearCart)
 
 module.exports=router;

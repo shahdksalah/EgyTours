@@ -1,16 +1,13 @@
 const express = require('express')
 const router = express.Router();
 const User = require('../models/usersdb.js');
-const validate = require('../public/js/formsVal.js')
-const mongoose = require('mongoose');
-var db = mongoose.connection;
 const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
-const lodash = require('lodash');
 const bcrypt = require("bcrypt");
 const city = require('../models/addcitiesdb.js');
 const hotels = require('../models/hotel.schema.js');
 const activities = require('../models/activity.schema.js');
+const {validateLogin,checkUN, searchHandler} = require('../controllers/index.controller.js');
 
 
 
@@ -22,46 +19,17 @@ router.use(bodyParser.json());
 router.get('/', async function (req, res) {
   var array = [];
   array = await city.find();
-  res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array });
+  res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alert: "", pass: "" });
 });
 
-router.post('/searchHotels', (req, res) => {
-  var query = req.body.Name.trim();
-  if (query) {
-    hotels.find({ Name: { $regex: new RegExp(query + '.*', 'i') } }).exec()
-      .then(result => {
-        activities.find({ Name: { $regex: new RegExp(query + '.*', 'i') } }).exec()
-          .then(resu => {
-            var items = [];
-            for (let index = 0; index < result.length; index++) {
-              items.push(result[index]);
-            }
-            for (let index = 0; index < resu.length; index++) {
-              items.push(resu[index]);
-            }
-            if (items.length > 0) {
-              res.send(items);
-            }
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-  else {
-    res.send("");
-  }
-});
+
 
 router.get('/cities/:name', async function (req, res) {
   var disphotel = [];
   var dispactiv = [];
   var hotloc;
   var cityname;
-  var cities1 ;
+  var cities1;
   var Hotels = [];
   var activ = [];
   var url = req.params.name;
@@ -82,16 +50,16 @@ router.get('/cities/:name', async function (req, res) {
     }
   })
 
-   await city.find({ "Name": url })
-  .then(result=>{
-    if(result.length>0){
-        cities1=result[0];
+  await city.find({ "Name": url })
+    .then(result => {
+      if (result.length > 0) {
+        cities1 = result[0];
         res.render("cities", {
           user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
-          activities: activ, hotels: Hotels,city:cities1
+          activities: activ, hotels: Hotels, city: cities1
         });
-    }
-  })
+      }
+    })
 
 });
 
@@ -157,55 +125,12 @@ router.post('/', urlencodedParser, [
   }
 });
 
-const checkUN = (req, res) => {
-  var query = { Username: req.body.Username };
-  User.find(query)
-    .then(result => {
-      if (result.length > 0) {
-        res.send('taken');
-      }
-      else {
-        res.send('available');
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
+
 router.post('/checkUN', checkUN);
 
+router.post('/searchHandler', searchHandler);
 
-router.post('/login', urlencodedParser, [
-  check('username', 'Username is empty')
-    .exists(),
-  check('password', 'Password is empty')
-    .exists()
-], (request, response) => {
-  const errors = validationResult(request)
-  if (!errors.isEmpty()) {
-    const alert = errors.array();
-    console.log(alert[0]);
-  }
-  else {
-    console.log("entered");
-    var query = { Username: request.body.username };
-    User.find(query)
-      .then(result => {
-        bcrypt
-          .compare(request.body.password, result[0].Password)
-          .then(res => {
-            if (res) {
-              console.log(result[0]);
-              request.session.user = result[0];
-              request.session.authenticated = true;
-              response.redirect('back')
-            }
-          })
-          .catch(err => console.error(err.message))
-
-      });
-  }
-});
+router.post('/login',validateLogin);
 
 router.get('/signout', function (req, res) {
 

@@ -26,7 +26,8 @@ const usersRoute=require('./routes/usersroute.js');
 const weeklysummaryRoute=require('./routes/weeklysumroute.js');
 const addcity=require('./routes/addcitiesroute.js');
 const paymentRoute=require('./routes/paymentroute.js')
-const confirmPaymentRoute=require('./routes/confirmPaymentroute.js')
+const confirmPaymentRoute=require('./routes/confirmPaymentroute.js');
+const viewBookingsRoute=require('./routes/viewBookingsroute.js');
 
 
 const bodyParser = require('body-parser');
@@ -80,6 +81,7 @@ app.use("/profile",profileRoute);
 app.use("/users",usersRoute);
 app.use("/weeklysummary",weeklysummaryRoute);
 app.use("/addcities",addcity);
+app.use("/viewbookings",viewBookingsRoute);
 
 
 

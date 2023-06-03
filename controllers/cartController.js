@@ -148,7 +148,7 @@ const removeFromCart = async (req, res) => {
           }
           else{
             item="activity";
-            price=cart.Activities[j].price;
+            price=cart.Activities[k].price;
           }
         }
         cart.Activities = activities;

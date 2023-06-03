@@ -14,14 +14,14 @@ function hideItem(id){
                 }
                 else if(response.split(' ')[0]=="success"){
                     
-                        
-                    var tl=$('#total').html();
-                    var total=t.substring(1);
-                    total-=parseInt(response.split(' ')[1])
+                    console.log(response.split(' ')[1])   
+                    var t=$('#total').html();
+                    console.log(total);
+                    var t1=parseInt(t)-parseInt(response.split(' ')[1]);
                     var count=$('#cnt').html();
                     count--;
                     $('#cnt').html(count);
-                    $('#total').html(total);
+                    $('#total').html(t1);
 
                     
                 }

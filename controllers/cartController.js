@@ -179,6 +179,9 @@ const clearCart=async(req,res)=>{
           cart: "", hotels: "", activities: ""
         })
       })
+      .catch(err=>{
+        console.log(err);
+      })
 }
 
 module.exports = { viewCart, removeFromCart,clearCart };

@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="/css/styleAdminDashboard.css">
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleHotels.css">
     <link rel="stylesheet" type="text/css" href="/css/styleActivities.css">
 
 </head>
@@ -19,19 +20,59 @@
 
     <%- include("partials/adminHeader.ejs") %>
 
-    <div class="first">
+    <div id="parent" style="margin-left:300px;">
         <% if(bookings!=="") { %>
             <% let id=1; %>
             <% bookings.forEach((booking) => { %>
-            <% if(booking.User === users._id) { %>
-                <h2><%=users.Username%></h2>
+            <% users.forEach((user) => { %>
+            <% if(booking.User == user._id) { %>
+                <h2 style="margin-left:30px;"><%=user.Username%></h2>
+            <% } %>
+            <% }) %> 
+            <div class="cols" style="width:400px;" id="btn">
+                <% if(booking.Hotels!=="") { %>
+                <% booking.Hotels.forEach((bookhotels) => { %> 
+                <% hotels.forEach((hotel) => { %>
+                 <% if(bookhotels.id == hotel._id) { %>
+                    <h2><%=hotel.Name%></h2>
+                <% } %>
+                <% }) %>
+                    <strong>Check in:</strong>
+                    <%=bookhotels.checkIn %>
+                    <strong>Check out:</strong>
+                    <%=bookhotels.checkOut %>
+                    <strong>Days:</strong>
+                    <%=bookhotels.days %>
+                    <br>
+                    <strong>Children:</strong>
+                    <%=bookhotels.children %>
+                    <strong>Adults:</strong>
+                    <%=bookhotels.adults %>
+                    <br>
+                    <strong>Rooms:</strong>
+                    <%=bookhotels.rooms %>
+                    <strong>RoomType:</strong>
+                    <%=bookhotels.roomType %>
+                    <br>
+                    <strong>Price:</strong>
+                    <%=bookhotels.price %>
+            </div>
+                <%id++;%>
+                <% }) %>
+                <% } %>
+                <div class="cols" style="width:400px;" id="btn">
+                    <% if(booking.Activities!=="") { %>
+                    <% booking.Hotels.forEach((bookhotels) => { %> 
+                    <% hotels.forEach((hotel) => { %>
+                     <% if(bookhotels.id == hotel._id) { %>
+                        <h2><%=hotel.Name%></h2>
+                    <% } %>
+                    <% }) %>
+                <% }) %>
+                <% } %>
+            </div>
 
-                <% if(bookings.hotels!=="") { %>
-                <% let id2=1; %>
-                <% bookings.hotels.forEach((bookhotels) => { %>
-                <div class="hotelinfo">
-                    <h5><%=bookhotels</h5>
-                </div>
+
 
 </body>
 </html>

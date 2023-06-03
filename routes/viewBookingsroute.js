@@ -29,9 +29,9 @@ router.get('/', async function (req, res) {
     Hotels = await Hotel.find();
     var Activities = [];
     Activities = await Activity.find();
-    res.render("viewbookings", { bookings: (Bookings === 'undefined' ? "" : Bookings) },
-    { users:(Users === 'undefined' ? "" : Users)}, { hotels:(Hotels === 'undefined' ? "" : Hotels)},
-    { activities:(Activities === 'undefined' ? "" : Activities)});
+    res.render("viewbookings", { bookings: (Bookings === 'undefined' ? "" : Bookings) ,
+     users:(Users === 'undefined' ? "" : Users), hotels:(Hotels === 'undefined' ? "" : Hotels),
+     activities:(Activities === 'undefined' ? "" : Activities)});
 });
 
 module.exports = router;

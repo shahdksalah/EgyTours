@@ -131,13 +131,11 @@ const removeFromCart = async (req, res) => {
               if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("empty hotel");
-                    res.send("empty");
+                    res.send("empty");   //no remaining items in cart after removing hotel
                   })
               }
-              else {
-                console.log("success hotel");
-                res.send("success "+price);
+              else {                         //send the price of the removed hotel booking as a response
+                res.send("success "+price);    //to calculate new total
               }
             }
           })
@@ -161,13 +159,11 @@ const removeFromCart = async (req, res) => {
                 console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("empty activity");
-                    res.send("empty");
+                    res.send("empty");  //no remaining items in cart after removing activity
                   })
               }
-              else {
-                console.log("success activity");
-                res.send("success "+price);
+              else {                           //send the price of the removed activity booking as a response
+                res.send("success "+price);   //to calculate new total 
               }
             }
           })

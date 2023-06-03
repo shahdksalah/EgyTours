@@ -5,6 +5,7 @@ const fileupload = require("express-fileupload");
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(fileupload());
+const { body, validationResult } = require('express-validator');
 
 
 const getAddActivity = async (req, res) => {
@@ -189,4 +190,4 @@ const postAddActivity = async (req, res) => {
 
     }
 
-    module.exports = { getAddActivity, postAddActivity };
+    module.exports = { getAddActivity, postAddActivity,validateActivity };

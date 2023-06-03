@@ -17,7 +17,7 @@ router.use((req, res, next) => {
 });
  
 router.get('/',addactivityController.getAddActivity);
-router.post('/submit',addactivityController.postAddActivity);
+router.post('/submit',addactivityController.validateActivity(),addactivityController.postAddActivity);
 
 
 module.exports=router;

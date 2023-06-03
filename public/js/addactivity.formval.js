@@ -34,7 +34,27 @@ form.addEventListener('submit', (e) => {
     }
 
     if (imgs.value === "") {
-        document.getElementById('error-header').innerHTML = "You must upload 3 images";
+        document.getElementById('error-imgs').innerHTML = "You must upload 3 images";
+        error = true;
+    }
+ 
+    if (adv.value === "") {
+        document.getElementById('error-adv').innerHTML = "You must enter activity's advantage";
+        error = true;
+    }
+
+    if (brief.value === "") {
+        document.getElementById('error-brief').innerHTML = "You must enter activity's brief description";
+        error = true;
+    }
+
+    if (details.value === "") {
+        document.getElementById('error-details').innerHTML = "You must enter activity's detailed description";
+        error = true;
+    }
+
+    if (plan.value === "") {
+        document.getElementById('error-plan').innerHTML = "You must enter activity's plan";
         error = true;
     }
 

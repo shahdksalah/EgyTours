@@ -2,21 +2,27 @@ const express = require('express')
 const router = express.Router()
 const Activity = require('../models/activity.schema.js');
 const Cart = require('../models/cartdb.js');
+const notifier = require('node-notifier');
+const path = require('path');
 
 
 const getActivity = async (req, res) => {
     var Activities = [];
     Activities = await Activity.find();
-    res.render("activities", { activities: (Activities === 'undefined' ? "" : Activities),
-    user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:""});
+    res.render("activities", {
+        activities: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
+    });
 }
 
 const getActivity1 = async (req, res) => {
     var Activities = [];
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
-    res.render("activity1", { activity1: (Activities === 'undefined' ? "" : Activities),
-    user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
+    res.render("activity1", {
+        activity1: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
+    });
 }
 
 const postReview = async (req, res) => {
@@ -31,13 +37,12 @@ const postReview = async (req, res) => {
             hour12: false,
         });
         var newrev = {
-            Username:req.session.user.Username,
+            Username: req.session.user.Username,
             Rating: req.body.rating,
             Comment: req.body.comment,
             Date: nowdate,
         }
 
-        allrevs.push(newrev);
         allrevs.push(newrev);
 
         const filter = { Name: query1 };
@@ -49,7 +54,7 @@ const postReview = async (req, res) => {
                     .then(result => {
                         res.render("activity1", {
                             activity1: (Activities === 'undefined' ? "" : Activities),
-                            user: (!req.session.authenticated) ? "" : req.session.user, msg: "",revmsg:"",num:""
+                            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: "", num: ""
                         });
                     })
 
@@ -65,8 +70,9 @@ const postReview = async (req, res) => {
             .then(() => {
                 res.render("activity1", {
                     activity1: (Activities === 'undefined' ? "" : Activities),
-                    user: (!req.session.authenticated) ? "" : req.session.user,msg:"", revmsg: "You must sign in to add a review"
-                ,num:""});
+                    user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: "You must sign in to add a review"
+                    , num: ""
+                });
             }).catch(err => {
                 console.log(err);
             })
@@ -78,7 +84,6 @@ const postActivityAvail = async (req, res) => {
     var Activities = [];
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
-   
 
     var name = req.body.name2;
     var num = req.body.num;
@@ -91,9 +96,6 @@ const postActivityAvail = async (req, res) => {
     console.log(X);
 
     var arr = [];
-
-
-
     var number;
     var ret;
     var found = "false";
@@ -103,11 +105,10 @@ const postActivityAvail = async (req, res) => {
     for (var s = 0; s < x[0].DatesDetails.length; s++) {
         var k = x[0].DatesDetails[s].date;
         console.log(k);
-        
+
         if (date === k) {
-            if (parseInt(num)+parseInt(x[0].DatesDetails[s].max) <= x[0].MaxParticipants) {
-                var newnum = parseInt(x[0].DatesDetails[s].max )+ parseInt(num);
-                //console.log(newnum);
+            if (parseInt(num) + parseInt(x[0].DatesDetails[s].max) <= x[0].MaxParticipants) {
+                var newnum = parseInt(x[0].DatesDetails[s].max) + parseInt(num);
 
                 if (newnum < x[0].MaxParticipants) {
                     ret = date;
@@ -115,124 +116,109 @@ const postActivityAvail = async (req, res) => {
                     found = "true";
                     number = s;
                 }
-                else if(newnum === x[0].MaxParticipants)
-                {
-                    found1="true";
-                    number=s;
+                else if (newnum === x[0].MaxParticipants) {
+                    found1 = "true";
+                    number = s;
                 }
             }
-            else{
-                found2="true";
+            else {
+                found2 = "true";
             }
         }
     }
 
     if (found === "true") {
-        /*
-        for (var i = 0; i < x[0].DatesDetails.length; i++) {
-            if (i === number) {
-                arr.push(ret);
-            }
-            else {
-                arr.push(x[0].DatesDetails[i]);
-            }
-            console.log(arr[i]);
-        }
-
-        const filter = { Name: name };
-        const update = { DatesDetails: arr };
-       
-        const Act = await Activity.findOneAndUpdate(filter, update);
-        console.log(Act);
-        //window.location.reload();
-        */
-        res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,
-        day:req.body.days,revmsg:""});
+        res.render("activity1", {
+            activity1: (Activities === 'undefined' ? "" : Activities),
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Available", num: req.body.num,
+            day: req.body.days, revmsg: ""
+        });
     }
 
-    else if(found1 === "true")
-    {
-        /*
-        for (var i = 0; i < x[0].DatesDetails.length; i++) {
-            if (i !== number) {
-                arr.push(x[0].DatesDetails[i]);
-            }
-            console.log(arr[i]);
-        }
-        const filter = { Name: name };
-        const update = { DatesDetails: arr };
-       
-        const Act = await Activity.findOneAndUpdate(filter, update);
-        console.log(Act);
-        */
-        res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Available",num:req.body.num,day:req.body.days
-        ,revmsg:""});
-       //window.location.reload();
+    else if (found1 === "true") {
+        res.render("activity1", {
+            activity1: (Activities === 'undefined' ? "" : Activities),
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Available", num: req.body.num, day: req.body.days
+            , revmsg: ""
+        });
     }
 
-    else if(found2==="true")
-    {
-        //.location.reload();
-        res.render("activity1",{activity1: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user,msg:"Not Available",revmsg:""});
+    else if (found2 === "true") {
+        res.render("activity1", {
+            activity1: (Activities === 'undefined' ? "" : Activities),
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Not Available", revmsg: ""
+        });
     }
-
-
 
 }
 
 const addToCart = async (req, res) => {
-    
-    var activities=[];
-    var p=(req.body.price*1);
-    var activ={
-        id:req.params.id,
-        participants:req.body.participants,
-        date:req.body.date,
-        price:p
-    }
-    if(req.session.authenticated){
-    var query = { User: req.session.user._id};
-    Cart.find(query)
-    .then( async result=>{
-        var crt=result[0];
-       if(crt){
-        activities=result[0].Activities;
-        activities.push(activ);
-        
-        await Cart.findByIdAndUpdate(result[0]._id, {
-            Activities: activities
-        })
-        .then(async result=>{
-            let Act = [];
-                Act = await Activity.find();
-                res.render("activity1", { activity1: (Act === 'undefined' ? "" : Act),
-                user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
-        })
-
-       }
-       else{
-          activities[0]=activ;
-          if(req.session.user){
-            const cart= new Cart({
-                User:req.session.user._id,
-                Activities:activities,
-            });
-            cart.save()
-            .then(async result=>{
-                console.log("Activity added");
-                let Act = [];
-                Act = await Activity.find();
-                res.render("activity1", { activity1: (Act === 'undefined' ? "" : Act),
-                user: (!req.session.authenticated) ? "" : req.session.user,msg:"",revmsg:"" });
-            })
+    if (req.session.authenticated) {
+        var activities = [];
+        var p = (req.body.price * 1);
+        var activ = {
+            id: req.params.id,
+            participants: req.body.participants,
+            date: req.body.date,
+            price: p
         }
-       }
-    })
+        if (req.session.authenticated) {
+            var query = { User: req.session.user._id };
+            Cart.find(query)
+                .then(async result => {
+                    var crt = result[0];
+                    if (crt) {
+                        activities = result[0].Activities;
+                        activities.push(activ);
 
-} 
+                        await Cart.findByIdAndUpdate(result[0]._id, {
+                            Activities: activities
+                        })
+                            .then(async result => {
+                                let Act = [];
+                                Act = await Activity.find();
+                                res.render("activity1", {
+                                    activity1: (Act === 'undefined' ? "" : Act),
+                                    user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
+                                });
+                            })
+
+                    }
+                    else {
+                        activities[0] = activ;
+                        if (req.session.user) {
+                            const cart = new Cart({
+                                User: req.session.user._id,
+                                Activities: activities,
+                            });
+                            cart.save()
+                                .then(async result => {
+                                    console.log("Activity added");
+                                    let Act = [];
+                                    Act = await Activity.find();
+                                    res.render("activity1", {
+                                        activity1: (Act === 'undefined' ? "" : Act),
+                                        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
+                                    });
+                                })
+                        }
+                    }
+                })
+        }
+    }
+    else{
+        Act = await Activity.find();
+        
+        res.render("activity1", {
+            activity1: (Act === 'undefined' ? "" : Act),
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
+        });
+        notifier.notify({
+            title: 'Egy Tours',
+            message: 'You must sign in to add your booking to cart',
+            icon: path.join(__dirname, '/../public/images/homepage/logo.png'),
+          });
+    }
 }
 
-module.exports = { getActivity,getActivity1,postReview,postActivityAvail,addToCart };
+module.exports = { getActivity, getActivity1, postReview, postActivityAvail, addToCart };

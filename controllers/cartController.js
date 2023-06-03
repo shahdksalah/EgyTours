@@ -39,7 +39,7 @@ const viewCart = async function (req, res) {
                         });  //if promise.then is executed first
                       }
 
-                      if (cart.Activities.length === 0) {   //don't go to promise1.then if no activities added in cart
+                      if (cart.Activities.length === 0 && counter===length) {   //don't go to promise1.then if no activities added in cart
                         res.render("cart", {
                           user: (!req.session.authenticated) ? "" : req.session.user,
                           cart: cart, hotels: hotels, activities: activities
@@ -104,10 +104,11 @@ const viewCart = async function (req, res) {
 
 const removeFromCart = async (req, res) => {
   console.log(req.body.sentId);
-  console.log("Menna");
   var hotels = [];
   var activities = [];
   var cart;
+  var item="";
+  var price;
   await Cart.find().where("User").equals(req.session.user._id)
     .then(async (result) => {
       if (result.length > 0) {
@@ -116,23 +117,25 @@ const removeFromCart = async (req, res) => {
           if (req.body.sentId - 1 != j) {
             hotels.push(cart.Hotels[j]);
           }
+          else{
+            item="hotel"
+            price=cart.Hotels[j].price;
+          }
         }
         cart.Hotels = hotels;
         await Cart.findOneAndUpdate({ User: req.session.user._id }, { Hotels: hotels }, {
           new: true
         })
-          .then(async (res) => {
-            if (res.length > 0) {
+          .then(async () => {
+            if(item==="hotel"){
               if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
-                console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("empty");
-                    res.send("empty");
+                    res.send("empty");   //no remaining items in cart after removing hotel
                   })
               }
-              else {
-                res.send("success");
+              else {                         //send the price of the removed hotel booking as a response
+                res.send("success "+price);    //to calculate new total
               }
             }
           })
@@ -141,23 +144,26 @@ const removeFromCart = async (req, res) => {
           if (req.body.sentId - cart.Hotels.length - 1 != k) {
             activities.push(cart.Activities[k]);
           }
+          else{
+            item="activity";
+            price=cart.Activities[k].price;
+          }
         }
         cart.Activities = activities;
         await Cart.findOneAndUpdate({ User: req.session.user._id }, { Activities: activities }, {
           new: true
         })
-          .then(async (res) => {
-            if (res.length > 0) {
+          .then(async () => {
+            if (item==="activity") {
               if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
                 console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("empty");
-                    res.send("empty");
+                    res.send("empty");  //no remaining items in cart after removing activity
                   })
               }
-              else {
-                res.send("success");
+              else {                           //send the price of the removed activity booking as a response
+                res.send("success "+price);   //to calculate new total 
               }
             }
           })
@@ -165,4 +171,17 @@ const removeFromCart = async (req, res) => {
     })
 }
 
-module.exports = { viewCart, removeFromCart };
+const clearCart=async(req,res)=>{
+      await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
+      .then(()=>{
+        res.render("cart", {     
+          user: (!req.session.authenticated) ? "" : req.session.user,
+          cart: "", hotels: "", activities: ""
+        })
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+}
+
+module.exports = { viewCart, removeFromCart,clearCart };

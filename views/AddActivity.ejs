@@ -29,55 +29,95 @@
 
 
     <div id="adding">
+        <%if(alert !=undefined){%>
+            <% alert.forEach((alr)=>{%>
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <%=alr.msg%>
+                </div>
+                <%})%>
+                    <%}%>
         <form method="post" action="/AddActivity/submit" enctype="multipart/form-data" id="form">
         <h3>City's Name</h3>
         <textarea id="ActName" rows="3" cols="60" name="Aname"></textarea>
+        <p class='error-message' id="error-name"></p>
         <h3>Header: </h3>
         <textarea id="ActHeader" rows="3" cols="60" name="Aheader"></textarea>
+        <p class='error-message' id="error-header"></p>
 
         <input type="hidden" id="dropbtn" list="Days" placeholder="Number of Days" name="Days" value="DAY TRIP">
 
         <h3>Type:</h3>
         <textarea id="ActType" rows="2" cols="25" name="Atype"></textarea>
+        <p class='error-message' id="error-type"></p>
+
         <input type="text" name="rate" value="0" style="display:none;">
-        <h3>Images </h3>
+        <h3>Images (3)</h3>
         <div>
             <input type="file" id="imgs" name="imgs" multiple style="width:500px;">
         </div>
+        <span class='error-message' id="error-imgs"></span>
+
         <h3>Advantage:</h3>
         <input type="text" id="adv" name="adv">
+        <p class='error-message' id="error-adv"></p>
+
         <h2><ins>Details:</ins></h2>
+
         <h3>Brief Description: </h3>
         <textarea id="Actbrief" rows="5" cols="60" name="Abrief"></textarea>
+        <p class='error-message' id="error-brief"></p>
+
         <h3>Detailed Description: </h3>
         <textarea id="Actdetails" rows="10" cols="60" name="Adetails"></textarea>
+        <p class='error-message' id="error-details"></p>
+
         <h3>Plan: </h3>
         <textarea id="ActPlan" rows="6" cols="60" name="Aplan"></textarea>
+        <p class='error-message' id="error-plan"></p> 
+
         <h2><ins>About the trip:</ins></h2>
+
         <h3>Cancellation details: </h3>
         <textarea id="ActCancel" rows="3" cols="60" name="Acancel"></textarea>
+        <p class='error-message' id="error-cancel"></p>
+
         <h3>Duration: </h3>
         <textarea id="ActTime" rows="2" cols="60" name="Atime"></textarea>
+        <p class='error-message' id="error-duration"></p>
+
         <h3>Pickup Details: </h3>
         <textarea id="ActPickup" rows="4" cols="60" name="Apickup"></textarea>
+        <p class='error-message' id="error-pickup"></p>
+
         <h3>Maximum Participants: </h3>
         <textarea id="ActPart" rows="4" cols="60" name="Aparticipants"></textarea>
+        <p class='error-message' id="error-max"></p>
+
         <h3>Starting time:</h3>
         <input type="time" name="starttime" id="starttime">
+        <p class='error-message' id="error-start"></p>
+
         <h3>Ending time:</h3>
         <input type="time" name="endtime" id="endtime">
+        <p class='error-message' id="error-end"></p>
+
         <h3>Price per person: </h3>
         <input type="text" name="price" id="price">
+        <p class='error-message' id="error-price"></p>
+
         <h3>Available dates: </h3>
         <div class="container" style="width:470px;">
-            <input type="text" class="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px";>
+            <input type="text" class="form-control date" placeholder="Pick the multiple dates" name="Dates" style="margin-bottom:200px"; id="ActDates">
         </div>	
+        <p class='error-message' id="error-dates"></p>
         
         <input type="submit" name="submit" id="submit1" >
         <button onclick="reset()" id="reset1">Reset</button></div>
         </form>
     </div>
     <script src="/js/AddActivityJS.js"></script>
+    <script src="../js/addactivity.formval.js"></script>
         
 </body>
 </html>

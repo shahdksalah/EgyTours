@@ -12,15 +12,19 @@ function hideItem(id){
                     $('.r').css("display", "none");
                     $('#empty').css("display", "block");
                 }
-                // if(response=="success"){
-                //     var total=0;
-                //     var objects = $(".price");
-                //     for (var obj of objects) {
-                //         total+=obj.html().split(' ')[1];
-                //     }
-                //     $('#total').html('$ '+total );
-                //     $('#cnt').html('Total ('+parseInt($('#cnt').html().split(' ')[1]-1)+'):')
-                // }
+                else if(response.split(' ')[0]=="success"){
+                    
+                    console.log(response.split(' ')[1])   
+                    var t=$('#total').html();
+                    console.log(total);
+                    var t1=parseInt(t)-parseInt(response.split(' ')[1]);
+                    var count=$('#cnt').html();
+                    count--;
+                    $('#cnt').html(count);
+                    $('#total').html(t1);
+
+                    
+                }
             }
     })
      

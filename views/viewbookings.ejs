@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bookings</title>
+
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css/styleHF_ALL.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleHotels.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleActivities.css">
+
+</head>
+<style>
+    .right{
+        margin-left:300px;
+        display:flex;
+
+    }
+</style>
+
+<body>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+
+
+    <%- include("partials/adminHeader.ejs") %>
+    <h1 style="margin-left:300px;">BOOKINGS:</h1>
+    <div class="right">
+        
+  <%var name;%>
+        <% if(bookings!=="") { %>
+            
+            <% let id=1; %>
+            <% bookings.forEach((booking) => { %>
+               
+            <% users.forEach((user) => { %>
+            <% if(booking.User == user._id) { %>
+                
+                <%name=user.Username; %>
+            <% } %>
+            <% }) %> 
+            
+           
+                <% if(booking.Hotels[0] !== undefined) { %>
+                    <% const date = new Date().getTime();%>
+                    <%console.log(date)%>
+                    <% const year =booking.Hotels[0].checkOut.split("-")[0]; %>
+                    <% const month =booking.Hotels[0].checkOut.split("-")[1]; %>
+                    <% const day = booking.Hotels[0].checkOut.split("-")[2]; %>
+                    <% const checkout = new Date(year,month-1,day ).getTime(); %>
+                    <%console.log(checkout)%>
+                    <% if(checkout > date) { %>
+                    <div id="btn" style="margin-right:30px;">
+                <% hotels.forEach((hotel) => { %>
+                 <% if(booking.Hotels[0].id == hotel._id) { %>
+                    <h1><%=name%></h1>
+                    <h2><%=hotel.Name%></h2>
+                <% } %>
+                <% }) %>
+                    
+                    <strong>Check in:</strong>
+                    <%=booking.Hotels[0].checkIn %>
+                    <strong>Check out:</strong>
+                    <%=booking.Hotels[0].checkOut %>
+                    <strong>Days:</strong>
+                    <%=booking.Hotels[0].days %>
+                    <br>
+                    <strong>Children:</strong>
+                    <%=booking.Hotels[0].children %>
+                    <strong>Adults:</strong>
+                    <%=booking.Hotels[0].adults %>
+                    <br>
+                    <strong>Rooms:</strong>
+                    <%=booking.Hotels[0].rooms %>
+                    <strong>RoomType:</strong>
+                    <%=booking.Hotels[0].roomType %>
+                    <br>
+                    <strong>Price:</strong>
+                    <%=booking.Hotels[0].price %>
+                 </div>    
+                <% } %>
+                <% } %>
+                
+               
+                    <% if(booking.Activities[0]!== undefined) { %>
+                        <% const dat = new Date().getTime();%>
+                        <%console.log(dat)%>
+                        <% const d =booking.Activities[0].date.split("-")[0]; %>
+                        <% const m =booking.Activities[0].date.split("-")[1]; %>
+                        <% const y = booking.Activities[0].date.split("-")[2]; %>
+                        <% const Actdate = new Date(y,m-1,d).getTime(); %>
+                        <%console.log(Actdate)%>
+                        <% if(Actdate > dat) { %>
+                        <div id="btn" style="margin-right:30px;">
+                    <% activities.forEach((activity) => { %>
+                     <% if( booking.Activities[0].id == activity._id) { %>
+                        <h1><%=name%></h1>
+                        <h2><%=activity.Header%></h2>
+                    <% } %>
+                    <% }) %>
+                    <strong>Participants:</strong>
+                    <%=booking.Activities[0].participants %>
+                    <strong>Date:</strong>
+                    <%=booking.Activities[0].date %>
+                    <strong>Price:</strong>
+                    <%=booking.Activities[0].price %>
+                    <br>
+                    
+                </div>
+                <% } %>
+                <% } %>
+                <% id++; %>
+                <% }) %>
+                <% } %>
+            
+    
+
+    </div>
+
+</body>
+</html>

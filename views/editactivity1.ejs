@@ -163,7 +163,8 @@
                                             <% let dates=activity[0].DatesDetails %>
                                             <% dates.forEach((date)=>{%>
                                             <% if(dates.length!=0){%>
-                                            <% var b=date.date %>
+                                            <%if(date.max === 0) {%>
+                                            <% var b=date.date; %>
                                     <li id="dateli<%=id%>">
                                     <input type="text" value="<%=b%>" id="dateinput<%=id%>" style="width:120px;">
                                         <button type="button" onclick="updateDate('showdate<%=id%>','confirm<%=id%>')" >Update</button> 
@@ -171,6 +172,13 @@
                                     <span><input type="date" style="display:none;width:150px;" id="showdate<%=id%>" placeholder="choose a date"></span>
                                     <span><button type="button" style="display:none" id="confirm<%=id%>" onclick="confirmDate(this.id,'dateinput<%=id%>','showdate<%=id%>')">Confirm</button></span>
                                 </li>
+                                    <% id++%>
+                                    <% } %>
+                                    <%if(date.max !== 0) { %>
+                                        <% var b=date.date; %>
+                                        <li id="dateli<%=id%>">
+                                            <input type="text" value="<%=b%>" id="dateinput<%=id%>" style="width:120px;" readonly>
+                                    <%}%>
                                     <% id++%>
                                     <%}%>
                                     <%})%>

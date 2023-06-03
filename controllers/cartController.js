@@ -129,7 +129,7 @@ const removeFromCart=async (req,res)=>{
             })
           }
           else{
-          res.send("successful");
+          res.send("success");
           }
         })
 
@@ -150,7 +150,7 @@ const removeFromCart=async (req,res)=>{
             })
           }
           else{
-          res.send("successful");
+          res.send("success");
           }
         })
       }

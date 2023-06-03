@@ -44,7 +44,6 @@ const postReview = async (req, res) => {
         }
 
         allrevs.push(newrev);
-        allrevs.push(newrev);
 
         const filter = { Name: query1 };
         const update = { Reviews: allrevs };

@@ -39,7 +39,7 @@ const viewCart = async function (req, res) {
                         });  //if promise.then is executed first
                       }
 
-                      if (cart.Activities.length === 0) {   //don't go to promise1.then if no activities added in cart
+                      if (cart.Activities.length === 0 && counter===length) {   //don't go to promise1.then if no activities added in cart
                         res.render("cart", {
                           user: (!req.session.authenticated) ? "" : req.session.user,
                           cart: cart, hotels: hotels, activities: activities
@@ -104,11 +104,11 @@ const viewCart = async function (req, res) {
 
 const removeFromCart = async (req, res) => {
   console.log(req.body.sentId);
-  console.log("Menna");
   var hotels = [];
   var activities = [];
   var cart;
   var item="";
+  var price;
   await Cart.find().where("User").equals(req.session.user._id)
     .then(async (result) => {
       if (result.length > 0) {
@@ -119,6 +119,7 @@ const removeFromCart = async (req, res) => {
           }
           else{
             item="hotel"
+            price=cart.Hotels[j].price;
           }
         }
         cart.Hotels = hotels;
@@ -136,7 +137,7 @@ const removeFromCart = async (req, res) => {
               }
               else {
                 console.log("success hotel");
-                res.send("success");
+                res.send("success "+price);
               }
             }
           })
@@ -147,6 +148,7 @@ const removeFromCart = async (req, res) => {
           }
           else{
             item="activity";
+            price=cart.Activities[j].price;
           }
         }
         cart.Activities = activities;
@@ -165,7 +167,7 @@ const removeFromCart = async (req, res) => {
               }
               else {
                 console.log("success activity");
-                res.send("success");
+                res.send("success "+price);
               }
             }
           })

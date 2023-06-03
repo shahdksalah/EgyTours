@@ -12,14 +12,16 @@ function hideItem(id){
                     $('.r').css("display", "none");
                     $('#empty').css("display", "block");
                 }
-                if(response=="success"){
+                else if(response.split(' ')[0]=="success"){
                     
                         
                     var tl=$('#total').html();
                     var total=t.substring(1);
+                    total-=parseInt(response.split(' ')[1])
                     var count=$('#cnt').html();
                     count--;
                     $('#cnt').html(count);
+                    $('#total').html(total);
 
                     
                 }

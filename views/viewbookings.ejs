@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bookings</title>
+
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css/styleHF_ALL.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleActivities.css">
+
+</head>
+
+<body>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+
+
+    <%- include("partials/adminHeader.ejs") %>
+
+    <div class="first">
+        <% if(bookings!=="") { %>
+            <% let id=1; %>
+            <% bookings.forEach((booking) => { %>
+            <% 
+                <div class="btn" id="<%=activity.Name%>" onclick="location.href= '/activities/<%=activity.Name%>'">
+
+</body>
+</html>

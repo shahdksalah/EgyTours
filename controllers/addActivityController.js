@@ -13,7 +13,7 @@ const getAddActivity = async (req, res) => {
 
 const validateActivity = () => {
   return [
-      body('Aname')
+          body('Aname')
           .exists({ checkFalsy: true })
           .withMessage('City name is required')
           .isString()
@@ -63,6 +63,41 @@ const validateActivity = () => {
           .withMessage("Cancellation details must be a string"),
 
 
+          body('Atime')
+          .exists({ checkFalsy: true })
+          .withMessage('Duration is required')
+          .isString()
+          .withMessage("Duration must be a string"),
+
+          body('Apickup')
+          .exists({ checkFalsy: true })
+          .withMessage('Pickup details is required')
+          .isString()
+          .withMessage("Pickup details must be a string"),
+
+          body('Aparticipants')
+          .exists({ checkFalsy: true })
+          .withMessage('Max number of participants is required')
+          .isString()
+          .withMessage("Max number of participants must be a number"),
+
+
+          body('starttime')
+          .exists({ checkFalsy: true })
+          .withMessage('Start time is required'),
+
+          body('endtime')
+          .exists({ checkFalsy: true })
+          .withMessage('End time is required'),
+
+          body('price')
+          .exists({ checkFalsy: true })
+          .isNumeric()
+          .withMessage('Price is required'),
+
+          body('dates')
+          .exists({ checkFalsy: true })
+          .withMessage('Date is required'),
 
 
   ]

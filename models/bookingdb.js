@@ -18,6 +18,9 @@ const bookingSchema=new Schema({
     },
     Hotels:{
         type:Array,
+    },
+    Activities:{
+        type:Array,
     }
 },{timestamp:true});
 

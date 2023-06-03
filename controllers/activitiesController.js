@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const Activity = require('../models/activity.schema.js');
 const Cart = require('../models/cartdb.js');
+const notifier = require('node-notifier');
+const path = require('path');
 
 
 const getActivity = async (req, res) => {
@@ -206,7 +208,17 @@ const addToCart = async (req, res) => {
         }
     }
     else{
-        alert("You must sign in to add your booking to cart");
+        Act = await Activity.find();
+        
+        res.render("activity1", {
+            activity1: (Act === 'undefined' ? "" : Act),
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
+        });
+        notifier.notify({
+            title: 'Egy Tours',
+            message: 'You must sign in to add your booking to cart',
+            icon: path.join(__dirname, '/../public/images/homepage/logo.png'),
+          });
     }
 }
 

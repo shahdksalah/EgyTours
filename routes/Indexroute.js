@@ -2,12 +2,12 @@ const express = require('express')
 const router = express.Router();
 const User = require('../models/usersdb.js');
 const bodyParser = require('body-parser');
-const { check, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 const bcrypt = require("bcrypt");
 const city = require('../models/addcitiesdb.js');
 const hotels = require('../models/hotel.schema.js');
 const activities = require('../models/activity.schema.js');
-const {validateLogin,checkUN, searchHandler} = require('../controllers/index.controller.js');
+const { validateLogin, checkUN, searchHandler, validateSignUp } = require('../controllers/index.controller.js');
 
 
 
@@ -19,7 +19,7 @@ router.use(bodyParser.json());
 router.get('/', async function (req, res) {
   var array = [];
   array = await city.find();
-  res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alert: "", pass: "" });
+  res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alerts: "" });
 });
 
 
@@ -55,7 +55,7 @@ router.get('/cities/:name', async function (req, res) {
       if (result.length > 0) {
         cities1 = result[0];
         res.render("cities", {
-          user: (!req.session.authenticated) ? "" : req.session.user, msg: "",
+          user: (!req.session.authenticated) ? "" : req.session.user, alerts: "",
           activities: activ, hotels: Hotels, city: cities1
         });
       }
@@ -64,73 +64,61 @@ router.get('/cities/:name', async function (req, res) {
 });
 
 
-router.post('/', urlencodedParser, [
-  check('unam', 'Username must be 3+ characters long')
-    .exists()
-    .isLength({ min: 3 })
-  ,
+//router.post('/', validateSignUp(), userSignUp);
 
-  check('email', 'Email is not valid')
-    .isEmail()
-    .normalizeEmail(),
+router.post('/signup', validateSignUp(), async (req, res) => {
+  try {
+    console.log('ajax');
+    var array = [];
+    array = await city.find();
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
 
-  check('number', 'Invalid phone number')
-    .isMobilePhone(),
+      var alerts = errors.array();
+      console.log(alerts);
+      res.send(alerts);
+      //res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alerts: alerts });
+    }
+    else {
+      console.log("signing up");
+      let hashedPass;
+      const saltRounds = 10;
+      bcrypt
+        .hash(req.body.psw, saltRounds)
+        .then(hash => {
+          hashedPass = hash;
+          console.log('Hash ', hashedPass);
 
-  check('psw', 'Invalid Password')
-    .exists()
-    .isLength({ min: 6 }),
+          var user = new User({
+            Username: req.body.uname,
+            Email: req.body.email,
+            PhoneNumber: req.body.number,
+            Password: hashedPass,
+            ConfPassword: hashedPass,
+            Type: req.body.type
 
-  check('confpsw', 'Invalid Password')
-    .exists()
-    .isLength({ min: 6 })
-
-
-], (request, response) => {
-  console.log("entered");
-  let hashedPass;
-  const saltRounds = 10;
-
-  const errors = validationResult(request)
-  if (!errors.isEmpty()) {
-    const alert = errors.array();
+          })
+          user.save()
+            .then((result) => {
+              console.log("user added and logged in");
+              req.session.user = result;
+              req.session.authenticated = true;
+              res.redirect("back");
+            })
+        })
+    }
   }
-  else if (request.body.psw !== request.body.confpsw)
-    console.log("error");
-  else {
-    bcrypt
-      .hash(request.body.psw, saltRounds)
-      .then(hash => {
-        hashedPass = hash;
-
-        console.log('Hash ', hashedPass)
-        const userdetails = new User({
-          Username: request.body.unam,
-          Email: request.body.email,
-          PhoneNumber: request.body.number,
-          Password: hashedPass,
-          ConfPassword: hashedPass,
-          Type: request.body.type
-        });
-
-        userdetails.save()
-          .then((result) => {
-            console.log('user added');
-            response.redirect("/");
-          });
-      })
-      .catch(err => console.error(err.message))
-
-
+  catch (err) {
+    console.log(err);
   }
-});
 
+})
 
 router.post('/checkUN', checkUN);
 
 router.post('/searchHandler', searchHandler);
 
-router.post('/login',validateLogin);
+router.post('/login', validateLogin);
 
 router.get('/signout', function (req, res) {
 

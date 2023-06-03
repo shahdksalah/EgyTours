@@ -5,9 +5,9 @@ const fileUpload = require('express-fileupload');
 const { body, validationResult } = require('express-validator');
 
 router.use(fileUpload());
-
+ 
 const getAddHotel = async (req, res) => {
-    res.render("AddHotel", { alert: undefined });
+    res.render("addhotel", { alert: undefined });
 }
 
 const validateHotel = () => {
@@ -122,7 +122,7 @@ const addHotel = async (req, res) => {
             })
             hotel.save()
                 .then(result => {
-                    // console.log(result);
+                    console.log("hotel added");
                     res.redirect('/hotels')
                 })
                 .catch(err => {

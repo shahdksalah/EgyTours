@@ -3,7 +3,7 @@ const Bookings = require('../models/bookingdb.js');
 const Hotel = require('../models/hotel.schema.js');
 const Activity = require('../models/activity.schema.js');
 const nodemailer = require('nodemailer');
-const { validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 const viewForm = async (req, res) => {
 
@@ -90,10 +90,52 @@ const viewForm = async (req, res) => {
 
 }
 
+const validateCard = () => {
+
+  return [
+    body('Name')
+      .exists({ checkFalsy: true })
+      .withMessage('Card holder name cannot be blank')
+      .bail()
+      .isString()
+      .withMessage("Card holder name must be a string"),
+
+    body('Num')
+      .exists({ checkFalsy: true })
+      .withMessage('Card number cannot be blank')
+      .bail()
+      .isNumeric()
+      .withMessage('Card number is invalid'),
+
+    body('CVV')
+      .exists({ checkFalsy: true })
+      .withMessage('CVV cannot be blank')
+      .bail()
+      .isNumeric()
+      .withMessage('CVV must be a number')
+      .bail()
+      .isLength({ min: 3, max: 3 })
+      .withMessage('CVV must be 3 numbers long'),
+
+    body('ExpM')
+      .exists({ checkFalsy: true })
+      .withMessage('Choose Month')
+      .bail(),
+
+    body('ExpY')
+      .exists({ checkFalsy: true })
+      .withMessage('Choose Year')
+      .bail(),
+
+  ]
+}
+
 const pay = async (req, res) => {
   const errors = validationResult(req);
+  console.log("validating card");
   if (!errors.isEmpty()) {
-    console.log(errors.array());
+    var alerts = errors.array();
+    res.send(alerts);
   }
   else {
     var totalPrice = 0;
@@ -115,7 +157,7 @@ const pay = async (req, res) => {
     var emailText = "Your payment with the following details is confirmed\n";
     await Cart.find().where("User").equals(req.session.user._id)
       .then(async result => {
-        
+
         if (result) {
           booking = result[0];
           if (booking.Hotels.length != 0) {
@@ -146,10 +188,10 @@ const pay = async (req, res) => {
                     d = datesArr[j].date;
                     if (d == activity.date) {
                       n = parseInt(datesArr[j].max);
-                      n +=parseInt(activity.participants);
+                      n += parseInt(activity.participants);
                       var newdates = {
                         date: d,
-                        max:n
+                        max: n
                       }
                       datesArr[j].push(newdates);
                       console.log(datesArr[j]);
@@ -177,7 +219,7 @@ const pay = async (req, res) => {
                 .then(async () => {
                   console.log("Booking saved")
                   await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
-                    .then(async() => {
+                    .then(async () => {
                       console.log("cart deleted");
                       emailText += "\nPayment Method: Credit Card";
                       const mailOptions = {
@@ -196,14 +238,14 @@ const pay = async (req, res) => {
                       });
 
                       await Activity.findOneAndUpdate(filter, update)
-                      .then(() => {
-                        console.log("activity updated successfully");
-                      })
-                      .catch(err => {
-                        console.log(err);
-                      })
-
-                      res.render("confirmPayment", { user: (!req.session.authenticated) ? "" : req.session.user, price: totalPrice, card: req.body.number })
+                        .then(() => {
+                          console.log("activity updated successfully");
+                        })
+                        .catch(err => {
+                          console.log(err);
+                        })
+                      res.redirect('back');
+                      //res.render("confirmPayment", { user: (!req.session.authenticated) ? "" : req.session.user, price: totalPrice, card: req.body.number })
                     })
                     .catch(err => {
                       console.log(err);
@@ -221,4 +263,4 @@ const pay = async (req, res) => {
   }
 }
 
-module.exports = { viewForm, pay };
+module.exports = { viewForm, pay ,validateCard};

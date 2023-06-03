@@ -39,9 +39,30 @@ const validateActivity = () => {
 
           body('Abrief')
           .exists({ checkFalsy: true })
-          .withMessage('Brief details is required')
+          .withMessage('Brief description is required')
           .isString()
-          .withMessage("Brief details must be a string"),
+          .withMessage("Brief description must be a string"),
+
+          body('Adetails')
+          .exists({ checkFalsy: true })
+          .withMessage('Detailed description is required')
+          .isString()
+          .withMessage("Detailed description must be a string"),
+
+          body('Aplan')
+          .exists({ checkFalsy: true })
+          .withMessage('plan is required')
+          .isString()
+          .withMessage("plan must be a string"),
+
+
+          body('Acancel')
+          .exists({ checkFalsy: true })
+          .withMessage('Cancellation details is required')
+          .isString()
+          .withMessage("Cancellation details must be a string"),
+
+
 
 
   ]

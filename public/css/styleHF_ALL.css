@@ -409,3 +409,15 @@ footer{
     background-color: transparent;
     color: rgb(214, 53, 17);
 }
+
+@media screen and (max-width: 1020px)
+{
+    #signup,#signin
+    {
+        width:50%;
+        height:50%;
+
+    }
+    
+
+}

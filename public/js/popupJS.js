@@ -21,6 +21,12 @@ function hide2(id1,id2){
     x.style.display='none';
     y.style.display='none';
 
+    var errors = document.getElementsByClassName('error-message');
+    for (let index = 0; index < errors.length; index++) {
+        const error = errors[index];
+        error.innerHTML = "";
+    }
+
 }
 
 

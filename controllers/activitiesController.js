@@ -83,7 +83,7 @@ const postActivityAvail = async (req, res) => {
     var Activities = [];
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
-    
+
     var name = req.body.name2;
     var num = req.body.num;
     var date = req.body.days;
@@ -152,47 +152,28 @@ const postActivityAvail = async (req, res) => {
 }
 
 const addToCart = async (req, res) => {
-
-    var activities = [];
-    var p = (req.body.price * 1);
-    var activ = {
-        id: req.params.id,
-        participants: req.body.participants,
-        date: req.body.date,
-        price: p
-    }
     if (req.session.authenticated) {
-        var query = { User: req.session.user._id };
-        Cart.find(query)
-            .then(async result => {
-                var crt = result[0];
-                if (crt) {
-                    activities = result[0].Activities;
-                    activities.push(activ);
+        var activities = [];
+        var p = (req.body.price * 1);
+        var activ = {
+            id: req.params.id,
+            participants: req.body.participants,
+            date: req.body.date,
+            price: p
+        }
+        if (req.session.authenticated) {
+            var query = { User: req.session.user._id };
+            Cart.find(query)
+                .then(async result => {
+                    var crt = result[0];
+                    if (crt) {
+                        activities = result[0].Activities;
+                        activities.push(activ);
 
-                    await Cart.findByIdAndUpdate(result[0]._id, {
-                        Activities: activities
-                    })
-                        .then(async result => {
-                            let Act = [];
-                            Act = await Activity.find();
-                            res.render("activity1", {
-                                activity1: (Act === 'undefined' ? "" : Act),
-                                user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
-                            });
+                        await Cart.findByIdAndUpdate(result[0]._id, {
+                            Activities: activities
                         })
-
-                }
-                else {
-                    activities[0] = activ;
-                    if (req.session.user) {
-                        const cart = new Cart({
-                            User: req.session.user._id,
-                            Activities: activities,
-                        });
-                        cart.save()
                             .then(async result => {
-                                console.log("Activity added");
                                 let Act = [];
                                 Act = await Activity.find();
                                 res.render("activity1", {
@@ -200,10 +181,32 @@ const addToCart = async (req, res) => {
                                     user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
                                 });
                             })
-                    }
-                }
-            })
 
+                    }
+                    else {
+                        activities[0] = activ;
+                        if (req.session.user) {
+                            const cart = new Cart({
+                                User: req.session.user._id,
+                                Activities: activities,
+                            });
+                            cart.save()
+                                .then(async result => {
+                                    console.log("Activity added");
+                                    let Act = [];
+                                    Act = await Activity.find();
+                                    res.render("activity1", {
+                                        activity1: (Act === 'undefined' ? "" : Act),
+                                        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
+                                    });
+                                })
+                        }
+                    }
+                })
+        }
+    }
+    else{
+        alert("You must sign in to add your booking to cart");
     }
 }
 

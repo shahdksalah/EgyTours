@@ -164,12 +164,12 @@
             <div class="right">
                 <div style="display:flex; height:30px;">
                     <div style="flex:60%;">
-                        <h3 id="cnt">Total (<%=count%>):</h3>
+                        <span> <h3 >Total (<span id="cnt"><%=count%></span>):</h3></span>
                     </div>
                     
                     <div>
-                        <h3 id="total">
-                           $<%=totalPrice%>
+                        <h3>
+                           $ <span id="total"><%=totalPrice%></span>
                         </h3>
                     </div>
                     
@@ -180,7 +180,7 @@
                 </div>
                 <div style="text-align:center;">
                     <button onclick="location.href='/paymentForm'">Checkout</button>
-                    <button class="clear" style="background-color: #36241b; color:white;" onclick="clr()">Clear Cart</button>
+                    <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='cart/clearCart'">Clear Cart</button>
                 </div>
             </div>
         </div>

@@ -81,7 +81,7 @@
                 <script src="/js/cart.js"></script>   
                 <div class="item-right">
                     <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=d%>')"></i>
-                    <p>$ <%=cart.Hotels[j].price%></p>
+                    <p class="price">$ <%=cart.Hotels[j].price%></p>
                 </div>
             </div>
              <% totalPrice+=cart.Hotels[j].price;%>
@@ -148,7 +148,7 @@
                 
             <div class="item-right">
                 <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=id%>')"></i>
-                <p>Price: $<%=cart.Activities[j].price%> </p>
+                <p class="price">Price: $<%=cart.Activities[j].price%> </p>
             </div>
         </div>
         <%totalPrice+=cart.Activities[j].price;%>
@@ -164,11 +164,11 @@
             <div class="right">
                 <div style="display:flex; height:30px;">
                     <div style="flex:60%;">
-                        <h3>Total (<%=count%>):</h3>
+                        <h3 id="cnt">Total (<%=count%>):</h3>
                     </div>
                     
                     <div>
-                        <h3>
+                        <h3 id="total">
                            $<%=totalPrice%>
                         </h3>
                     </div>

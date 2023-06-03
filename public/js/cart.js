@@ -12,7 +12,15 @@ function hideItem(id){
                     $('.r').css("display", "none");
                     $('#empty').css("display", "block");
                 }
-                console.log(response);
+                if(response=="success"){
+                    var total=0;
+                    var objects = $(".price");
+                    for (var obj of objects) {
+                        total+=obj.html().split(' ')[1];
+                    }
+                    $('#total').html('$ '+total );
+                    $('#cnt').html('Total ('+parseInt($('#cnt').html().split(' ')[1]-1)+'):')
+                }
             }
     })
      

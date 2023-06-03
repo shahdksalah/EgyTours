@@ -47,8 +47,6 @@ router.post('/updated/:name', async function (req, res) {
 
     var query = req.params.name;
     Activities = await Activity.find().where("Name").equals(query);
-    console.log(Activities[0].DatesDetails[0].split(" ")[0].toString());
-
 
     var date=req.body.alldates.length;
     var dates=req.body.alldates;
@@ -62,16 +60,23 @@ router.post('/updated/:name', async function (req, res) {
         count++;
       }
     }
+    
     var m;
-    console.log(count);
+    var alldates=[];
+    var begin=0;
+
     for(var k =0,j=0;k<count,j<Activities[0].DatesDetails.length;k++,j++)
     {
-        var date1=Activities[0].DatesDetails[j].split(" ")[0];
+        var date1=Activities[0].DatesDetails[j].date;
         var date2=dates.split(",")[k];
       
       if( date1 === date2 )
       {
-        arr.push(date2+" "+Activities[0].DatesDetails[j].split(" ")[1]);
+        var newdates = {
+            date: date2,
+            max:Activities[0].DatesDetails[j].max
+          }
+          alldates.push(newdates);
       }
       m = k;
 
@@ -79,14 +84,17 @@ router.post('/updated/:name', async function (req, res) {
 
     for(var s=m+1;s<count;s++)
     {
-        arr.push(dates.split(",")[s]+" "+"0");
+        var newdates1 = {
+            date: dates.split(",")[s],
+            max:begin
+          }
+          alldates.push(newdates1);
     }
 
     for(var d=0;d<arr.length;d++)
     {
         console.log(arr[d]);
     }
-
 
     if (!req.files || Object.keys(req.files).length == 0) {
         console.log("hi");
@@ -120,7 +128,7 @@ router.post('/updated/:name', async function (req, res) {
         Starttime: req.body.Activitystart,
         Endtime: req.body.Activityend,
         Price: req.body.Activityprice,
-        DatesDetails: arr,
+        DatesDetails: alldates,
         MaxParticipants: req.body.Activitymax
     })
 

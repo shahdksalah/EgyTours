@@ -8,81 +8,93 @@ router.use(fileupload());
 
 
 const getAddActivity = async (req, res) => {
-  res.render("AddActivity");
+  res.render("AddActivity", { alert: undefined });
 }
 
 
 const postAddActivity = async (req, res) => {
-  console.log("entered");
-  var imgFile;
-  var uploadPath;
-  var num;
-  var ext;
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return response.status(400).send("no files uploaded");
-  }
-  num = req.files.imgs.length;
-  imgFile = req.files.imgs;
-  var paths = [];
-  for (var i = 0; i < num; i++) {
-    ext = imgFile[i].name.split('.')[1];
-    uploadPath = __dirname + '/../public/images/activities/' + req.body.Aname + (i + 1) + '.' + ext;
-    imgFile[i].mv(uploadPath);
-    paths[i] = req.body.Aname + (i + 1) + '.' + ext;
-  }
-
-
-  
-  var date = req.body.Dates.length;
-  var dates = req.body.Dates;
-  var count = 0;
-  for (var j = 0; j < date; j++) {
-    if (dates[j] === ",") {
-      count++;
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const alert = errors.array();
+      res.render('addactivity', { alert });
     }
-  }
+    else {
+      var imgFile;
+      var uploadPath;
+      var num;
+      var ext;
+      if (!req.files || Object.keys(req.files).length === 0) {
+        return response.status(400).send("no files uploaded");
+      }
+      num = req.files.imgs.length;
+      imgFile = req.files.imgs;
+      var paths = [];
+      for (var i = 0; i < num; i++) {
+        ext = imgFile[i].name.split('.')[1];
+        uploadPath = __dirname + '/../public/images/activities/' + req.body.Aname + (i + 1) + '.' + ext;
+        imgFile[i].mv(uploadPath);
+        paths[i] = req.body.Aname + (i + 1) + '.' + ext;
+      }
 
-  var alldates=[];
-  var begin=0;
-  for (var i = 0; i <= count; i++) {
-    var newdates = {
-      date: req.body.Dates.split(',')[i],
-      max: begin
+
+
+      var date = req.body.Dates.length;
+      var dates = req.body.Dates;
+      var count = 0;
+      for (var j = 0; j < date; j++) {
+        if (dates[j] === ",") {
+          count++;
+        }
+      }
+
+      var alldates = [];
+      var begin = 0;
+      for (var i = 0; i <= count; i++) {
+        var newdates = {
+          date: req.body.Dates.split(',')[i],
+          max: begin
+        }
+        alldates.push(newdates);
+      }
+
+      const activitydetails = new Activity({
+        Name: req.body.Aname,
+        Header: req.body.Aheader,
+        Type: req.body.Atype,
+        Rate: req.body.rate,
+        Picture: paths,
+        Advantage: req.body.adv,
+        BriefDes: req.body.Abrief,
+        DetailedDes: req.body.Adetails,
+        Plan: req.body.Aplan,
+        CancelDet: req.body.Acancel,
+        Duration: req.body.Atime,
+        PickupDet: req.body.Apickup,
+        Starttime: req.body.starttime,
+        Endtime: req.body.endtime,
+        Price: req.body.price,
+        DatesDetails: alldates,
+        MaxParticipants: req.body.Aparticipants
+      });
+
+      activitydetails.save()
+        .then(result => {
+          console.log(result);
+          res.redirect('/activities');
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
+
     }
-    alldates.push(newdates);
-  }
-
-  const activitydetails = new Activity({
-    Name: req.body.Aname,
-    Header: req.body.Aheader,
-    Type: req.body.Atype,
-    Rate: req.body.rate,
-    Picture: paths,
-    Advantage: req.body.adv,
-    BriefDes: req.body.Abrief,
-    DetailedDes: req.body.Adetails,
-    Plan: req.body.Aplan,
-    CancelDet: req.body.Acancel,
-    Duration: req.body.Atime,
-    PickupDet: req.body.Apickup,
-    Starttime: req.body.starttime,
-    Endtime: req.body.endtime,
-    Price: req.body.price,
-    DatesDetails: alldates,
-    MaxParticipants: req.body.Aparticipants
-  });
-
-  activitydetails.save()
-    .then(result => {
-      console.log(result);
-      res.redirect('/activities');
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    catch (err) {
+        console.log(err);
+    }
 
 
 
-}
+    }
 
-module.exports = { getAddActivity, postAddActivity };
+    module.exports = { getAddActivity, postAddActivity };

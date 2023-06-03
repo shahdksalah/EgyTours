@@ -151,10 +151,10 @@
                             </div>
                             <div>
                                             <% id=1 %>
-                                            <% let dates=activity[0].DatesDetails%>
+                                            <% let dates=activity[0].DatesDetails %>
                                             <% dates.forEach((date)=>{%>
                                             <% if(dates.length!=0){%>
-                                            <% var b=date.split(' ')[0]; %>
+                                            <% var b=date.date %>
                                     <li id="dateli<%=id%>">
                                     <input type="text" value="<%=b%>" id="dateinput<%=id%>" style="width:120px;">
                                         <button type="button" onclick="updateDate('showdate<%=id%>','confirm<%=id%>')" >Update</button> 

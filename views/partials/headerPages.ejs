@@ -8,26 +8,9 @@
         <button button onclick="location.href='/hotels';">Hotels</button>
         <button onclick="location.href='/activities';"> Activities</button>
     </div>
+    
     <div class="topnav">
-        <div>
-            <% if(user==="" ){ %>
-                <button onclick="show('signin')">Sign In</button>
-                <%} else{%>
-                    <div calss="dropdown" onmouseleave="hideDropdown()" onmouseenter="displayDropdown()">
-                        <button class="dropbtn">
-                            <%=user.Username%>
-                        </button>
-                        <div id="dropdown-content">
-                            <div class="de">
-                                <a href="/profile">My Profile</a>
-                            </div>
-                            <div class="de">
-                                <a href="#" onclick="handleLogout()">logout</a>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
-        </div>
+        
         <div class="headicons">
             <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
             <a href="/cart"> <i class="fa-solid fa-cart-shopping"></i></a>
@@ -35,6 +18,22 @@
             <!-- <input id="searchbar" type="text" placeholder="Search" > -->
         </div>
         <script src="/js/popupJS.js" type="text/javascript"></script>
+    </div>
+
+    <div style="flex:9%" class="sign">
+        <% if(user==="" ){ %>
+            <span><button onclick="show('signin')">Sign In</button></span>
+            <%} else{%>
+                <div>
+                    <button onmouseenter="showdrop()" class="dropbtn">
+                        <%=user.Username%>
+                    </button>
+                    <div id="drop" onmouseleave="hidedrop()" style="display: none;">
+                        <a id='dropItem' href='/profile'><span><i class="fa-solid fa-user"></i></span> View Profile</a>
+                        <a id='dropItem' href='/signout'><span><i class="fa-solid fa-right-from-bracket"></i></span> Logout</a>
+                    </div>
+                </div>
+            <% } %>
     </div>
 </header>
 

@@ -15,7 +15,7 @@
         top: 20%;
     }
 
-    .sign { 
+    .sign {
         position: relative;
         top: 21%;
     }
@@ -101,83 +101,102 @@
         color: orangered;
     }
 
+
     .sticky .dropdown-content {
         top: 61%;
     }
-    #logo
-    {
-        width:100px;
-    }
-    #search
-    {
-        flex:67%;
-    }
-    .nav{
-        flex:16%;
+
+    #logo {
+        width: 100px;
     }
 
-    @media screen and (max-width: 1020px)
-    {
+    #search {
+        flex: 67%;
+    }
+
+    .nav {
+        flex: 16%;
+    }
+
+    #dropItem {
+        background-color: #f9f9f9;
+        padding: 9px 5px;
+        text-decoration: none;
+        position: relative;
+        display: block;
+        width: 90px;
+        color: rgb(48, 31, 22);
+        border-radius: 7px;
+        right: 10%;
+        font-size: 12px;
+    }
+
+    #dropItem:hover {
+        background-color: #e4e3e3;
+        color: orangered;
+    }
+
+
+
+    @media screen and (max-width: 1020px) {
         body {
-            width:100%;
+            width: 100%;
         }
-        #logo{
-            width:300%;
-        }
-        .nav
-        {
 
-            height:20%;
-            display:flex;
+        #logo {
+            width: 300%;
         }
-        #search
-        {
-            position:relative;
-            left:50%;
-            top:51%;
-            flex:60%;
-            width:30%;
-            height:60%;
+
+        .nav {
+
+            height: 20%;
+            display: flex;
         }
-        #searchbar
-        {
-            width:180%;
+
+        #search {
+            position: relative;
+            left: 50%;
+            top: 51%;
+            flex: 60%;
+            width: 30%;
+            height: 60%;
         }
-        header
-        {
-            margin-right:1%;
+
+        #searchbar {
+            width: 180%;
         }
-        #dis{
-            position:relative;
-            bottom:20px;
-            font-size:25px;
+
+        header {
+            margin-right: 1%;
         }
-        #but
-        {
-          margin-top:-83%;
-          width:30%;
-          margin-left:-17%;
-          font-size:16px;
-          height:140%;
+
+        #dis {
+            position: relative;
+            bottom: 20px;
+            font-size: 25px;
         }
-        #tex1
-        {
-            font-size:22px;
+
+        #but {
+            margin-top: -83%;
+            width: 30%;
+            margin-left: -17%;
+            font-size: 16px;
+            height: 140%;
         }
-        #signup,#signin
-        {
-            width:60%;
-            height:50%;
+
+        #tex1 {
+            font-size: 22px;
+        }
+
+        #signup,
+        #signin {
+            width: 60%;
+            height: 50%;
         }
     }
 </style>
 
-<script>
-    function nodrop() {
-        document.getElementById("dropdown-content").style.display("flex");
-        document.getElementById("dropdown-content").style.opacity = 1;
-    }
-</script>
+
 
 <div class="bgVisit">
     <header class="myHeader" id="myHeader" style="display: flex;">
@@ -199,42 +218,36 @@
                     </div>
                 </div>
 
-
                 <nav class="nav">
-
                     <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
                     <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
                     <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
                     <a href="/chat" class="links"> <i class="fa-regular fa-message"></i></a>
                 </nav>
+
                 <div style="flex:7%" class="sign">
-
-
                     <% if(user==="" ){ %>
                         <span><button onclick="show('signin')">Sign In</button> </span>
                         <%} else{%>
-                            <div calss="dropdown">
-                                <button class="dropbtn">
+                            <div>
+                                <button onmouseenter="showdrop()" class="dropbtn">
                                     <%=user.Username%>
                                 </button>
-                                <div id="dropdown">
-                                    <ul>
-                                        <li class="sub-item">
-                                            <p>Dashboard</p>
-                                        </li>
-                                        <li class="sub-item">
-                                            <p>View Profile</p>
-                                        </li>
-                                        <li class="sub-item">
-                                            <p>Logout</p>
-                                        </li>
-                                    </ul>
+                                <div id="drop" onmouseleave="hidedrop()" style="display: none;">
+
+                                    <a id='dropItem' href='/profile'><span><i class="fa-solid fa-user"></i></span> View
+                                        Profile</a>
+                                    <a id='dropItem' href='/signout'><span><i
+                                                class="fa-solid fa-right-from-bracket"></i></span> Logout</a>
                                 </div>
                             </div>
                             <% } %>
-
                 </div>
 
+                <script>
+
+
+                </script>
     </header>
 
     <div class="slogan">
@@ -243,7 +256,8 @@
 
     <div class="buttons">
         <button onclick="location.href='hotels';" id="but"> <i class="fa fa-thumbs-up"></i> Hotels</button>
-        <button onclick="location.href='activities';" id="but"> <i class="fa-solid fa-person-running"></i>Activities</button>
+        <button onclick="location.href='activities';" id="but"> <i
+                class="fa-solid fa-person-running"></i>Activities</button>
     </div>
 </div>
 
@@ -259,31 +273,32 @@
             <img src="/images/homepage/avatar.png" alt="Avatar" class="avatar" width="100px"
                 style="margin-left:37% ;margin-top:5%">
         </div>
-        
-                <div class="container">
-                    <div class="input-group">
-                        <label for="username">Username</label>
-                        <input id="username" type="text" placeholder="Enter Username" name="username">
-                        <span class="error-message" id="un"></span>
-                    </div>
 
-                    <div class="input-group">
-                        <label for="password1">Password</label>
-                        <input id="password1" type="password"  placeholder="Enter Password" name="password">
-                        <span class="error-message" id="pass"></span>
-                    </div>
-                    
-                    <div style="margin-top:10px;">
-                        <button id='loginbut' class="subutton" style="margin-top: 13px;"><input type="submit" style="display: none; ">Login</button>
-                    </div>
-                    
-                </div>
+        <div class="container">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input id="username" type="text" placeholder="Enter Username" name="username">
+                <span class="error-message" id="un"></span>
+            </div>
 
-                <div class="container" style="background-color:#f1f1f1">
-                    <p class="message">Not Registered?</p>
-                    <button class="subutton" onclick="show('signup')" onclick="hide('signin')" type="button">Sign
-                        up</button>
-                </div>
+            <div class="input-group">
+                <label for="password1">Password</label>
+                <input id="password1" type="password" placeholder="Enter Password" name="password">
+                <span class="error-message" id="pass"></span>
+            </div>
+
+            <div style="margin-top:10px;">
+                <button id='loginbut' class="subutton" style="margin-top: 13px;"><input type="submit"
+                        style="display: none; ">Login</button>
+            </div>
+
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <p class="message">Not Registered?</p>
+            <button class="subutton" onclick="show('signup')" onclick="hide('signin')" type="button">Sign
+                up</button>
+        </div>
     </form>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

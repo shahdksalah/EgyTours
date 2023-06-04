@@ -33,7 +33,7 @@ textarea,input,div input{
 color: white;
 border: none;
 cursor: pointer;
-width: 10%;
+width: 20%;
 height:1%;
 border-radius: 10px;
 margin-left:0px;
@@ -43,7 +43,7 @@ margin-left:0px;
 color: white;
 border: none;
 cursor: pointer;
-width: 10%;
+width: 20%;
 height:35px;
 border-radius: 10px;
 }

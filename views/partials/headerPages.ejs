@@ -9,11 +9,16 @@
         <button onclick="location.href='/activities';"> Activities</button>
     </div>
     
-    <div class="topnav">
+    <div class="topnav"> 
         
         <div class="headicons">
             <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
-            <a href="/cart"> <i class="fa-solid fa-cart-shopping"></i></a>
+            <%if(user!=="" && user.Type==='admin'){%>
+                <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
+            <%}else{%>
+                <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+            <%}%>
+            
             <a href="/"> <i class="fa-solid fa-house fa-fw"></i> </a>
             <!-- <input id="searchbar" type="text" placeholder="Search" > -->
         </div>

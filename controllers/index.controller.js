@@ -163,52 +163,5 @@ const validateSignUp = () => {
 
 }
 
-// const userSignUp = async (req, res) => {
-//     try {
-//         console.log('inside');
-//         var array = [];
-//         array = await city.find();
-//         const errors = validationResult(req);
-//         if (!errors.isEmpty()) {
-
-//             var alerts = errors.array();
-//             console.log(alerts);
-            
-//             res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alerts: alerts });
-//         }
-//         else {
-//             console.log("signing up");
-//             let hashedPass;
-//             const saltRounds = 10;
-//             bcrypt
-//                 .hash(req.body.psw, saltRounds)
-//                 .then(hash => {
-//                     hashedPass = hash;
-//                     console.log('Hash ', hashedPass);
-
-//                     var user = new User({
-//                         Username: req.body.uname,
-//                         Email: req.body.email,
-//                         PhoneNumber: req.body.number,
-//                         Password: hashedPass,
-//                         ConfPassword: hashedPass,
-//                         Type: req.body.type
-
-//                     })
-//                     user.save()
-//                         .then((result) => {
-//                             console.log("user added and logged in");
-//                             req.session.user = result;
-//                             req.session.authenticated = true;
-//                             res.redirect("back");
-//                         })
-//                 })
-//         }
-
-//     }
-//     catch (err) {
-//         console.log(err);
-//     }
-// }
 
 module.exports = { validateLogin, checkUN, searchHandler, validateSignUp };

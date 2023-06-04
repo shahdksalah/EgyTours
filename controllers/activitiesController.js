@@ -24,8 +24,8 @@ const getActivity = async (req, res) => {
 const getActivitypage = async (req, res) => {
     var Activities = [];
     var url = req.params.id;
-    const actPerPage =1;
-    Activities = await Activity.find().skip(url.split(':')[1] * actPerPage).limit(actPerPage);
+    const actPerPage = 1;
+    Activities = await Activity.find().skip(url.split('=') * actPerPage).limit(actPerPage);
     var Activities1 = [];
     Activities1 = await Activity.find();
     var length=Math.ceil(Activities1.length/actPerPage);

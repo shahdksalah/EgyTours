@@ -23,7 +23,7 @@ const getHotelPage = async (req, res) => {
     var Hotels = [];
     var url = req.params.id;
     const actPerPage =1;
-    Hotels = await Hotel.find().skip(url.split(':')[1] * actPerPage).limit(actPerPage);
+    Hotels = await Hotel.find().skip(url.split('=') * actPerPage).limit(actPerPage);
     var Hotels1 = [];
     Hotels1 = await Hotel.find();
     var length=Math.ceil(Hotels1.length/actPerPage);

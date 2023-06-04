@@ -19,6 +19,12 @@
     <%- include("partials/adminHeader.ejs") %>
         <div class="main-content">
             <div class="right">
+                <% if(img!==""){%>
+                    <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            <%=img%>
+                    </div>
+                <%}%>
                 <%if(alert !=undefined){%>
                     <% alert.forEach((alr)=>{%>
                         <div class="alert">

@@ -24,13 +24,13 @@ function validated(){
 }
 
 function isAvail(){
-  $(document).ready(function () {
      var name2=document.getElementById("name").value;
      var num=document.getElementsByName("num").value;
      var days=document.getElementsByName("days").value;
-    
+       var url=`${name2}/submit`;
+  $(document).ready(function () {
         $.ajax({
-            url: `/activities/${name2}/submit`,
+            url: `${name2}/submit`,
             method: 'POST',
             data: { name2: name2, num: num,days:days},
             success: function (response) {

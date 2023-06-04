@@ -102,8 +102,7 @@ const postReview = async (req, res) => {
 }
 
 const postActivityAvail = async (req, res) => {
-
-    var Activities = [];
+    console.log("aentered");
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
 
@@ -143,10 +142,6 @@ const postActivityAvail = async (req, res) => {
 
     else if (found2 === "true") {
         res.send("Not Available");
-        res.render("activity1", {
-            activity1: (Activities === 'undefined' ? "" : Activities),
-            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Not Available", revmsg: ""
-        });
     }
 
 }

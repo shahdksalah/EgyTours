@@ -8,7 +8,7 @@ router.get('/', activityController.getActivity);
 
 router.get('/:name',activityController.getActivity1);
 
-router.post('/:id',activityController.getActivitypage);
+router.get('/browse/page=:id',activityController.getActivitypage);
 
 router.post('/:name', activityController.postReview);
 

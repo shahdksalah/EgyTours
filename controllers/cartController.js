@@ -143,15 +143,13 @@ const removeFromCart = async (req, res) => {
                 console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("delete activity");
+                    console.log("delete hotel");
                     res.redirect('/cart');
-                    res.send("success");
                   });
               }
               else {
-                console.log("delete activity");
+                console.log("delete hotel");
                 res.redirect('/cart');
-                res.send("success");
               }
             }
           })
@@ -189,13 +187,11 @@ const removeFromCart = async (req, res) => {
                   .then(() => {
                     console.log("delete activity");
                     res.redirect('/cart');
-                    res.send("success");
                   });
               }
               else {
                 console.log("delete activity");
                 res.redirect('/cart');
-                res.send("success");
               }
             }
           })

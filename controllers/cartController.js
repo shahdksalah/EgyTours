@@ -139,7 +139,9 @@ const removeFromCart = async (req, res) => {
             //   }
             // }
             if(item==="hotel"){
+              console.log("delete hotel");
             res.redirect('/cart');
+            res.send("success");
             }
           })
 
@@ -169,8 +171,9 @@ const removeFromCart = async (req, res) => {
             //     res.send("success "+price);   //to calculate new total 
             //   }
             // }
-
+            console.log("delete activity");
             res.redirect('/cart');
+            res.send("success");
           })
       }
     })

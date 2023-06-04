@@ -39,7 +39,7 @@ const viewCart = async function (req, res) {
                         });  //if promise.then is executed first
                       }
 
-                      if (cart.Activities.length === 0 && counter===length) {   //don't go to promise1.then if no activities added in cart
+                      if (cart.Activities.length === 0 && counter === length) {   //don't go to promise1.then if no activities added in cart
                         res.render("cart", {
                           user: (!req.session.authenticated) ? "" : req.session.user,
                           cart: cart, hotels: hotels, activities: activities
@@ -107,7 +107,7 @@ const removeFromCart = async (req, res) => {
   var hotels = [];
   var activities = [];
   var cart;
-  var item="";
+  var item = "";
   var price;
   await Cart.find().where("User").equals(req.session.user._id)
     .then(async (result) => {
@@ -117,9 +117,9 @@ const removeFromCart = async (req, res) => {
           if (req.body.sentId - 1 != j) {
             hotels.push(cart.Hotels[j]);
           }
-          else{
-            item="hotel"
-            price=cart.Hotels[j].price;
+          else {
+            item = "hotel"
+            price = cart.Hotels[j].price;
           }
         }
         cart.Hotels = hotels;
@@ -138,10 +138,21 @@ const removeFromCart = async (req, res) => {
             //     res.send("success "+price);    //to calculate new total
             //   }
             // }
-            if(item==="hotel"){
-              console.log("delete hotel");
-            res.redirect('/cart');
-            res.send("success");
+            if (item === "hotel") {
+              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
+                console.log("Entered")
+                await Cart.findByIdAndDelete(cart._id)
+                  .then(() => {
+                    console.log("delete activity");
+                    res.redirect('/cart');
+                    res.send("success");
+                  });
+              }
+              else {
+                console.log("delete activity");
+                res.redirect('/cart');
+                res.send("success");
+              }
             }
           })
 
@@ -149,9 +160,9 @@ const removeFromCart = async (req, res) => {
           if (req.body.sentId - cart.Hotels.length - 1 != k) {
             activities.push(cart.Activities[k]);
           }
-          else{
-            item="activity";
-            price=cart.Activities[k].price;
+          else {
+            item = "activity";
+            price = cart.Activities[k].price;
           }
         }
         cart.Activities = activities;
@@ -171,25 +182,38 @@ const removeFromCart = async (req, res) => {
             //     res.send("success "+price);   //to calculate new total 
             //   }
             // }
-            console.log("delete activity");
-            res.redirect('/cart');
-            res.send("success");
+            if (item === "activity") {
+              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
+                console.log("Entered")
+                await Cart.findByIdAndDelete(cart._id)
+                  .then(() => {
+                    console.log("delete activity");
+                    res.redirect('/cart');
+                    res.send("success");
+                  });
+              }
+              else {
+                console.log("delete activity");
+                res.redirect('/cart');
+                res.send("success");
+              }
+            }
           })
       }
     })
 }
 
-const clearCart=async(req,res)=>{
-      await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
-      .then(()=>{
-        res.render("cart", {     
-          user: (!req.session.authenticated) ? "" : req.session.user,
-          cart: "", hotels: "", activities: ""
-        })
+const clearCart = async (req, res) => {
+  await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
+    .then(() => {
+      res.render("cart", {
+        user: (!req.session.authenticated) ? "" : req.session.user,
+        cart: "", hotels: "", activities: ""
       })
-      .catch(err=>{
-        console.log(err);
-      })
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
 
-module.exports = { viewCart, removeFromCart,clearCart };
+module.exports = { viewCart, removeFromCart, clearCart };

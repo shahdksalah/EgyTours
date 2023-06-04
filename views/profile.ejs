@@ -35,41 +35,57 @@
           
           <!-- edit form column -->
           <div class="col-md-9 personal-info">
-            <h3>Personal info</h3>
+            <h3>Personal Info</h3>
             
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" action="/profile/update" method="post">
+              <input type="hidden" value="<%=user._id%>" name="id" >
+              <%if(success!==""){%>
+                <div class="alert success" style="background-color: #04AA6D; color:white;">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <%=success%>
+                </div>
+              <%}%>
+              <%if(alerts!==undefined){%>
+                <%alerts.forEach((alert)=>{%>
+                  <div class="alert" style="margin-bottom: 5px; background-color:rgb(247, 70, 70); color:white;">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <%=alert.msg%>
+                  </div>
+                <%})%>
+              <%}%>
+                
               <div class="form-group">
                 <label class="col-lg-3 control-label">Username:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="text" id="username" value="<%=user.Username%>">
+                  <h4><%=user.Username%></h4>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-3 control-label">Email:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="text" id="email" value="<%=user.Email%>">
+                  <input class="form-control" type="text" name="email" value="<%=user.Email%>">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-3 control-label">Phone Number: </label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="text" id="phonenum" value="<%=user.PhoneNumber%>">
+                  <input class="form-control" type="text" name="phonenum" value="<%=user.PhoneNumber%>">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-3 control-label">New Password: </label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="password" id="password" value="">
+                  <input class="form-control" type="password" name="password">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-3 control-label">Confirm Password: </label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="password" id="confpassword" value="">
+                  <input class="form-control" type="password" name="confpassword">
                 </div>
               </div>
-              <div style="text-align: center;">
-                <button type="submit" style="background-color:#ea252d; border:none; color:white; border-radius: 10px; padding:5px; width:80px;">Update</button>
+              <div style="text-align: right;">
+                <button type='submit' style="background-color:#ea252d; border:none; color:white; border-radius: 10px; padding:5px; width:80px; margin-right:20px;">Update</button>
               </div>
               
             </form>
@@ -77,6 +93,34 @@
       </div>
     </div>
     <hr>
+    <style>
+      .alert {
+        opacity: 1;
+        transition: opacity 0.6s; /* 600ms to fade out */
+      }
+      </style>
+      
+      <script>
+      // Get all elements with class="closebtn"
+      var close = document.getElementsByClassName("closebtn");
+      var i;
+      
+      // Loop through all close buttons
+      for (i = 0; i < close.length; i++) {
+        // When someone clicks on a close button
+        close[i].onclick = function(){
+      
+          // Get the parent of <span class="closebtn"> (<div class="alert">)
+          var div = this.parentElement;
+      
+          // Set the opacity of div to 0 (transparent)
+          div.style.opacity = "0";
+      
+          // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+          setTimeout(function(){ div.style.display = "none"; }, 600);
+        }
+      }
+      </script>
 <%- include("partials/footer.ejs") %>
 </body>
 </html>

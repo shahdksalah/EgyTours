@@ -111,14 +111,11 @@ const postActivityAvail = async (req, res) => {
     var num = req.body.num;
     var date = req.body.days;
     var X = [];
-    var compare = date;
     const x = await Activity.find().where("Name").equals(name);
 
     X = Array.from(x);
     console.log(X);
 
-    var arr = [];
-    var number;
     var ret;
     var found = "false";
     var found1 = "false";
@@ -131,15 +128,8 @@ const postActivityAvail = async (req, res) => {
         if (date === k) {
             if (parseInt(num) + parseInt(x[0].DatesDetails[s].max) <= x[0].MaxParticipants) {
                 var newnum = parseInt(x[0].DatesDetails[s].max) + parseInt(num);
-
-                if (newnum < x[0].MaxParticipants) {
-                    ret = date;
-                    console.log(ret);
+                if (newnum <= x[0].MaxParticipants) {
                     found = "true";
-                    number = s;
-                }
-                else if (newnum === x[0].MaxParticipants) {
-                    found1 = "true";
                     number = s;
                 }
             }
@@ -154,14 +144,6 @@ const postActivityAvail = async (req, res) => {
             activity1: (Activities === 'undefined' ? "" : Activities),
             user: (!req.session.authenticated) ? "" : req.session.user, msg: "Available", num: req.body.num,
             day: req.body.days, revmsg: ""
-        });
-    }
-
-    else if (found1 === "true") {
-        res.render("activity1", {
-            activity1: (Activities === 'undefined' ? "" : Activities),
-            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Available", num: req.body.num, day: req.body.days
-            , revmsg: ""
         });
     }
 

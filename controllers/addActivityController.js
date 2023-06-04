@@ -144,7 +144,7 @@ const postAddActivity = async (req, res) => {
 
       var alldates = [];
       var begin = 0;
-      for (var i = 0; i <= count; i++) {
+      for (var i = 0; i < count; i++) {
         var newdates = {
           date: req.body.Dates.split(',')[i],
           max: begin

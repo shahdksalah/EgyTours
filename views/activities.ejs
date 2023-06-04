@@ -76,6 +76,23 @@
         <div id="nomatch">
             <h2>Nothing matches your search...</h2>
         </div>
+        <% if(activities !== 0) { %>
+        <div class="container">
+            <div class="pag">
+                <ul>
+                    <% let id1=0; %>
+                    <% while(id1 !== length) { %>
+                        <form action="/activities/:<%=id1%>" method="post">
+                    <button type="submit" id="btn"><li class="link" value="<%id1+1%>"><%=id1+1%></li></button>
+                     </form>
+                    <% id1++;%>
+                <% } %>
+                    
+                </ul>
+            </div>
+        </div>
+        <% } %>
+
         <div class="first">
             <% if(activities!=="") { %>
                 <% let id=1; %>

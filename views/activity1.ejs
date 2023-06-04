@@ -183,7 +183,7 @@
          
         
 
-      <%if(msg==="Available" && num!==0) { %>
+     
         <form  id="subForm"  action="<%=activity1[0]._id%>"  method="post"
           style="border: none;">
       <div id="avail">
@@ -216,13 +216,13 @@
     </form>
     <script src="/js/Activity1.js"></script>
 
-    <% } %>
+   
 
-      <%if(msg==="Not Available") { %>
-        <div id="avail">
+      
+        <div id="avail" style="display: none;">
           <h2>No Availability</h2>
-          </div>
-          <% } %>
+        </div>
+          
 
       
       <script src="/js/Activity1.js"></script>

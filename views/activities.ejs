@@ -76,22 +76,7 @@
         <div id="nomatch">
             <h2>Nothing matches your search...</h2>
         </div>
-        <% if(activities !== 0) { %>
-        <div class="container">
-            <div class="pag">
-                <ul>
-                    <% let id1=0; %>
-                    <% while(id1 !== length) { %>
-                        <form action="/activities/:<%=id1%>" method="post">
-                    <button type="submit" id="btn"><li class="link" value="<%id1+1%>"><%=id1+1%></li></button>
-                     </form>
-                    <% id1++;%>
-                <% } %>
-                    
-                </ul>
-            </div>
-        </div>
-        <% } %>
+        
 
         <div class="first">
             <% if(activities!=="") { %>
@@ -142,6 +127,23 @@
     <% } %> 
     </div>
 </div>
+
+
+<% if(activities !== 0) { %>
+    <div class="c">
+        <p id="num">Pages:</p>
+        <div class="pagination">
+                <% let id1=0; %>
+                <% while(id1 !== length) { %>
+                    <form action="/activities/:<%=id1%>" method="post" id="form">
+                <button type="submit"><p class="link" value="<%id1+1%>"><%=id1+1%></p></button>
+                 </form>
+                <% id1++;%>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
+
     <%- include("partials/footer.ejs") %>
 
 </body>

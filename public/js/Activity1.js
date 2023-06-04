@@ -25,14 +25,15 @@ function validated(){
 
 function isAvail(){
      var name2=document.getElementById("name").value;
-     var num=document.getElementsByName("num").value;
-     var days=document.getElementsByName("days").value;
-       var url=`${name2}/submit`;
+     var num;
+     var days=document.get
+     console.log(num);
+     console.log(days);
   $(document).ready(function () {
         $.ajax({
             url: `${name2}/submit`,
             method: 'POST',
-            data: { name2: name2, num: num,days:days},
+            data: { name2:name2,num:num,days:days},
             success: function (response) {
               console.log(response);
                    if(response==="Available" && num!=0){

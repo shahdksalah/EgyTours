@@ -10,8 +10,15 @@
 
     <title>profile</title>
     <style>
-        .col-lg-3 control-label{
-            margin-top:5px;
+        body{
+          background-color: rgb(222, 221, 214);
+        }
+        form{
+          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.3);
+          border:none;  
+        }
+        input{
+          border-radius: 20px;
         }
     </style>
 </head>
@@ -55,33 +62,33 @@
               <%}%>
                 
               <div class="form-group">
-                <label class="col-lg-3 control-label">Username:</label>
+                <label style="margin-top: 6px;" class="col-lg-3 control-label">Username:</label>
                 <div class="col-lg-8">
                   <h4><%=user.Username%></h4>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-3 control-label">Email:</label>
+                <label style="margin-top: 6px;" class="col-lg-3 control-label">Email:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="text" name="email" value="<%=user.Email%>">
+                  <input style="border-radius: 10px;" class="form-control" type="text" name="email" value="<%=user.Email%>">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-3 control-label">Phone Number: </label>
+                <label style="margin-top: 6px;" class="col-lg-3 control-label">Phone Number: </label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="text" name="phonenum" value="<%=user.PhoneNumber%>">
+                  <input style="border-radius: 10px;" class="form-control" type="text" name="phonenum" value="<%=user.PhoneNumber%>">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-3 control-label">New Password: </label>
+                <label style="margin-top: 6px;" class="col-lg-3 control-label">New Password: </label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="password" name="password">
+                  <input style="border-radius: 10px;" class="form-control" type="password" name="password">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-3 control-label">Confirm Password: </label>
+                <label style="margin-top: 6px;" class="col-lg-3 control-label">Confirm Password: </label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="password" name="confpassword">
+                  <input style="border-radius: 10px;" class="form-control" type="password" name="confpassword">
                 </div>
               </div>
               <div style="text-align: right;">

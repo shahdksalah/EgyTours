@@ -34,6 +34,7 @@ function isAvail(){
             method: 'POST',
             data: { name2: name2, num: num,days:days},
             success: function (response) {
+              console.log(response);
                    if(response==="Available" && num!=0){
                       $('#num1'),html(num);
                       var sum=$('#price1').html()*num;

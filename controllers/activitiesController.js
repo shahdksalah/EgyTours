@@ -103,6 +103,9 @@ const postReview = async (req, res) => {
 
 const postActivityAvail = async (req, res) => {
     console.log("aentered");
+    console.log(req.body.name2);
+    console.log(req.body.num);
+    console.log(req.body.days);
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
 

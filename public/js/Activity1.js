@@ -23,10 +23,27 @@ function validated(){
 
 }
 
-// document.getElementById("subForm").addEventListener('submit',Event=>{
-//   document.getElementById("participants").value=document.getElementsByName("num").value;
-//   document.getElementById("date").value=document.getElementsByName("days").value;
-//   return true;
-// })
+function isAvail(){
+  $(document).ready(function () {
+     var name2=document.getElementById("name").value;
+     var num=document.getElementsByName("num").value;
+     var days=document.getElementsByName("days").value;
+    
+        $.ajax({
+            url: `/activities/${name2}/submit`,
+            method: 'POST',
+            data: { name2: name2, num: num,days:days},
+            success: function (response) {
+            
+
+            },
+            error: function (err) {
+
+            }
+        });
+        
+})
+
+}
   
 

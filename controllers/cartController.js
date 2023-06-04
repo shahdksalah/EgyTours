@@ -113,6 +113,7 @@ const removeFromCart = async (req, res) => {
     .then(async (result) => {
       if (result.length > 0) {
         cart = result[0];
+        
         for (var j = 0; j < cart.Hotels.length; j++) {  //if removed booking is an hotel
           if (req.body.sentId - 1 != j) {
             hotels.push(cart.Hotels[j]);
@@ -122,7 +123,8 @@ const removeFromCart = async (req, res) => {
             price = cart.Hotels[j].price;
           }
         }
-        cart.Hotels = hotels;
+        hotels=cart.Hotels;
+        activities=cart.Activities;
         await Cart.findOneAndUpdate({ User: req.session.user._id }, { Hotels: hotels }, {
           new: true
         })
@@ -139,31 +141,35 @@ const removeFromCart = async (req, res) => {
             //   }
             // }
             if (item === "hotel") {
-              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
+              if (hotels.length === 0 && activities.length === 0) {
                 console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("delete hotel");
-                    res.redirect('/');
+                    console.log("delete hotel 0");
+                    res.redirect('/cart')
                   });
               }
               else {
                 console.log("delete hotel");
-                res.redirect('/');
+                res.redirect('/cart')
               }
             }
           })
-
+        
+          console.log(req.body.sentId);
         for (var k = 0; k < cart.Activities.length; k++) {
-          if (req.body.sentId - cart.Hotels.length - 1 != k) {
+          if (req.body.sentId - (cart.Hotels.length - 1) != k) {
+            //console.log("add");
             activities.push(cart.Activities[k]);
           }
           else {
+            console.log("don't add");
             item = "activity";
             price = cart.Activities[k].price;
           }
         }
         cart.Activities = activities;
+        if(item==="activity"){
         await Cart.findOneAndUpdate({ User: req.session.user._id }, { Activities: activities }, {
           new: true
         })
@@ -180,23 +186,25 @@ const removeFromCart = async (req, res) => {
             //     res.send("success "+price);   //to calculate new total 
             //   }
             // }
-            if (item === "activity") {
-              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
+            
+              if (hotels.length === 0 && activities.length === 0) {
                 console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    console.log("delete activity");
-                    res.redirect('/cart');
+                    console.log("delete activity 0");
+                    res.redirect('/cart')
                   });
               }
               else {
                 console.log("delete activity");
-                res.redirect('/cart');
+                res.redirect('/cart')
               }
-            }
+            
           })
+        }
       }
     })
+  
 }
 
 const clearCart = async (req, res) => {

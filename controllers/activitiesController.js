@@ -7,12 +7,34 @@ const path = require('path');
 
 
 const getActivity = async (req, res) => {
+    const page =req.query.p || 0;
+    const actPerPage =2;
+     
     var Activities = [];
-    Activities = await Activity.find();
+    Activities = await Activity.find().skip(page * actPerPage).limit(actPerPage);
+    var Activities1 = [];
+    Activities1 = await Activity.find();
+    var length=Math.ceil(Activities1.length/actPerPage);
     res.render("activities", {
         activities: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: ""
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: "",length:length
     });
+}
+
+const getActivitypage = async (req, res) => {
+    var Activities = [];
+    var url = req.params.id;
+    const actPerPage =2;
+    Activities = await Activity.find().skip(url.split(':')[1] * actPerPage).limit(actPerPage);
+    var Activities1 = [];
+    Activities1 = await Activity.find();
+    var length=Math.ceil(Activities1.length/actPerPage);
+    res.render("activities", {
+        activities: (Activities === 'undefined' ? "" : Activities),
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: "",length:length
+    });
+
+
 }
 
 const getActivity1 = async (req, res) => {
@@ -221,4 +243,4 @@ const addToCart = async (req, res) => {
     }
 }
 
-module.exports = { getActivity, getActivity1, postReview, postActivityAvail, addToCart };
+module.exports = { getActivity, getActivity1, postReview, postActivityAvail, addToCart,getActivitypage };

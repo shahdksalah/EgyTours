@@ -64,6 +64,8 @@ function addDate(date, finalres, newid, list, errorid) {
         document.getElementById(errorid).innerHTML = "Please enter date";
     }
 }
+
+
 document.getElementById('form').addEventListener('submit', e => {
   var error = false;
 

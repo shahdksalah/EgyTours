@@ -144,12 +144,12 @@ const removeFromCart = async (req, res) => {
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
                     console.log("delete hotel");
-                    res.redirect('/cart');
+                    res.redirect('/');
                   });
               }
               else {
                 console.log("delete hotel");
-                res.redirect('/cart');
+                res.redirect('/');
               }
             }
           })

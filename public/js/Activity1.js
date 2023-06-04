@@ -25,8 +25,8 @@ function validated(){
 
 function isAvail(){
      var name2=document.getElementById("name").value;
-     var num;
-     var days=document.get
+     var num=document.getElementsByClassName("l")[0].value;
+     var days=document.getElementsByClassName("l")[1].value;
      console.log(num);
      console.log(days);
   $(document).ready(function () {
@@ -37,13 +37,18 @@ function isAvail(){
             success: function (response) {
               console.log(response);
                    if(response==="Available" && num!=0){
-                      $('#num1'),html(num);
-                      var sum=$('#price1').html()*num;
+                      $('#num1').html(num);
+                      var price=$('#price1').html();
+                      var sum=price*num;
+                      console.log(sum);
                       $('total1').html(sum);
                       $('#participants').val(num);
                       $('#date').val(days);
-                      $('#price').val(sum);
+                      $('#total1').html(sum);
                       $('#subForm').css("display","block");
+                   }
+                   else if(response==="Not Available"){
+                    $('#avail').css("display","block");
                    }
 
             },

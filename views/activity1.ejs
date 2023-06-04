@@ -151,7 +151,7 @@
           <h2>Book Now</h2>
           <div class="book" id="book">
             <div>
-              <input id="dropbtn"  list="Adults" placeholder="Participants " name="num">
+              <input id="dropbtn"  list="Adults" placeholder="Participants " name="num" class="l">
               <datalist id="Adults">
                 <option value="1"></option>
                 <option value="2"></option>
@@ -167,7 +167,7 @@
               <div id="msg" class="check-error"></div>
             </div>
             <div>
-              <select name="days"  id="dropbtn" style="margin-top:5px;">
+              <select name="days"  id="dropbtn" style="margin-top:5px;" class="l">
                 <%for(var i=0;i< activity1[0].DatesDetails.length; i++) { %>
                   <% var b=activity1[0].DatesDetails[i].date; %>
                   <option value=<%=b %>><%=b %> </option>

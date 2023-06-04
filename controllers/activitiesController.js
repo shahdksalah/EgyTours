@@ -116,9 +116,7 @@ const postActivityAvail = async (req, res) => {
     X = Array.from(x);
     console.log(X);
 
-    var ret;
     var found = "false";
-    var found1 = "false";
     var found2 = "false";
 
     for (var s = 0; s < x[0].DatesDetails.length; s++) {
@@ -140,14 +138,11 @@ const postActivityAvail = async (req, res) => {
     }
 
     if (found === "true") {
-        res.render("activity1", {
-            activity1: (Activities === 'undefined' ? "" : Activities),
-            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Available", num: req.body.num,
-            day: req.body.days, revmsg: ""
-        });
+        res.send("Available");
     }
 
     else if (found2 === "true") {
+        res.send("Not Available");
         res.render("activity1", {
             activity1: (Activities === 'undefined' ? "" : Activities),
             user: (!req.session.authenticated) ? "" : req.session.user, msg: "Not Available", revmsg: ""

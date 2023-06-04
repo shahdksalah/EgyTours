@@ -6,9 +6,6 @@
     width: 30px;
     height: 28px;
     cursor: pointer;
-    margin-left:500px;
-    position:relative;
-    bottom:45px;
 
 }
 .right button{
@@ -16,6 +13,8 @@
     background-color: rgb(54, 36, 27);
     color:white;
     cursor: pointer;
+    position:relative;
+    left:0px;
   }
 #add{
     font-size:20px;

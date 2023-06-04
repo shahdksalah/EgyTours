@@ -103,7 +103,7 @@ const viewCart = async function (req, res) {
 }
 
 const removeFromCart = async (req, res) => {
-  console.log(req.body.sentId);
+  
   var hotels = [];
   var activities = [];
   var cart;
@@ -115,7 +115,7 @@ const removeFromCart = async (req, res) => {
         cart = result[0];
 
         for (var j = 0; j < cart.Hotels.length; j++) {  //if removed booking is an hotel
-          if (req.body.sentId - 1 != j) {
+          if (req.params.id - 1 != j) {
             hotels.push(cart.Hotels[j]);
           }
           else {
@@ -135,19 +135,19 @@ const removeFromCart = async (req, res) => {
                   await Cart.findByIdAndDelete(cart._id)
                     .then(() => {
                       console.log("delete hotel 0");
-                      res.redirect('/cart')
+                      res.redirect('back')
                     });
                 }
                 else {
                   console.log("delete hotel");
-                  res.redirect('/cart')
+                  res.redirect('back')
                 }
               
             })
         }
 
         for (var k = 0; k < cart.Activities.length; k++) {
-          if (req.body.sentId - cart.Hotels.length - 1 != k) {
+          if (req.params.id - cart.Hotels.length - 1 != k) {
             activities.push(cart.Activities[k]);
           }
           else {
@@ -169,12 +169,12 @@ const removeFromCart = async (req, res) => {
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
                     console.log("delete activity 0");
-                    res.redirect('/cart')
+                    res.redirect('back')
                   });
               }
               else {
                 console.log("delete activity");
-                res.redirect('/cart')
+                res.redirect('back')
               }
 
             })

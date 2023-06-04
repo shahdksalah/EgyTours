@@ -80,7 +80,7 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                 <script src="/js/cart.js"></script>   
                 <div class="item-right">
-                    <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=d%>')"></i>
+                    <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='cart/<%=d%>';"></i>
                     <p class="price">$ <%=cart.Hotels[j].price%></p>
                 </div>
             </div>
@@ -147,7 +147,7 @@
             </div>
                 
             <div class="item-right">
-                <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="hideItem('<%=id%>')"></i>
+                <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='cart/<%=id%>';"></i>
                 <p class="price">Price: $<%=cart.Activities[j].price%> </p>
             </div>
         </div>

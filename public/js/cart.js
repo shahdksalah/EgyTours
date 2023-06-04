@@ -25,6 +25,9 @@ function hideItem(id){
 
                     
                 // }
+                
+                    $("body").html(response);
+                
             }
     })
      

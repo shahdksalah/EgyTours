@@ -36,7 +36,7 @@
         <div>
           <% if(hotel1!=="" ) {%>
             <p>
-             <span><i class="fa-solid fa-location-dot"></i></span> <%=hotel1[0].Location %>
+             <span><i class="fa-solid fa-location-dot"></i></span> <%=hotel1[0].Location%>,Egypt
             </p>
             <% } %>
         </div>
@@ -272,7 +272,9 @@
             <div id="in">
               <div>
                 <label for="checkIn" class="l">Check In</label>
-                <input type="date" id="checkIn" name="checkIn">
+                <% let tod = new Date().toISOString().split('T')[0];%>
+                <% console.log(tod);%>
+                <input type="date" id="checkIn" name="checkIn" min="<%=tod%>">
 
                 <div id="ci-error" class="error-message">
                 </div>
@@ -282,7 +284,7 @@
             <div id="out">
               <div>
                 <label for="checkOut" class="l">Check Out</label>
-                <input type="date" id="checkOut" name="checkOut">
+                <input type="date" id="checkOut" name="checkOut" min="<%=tod%>">
 
                 <div id="co-error" class="error-message">
                 </div>

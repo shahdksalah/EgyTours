@@ -108,7 +108,7 @@ const removeFromCart = async (req, res) => {
   var activities = [];
   var cart;
   var item = "";
-  var price;
+
   await Cart.find().where("User").equals(req.session.user._id)
     .then(async (result) => {
       if (result.length > 0) {
@@ -129,17 +129,6 @@ const removeFromCart = async (req, res) => {
             new: true
           })
             .then(async () => {
-              // if(item==="hotel"){
-              //   if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
-              //     await Cart.findByIdAndDelete(cart._id)
-              //       .then(() => {
-              //         res.send("empty");   //no remaining items in cart after removing hotel
-              //       })
-              //   }
-              //   else {                         //send the price of the removed hotel booking as a response
-              //     res.send("success "+price);    //to calculate new total
-              //   }
-              // }
              
                 if (hotels.length === 0 && activities.length === 0) {
                   console.log("Entered")
@@ -159,7 +148,6 @@ const removeFromCart = async (req, res) => {
 
         for (var k = 0; k < cart.Activities.length; k++) {
           if (req.body.sentId - cart.Hotels.length - 1 != k) {
-            //console.log("add");
             activities.push(cart.Activities[k]);
           }
           else {
@@ -175,19 +163,7 @@ const removeFromCart = async (req, res) => {
             new: true
           })
             .then(async () => {
-              // if (item==="activity") {
-              //   if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
-              //     console.log("Entered")
-              //     await Cart.findByIdAndDelete(cart._id)
-              //       .then(() => {
-              //         res.send("empty");  //no remaining items in cart after removing activity
-              //       })
-              //   }
-              //   else {                           //send the price of the removed activity booking as a response
-              //     res.send("success "+price);   //to calculate new total 
-              //   }
-              // }
-
+        
               if (hotels.length === 0 && activities.length === 0) {
                 console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)

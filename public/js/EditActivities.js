@@ -74,41 +74,73 @@ function showInput(id, imgid) {
   })
 }
 
-function editdates() {
-  var count = 0;
-  var arr = [];
+
+document.getElementById('form').addEventListener('submit', e => {
+  var error = false;
+
   var date = document.querySelectorAll(`[id^="dateinput"]`);
-  var adddates = document.getElementById("form-control date");
-  var alldates = document.getElementById("alldates");
 
-  console.log(adddates.value);
-  console.log(adddates.value.length);
+  var datelist = document.querySelectorAll(`[id^="dateli"]`);
+  var datetext = document.getElementById('Dates');
 
 
-  for (var j = 0; j < adddates.value.length; j++) {
-    if (adddates.value[j] === ",") {
-      count++;
+    for (var i = 0; i < datelist.length; i++) {
+        console.log(`${datelist[i].innerHTML},`);
     }
-  }
 
-  for (var k = 0; k <= count; k++) {
-    arr.push(adddates.value.split(',')[k]);
-  }
+    for (var i = 0; i < date.length; i++) {
+      datetext.value += `${date[i].value},`;
+    }
+
+});
+
+var newf = 1;
+
+var ind = 0;
+function addDate(date, finalres, newid, list, errorid) {
+    var data = document.getElementById(date).value;
+    var dt = document.getElementById(date);
+    if (data !== "") {
+      document.getElementById(finalres).value += + ',';
+        var newli = document.createElement('li');
+        if (newid.includes('date')) {
+            newli.setAttribute('id', newid + newf);
+            newli.setAttribute('name', newid);
+            newf++; 
+        }
+      
+
+        newli.innerHTML = data;
+
+
+        var rembut = document.createElement('button');
+        rembut.setAttribute('type', "button");
+        if (newid.includes('date')) {
+            rembut.setAttribute('id', 'datebut' + newf);
+        }
+
+        rembut.classList.add('plus');
+        rembut.style.width = "80px";
+        rembut.innerHTML = 'remove';
+        rembut.addEventListener('click', event => {
+
+            document.getElementById(rembut.id).remove();
+            document.getElementById(newli.id).remove();
+            if (newid.includes('type')) {
+              document.getElementById('updatebut' + newt);
+            }
+      
+
+        })
 
 
 
-  console.log(date);
+        document.getElementById(errorid).innerHTML = "";
 
+    }
+    else {
 
-  for (var i = 0; i < date.length; i++) {
-    alldates.value += `${date[i].value},`;
-  }
-
-  for (var z = 0; z < arr.length; z++) {
-    alldates.value += `${arr[z]},`;
-  }
-
-  console.log(alldates.value);
-  console.log(alldates.value.length);
-
+        document.getElementById(errorid).innerHTML = "Please enter date";
+    }
 }
+

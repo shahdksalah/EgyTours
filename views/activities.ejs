@@ -131,13 +131,10 @@
 
 <% if(activities !== 0) { %>
     <div class="c">
-        <p id="num">Pages:</p>
         <div class="pagination">
                 <% let id1=0; %>
                 <% while(id1 !== length) { %>
-                    <form action="/activities/:<%=id1%>" method="post" id="form">
-                <button type="submit"><p class="link" value="<%id1+1%>"><%=id1+1%></p></button>
-                 </form>
+                <button type="submit" onclick="location.href='/activities/browse/page=<%=id1%>'"><p class="link" value="<%id1+1%>"><%=id1+1%></p></button>
                 <% id1++;%>
             <% } %>
         </div>

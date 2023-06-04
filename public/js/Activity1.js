@@ -38,6 +38,9 @@ function isAvail(){
                       $('#num1'),html(num);
                       var sum=$('#price1').html()*num;
                       $('total1').html(sum);
+                      $('#participants').val(num);
+                      $('#date').val(days);
+                      $('#participants').val(num);
                       $('#subForm').css("display","block");
                    }
 

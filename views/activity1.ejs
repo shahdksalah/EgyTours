@@ -201,10 +201,9 @@
           <span>*</span>
           <span id="price1"><%=activity1[0].Price%></span>
           <span>=</span>
-          <% sum = num * activity1[0].Price; %>
-          <span id="total1"> <%=sum%> </span>
+          <span id="total1"></span>
       </div>
-         <input type="hidden" id="participants" name="participants" value="<%=num%>">
+         <input type="hidden" id="participants" name="participants" >
          <input type="hidden" id="date" name="date" value="<%=day%>">
          <input type="hidden" id="price" name="price" value="<%=sum%>" >
         

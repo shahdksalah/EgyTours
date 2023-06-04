@@ -143,9 +143,10 @@
         </div>
 
       </div>
-
+       
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+      <script src="/js/Activity1.js"></script>
       <% if(user.Type !=="admin" ){%>
-        <form method="post" action="/activities/<%=activity1[0].Name%>/submit" id="form">
           <input type="text" id="name" value=<%=activity1[0].Name%> name="name2" style="display:none">
           <h2>Book Now</h2>
           <div class="book" id="book">
@@ -178,11 +179,8 @@
             <button type="submit" id="check">Check Availability</button>
           </div>
           </div>
-          </form>
           <%}%>
-         
         
-
      
         <form  id="subForm"  action="<%=activity1[0]._id%>"  method="post"
           style="border: none;display: none;">
@@ -204,8 +202,8 @@
           <span id="total1"></span>
       </div>
          <input type="hidden" id="participants" name="participants" >
-         <input type="hidden" id="date" name="date" value="<%=day%>">
-         <input type="hidden" id="price" name="price" value="<%=sum%>" >
+         <input type="hidden" id="date" name="date" >
+         <input type="hidden" id="price" name="price"  >
         
         <div style="text-align: center; margin-top:15px;">
           <button type="submit" style="width:150px;cursor: pointer;">Add To Cart</button>

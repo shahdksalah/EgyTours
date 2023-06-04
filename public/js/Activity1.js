@@ -40,7 +40,7 @@ function isAvail(){
                       $('total1').html(sum);
                       $('#participants').val(num);
                       $('#date').val(days);
-                      $('#participants').val(num);
+                      $('#price').val(sum);
                       $('#subForm').css("display","block");
                    }
 

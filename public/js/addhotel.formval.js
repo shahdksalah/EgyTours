@@ -49,12 +49,12 @@ form.addEventListener('submit', (e) => {
     }
 
     if (amenlist.length == 0) { 
-        document.getElementById('erroramen').innerHTML = "You must enter room features";
+        document.getElementById('erroramen').innerHTML = "You must enter room amenities";
         error = true;
     }
 
     if (typelist.length == 0) {
-        document.getElementById('errortype').innerHTML = "You must enter room features";
+        document.getElementById('errortype').innerHTML = "You must enter room types";
         error = true;
     }
 

@@ -138,7 +138,9 @@ const removeFromCart = async (req, res) => {
             //     res.send("success "+price);    //to calculate new total
             //   }
             // }
-            res.red
+            if(item==="hotel"){
+            res.redirect('/cart');
+            }
           })
 
         for (var k = 0; k < cart.Activities.length; k++) {
@@ -155,18 +157,20 @@ const removeFromCart = async (req, res) => {
           new: true
         })
           .then(async () => {
-            if (item==="activity") {
-              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
-                console.log("Entered")
-                await Cart.findByIdAndDelete(cart._id)
-                  .then(() => {
-                    res.send("empty");  //no remaining items in cart after removing activity
-                  })
-              }
-              else {                           //send the price of the removed activity booking as a response
-                res.send("success "+price);   //to calculate new total 
-              }
-            }
+            // if (item==="activity") {
+            //   if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
+            //     console.log("Entered")
+            //     await Cart.findByIdAndDelete(cart._id)
+            //       .then(() => {
+            //         res.send("empty");  //no remaining items in cart after removing activity
+            //       })
+            //   }
+            //   else {                           //send the price of the removed activity booking as a response
+            //     res.send("success "+price);   //to calculate new total 
+            //   }
+            // }
+
+            res.redirect('/cart');
           })
       }
     })

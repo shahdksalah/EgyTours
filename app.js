@@ -69,6 +69,7 @@ io.on("connection", onConnected);
 function onConnected(socket) {
   console.log("new socket added", socket.id);
   sockesConnected.add(socket.id);
+  console.log("id: "+socket.id);
 
   socket.on("disconnect", () => {
     console.log("socket disconnected", socket.id);

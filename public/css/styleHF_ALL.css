@@ -154,7 +154,7 @@ form input{
     font-size: 20px;
 }
 .topnav{
-    flex:60%;
+    flex:40%;
     margin-top:10px;
 }
 
@@ -226,6 +226,7 @@ form input{
     flex:31%;
     margin-top:5px;
     margin-left:170px;
+    display:flex;
 
 }
 .buttons button{
@@ -421,4 +422,49 @@ footer{
     }
     
 
+}
+
+
+
+.sign {
+    position: relative;
+    top: 25%;
+}
+
+.sign button {
+    color: rgb(54, 36, 27);
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    width: 80px;
+    border-radius: 10px;
+    height: 30px;
+    padding: 0;
+}
+
+.sign button:hover {
+    background-color: rgb(214, 53, 17);
+    color: white;
+}
+#drop{
+    position:relative;
+    z-index:1;
+}
+#dropItem {
+    background-color: #f9f9f9;
+    padding: 9px 5px;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    width: 90px;
+    color: rgb(48, 31, 22);
+    border-radius: 7px;
+    right: 13%;
+    font-size: 12px;
+}
+
+#dropItem:hover {
+    background-color: #e4e3e3;
+    color: orangered;
 }

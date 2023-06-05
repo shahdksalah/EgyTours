@@ -14,72 +14,26 @@
 
 </head>
 <style>
-
+    .head{
+        margin-bottom: 10px;
+    }
 </style>
 
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
-
-    <div class="chatbox" id="chatbox">
-        <div class="chat-title">
-            <h3>Chatbox</h3>
-        </div>
-        <div class="window">
-            <div class="left-message" id="left-message">
-                <div class="msg-id">
-                    <div>
-                        <img src="../images/profile.jpg" alt="person" width="25px" height="25px"
-                            style="border-radius: 15px; border: none;">
-                    </div>
-                </div>
-                <div class="msgcontent">
-                    <div>
-                        <p class="textmsg"></p>
-                    </div>
-                </div>
-                <span class="stamp">
-                    <p class="time"></p>
-                </span>
-            </div>
-            <div class="right-message" id="right-message">
-                <div class="msg-id">
-                    <div>
-                        <img src="../images/profile.jpg" alt="person" width="25px" height="25px"
-                            style="border-radius: 15px; border: none;">
-                    </div>
-
-                </div>
-                <div class="msgcontent">
-                    <div>
-                        <p class="textmsg"></p>
-                    </div>
-                </div>
-                <span class="stamp">
-                    <p class="time"></p>
-                </span>
-            </div>
-        </div>
-        <div class="type-msg">
-            <input type="text" placeholder="Enter Message.." id="msg"><span><button
-                    onclick="sendMsg()">^</button></span>
-
-        </div>
-    </div>
-
-
-
     <script src="/js/chat.js"></script>
-    <%- include("partials/adminHeader.ejs") %>
-        <div class="main-content">
 
+    <%- include("partials/adminHeader.ejs") %>
+
+        <div class="main-content">
             <div class="right">
-                <h1 class="head">TOP ACTIVITIES</h1>
+                <h2 class="head">TOP ACTIVITIES</h2>
                 <div class="first">
                     <% if(Activities!=="") {%>
                         <% let id1=0; %>
                         <%topactivities.forEach((topactivity) => { %>
                             <%let rate1=activityratings[id1]; %>
-                        <% Activities.forEach((Activity) => { %>
+                            <% Activities.forEach((Activity) => { %>
                             <% console.log(Activity.Name.split(',')); %>
                             <% console.log(topactivity.split(',')); %>
                             <% if( (Activity.Name.split(',').toString()) === (topactivity.split(',').toString()) ) { %>
@@ -103,13 +57,13 @@
                     <% id1++; %>
                     <% }); %>
                     <% }); %>
-                <% } %> 
+                <% }%>
                     
                 </div>
                 
 
 
-                <h1 class="head">TOP HOTELS</h1>
+                <h2 class="head">TOP HOTELS</h2>
                 <div class="first">
                     <% if(Hotels!=="") {%>
                         <% let id2=0; %>
@@ -146,7 +100,7 @@
 
             
         
-            <h1 class="head">WEEKLY HOTELS REVIEWS:</h1>
+            <h2 class="head">Weekly Hotel Reviews:</h2>
                 <div class="first">
                     <% if(Hotels!=="") {%>
                     <% const nowdate = new Date().toLocaleString('en-GB', {hour12: false,});%>
@@ -193,7 +147,7 @@
 
                         </div>    
 
-                <h1 class="head">WEEKLY ACTIVITIES REVIEWS:</h1>
+                <h2 class="head">Weekly Activity Reviews:</h2>
                 <div class="first">
                     <% if(Activities!=="") {%>
                     <% const nowdate = new Date().toLocaleString('en-GB', {hour12: false,});%>

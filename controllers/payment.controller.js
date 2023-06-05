@@ -135,7 +135,7 @@ const pay = async (req, res) => {
   console.log("validating card");
   if (!errors.isEmpty()) {
     var alerts = errors.array();
-    res.send(alerts);
+    //res.send(alerts);
   }
   else {
     var totalPrice = 0;

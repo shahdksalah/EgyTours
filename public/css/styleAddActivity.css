@@ -1,4 +1,21 @@
+.plus {
+    border-radius: 10px;
+    background-color: rgb(54, 36, 27);
+    color: white;
+    font-weight: bold;
+    width: 30px;
+    height: 28px;
+    cursor: pointer;
 
+}
+.right button{
+    border-radius: 10px;
+    background-color: rgb(54, 36, 27);
+    color:white;
+    cursor: pointer;
+    position:relative;
+    left:0px;
+  }
 #add{
     font-size:20px;
     background-color:black;

@@ -6,7 +6,9 @@ const activityController=require('../controllers/activitiesController.js');
 
 router.get('/', activityController.getActivity);
 
-router.get('/:name',activityController.getActivity1)
+router.get('/:name',activityController.getActivity1);
+
+router.get('/browse/page=:id',activityController.getActivitypage);
 
 router.post('/:name', activityController.postReview);
 

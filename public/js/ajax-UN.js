@@ -1,4 +1,4 @@
-$(document).ready(function () {
+
     $("#uname").on('keyup', function (e) {
         e.preventDefault();
         var data = $('#uname').val();
@@ -31,4 +31,3 @@ $(document).ready(function () {
             }
         });
     });
-});

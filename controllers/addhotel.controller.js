@@ -5,9 +5,9 @@ const fileUpload = require('express-fileupload');
 const { body, validationResult } = require('express-validator');
 
 router.use(fileUpload());
- 
+
 const getAddHotel = async (req, res) => {
-    res.render("addhotel", { alert: undefined });
+    res.render("addhotel", { alert: undefined ,img:""});
 }
 
 const validateHotel = () => {
@@ -24,14 +24,6 @@ const validateHotel = () => {
             .isString()
             .withMessage("Location must be a string"),
 
-        // body('imgs')
-        //     .isLength({ min: 10 })
-        //     .withMessage('You must upload 10 images'),
-
-        // body('imgs')
-        //     .custom((value, {req})=>{
-        //         if(!req.files || req.files.length <10) throw new Error("You must upload 10 images")
-        //     }),
 
         body('about')
             .exists({ checkFalsy: true })
@@ -74,7 +66,12 @@ const addHotel = async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             const alert = errors.array();
-            res.render('addhotel', { alert });
+            if(!req.files || req.files.imgs.length!=10){
+                res.render('addhotel', {alert: alert, img:"You must upload 10 images"});
+            }
+            else{
+                res.render('addhotel', {alert: alert, img:""});
+            }
         }
         else {
             var imgFile;
@@ -83,6 +80,7 @@ const addHotel = async (req, res) => {
             var numOfImgs;
 
             numOfImgs = req.files.imgs.length;
+
             imgFile = req.files.imgs;
             var paths = [];
             for (var i = 0; i < numOfImgs; i++) {
@@ -108,7 +106,7 @@ const addHotel = async (req, res) => {
                 }
             }
 
-            var caption = req.body.about.substring(0, 50) + "...";
+            var caption = req.body.about.substring(0, 70) + "...";
 
             const hotel = new Hotel({
                 Name: req.body.name,
@@ -129,6 +127,8 @@ const addHotel = async (req, res) => {
                     console.log(err);
                 })
         }
+
+
 
     }
     catch (err) {

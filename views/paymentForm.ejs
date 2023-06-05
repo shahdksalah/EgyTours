@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/styleForm.css">
 </head>
 
+
 <body>
     <%- include("partials/headerPages.ejs") %>
         <div class="container">
@@ -59,7 +60,7 @@
 
             <div class="right">
 
-                <form action="paymentForm/payment" method="post">
+                <form action="paymentForm/payment" method="post" id="cardform">
 
                     <div class="pymt-radio">
 
@@ -144,8 +145,9 @@
                     <div class="button-master-container">
                         <div class="button-container"><a href="/cart">Return to Cart</a>
                         </div>
-                        <script src="/js/ajax-CARD.js"></script>
-                        <div class="button-container button-finish"><button type="submit" class="subBtn" id="subBtn">Finish
+                        <!-- <script src="/js/ajax-CARD.js"></script> -->
+                        <div class="button-container button-finish"><button type="submit" class="subBtn"
+                                id="subBtn">Finish
                                 Booking</button>
                         </div>
                     </div>
@@ -156,5 +158,31 @@
         <%- include("partials/footer.ejs") %>
 
 </body>
+<script>
+    var cardName = document.getElementById('cardname');
+    var cardNum = document.getElementById('cardnum');
+    var CVV = document.getElementById('cvv');
+    var error = false;
+    var cardform = document.getElementById('cardform');
+    cardform.addEventListener('submit', (e) => {
+        if (cardNum.value === " " || cardNum.value.length < 16) {
+            error = true;
+            document.getElementById('numerr').innerHTML = "Card Number is invalid";
+        }
+        else if (cardName.value === "") {
+            error = true;
+            document.getElementById('nameerr').innerHTML = "Card Name cannot be blank";
+        }
+        else if (CVV.value === "" || !CVV.value.isNaN()) {
+            error = true;
+            document.getElementById('cvverr').innerHTML = "CVV cannot be blank";
+        }
+
+        if (error) {
+            e.preventDefault();
+        }
+    })
+
+</script>
 
 </html>

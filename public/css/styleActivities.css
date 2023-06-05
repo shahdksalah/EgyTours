@@ -30,3 +30,57 @@
 {
     color:rgb(238, 203, 5);
 }
+
+.pagination{
+    display:flex;
+    justify-content: center;
+    padding:10px;
+    gap:20px;
+}
+.link{
+    width:20px;
+    height:20px;
+    color:#433832;
+}
+.link:hover{
+    cursor: pointer;
+}
+.pagination button{
+    color:black;
+    float:left;
+    padding:2px;
+    text-decoration:none;
+    border:none;
+    background:transparent;
+    width:10px;
+    height:40px;
+}
+.pagination p.active
+{
+    background-color:#ccc;
+    color:white;
+}
+
+.pagination p:hover:not(.active)
+{
+    background-color:#ababab;
+}
+.link{
+    text-decoration:none;
+    font-size:18px;
+    border: #433832 solid 0.5px;
+    padding:2px;
+    border-radius: 5px;
+}
+#form{
+    background-color:transparent;
+    border:none;
+}
+
+#num
+{
+    margin-bottom:-20px;
+    font-size:20px;
+    text-decoration:underline;
+    margin-left:46%;
+}

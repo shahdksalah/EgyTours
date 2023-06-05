@@ -4,15 +4,45 @@ const Hotel = require('../models/hotel.schema.js');
 const Cart = require('../models/cartdb.js');
 const moment = require('moment');
 
-
 const getHotels = async (req, res) => {
-
+    const page =req.query.p || 0;
+    const actPerPage =1;
+     
     var Hotels = [];
-    Hotels = await Hotel.find();
-    res.render("hotels", { hotels: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
+    Hotels = await Hotel.find().skip(page * actPerPage).limit(actPerPage);
+    var Hotels1 = [];
+    Hotels1 = await Hotel.find();
+    var length=Math.ceil(Hotels1.length/actPerPage);
+    res.render("hotels", {
+        hotels: (Hotels === 'undefined' ? "" : Hotels),
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length
+    });
+}
+
+const getHotelPage = async (req, res) => {
+    var Hotels = [];
+    var url = req.params.id;
+    const actPerPage =1;
+    Hotels = await Hotel.find().skip(url.split('=') * actPerPage).limit(actPerPage);
+    var Hotels1 = [];
+    Hotels1 = await Hotel.find();
+    var length=Math.ceil(Hotels1.length/actPerPage);
+    res.render("hotels", {
+        hotels: (Hotels === 'undefined' ? "" : Hotels),
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "",length:length
+    });
 
 
 }
+
+// const getHotels = async (req, res) => {
+
+//     var Hotels = [];
+//     Hotels = await Hotel.find();
+//     res.render("hotels", { hotels: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
+
+
+// }
 
 const getHotel1 = async (req, res) => {
     var Hotels = [];
@@ -150,4 +180,4 @@ const postReview = async (req, res) => {
     }
 }
 
-module.exports = { getHotels, getHotel1, addToCart, postReview };
+module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview };

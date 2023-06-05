@@ -23,10 +23,42 @@ function validated(){
 
 }
 
-// document.getElementById("subForm").addEventListener('submit',Event=>{
-//   document.getElementById("participants").value=document.getElementsByName("num").value;
-//   document.getElementById("date").value=document.getElementsByName("days").value;
-//   return true;
-// })
+function isAvail(){
+     var name2=document.getElementById("name").value;
+     var num=document.getElementsByClassName("l")[0].value;
+     var days=document.getElementsByClassName("l")[1].value;
+     console.log(num);
+     console.log(days);
+  $(document).ready(function () {
+        $.ajax({
+            url: `${name2}/submit`,
+            method: 'POST',
+            data: { name2:name2,num:num,days:days},
+            success: function (response) {
+              console.log(response);
+                   if(response==="Available" && num!=0){
+                      $('#num1').html(num);
+                      var price=$('#price1').html();
+                      var sum=price*num;
+                      console.log(sum);
+                      $('total1').html(sum);
+                      $('#participants').val(num);
+                      $('#date').val(days);
+                      $('#total1').html(sum);
+                      $('#subForm').css("display","block");
+                   }
+                   else if(response==="Not Available"){
+                    $('#avail').css("display","block");
+                   }
+
+            },
+            error: function (err) {
+
+            }
+        });
+        
+})
+
+}
   
 

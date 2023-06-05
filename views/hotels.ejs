@@ -99,8 +99,8 @@
                                         <%sum+= parseInt(rev.Rating);%>
                                     <%})%>
                                     <%let avg = sum/ (hotel.Reviews.length)%>
-                                    <% if(parseInt(avg) > 0){%>
-                                        <% for (let i = 0; i < avg; i++) {%>
+                                    <% if(Math.floor(avg) > 0){%>
+                                        <% for (let i = 0; i < Math.floor(avg); i++) {%>
                                             <i class="fa-solid fa-star"></i>
                                         <%}%>
                                         <div>

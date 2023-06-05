@@ -176,7 +176,7 @@
                               </h3>
 
                               <span class="rating">
-                                <% for(var i=0; i<avg; i++){%>
+                                <% for(var i=0; i<Math.floor(avg); i++){%>
                                   <i class="fa-solid fa-star"></i>
                                   <%}%>
                               </span>
@@ -285,7 +285,6 @@
                       <div>
                         <label for="checkIn" class="l">Check In</label>
                         <% let tod=new Date().toISOString().split('T')[0];%>
-                          <% console.log(tod);%>
                             <input type="date" id="checkIn" name="checkIn" min="<%=tod%>">
 
                             <div id="ci-error" class="error-message">
@@ -392,7 +391,7 @@
                             <p style="font-size: 15px;">
                               <span><i style="font-size: 19px;" class="fa-solid fa-user fa-2xs"></i>
                                 <%=rev.Username%>
-                              </span> wrote a review at <%=rev.Date%>
+                              </span> wrote a review on <%=rev.Date%>
                             </p>
                           </div>
                           <div class="rating">

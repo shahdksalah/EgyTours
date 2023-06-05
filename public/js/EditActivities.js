@@ -117,23 +117,25 @@ function addDate(date, finalres, newid, list, errorid) {
 
 }
 
-document.getElementById('form').addEventListener('submit', e => {
+document.getElementById('act').addEventListener('submit', e => {
   var error = false;
 
   var date = document.querySelectorAll(`[id^="dateinput"]`);
 
-  var datelist = document.querySelectorAll(`[id^="datelinew"]`);
+  var datelist = document.querySelectorAll(`[id^="dateli"]`);
   var datetext = document.getElementById('Dates');
 
 
     for (var i = 0; i < datelist.length; i++) {
+      console.log(datelist[i].innerHTML);
       datetext.value +=`${datelist[i].innerHTML},`;
     }
 
     for (var j = 0; j < date.length; j++) {
+      console.log(date[j].value);
       datetext.value += `${date[j].value},`;
     }
 
-    console.log(datatext.value);
+    console.log(datetext.value);
 
 });

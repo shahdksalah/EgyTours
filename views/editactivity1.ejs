@@ -24,13 +24,6 @@
     "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js" >
         </script> 
 
-    <style>
-        .datepicker
-        {
-            margin-left:600px;
-            margin-top:0px;
-        }
-    </style>
 
 </head>
 
@@ -46,7 +39,7 @@
             <div class="right">
                 <div id="cont">
                     <div>
-                        <form action="/editactivities/updated/<%=activity[0].Name%>" method="post" id="form" enctype="multipart/form-data" style="background-color:transparent; border:none;">
+                        <form action="/editactivities/updated/<%=activity[0].Name%>" method="post" id="act" enctype="multipart/form-data" style="background-color:transparent; border:none;">
                             <input type="text" name="id" style="display: none;" value="<%=activity[0]._id%>">
                             <div>
                                 <h2>City's Name: </h2>
@@ -194,7 +187,7 @@
                                     <textarea name="alldates" id="Dates" cols="15" rows="5"
                                        ></textarea>
                                     <input type="date" id="Actaddeddate" name="addeddate">
-                                    <button class='plus' id="add" type='button'
+                                    <button type="button" class='plus' id="add" type='button'
                                         onclick="addDate('Actaddeddate','Dates','datelinew','li1','error-dates')">+</button>
                                     <span class='error-message' id="error-dates"></span>
                                 </div>

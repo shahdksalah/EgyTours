@@ -65,6 +65,7 @@ const server = app.listen(PORT, () =>
 const cors = require("cors");
 app.use(cors({ origin: true }));
 const io = require("socket.io")(server);
+app.set('socketio', io);
 
 app.use("/", indexRoute);
 
@@ -81,9 +82,9 @@ function onConnected(socket) {
     sockesConnected.delete(socket.id);
   });
 
-  socket.on("message", (data) => {
-    socket.broadcast.emit("chat-message", data);
-  });
+  // socket.on("message", (data) => {
+  //   socket.broadcast.emit("chat-message", data);
+  // });
 }
 
 

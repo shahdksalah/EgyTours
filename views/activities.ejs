@@ -84,6 +84,7 @@
                 <% activities.forEach((activity) => { %>
                 <div class="btn" id="<%=activity.Name%>" onclick="location.href= '/activities/<%=activity.Name%>'">
                 <div>
+                    <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
                     <img src="/images/activities/<%=activity.Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">
                 </div>
 

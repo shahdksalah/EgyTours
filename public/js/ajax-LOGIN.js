@@ -9,7 +9,6 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 data: JSON.stringify({ Username: data, Password: data1 }),
                 success: function (response) {
-                    console.log(response);
                     if (response==="up") {
                         $('#un').html("Username cannot be blank");
                         $('#pass').html("Password cannot be blank");

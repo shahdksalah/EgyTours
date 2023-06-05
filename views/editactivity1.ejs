@@ -188,13 +188,17 @@
                                     <h3>Add dates:</h3>
                                 </div>
                                 <div>
+                                    <div>
+                                        <ul id="li1"></ul>
+                                    </div>
                                     <textarea name="Dates" id="Dates" cols="15" rows="5"
-                                     ></textarea>
+                                       ></textarea>
                                     <input type="date" id="Actaddeddate" name="addeddate">
-                                    <button class="plus" id="add" type='button'
-                                        onclick="addDate('Actaddeddate','Dates','datelinew','i4')">+</button>
+                                    <button class='plus' id="add" type='button'
+                                        onclick="addDate('Actaddeddate','Dates','datelinew','li1','error-dates')">+</button>
+                                    <span class='error-message' id="error-dates"></span>
                                 </div>
-                            </div>
+                            </div>	
                             
 
                            

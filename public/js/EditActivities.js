@@ -85,11 +85,11 @@ document.getElementById('form').addEventListener('submit', e => {
 
 
     for (var i = 0; i < datelist.length; i++) {
-        console.log(`${datelist[i].innerHTML},`);
+      datetext.value +=`${datelist[i].innerHTML},`;
     }
 
-    for (var i = 0; i < date.length; i++) {
-      datetext.value += `${date[i].value},`;
+    for (var j = 0; j < date.length; j++) {
+      datetext.value += `${date[j].value},`;
     }
 
 });
@@ -101,7 +101,6 @@ function addDate(date, finalres, newid, list, errorid) {
     var data = document.getElementById(date).value;
     var dt = document.getElementById(date);
     if (data !== "") {
-      document.getElementById(finalres).value += + ',';
         var newli = document.createElement('li');
         if (newid.includes('date')) {
             newli.setAttribute('id', newid + newf);
@@ -126,14 +125,12 @@ function addDate(date, finalres, newid, list, errorid) {
 
             document.getElementById(rembut.id).remove();
             document.getElementById(newli.id).remove();
-            if (newid.includes('type')) {
-              document.getElementById('updatebut' + newt);
-            }
-      
 
         })
 
-
+        document.getElementById(list).appendChild(newli);
+        document.getElementById(newli.id).parentNode.insertBefore(rembut, document.getElementById(newli.id).nextSibling);
+        document.getElementById(item).value = "";
 
         document.getElementById(errorid).innerHTML = "";
 
@@ -143,4 +140,3 @@ function addDate(date, finalres, newid, list, errorid) {
         document.getElementById(errorid).innerHTML = "Please enter date";
     }
 }
-

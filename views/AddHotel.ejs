@@ -42,7 +42,7 @@
                                             <label for="name">
                                                 <h2>Hotel Name</h2>
                                             </label>
-                                            <input type="text" name="name" id="name"></input>
+                                            <input type="text" name="name" id="name" placeholder="eg: Four Seasons Resort"></input>
                                             <p class='error-message' id="error-name"></p>
                                         </div>
 
@@ -50,7 +50,7 @@
                                             <label for="location">
                                                 <h2>Location</h2>
                                             </label>
-                                            <input type="text" name="location" id="location"></input>
+                                            <input type="text" name="location" id="location" placeholder="eg: Sharm ElSheikh"></input>
                                             <p class='error-message' id="error-loc"></p>
                                         </div>
                                         <div>
@@ -81,9 +81,8 @@
                                                 <div>
                                                     <ul id="li1"></ul>
                                                 </div>
-                                                <textarea name="finalamens" id="finalamens" cols="15" rows="5"
-                                                    style="display: none;"></textarea>
-                                                <input type="text" id="addedamen" name="propamentext">
+                                                <input name="finalamens" id="finalamens" type="text" hidden>
+                                                <input type="text" id="addedamen" name="propamentext" placeholder="eg: Swimming Pool">
                                                 <button class='plus' id="add" type='button'
                                                     onclick="addItem('addedamen','finalamens','amenlinew','li1','erroramen')">+</button>
                                                 <span class='error-message' id="erroramen"></span>
@@ -96,9 +95,8 @@
                                                 <div>
                                                     <ul id="li2"></ul>
                                                 </div>
-                                                <textarea name="finalfeats" id="finalfeats" cols="15" rows="5"
-                                                    style="display: none;"></textarea>
-                                                <input type="text" id="addedfeat" name="roomfeattext">
+                                                <input name="finalfeats" id="finalfeats" type="text" hidden>
+                                                <input type="text" id="addedfeat" name="roomfeattext" placeholder="eg: Air Conditioning">
                                                 <button class='plus' id="add2" type='button'
                                                     onclick="addItem('addedfeat','finalfeats','featlinew','li2','errorfeat')">+</button>
                                                 <span class='error-message' id="errorfeat" style="color:red"></span>
@@ -113,7 +111,7 @@
                                                 </div>
 
                                                 <div id="addtype">
-                                                    <input type="text" id="addedtype" name="roomtypetext">
+                                                    <input type="text" id="addedtype" name="roomtypetext" placeholder="eg: Single">
                                                     <button class='plus' id="add" type='button'
                                                         onclick="addType('typelinew','li3')">+</button>
                                                     <span class='error-message' id="errortype"></span>
@@ -122,14 +120,18 @@
 
                                                 <div id="showprice" style="display: none;">
                                                     <h4>Enter Price Per Night </h4>
-                                                    <input type="number" id="price" name="typeprice">
+                                                    <input type="number" id="price" name="typeprice" placeholder="eg: 1000">
                                                     <span class='error-message' id="errorprice"></span>
                                                     <h4>Enter Number of Rooms </h4>
-                                                    <input type="number" id="rooms" name="typerooms">
+                                                    <input type="number" id="rooms" name="typerooms" placeholder="eg: 50">
                                                     <span class='error-message' id="errorrooms"></span>
-                                                    <h4>Enter Maxinum Capacity </h4>
-                                                    <input type="number" id="cap" name="typecap">
+                                                    <h4>Enter Maximum Capacity </h4>
+                                                    <h5>Adults:</h5>
+                                                    <input type="number" id="cap" name="typecap" placeholder="eg: 2">
                                                     <span class='error-message' id="errorcap"></span>
+                                                    <h5>Children:</h5>
+                                                    <input type="number" id="cap2" name="typecap2" placeholder="eg: 1">
+                                                    <span class='error-message' id="errorcap2"></span>
                                                     <button class='plus' id="done" type='button'
                                                         onclick="donez('typelinew','li3')" style="width:100px"
                                                         s>done</button>
@@ -141,7 +143,8 @@
                                                 <input type="text" name="finalprices" id="finalprices" hidden>
                                                 <input type="text" name="finaltypes" id="finaltypes" hidden>
                                                 <input type="text" name="finalrooms" id="finalrooms" hidden>
-                                                <input type="text" name="finalcaps" id="finalcaps" hidden>
+                                                <input type="text" name="finaladults" id="finaladults" hidden>
+                                                <input type="text" name="finalchild" id="finalchild" hidden>
 
                                             </div>
                                         </div>

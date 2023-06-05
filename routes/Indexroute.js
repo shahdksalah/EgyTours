@@ -7,18 +7,8 @@ const bcrypt = require("bcrypt");
 const city = require("../models/addcitiesdb.js");
 const hotels = require("../models/hotel.schema.js");
 const activities = require("../models/activity.schema.js");
-const {
-  validateLogin,
-  checkUN,
-  searchHandler,
-  validateSignUp,
-} = require("../controllers/index.controller.js");
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-let path = require("path");
-const city = require("../models/addcitiesdb.js");
-const hotels = require("../models/hotel.schema.js");
-const activities = require("../models/activity.schema.js");
 const {
   validateLogin,
   checkUN,

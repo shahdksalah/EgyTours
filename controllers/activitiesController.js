@@ -150,6 +150,7 @@ const postActivityAvail = async (req, res) => {
 }
 
 const addToCart = async (req, res) => {
+    console.log("add to activities cart");
     if (req.session.authenticated) {
         var activities = [];
         var p = (req.body.price * 1);

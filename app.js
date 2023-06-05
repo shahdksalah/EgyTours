@@ -66,12 +66,15 @@ const cors = require("cors");
 app.use(cors({ origin: true }));
 const io = require("socket.io")(server);
 
+app.use("/", indexRoute);
+
+var usp=io.of('/user-namespace');
 let sockesConnected = new Set();
-io.on("connection", onConnected);
+usp.on("connection", onConnected);
 function onConnected(socket) {
+  console.log("user connected");
   console.log("new socket added", socket.id);
   sockesConnected.add(socket.id);
-  console.log("id: "+socket.id);
 
   socket.on("disconnect", () => {
     console.log("socket disconnected", socket.id);
@@ -83,7 +86,7 @@ function onConnected(socket) {
   });
 }
 
-app.use("/", indexRoute);
+
 app.use("/activities", activitiesRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/addactivity", addActivityRoute);
@@ -106,3 +109,5 @@ app.use("/addcities", addcity);
 app.use("/chat", chatRoute);
 app.use("/editcities", editCities);
 app.use("/viewbookings", viewBookingsRoute);
+
+module.exports={io};

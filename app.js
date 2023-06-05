@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
-const PORT = 8080;
+const PORT = 3000;
 
 const indexRoute = require("./routes/Indexroute.js");
 const foodRoute = require("./routes/foodroute.js");

@@ -69,6 +69,8 @@ app.set('socketio', io);
 
 app.use("/", indexRoute);
 
+const User=require('./models/usersdb.js')
+
 var usp=io.of('/user-namespace');
 let sockesConnected = new Set();
 usp.on("connection", onConnected);

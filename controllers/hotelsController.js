@@ -35,14 +35,6 @@ const getHotelPage = async (req, res) => {
 
 }
 
-// const getHotels = async (req, res) => {
-
-//     var Hotels = [];
-//     Hotels = await Hotel.find();
-//     res.render("hotels", { hotels: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
-
-
-// }
 
 const getHotel1 = async (req, res) => {
     var Hotels = [];

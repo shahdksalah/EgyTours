@@ -33,9 +33,10 @@ const updatedActivity = async (req, res) => {
 
     var query = req.params.name;
     Activities = await Activity.find().where("Name").equals(query);
-
-    var date=req.body.Dates.length;
-    var dates=req.body.Dates;
+console.log(req.body.Activityend);
+console.log(req.body.alldates);
+    var date=req.body.alldates.length;
+    var dates=req.body.alldates;
     console.log(dates);
     var arr=[];
     var arr2=[];

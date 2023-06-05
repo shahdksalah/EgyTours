@@ -15,7 +15,7 @@ router.post("/submit", (req, res) => {
   chat
     .save()
     .then((result) => {
-      response.redirect("/chat");
+      res.redirect("/chat");
     })
     .catch((err) => {
       console.log(err);

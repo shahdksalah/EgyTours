@@ -62,6 +62,8 @@ mongoose
 const server = app.listen(PORT, () =>
   console.log(`server is running on port ${PORT}`)
 );
+const cors = require("cors");
+app.use(cors({ origin: true }));
 const io = require("socket.io")(server);
 
 let sockesConnected = new Set();

@@ -75,27 +75,6 @@ function showInput(id, imgid) {
 }
 
 
-document.getElementById('form').addEventListener('submit', e => {
-  var error = false;
-
-  var date = document.querySelectorAll(`[id^="dateinput"]`);
-
-  var datelist = document.querySelectorAll(`[id^="datelinew"]`);
-  var datetext = document.getElementById('Dates');
-
-
-    for (var i = 0; i < datelist.length; i++) {
-      datetext.value +=`${datelist[i].innerHTML},`;
-    }
-
-    for (var j = 0; j < date.length; j++) {
-      datetext.value += `${date[j].value},`;
-    }
-
-    console.log(datatext.value);
-
-});
-
 var newf = 1;
 
 var ind = 0;
@@ -134,8 +113,27 @@ function addDate(date, finalres, newid, list, errorid) {
         document.getElementById(newli.id).parentNode.insertBefore(rembut, document.getElementById(newli.id).nextSibling);
         document.getElementById(date).value = "";
 
-
-
     }
 
 }
+
+document.getElementById('form').addEventListener('submit', e => {
+  var error = false;
+
+  var date = document.querySelectorAll(`[id^="dateinput"]`);
+
+  var datelist = document.querySelectorAll(`[id^="datelinew"]`);
+  var datetext = document.getElementById('Dates');
+
+
+    for (var i = 0; i < datelist.length; i++) {
+      datetext.value +=`${datelist[i].innerHTML},`;
+    }
+
+    for (var j = 0; j < date.length; j++) {
+      datetext.value += `${date[j].value},`;
+    }
+
+    console.log(datatext.value);
+
+});

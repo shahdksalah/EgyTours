@@ -27,15 +27,27 @@ const updateHotel = async (req, res) => {
     var reqtypes = req.body.finaltypes.split(',');
     var reqprices = req.body.finalprices.split(',');
     var reqrooms = req.body.finalrooms.split(',');
-    var reqcaps = req.body.finalcaps.split(',');
-    for (var i = 0; i < reqtypes.length - 1; i++) {
-        types[i] = {
-            Name: reqtypes[i],
-            Price: reqprices[i],
-            Rooms: reqrooms[i],
-            Capacity: reqcaps[i],
+    var reqad = req.body.finaladults.split(',');
+    var reqch = req.body.finalchild.split(',');
+
+    await Hotel.findById(req.body.id)
+    .then((result)=>{
+        var prevbooked;
+        for (var i = 0; i < reqtypes.length - 1; i++) {
+            prevbooked = result.RoomTypes[i].RoomsBooked;
+            types[i] = {
+                Name: reqtypes[i],
+                Price: reqprices[i],
+                Rooms: reqrooms[i],
+                Capacity: {
+                    Adults: reqad[i],
+                    Children: reqch[i],
+                },
+                RoomsBooked: prevbooked,
+            }
         }
-    }
+    })
+    
 
     var Hotels = [];
     var query = req.params.name;
@@ -51,7 +63,7 @@ const updateHotel = async (req, res) => {
         .then(async result => {
             await Hotel.find().where("Name").equals(query)
                 .then((result) => {
-                    res.render("hotel1", { hotel1: (result === 'undefined' ? "" : result), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
+                    res.render("hotel1", { hotel1: (result === 'undefined' ? "" : result), user: (!req.session.authenticated) ? "" : req.session.user, msg: "Hotel Updated Successfully" });
                 })
         })
 

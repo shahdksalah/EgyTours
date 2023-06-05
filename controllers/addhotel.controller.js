@@ -7,7 +7,7 @@ const { body, validationResult } = require('express-validator');
 router.use(fileUpload());
 
 const getAddHotel = async (req, res) => {
-    res.render("addhotel", { alert: undefined ,img:""});
+    res.render("addhotel", { alert: undefined, img: "" });
 }
 
 const validateHotel = () => {
@@ -15,12 +15,14 @@ const validateHotel = () => {
         body('name')
             .exists({ checkFalsy: true })
             .withMessage('Hotel name is required')
+            .bail()
             .isString()
             .withMessage("Hotel name must be a string"),
 
         body('location')
             .exists({ checkFalsy: true })
             .withMessage('Location is required')
+            .bail()
             .isString()
             .withMessage("Location must be a string"),
 
@@ -28,15 +30,21 @@ const validateHotel = () => {
         body('about')
             .exists({ checkFalsy: true })
             .withMessage('Description is required')
+            .bail()
             .isString()
-            .withMessage("Description must be a string"),
+            .withMessage("Description must be a string")
+            .bail()
+            .isLength({min:70})
+            .withMessage("Description must be atleast 80 characters"),
 
         body('finalamens')
             .exists({ checkFalsy: true })
+            .bail()
             .withMessage("Atleast 1 Amenity is required"),
 
         body('finalfeats')
             .exists({ checkFalsy: true })
+            .bail()
             .withMessage("Atleast 1 Room Feature is required"),
 
         body('finaltypes')
@@ -53,10 +61,16 @@ const validateHotel = () => {
             .exists({ checkFalsy: true })
             .withMessage("Room prices are required"),
 
-        body('finalcaps')
+        body('finaladults')
             .if(body('finaltypes').exists({ checkFalsy: true }))
             .exists({ checkFalsy: true })
-            .withMessage("Room capacities are required"),
+            .withMessage("Adult capacity is required"),
+
+        body('finalchild')
+            .if(body('finaltypes').exists({ checkFalsy: true }))
+            .exists({ checkFalsy: true })
+            .withMessage("Children capacity is required"),
+
 
     ]
 }
@@ -66,11 +80,11 @@ const addHotel = async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             const alert = errors.array();
-            if(!req.files || req.files.imgs.length!=10){
-                res.render('addhotel', {alert: alert, img:"You must upload 10 images"});
+            if (!req.files || req.files.imgs.length != 10) {
+                res.render('addhotel', { alert: alert, img: "You must upload 10 images" });
             }
-            else{
-                res.render('addhotel', {alert: alert, img:""});
+            else {
+                res.render('addhotel', { alert: alert, img: "" });
             }
         }
         else {
@@ -96,13 +110,18 @@ const addHotel = async (req, res) => {
             var reqtypes = req.body.finaltypes.split(',');
             var reqprices = req.body.finalprices.split(',');
             var reqrooms = req.body.finalrooms.split(',');
-            var reqcaps = req.body.finalcaps.split(',');
+            var reqad = req.body.finaladults.split(',');
+            var reqch = req.body.finalchild.split(',');
             for (var i = 0; i < reqtypes.length - 1; i++) {
                 types[i] = {
                     Name: reqtypes[i],
                     Price: reqprices[i],
                     Rooms: reqrooms[i],
-                    Capacity: reqcaps[i],
+                    Capacity:{
+                        Adults: reqad[i],
+                        Children: reqch[i],
+                    },
+                    RoomsBooked: 0,
                 }
             }
 

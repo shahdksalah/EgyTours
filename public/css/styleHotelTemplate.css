@@ -51,7 +51,7 @@
   .next {
     cursor: pointer;
     position: absolute;
-    top: 80%;
+    top: 70%;
     width: auto;
     padding: 16px;
     margin-top: -50px;
@@ -153,6 +153,7 @@
     #bForm{
       border-radius:20px;
       box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+      background-color: rgba(204, 193, 183, 0.749);
       padding: 20px;
       margin-bottom:5%;
       width:700px;

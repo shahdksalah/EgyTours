@@ -80,7 +80,7 @@ document.getElementById('form').addEventListener('submit', e => {
 
   var date = document.querySelectorAll(`[id^="dateinput"]`);
 
-  var datelist = document.querySelectorAll(`[id^="dateli"]`);
+  var datelist = document.querySelectorAll(`[id^="datelinew"]`);
   var datetext = document.getElementById('Dates');
 
 
@@ -91,6 +91,8 @@ document.getElementById('form').addEventListener('submit', e => {
     for (var j = 0; j < date.length; j++) {
       datetext.value += `${date[j].value},`;
     }
+
+    console.log(datatext.value);
 
 });
 
@@ -130,13 +132,10 @@ function addDate(date, finalres, newid, list, errorid) {
 
         document.getElementById(list).appendChild(newli);
         document.getElementById(newli.id).parentNode.insertBefore(rembut, document.getElementById(newli.id).nextSibling);
-        document.getElementById(item).value = "";
+        document.getElementById(date).value = "";
 
-        document.getElementById(errorid).innerHTML = "";
+
 
     }
-    else {
 
-        document.getElementById(errorid).innerHTML = "Please enter date";
-    }
 }

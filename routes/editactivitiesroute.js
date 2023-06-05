@@ -23,7 +23,7 @@ router.use((req, res, next) => {
 router.get('/',activityController.getActivities);
 router.get('/:name',activityController.getActivitiesbyName);
 router.get('/delete/:id',activityController.deleteActivity);
-router.get('/updated/:name',activityController.updatedActivity);
+router.post('/updated/:name',activityController.updatedActivity);
 
 
 module.exports = router;

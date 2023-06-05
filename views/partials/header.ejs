@@ -8,7 +8,7 @@
         padding: 5px;
         width: 30%;
         float: right;
-    }
+    } 
 
     .nav {
         position: relative;
@@ -204,11 +204,7 @@
             <img id="logo" src="/images/homepage/logo.png" alt="logo">
         </div>
 
-        <% if(user!=="" && user.Type==="admin" ){%>
-            <div class="admin">
-                <button onclick="location.href= '/adminboard'"> Admin Dashboard</button>
-            </div>
-            <% } %>
+        
 
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                 <script src="/js/ajax-SEARCH.js"></script>
@@ -220,9 +216,14 @@
 
                 <nav class="nav">
                     <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
-                    <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+                    <%if(user!=="" && user.Type==='admin'){%>
+                        <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
+                    <%}else{%>
+                        <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+                    <%}%>
+                    
                     <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
-                    <a href="/chat" class="links"> <i class="fa-regular fa-message"></i></a>
+                    <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
                 </nav>
 
                 <div style="flex:7%" class="sign">

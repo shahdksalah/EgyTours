@@ -143,14 +143,15 @@
         </div>
 
       </div>
-
+       
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+      <script src="/js/Activity1.js"></script>
       <% if(user.Type !=="admin" ){%>
-        <form method="post" action="/activities/<%=activity1[0].Name%>/submit" id="form">
           <input type="text" id="name" value=<%=activity1[0].Name%> name="name2" style="display:none">
           <h2>Book Now</h2>
           <div class="book" id="book">
             <div>
-              <input id="dropbtn"  list="Adults" placeholder="Participants " name="num">
+              <input id="dropbtn"  list="Adults" placeholder="Participants " name="num" class="l">
               <datalist id="Adults">
                 <option value="1"></option>
                 <option value="2"></option>
@@ -166,7 +167,7 @@
               <div id="msg" class="check-error"></div>
             </div>
             <div>
-              <select name="days"  id="dropbtn" style="margin-top:5px;">
+              <select name="days"  id="dropbtn" style="margin-top:5px;" class="l">
                 <%for(var i=0;i< activity1[0].DatesDetails.length; i++) { %>
                   <% var b=activity1[0].DatesDetails[i].date; %>
                   <option value=<%=b %>><%=b %> </option>
@@ -175,17 +176,14 @@
             <div id="date-msg" class="check-error"></div>
           </div>
           <div> 
-            <button type="submit" id="check">Check Availability</button>
+            <button onclick="isAvail()" id="check">Check Availability</button>
           </div>
           </div>
-          </form>
           <%}%>
-         
         
-
-      <%if(msg==="Available" && num!==0) { %>
+     
         <form  id="subForm"  action="<%=activity1[0]._id%>"  method="post"
-          style="border: none;">
+          style="border: none;display: none;">
       <div id="avail">
         <h2>Available</h2>
         <div class="duration">
@@ -197,16 +195,15 @@
         </div>
         <div class ="price">
           <span>Total Price: </span>
-          <span id="num1"> <%=num%> </span>
+          <span id="num1"> </span>
           <span>*</span>
           <span id="price1"><%=activity1[0].Price%></span>
           <span>=</span>
-          <% sum = num * activity1[0].Price; %>
-          <span id="total1"> <%=sum%> </span>
+          <span id="total1"></span>
       </div>
-         <input type="hidden" id="participants" name="participants" value="<%=num%>">
-         <input type="hidden" id="date" name="date" value="<%=day%>">
-         <input type="hidden" id="price" name="price" value="<%=sum%>" >
+         <input type="hidden" id="participants" name="participants" >
+         <input type="hidden" id="date" name="date" >
+         <input type="hidden" id="price" name="price"  >
         
         <div style="text-align: center; margin-top:15px;">
           <button type="submit" style="width:150px;cursor: pointer;">Add To Cart</button>
@@ -216,13 +213,13 @@
     </form>
     <script src="/js/Activity1.js"></script>
 
-    <% } %>
+   
 
-      <%if(msg==="Not Available") { %>
-        <div id="avail">
+      
+        <div id="avail" style="display: none;">
           <h2>No Availability</h2>
-          </div>
-          <% } %>
+        </div>
+          
 
       
       <script src="/js/Activity1.js"></script>

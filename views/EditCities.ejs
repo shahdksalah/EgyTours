@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Cities</title>
+    <link rel="stylesheet" href="/css/styleUsers.css">
+    <link rel="stylesheet" href="/css/styleAdminDashboard.css">
+    <link rel="stylesheet" href="/css/styleHF_ALL.css">
+    <link rel="stylesheet" href="/css/styleEditHotels.css">
+    <link rel="stylesheet" href="/css/styleForm.css">
+    <link rel="stylesheet" href="/css/styleUsers.css">
+
+</head>
+
+<body>
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+
+    <%- include("partials/adminHeader.ejs") %>
+        <div class="main-content">
+            <div class="right">
+                <div id="cont">
+                    <div style="margin-bottom: 15px;">
+                        <h1>Edit Cities</h1>
+                    </div>
+
+                    <div class="view">
+                        <div id="search">
+                            <div id="sBar">
+                                <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search for Hotels..">
+                            </div>
+                        </div>
+                        <ul id="myUL">
+                            <% if(city!=="" ) {%>
+                                <% let id=1; %>
+                                    <% city.forEach((cit)=> { %>
+                                        <li name='list' id=<%=cit.Name.split()%> onmouseover ="
+                                            updateDeleteButtons(id)" onmouseleave="exit(id)"><%=cit.Name%>
+                                                <button
+                                                    onclick="onUpdate('<%=cit._id%>','<%=cit.Name%>','<%=cit.picture%>')">Update</button>
+                                                <button onclick='Delete("<%=cit._id%>")'>Delete</button></a>
+                                        </li>
+                                        <% id++; %>
+                                            <% }); %>
+                                                <% } %>
+                        </ul>
+                    </div>
+                </div>
+                <div id="updateInfo">
+                
+                    <form id="uform" method="post" action="/editcities">
+                        <div id="updateType">
+                            <a id="userType"></a>
+                        </div>
+                        <div class="update">
+                            <div class="icol">
+                                <h4>Name:</h4>
+                            </div>
+                            <div class="info">
+                                <label for="upuname"></label>
+                                <input type="text" id="u1" name="imgname">
+                            </div>
+                        </div>
+                        
+                        <input type="text" id="currid" name="id" style="display: none;">
+                        <div style="text-align: center;">
+                            <button type="submit" onclick="save()" style="width:120px; margin-top: 5%;">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="deleteCity" style="display: none;">
+                    <h1>Delete City</h1>
+                    <p>Are you sure you want to delete this City?</p>
+                    <div class="clearfix">
+                        <button type="button" class="cancelbtn" onclick="cancel()">Cancel</button>
+                        <button type="button" class="deletebtn" id="deletebut">Delete</button>
+                        <div id="msg" display="none">City deleted successfully</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <script src="/js/EditCities.js"></script>
+</body>
+
+</html>

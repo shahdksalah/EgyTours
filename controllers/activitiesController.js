@@ -24,7 +24,7 @@ const getActivity = async (req, res) => {
 const getActivitypage = async (req, res) => {
     var Activities = [];
     var url = req.params.id;
-    const actPerPage =1;
+    const actPerPage = 1;
     Activities = await Activity.find().skip(url.split('=') * actPerPage).limit(actPerPage);
     var Activities1 = [];
     Activities1 = await Activity.find();
@@ -102,8 +102,10 @@ const postReview = async (req, res) => {
 }
 
 const postActivityAvail = async (req, res) => {
-
-    var Activities = [];
+    console.log("aentered");
+    console.log(req.body.name2);
+    console.log(req.body.num);
+    console.log(req.body.days);
     var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
 
@@ -111,17 +113,12 @@ const postActivityAvail = async (req, res) => {
     var num = req.body.num;
     var date = req.body.days;
     var X = [];
-    var compare = date;
     const x = await Activity.find().where("Name").equals(name);
 
     X = Array.from(x);
     console.log(X);
 
-    var arr = [];
-    var number;
-    var ret;
     var found = "false";
-    var found1 = "false";
     var found2 = "false";
 
     for (var s = 0; s < x[0].DatesDetails.length; s++) {
@@ -131,15 +128,8 @@ const postActivityAvail = async (req, res) => {
         if (date === k) {
             if (parseInt(num) + parseInt(x[0].DatesDetails[s].max) <= x[0].MaxParticipants) {
                 var newnum = parseInt(x[0].DatesDetails[s].max) + parseInt(num);
-
-                if (newnum < x[0].MaxParticipants) {
-                    ret = date;
-                    console.log(ret);
+                if (newnum <= x[0].MaxParticipants) {
                     found = "true";
-                    number = s;
-                }
-                else if (newnum === x[0].MaxParticipants) {
-                    found1 = "true";
                     number = s;
                 }
             }
@@ -150,26 +140,11 @@ const postActivityAvail = async (req, res) => {
     }
 
     if (found === "true") {
-        res.render("activity1", {
-            activity1: (Activities === 'undefined' ? "" : Activities),
-            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Available", num: req.body.num,
-            day: req.body.days, revmsg: ""
-        });
-    }
-
-    else if (found1 === "true") {
-        res.render("activity1", {
-            activity1: (Activities === 'undefined' ? "" : Activities),
-            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Available", num: req.body.num, day: req.body.days
-            , revmsg: ""
-        });
+        res.send("Available");
     }
 
     else if (found2 === "true") {
-        res.render("activity1", {
-            activity1: (Activities === 'undefined' ? "" : Activities),
-            user: (!req.session.authenticated) ? "" : req.session.user, msg: "Not Available", revmsg: ""
-        });
+        res.send("Not Available");
     }
 
 }

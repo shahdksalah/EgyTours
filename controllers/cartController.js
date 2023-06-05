@@ -39,7 +39,7 @@ const viewCart = async function (req, res) {
                         });  //if promise.then is executed first
                       }
 
-                      if (cart.Activities.length === 0 && counter===length) {   //don't go to promise1.then if no activities added in cart
+                      if (cart.Activities.length === 0 && counter === length) {   //don't go to promise1.then if no activities added in cart
                         res.render("cart", {
                           user: (!req.session.authenticated) ? "" : req.session.user,
                           cart: cart, hotels: hotels, activities: activities
@@ -103,85 +103,98 @@ const viewCart = async function (req, res) {
 }
 
 const removeFromCart = async (req, res) => {
-  console.log(req.body.sentId);
+  
   var hotels = [];
   var activities = [];
   var cart;
-  var item="";
-  var price;
+  var item = "";
+
   await Cart.find().where("User").equals(req.session.user._id)
     .then(async (result) => {
       if (result.length > 0) {
         cart = result[0];
+
         for (var j = 0; j < cart.Hotels.length; j++) {  //if removed booking is an hotel
-          if (req.body.sentId - 1 != j) {
+          if (req.params.id - 1 != j) {
             hotels.push(cart.Hotels[j]);
           }
-          else{
-            item="hotel"
-            price=cart.Hotels[j].price;
+          else {
+            item = "hotel"
+            price = cart.Hotels[j].price;
           }
         }
-        cart.Hotels = hotels;
-        await Cart.findOneAndUpdate({ User: req.session.user._id }, { Hotels: hotels }, {
-          new: true
-        })
-          .then(async () => {
-            if(item==="hotel"){
-              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
-                await Cart.findByIdAndDelete(cart._id)
-                  .then(() => {
-                    res.send("empty");   //no remaining items in cart after removing hotel
-                  })
-              }
-              else {                         //send the price of the removed hotel booking as a response
-                res.send("success "+price);    //to calculate new total
-              }
-            }
+        if (item == "hotel") {
+          activities=cart.Activities;
+          await Cart.findOneAndUpdate({ User: req.session.user._id }, { Hotels: hotels }, {
+            new: true
           })
+            .then(async () => {
+             
+                if (hotels.length === 0 && activities.length === 0) {
+                  console.log("Entered")
+                  await Cart.findByIdAndDelete(cart._id)
+                    .then(() => {
+                      console.log("delete hotel 0");
+                      res.redirect('back')
+                    });
+                }
+                else {
+                  console.log("delete hotel");
+                  res.redirect('back')
+                }
+              
+            })
+        }
 
         for (var k = 0; k < cart.Activities.length; k++) {
-          if (req.body.sentId - cart.Hotels.length - 1 != k) {
+          if (req.params.id - cart.Hotels.length - 1 != k) {
             activities.push(cart.Activities[k]);
           }
-          else{
-            item="activity";
-            price=cart.Activities[k].price;
+          else {
+            console.log("don't add");
+            item = "activity";
+            price = cart.Activities[k].price;
           }
         }
-        cart.Activities = activities;
-        await Cart.findOneAndUpdate({ User: req.session.user._id }, { Activities: activities }, {
-          new: true
-        })
-          .then(async () => {
-            if (item==="activity") {
-              if (cart.Hotels.length === 0 && cart.Activities.length === 0) {
+
+        if (item === "activity") {
+           hotels=cart.Hotels;
+          await Cart.findOneAndUpdate({ User: req.session.user._id }, { Activities: activities }, {
+            new: true
+          })
+            .then(async () => {
+        
+              if (hotels.length === 0 && activities.length === 0) {
                 console.log("Entered")
                 await Cart.findByIdAndDelete(cart._id)
                   .then(() => {
-                    res.send("empty");  //no remaining items in cart after removing activity
-                  })
+                    console.log("delete activity 0");
+                    res.redirect('back')
+                  });
               }
-              else {                           //send the price of the removed activity booking as a response
-                res.send("success "+price);   //to calculate new total 
+              else {
+                console.log("delete activity");
+                res.redirect('back')
               }
-            }
-          })
+
+            })
+        }
       }
+    })
+
+}
+
+const clearCart = async (req, res) => {
+  await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
+    .then(() => {
+      res.render("cart", {
+        user: (!req.session.authenticated) ? "" : req.session.user,
+        cart: "", hotels: "", activities: ""
+      })
+    })
+    .catch(err => {
+      console.log(err);
     })
 }
 
-const clearCart=async(req,res)=>{
-      await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
-      .then(()=>{
-        res.render("cart", {     
-          user: (!req.session.authenticated) ? "" : req.session.user,
-          cart: "", hotels: "", activities: ""
-        })
-      })
-      .catch(err=>{
-        console.log(err);
-      })
-}
-
-module.exports = { viewCart, removeFromCart,clearCart };
+module.exports = { viewCart, removeFromCart, clearCart };

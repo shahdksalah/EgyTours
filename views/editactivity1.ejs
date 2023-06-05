@@ -14,16 +14,7 @@
     <link rel="stylesheet" href="/css/styleForm.css">
     <link rel="stylesheet" href="/css/styleEditActivities.css">
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
-    <link rel="stylesheet" href="/css/styleDatePicker.css">
     <%}%>
-    <script src=
-    "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" >
-        </script>
-          
-        <script src=
-    "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js" >
-        </script> 
-
 
 </head>
 
@@ -185,7 +176,7 @@
                                         <ul id="li1"></ul>
                                     </div>
                                     <textarea name="alldates" id="Dates" cols="15" rows="5"
-                                       ></textarea>
+                                      style="display:none;" ></textarea>
                                     <input type="date" id="Actaddeddate" name="addeddate">
                                     <button type="button" class='plus' id="add" type='button'
                                         onclick="addDate('Actaddeddate','Dates','datelinew','li1','error-dates')">+</button>

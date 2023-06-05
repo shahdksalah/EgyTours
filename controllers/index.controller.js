@@ -7,6 +7,8 @@ const activities = require('../models/activity.schema.js');
 const bcrypt = require("bcrypt");
 const { body, validationResult } = require('express-validator');
 
+
+
 const checkUN = (req, res) => {
     if (req.body.Username !== "" && !/\s/.test(req.body.Username) && req.body.Username.length >= 5) {
         var query = { Username: req.body.Username };

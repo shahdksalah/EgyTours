@@ -134,10 +134,12 @@
     <div class="c">
         <div class="pagination">
                 <% let id1=0; %>
+                <%if(length!==undefined){%>
                 <% while(id1 !== length) { %>
                 <button type="submit" onclick="location.href='/activities/browse/page=<%=id1%>'"><p class="link" value="<%id1+1%>"><%=id1+1%></p></button>
                 <% id1++;%>
             <% } %>
+            <%}%>
         </div>
     </div>
     <% } %>

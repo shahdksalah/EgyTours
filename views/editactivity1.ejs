@@ -146,12 +146,10 @@
                                             <%if(date.max === 0) {%>
                                             <% var b=date.date; %>
                                             <% const dat = new Date().getTime();%>
-                                            <%console.log(dat)%>
-                                            <% const d =b.split("-")[0]; %>
+                                            <% const y =b.split("-")[0]; %>
                                             <% const m =b.split("-")[1]; %>
-                                            <% const y = b.split("-")[2]; %>
+                                            <% const d = b.split("-")[2]; %>
                                             <% const Actdate = new Date(y,m-1,d).getTime(); %>
-                                            <%console.log(Actdate)%>
                                             <% if(Actdate > dat) { %>
                                     <li id="datels<%=id%>">
                                     <input type="text" value="<%=b%>" id="dateinput<%=id%>" style="width:120px;">
@@ -167,9 +165,9 @@
                                         <% var b=date.date; %>
                                         <% const dat = new Date().getTime();%>
                                             <%console.log(dat)%>
-                                            <% const d =b.split("-")[0]; %>
+                                            <% const y =b.split("-")[0]; %>
                                             <% const m =b.split("-")[1]; %>
-                                            <% const y = b.split("-")[2]; %>
+                                            <% const d = b.split("-")[2]; %>
                                             <% const Actdate = new Date(y,m-1,d).getTime(); %>
                                             <%console.log(Actdate)%>
                                             <% if(Actdate > dat) { %>

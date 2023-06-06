@@ -121,7 +121,7 @@
         </div>
 
         <% if(hotels !==0) { %>
-            <div class="c">
+            <div class="c" id="pages">
                 <div class="pagination">
                 <% let id1=0; %>
                 <%if(length!==undefined){%>
@@ -146,6 +146,7 @@
 
         function filter() {
             var match = false;
+            var match2 = false;
             var query = document.getElementById('searchhotels').value.toUpperCase();
             var hotels = document.getElementsByClassName('btn');
             for (let index = 0; index < hotels.length; index++) {
@@ -168,17 +169,25 @@
                     else{
                         element.style.display = 'none';
                     }
-                    match = true;
+                    match=true;
+                    match2 = true;
                 }
                         
             }
             if (!match) {
                 document.getElementById('nomatch').style.display = 'block';
+                document.getElementById('pages').style.display = "none";
             }
-            else {
+            else{
+                if(match2){
+                    document.getElementById('pages').style.display = "block";
+                }
+                else{
+                    document.getElementById('pages').style.display = "none";
+                }
                 document.getElementById('nomatch').style.display = 'none';
             }
-                }
+            }
             </script>
 
                 <%- include("partials/footer.ejs") %>

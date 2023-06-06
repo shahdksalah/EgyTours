@@ -91,29 +91,36 @@ function isAvail(){
   var children=document.getElementById("dropbtn2").value;
   var rooms=document.getElementById("dropbtn3").value;
   var roomType=document.getElementById("dropbtn4").value;
-  var name=document.getElementById("name").value;
+  var name=document.getElementById("name").innerHTML;
 
-$(document).ready(function () {
-     $.ajax({
-         url: `${name}/submit`,
-         method: 'POST',
-         data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType},
-         success: function (response) {
-           console.log(response);
-                if(response==="Available"){
-                 
-                   $('#subForm').css("display","block");
-                }
-                else if(response==="Not Available"){
-                 $('#avail').css("display","block");
-                }
+  console.log(name);
 
-         },
-         error: function (err) {
 
-         }
-     });
+  $.ajax({
+      url: `${name}/submit`,
+      method: 'POST',
+      data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType,name:name},
+      success: function (response) {
+        console.log(response);
+            if(response==="Available"){
+                $('#checkin').val(checkIn);
+                $('#checkout').val(checkOut);
+                $('#ad').val(adults);
+                $('#ch').val(children);
+                $('#ro').val(rooms);
+                $('#rt').val(roomType);
+                $('#subForm').css("display","block");
+            }
+            else if(response==="Not Available"){
+              $('#avail').css("display","block");
+            }
+
+      },
+      error: function (err) {
+
+      }
+  });
      
-})
+
 
 }

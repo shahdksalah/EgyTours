@@ -1,4 +1,11 @@
-const socket = io();
+ 
+
+   const socket = io('/user-namespace',{
+    auth:{
+    token:'<%=user._id%>'
+    }
+  });
+
 
 const messageContainer = document.getElementById("message-container");
 
@@ -56,15 +63,15 @@ function sendMessage() {
 
   });
  
-  
+    //for receiving a message
+  socket.on('loadNewChat', (data) => {
+    console.log(data);
+    addMessagetoUI(false, data);
+  });
   
 }
 
-//for receiving a message
-socket.on("chat-message", (data) => {
-  console.log(data);
-  addMessagetoUI(false, data);
-});
+
 
 function addMessagetoUI(isOwnMessage, data) {
   const element = `

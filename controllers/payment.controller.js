@@ -154,6 +154,8 @@ const pay = async (req, res) => {
     var datesArr;
     var filter;
     var update;
+    var fi,up;
+    var roomsBooked
     var emailText = "Your payment with the following details is confirmed\n";
     await Cart.find().where("User").equals(req.session.user._id)
       .then(async result => {
@@ -169,6 +171,16 @@ const pay = async (req, res) => {
                   emailText += ("Hotel: " + h.Name + "\n" + "From: " + hotel.checkIn + "  To: " + hotel.checkOut + "\n"
                     + "Room(s): " + hotel.rooms + "x " + hotel.roomType + "\n" + "Price: " + hotel.price + "\n\n");
                   totalPrice += hotel.price;
+                   
+                  for(var i=0;i<h.RoomTypes.length;i++){
+                    if (h.RoomTypes[i].name == hotel.roomType) {
+                      roomsBooked=h.RoomsBooked+hotel.rooms;
+
+                      fi = { Name: h.Name };
+                      up = { RoomsBooked: roomsBooked };
+                    }
+                  }
+
                 })
             })
           }
@@ -237,7 +249,15 @@ const pay = async (req, res) => {
                         }
                       });
 
-                      await Activity.findOneAndUpdate(filter, update)
+                      await Hotel.findOneAndUpdate(fi, up)    //update RoomsBooked in hotel
+                        .then(() => {
+                          console.log("hotel updated successfully");
+                        })
+                        .catch(err => {
+                          console.log(err);
+                        })
+
+                      await Activity.findOneAndUpdate(filter, update)   //update spots left in activity
                         .then(() => {
                           console.log("activity updated successfully");
                         })

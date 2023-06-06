@@ -135,6 +135,7 @@ const postAddActivity = async (req, res) => {
 
       var date = req.body.Dates.length;
       var dates = req.body.Dates;
+      
       var count = 0;
       for (var j = 0; j < date; j++) {
         if (dates[j] === ",") {

@@ -62,6 +62,66 @@ const getHotel1 = async (req, res) => {
     res.render("hotel1", { hotel1: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
 }
 
+const postHotelAvail = async (req, res) => {
+   
+    
+    var adults=req.body.adults;
+    var children=req.body.children;
+    var rooms=req.body.rooms;
+    var roomType=req.body.roomType;
+    var hotel;
+    console.log(roomType);
+    console.log(req.params.name);
+
+     await Hotel.find().where("Name").equals(req.body.name)
+    .then(result=>{
+        if(result.length>0){
+
+              hotel=result[0];
+              var found = "false";
+              var found2 = "false";
+              var roomsLeft;
+
+              console.log(roomType);
+          
+              for(var i=0;i<hotel.RoomTypes.length;i++){
+                  if(hotel.RoomTypes[i].Name === roomType){
+                     console.log("enetered");
+                      roomsLeft=parseInt(hotel.RoomTypes[i].Rooms)-parseInt(hotel.RoomTypes[i].RoomsBooked);
+                      console.log(roomsLeft);
+          
+                      if(hotel.RoomTypes[i].RoomsBooked<hotel.RoomTypes[i].Rooms  && rooms<=roomsLeft){
+                          if(adults<=hotel.RoomTypes[i].Capacity.Adults && 
+                              children<=hotel.RoomTypes[i].Capacity.Children){
+                              found = "true";
+                          }
+                      }
+                      else{
+                          found2="true";
+                      }
+                  }
+              }
+          
+          
+          
+              if (found === "true") {
+                  console.log("found");
+                  res.send("Available");
+              }
+          
+              else if (found2 === "true") {
+                  console.log("found2");
+                  res.send("Not Available");
+              }
+
+        }
+
+    })
+
+   
+
+}
+
 
 const addToCart = async (req, res) => {
     console.log('Entered')
@@ -191,4 +251,4 @@ const postReview = async (req, res) => {
     }
 }
 
-module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview };
+module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview , postHotelAvail};

@@ -41,7 +41,16 @@
 
     <%- include("partials/adminHeader.ejs") %>
     <div class="main-content">
-        
+        <div class="err" style="width:30%">
+        <%if(alert !=undefined){%>
+            <% alert.forEach((alr)=>{%>
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <%=alr.msg%>
+                </div>
+                <%})%>
+                    <%}%>
+                </div>
 
         <div class="right">
             <div id="container">
@@ -49,36 +58,37 @@
                     <form class="form" method="post" action="/users/success">
                        
                               <h2><ins>Add User Info</ins></h2>
+                              
                         
                         <div class="container">
                           <div class="input-group">
                             <label for="uname">Username</label>
                             <input id="uname" type="text" placeholder="Enter Username" name="uname">
-                            <span class="error-message"></span>
+                           
                           </div>
                           
                           <div class="input-group">
                             <label for="email">Email</label>
                             <input id="femail" type="email" placeholder="Enter Email" name="email" >
-                            <span class="error-message"></span>
+                            
                           </div>
               
                           <div class="input-group">
                             <label for="number">Phone Number</label>
                             <input id="number" type="number" placeholder="Enter Phone Number" name="number">
-                            <span class="error-message"></span>
+                            
                           </div>
                           
                           <div class="input-group">
                             <label for="psw">Password</label>
                             <input id="password" type="password" placeholder="Enter Password" name="psw">
-                            <span class="error-message"></span>
+                           
                           </div>
               
                           <div class="input-group">
                             <label for="psw">Password Confirmation</label>
-                            <input id="password-confirmation" type="password" placeholder="Repeat Password" name="psw">
-                            <span class="error-message"></span>
+                            <input id="password-confirmation" type="password" placeholder="Repeat Password" name="confpsw">
+                           
                           </div>
                       
                           <div class="form-btns" style="position:relative; right:30px;">
@@ -119,7 +129,7 @@
                 
                 <div id="updateInfo">
             
-                <form id="uform" method="post" action="/users" style="position:relative; top:50px;" >
+                <form id="uform" method="post" action="/users" style="position:relative; top:50px; right:55px;" >
                     <div id="updateType">
                         <a  id="userType"></a>
                     </div>
@@ -175,8 +185,8 @@
                 </form>
                 </div>
                 <% if(msg!="") {%>
-                <div id="smsg">
-                    <span><%=msg %>></span>
+                <div id="smsg" style="position:relative; top:90px;">
+                    <span ><%=msg %></span>
                  </div>
                  <% } %>
 
@@ -217,7 +227,7 @@
                         <button type="button" onclick="document.getElementById('id01').style.display='block'">Remove</button>
 
                         <div id="id01" class="modal">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                           
                             
                             <div class="container">
                                 <h1>Delete User</h1>

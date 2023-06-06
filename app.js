@@ -74,7 +74,7 @@ const User=require('./models/usersdb.js')
 var usp=io.of('/user-namespace');
 let sockesConnected = new Set();
 
-usp.on("connection", onConnected);
+io.on("connection", onConnected);
 async function onConnected(socket) {
   console.log("user connected");
   console.log("new socket added", socket.id);

@@ -1,10 +1,6 @@
  
 
-   const socket = io('/user-namespace',{
-    auth:{
-    token:'<%=user._id%>'
-    }
-  });
+  
 
 
 const messageContainer = document.getElementById("message-container");
@@ -19,6 +15,8 @@ const senderId=document.getElementById("sender");
 
 var type = document.getElementById("usertype");
 
+var receiver_id;
+
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
   sendMessage();
@@ -29,9 +27,9 @@ function sendMessage() {
   console.log(messageInput.value);
   var name;
   if (type.value === "admin") {
-    name = "admin";
+    receiver_id='6473b4b88feb5746f0bf4530';
   } else {
-    name = nameInput.innerHTML;
+    receiver_id='6473bed00f4f61858f1cc898';
   }
   const data = {
     sender_id: sender.value,
@@ -52,28 +50,27 @@ function sendMessage() {
       dateTime: new Date(),  },
 
     success: function (response) {
-      if(response.success){
-        console.log(response);
+      // if(response.success){
+      //   console.log(response);
        
-        socket.emit("newChat", data);
-        addMessagetoUI(true, data);
-        messageInput.value = "";
+       
         
-      }
-      else{
-        alert(response.msg)
-      }
+      // }
+      // else{
+      //   alert(response.msg)
+      // }
     },
-
-  });
- 
-    //for receiving a message
-  socket.on('loadNewChat', (data) => {
-    console.log(data);
-    addMessagetoUI(false, data);
-  });
-  
+  }); 
+  socket.emit("newChat", data);
+  addMessagetoUI(true, data);
+  messageInput.value = "";
 }
+
+    //for receiving a message
+    socket.on('loadNewChat', (data) => {
+      console.log(data);
+      addMessagetoUI(false, data);
+    });
 
 
 

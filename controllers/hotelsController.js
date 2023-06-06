@@ -62,7 +62,7 @@ const getHotel1 = async (req, res) => {
     res.render("hotel1", { hotel1: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
 }
 
-const postActivityAvail = async (req, res) => {
+const postHotelAvail = async (req, res) => {
     Activities = await Activity.find({ "Name": url });
     
     var adults=req.body.adults;
@@ -232,4 +232,4 @@ const postReview = async (req, res) => {
     }
 }
 
-module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview , postActivityAvail};
+module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview , postHotelAvail};

@@ -36,21 +36,35 @@ function isAvail(){
         data: { name2:name2,num:num,days:days},
         success: function (response) {
           console.log(response);
-                if(response==="Available" && num!=0){
-                  $('#num1').html(num);
-                  var price=$('#price1').html();
-                  var sum=price*num;
-                  console.log(sum);
-                  $('total1').html(sum);
-                  $('#participants').val(num);
-                  $('#date').val(days);
-                  $('#total1').html(sum);
-                  $('#price').val(sum);
-                  $('#subForm').css("display","block");
-                }
-                else if(response==="Not Available"){
-                $('#avail').css("display","block");
-                }
+          if(response==="Available" && num!=0){
+            $('#num1').html(num);
+            var price=$('#price1').html();
+            var sum=price*num;
+            console.log(sum);
+            $('total1').html(sum);
+            $('#participants').val(num);
+            $('#date').val(days);
+            $('#total1').html(sum);
+            $('#price').val(sum);
+            $('#subForm').css("display","block");
+          }
+          if(response==="Not Available"){
+          $('#avail').css("display","block");
+          }
+          if(response==="found" && num!=0){
+            $('#num1').html(num);
+            var price=$('#price1').html();
+            var sum=price*num;
+            console.log(sum);
+            $('total1').html(sum);
+            $('#participants').val(num);
+            $('#date').val(days);
+            $('#total1').html(sum);
+            $('#price').val(sum);
+            $('#m').css("display","block")
+            $('#add'). css("display","none")
+            $('#subForm').css("display","block");
+          }
 
         },
         error: function (err) {

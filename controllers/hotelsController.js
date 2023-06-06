@@ -102,9 +102,12 @@ const postHotelAvail = async (req, res) => {
                   }
               }
           
+               
+              if(!req.session.authenticated && found==="true"){
+                 res.send("found");
+              }
           
-          
-              if (found === "true") {
+              else if (found === "true") {
                   console.log("found");
                   res.send("Available");
               }

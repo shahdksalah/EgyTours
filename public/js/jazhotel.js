@@ -114,6 +114,11 @@ function isAvail(){
             else if(response==="Not Available"){
               $('#avail').css("display","block");
             }
+            else if(response==="found"){
+              $('#m').css("display","block")
+              $('#add'). css("display","none")
+              $('#subForm').css("display","block");
+            }
 
       },
       error: function (err) {

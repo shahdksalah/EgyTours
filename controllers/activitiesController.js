@@ -152,13 +152,16 @@ const postActivityAvail = async (req, res) => {
         }
     }
 
-    if (found === "true") {
-        res.send("Available");
-    }
+    if(found==="true" && (!req.session.authenticated)){
+        res.send("found")
+  }
+  else if (found === "true") {
+      res.send("Available");
+  }
 
-    else if (found2 === "true") {
-        res.send("Not Available");
-    }
+  else if (found2 === "true") {
+      res.send("Not Available");
+  }
 
 }
 

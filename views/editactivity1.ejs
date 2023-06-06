@@ -145,6 +145,12 @@
                                             <% if(dates.length!=0){%>
                                             <%if(date.max === 0) {%>
                                             <% var b=date.date; %>
+                                            <% const dat = new Date().getTime();%>
+                                            <% const y =b.split("-")[0]; %>
+                                            <% const m =b.split("-")[1]; %>
+                                            <% const d = b.split("-")[2]; %>
+                                            <% const Actdate = new Date(y,m-1,d).getTime(); %>
+                                            <% if(Actdate > dat) { %>
                                     <li id="datels<%=id%>">
                                     <input type="text" value="<%=b%>" id="dateinput<%=id%>" style="width:120px;">
                                         <button type="button" onclick="updateDate('showdate<%=id%>','confirm<%=id%>')" >Update</button> 
@@ -154,12 +160,22 @@
                                 </li>
                                     <% id++%>
                                     <% } %>
+                                    <% } %>
                                     <%if(date.max !== 0) { %>
                                         <% var b=date.date; %>
+                                        <% const dat = new Date().getTime();%>
+                                            <%console.log(dat)%>
+                                            <% const y =b.split("-")[0]; %>
+                                            <% const m =b.split("-")[1]; %>
+                                            <% const d = b.split("-")[2]; %>
+                                            <% const Actdate = new Date(y,m-1,d).getTime(); %>
+                                            <%console.log(Actdate)%>
+                                            <% if(Actdate > dat) { %>
                                         <li id="datels<%=id%>">
                                             <input type="text" value="<%=b%>" id="dateinput<%=id%>" style="width:120px;" readonly>
                                             </li>
                                     <%}%>
+                                    <% } %>
                                     <% id++%>
                                     <%}%>
                                     <%})%>

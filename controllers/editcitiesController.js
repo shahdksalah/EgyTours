@@ -8,19 +8,19 @@ router.use(fileUpload());
 const getCities = async (req, res) => {
   var cities = [];
   cities = await City.find();
-  res.render("editcities", { city: cities });
+  res.render("EditCities", { city: cities });
 };
 
 const updateCity = async (req, res) => {
   await City.findByIdAndUpdate(req.body.id, {
     Name: req.body.imgname,
   });
-  res.redirect("editcities");
+  res.redirect("EditCities");
 };
 
 const deleteCity = async (req, res) => {
   var cit = await City.findByIdAndDelete(req.params.id);
-  if (cit) res.redirect("editcities");
+  if (cit) res.redirect("EditCities");
 };
 
 module.exports = { getCities, deleteCity, updateCity };

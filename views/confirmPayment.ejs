@@ -27,11 +27,12 @@
             <div class="card__recipient-info">
               <!-- <p class="card__recipient">Nath Green</p> -->
               <% if(user!=="") {%>
-              <p class="card__email">An email is sent to  <%=user.Email%> confirming your payment</p>
+              <p class="card__email">An email is sent to  <%=user.Email%>
+                 confirming your payment</p>
               <% } %>
             </div>
             <% if(price!="") {%>
-            <h1 class="card__price"><span>$</span><%=price%><span>.00</span></h1>
+            <h1 class="card__price"><%=price%><span>.00 LE</span></h1>
             <% } %>
             <p class="card__method">Payment method</p>
             <div class="card__payment">
@@ -47,8 +48,7 @@
           </div>
           
           <div class="card__tags">
-              <span class="card__tag">completed</span>
-              <!-- <span class="card__tag">#123456789</span>         -->
+              <button class="card__tag" onclick="location.href('/')">back to homepage</button>
           </div>
           
         </div>

@@ -35,9 +35,9 @@ const getHotelPage = async (req, res) => {
         now = url-1;
         display = actPerPage*now;
         if((Hotels1.length%actPerPage)>=1){
-            end = display + Hotels1.length%actPerPage;
+            end = display + Hotels1.length%actPerPage+1;
         }else{
-            end = display + Hotels1.length%actPerPage+(actPerPage-1);
+            end = display + (Hotels1.length%actPerPage)+(actPerPage-1);
         }
     }
     else{

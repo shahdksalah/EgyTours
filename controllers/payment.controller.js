@@ -93,21 +93,21 @@ const viewForm = async (req, res) => {
 const validateCard = () => {
 
   return [
-    body('Name')
+    body('name')
       .exists({ checkFalsy: true })
       .withMessage('Card holder name cannot be blank')
       .bail()
       .isString()
       .withMessage("Card holder name must be a string"),
 
-    body('Num')
+    body('number')
       .exists({ checkFalsy: true })
       .withMessage('Card number cannot be blank')
       .bail()
       .isNumeric()
       .withMessage('Card number is invalid'),
 
-    body('CVV')
+    body('cvv')
       .exists({ checkFalsy: true })
       .withMessage('CVV cannot be blank')
       .bail()
@@ -117,12 +117,12 @@ const validateCard = () => {
       .isLength({ min: 3, max: 3 })
       .withMessage('CVV must be 3 numbers long'),
 
-    body('ExpM')
+    body('expMonth')
       .exists({ checkFalsy: true })
       .withMessage('Choose Month')
       .bail(),
 
-    body('ExpY')
+    body('expYear')
       .exists({ checkFalsy: true })
       .withMessage('Choose Year')
       .bail(),
@@ -134,8 +134,10 @@ const pay = async (req, res) => {
   const errors = validationResult(req);
   console.log("validating card");
   if (!errors.isEmpty()) {
+    console.log("card errors");
     var alerts = errors.array();
     //res.send(alerts);
+    res.redirect("back"); 
   }
   else {
     var totalPrice = 0;
@@ -244,8 +246,8 @@ const pay = async (req, res) => {
                         .catch(err => {
                           console.log(err);
                         })
-                      res.redirect('back');
-                      //res.render("confirmPayment", { user: (!req.session.authenticated) ? "" : req.session.user, price: totalPrice, card: req.body.number })
+                      //res.redirect('back');
+                      res.render("confirmPayment", { user: (!req.session.authenticated) ? "" : req.session.user, price: totalPrice, card: req.body.number })
                     })
                     .catch(err => {
                       console.log(err);

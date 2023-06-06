@@ -7,7 +7,7 @@ const path = require('path');
 
 
 const getActivities = async (req, res) => {
-    const actPerPage =3 ;
+    const actPerPage =4 ;
     var Activities = [];
     Activities = await Activity.find();
     // .skip(page * actPerPage).limit(actPerPage);
@@ -21,7 +21,7 @@ const getActivities = async (req, res) => {
 const getActivityPage = async (req, res) => {
     var Activities = [];
     var url = req.params.id;
-    const actPerPage =3;
+    const actPerPage =4;
     Activities = await Activity.find();
     var length = Math.ceil(Activities.length/actPerPage);
     var now;

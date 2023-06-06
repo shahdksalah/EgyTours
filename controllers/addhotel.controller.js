@@ -81,10 +81,10 @@ const addHotel = async (req, res) => {
         if (!errors.isEmpty()) {
             const alert = errors.array();
             if (!req.files || req.files.imgs.length != 10) {
-                res.render('addhotel', { alert: alert, img: "You must upload 10 images" });
+                res.render('AddHotel', { alert: alert, img: "You must upload 10 images" });
             }
             else {
-                res.render('addhotel', { alert: alert, img: "" });
+                res.render('AddHotel', { alert: alert, img: "" });
             }
         }
         else {

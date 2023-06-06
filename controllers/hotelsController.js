@@ -6,31 +6,50 @@ const moment = require('moment');
 
 const getHotels = async (req, res) => {
     const page =req.query.p || 0;
-    const actPerPage =1;
+    const actPerPage =3 ;
      
     var Hotels = [];
-    Hotels = await Hotel.find().skip(page * actPerPage).limit(actPerPage);
+    Hotels = await Hotel.find();
+    // .skip(page * actPerPage).limit(actPerPage);
     var Hotels1 = [];
     Hotels1 = await Hotel.find();
     var length=Math.ceil(Hotels1.length/actPerPage);
     res.render("hotels", {
         hotels: (Hotels === 'undefined' ? "" : Hotels),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1
     });
 }
 
 const getHotelPage = async (req, res) => {
     var Hotels = [];
     var url = req.params.id;
-    const actPerPage =1;
-    Hotels = await Hotel.find().skip(url.split('=') * actPerPage).limit(actPerPage);
+    const actPerPage =3;
+    Hotels = await Hotel.find();
     var Hotels1 = [];
     Hotels1 = await Hotel.find();
     var length=Math.ceil(Hotels1.length/actPerPage);
+    var now;
+    var display;
+    var end;
+    if((url-1)!=0){
+        now = url-1;
+        display = actPerPage*now;
+        if((Hotels1.length%actPerPage)>=1){
+            end = display + Hotels1.length%actPerPage;
+        }else{
+            end = display + Hotels1.length%actPerPage+(actPerPage-1);
+        }
+    }
+    else{
+        now = 1;
+        display = 0;
+        end = actPerPage-1;
+    }
+
+    
     res.render("hotels", {
         hotels: (Hotels === 'undefined' ? "" : Hotels),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "",length:length
-    });
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end});
 
 
 }

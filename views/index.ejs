@@ -12,7 +12,6 @@
     
 </head>
 <body> 
- 
    <%- include("partials/header.ejs") %>
     <div class="why-choose-us">
       <span class="all">
@@ -77,6 +76,20 @@
         </div>
         
 </div>
+
+
+<script>
+  var sender_id='<%=user._id%>';
+  // io('/user-namespace',{
+  //   auth:{
+  //     token:'<%=user._id%>'
+  //   }
+  // });
+</script>
+<script src="/socket.io/socket.io.js"></script>
+
+
+
 <%- include("partials/footer.ejs") %>
 </body>
 </html>

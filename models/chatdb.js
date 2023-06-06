@@ -7,7 +7,10 @@ app.use(express.urlencoded({ extended: true }));
 
 const ChatSchema = new Schema(
   {
-    senderName: {
+    sender_id: {
+      type: String,
+    },
+    receiver_id: {
       type: String,
     },
     message: {

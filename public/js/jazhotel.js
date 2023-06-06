@@ -93,8 +93,9 @@ function isAvail(){
   var roomType=document.getElementById("dropbtn4").value;
   var name=document.getElementById("name").innerHTML;
 
-  console.log(name);
-
+  document.getElementById("notavail").style.display="none";
+  document.getElementById("subForm").style.display="none";
+  
 
   $.ajax({
       url: `${name}/submit`,
@@ -112,7 +113,7 @@ function isAvail(){
                 $('#subForm').css("display","block");
             }
             else if(response==="Not Available"){
-              $('#avail').css("display","block");
+              $('#notavail').css("display","block");
             }
             else if(response==="found"){
               $('#m').css("display","block")

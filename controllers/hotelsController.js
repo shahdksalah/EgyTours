@@ -95,6 +95,9 @@ const postHotelAvail = async (req, res) => {
                               children<=hotel.RoomTypes[i].Capacity.Children){
                               found = "true";
                           }
+                          else{
+                            found2="true"
+                          }
                       }
                       else{
                           found2="true";

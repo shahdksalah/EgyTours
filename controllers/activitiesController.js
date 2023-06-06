@@ -6,33 +6,46 @@ const notifier = require('node-notifier');
 const path = require('path');
 
 
-const getActivity = async (req, res) => {
-    const page =req.query.p || 0;
-    const actPerPage =1;
-     
+const getActivities = async (req, res) => {
+    const actPerPage =3 ;
     var Activities = [];
-    Activities = await Activity.find().skip(page * actPerPage).limit(actPerPage);
-    var Activities1 = [];
-    Activities1 = await Activity.find();
-    var length=Math.ceil(Activities1.length/actPerPage);
+    Activities = await Activity.find();
+    // .skip(page * actPerPage).limit(actPerPage);
+    var length=Math.ceil(Activities.length/actPerPage);
     res.render("activities", {
         activities: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: "",length:length
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1
     });
 }
 
-const getActivitypage = async (req, res) => {
+const getActivityPage = async (req, res) => {
     var Activities = [];
     var url = req.params.id;
-    const actPerPage = 1;
-    Activities = await Activity.find().skip(url.split('=') * actPerPage).limit(actPerPage);
-    var Activities1 = [];
-    Activities1 = await Activity.find();
-    var length=Math.ceil(Activities1.length/actPerPage);
+    const actPerPage =3;
+    Activities = await Activity.find();
+    var length = Math.ceil(Activities.length/actPerPage);
+    var now;
+    var display;
+    var end;
+    if((url-1)!=0){
+        now = url-1;
+        display = actPerPage*now;
+        if((Activities.length%actPerPage)>=1){
+            end = display + Activities.length%actPerPage;
+        }else{
+            end = display + Activities.length%actPerPage+(actPerPage-1);
+        }
+    }
+    else{
+        now = 1;
+        display = 0;
+        end = actPerPage-1;
+    }
+
+    
     res.render("activities", {
         activities: (Activities === 'undefined' ? "" : Activities),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", revmsg: "",length:length
-    });
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end});
 
 
 }
@@ -219,4 +232,4 @@ const addToCart = async (req, res) => {
     }
 }
 
-module.exports = { getActivity, getActivity1, postReview, postActivityAvail, addToCart,getActivitypage };
+module.exports = { getActivities, getActivity1, postReview, postActivityAvail, addToCart,getActivityPage };

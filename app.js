@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
-const PORT = 8080;
+const PORT = 3000;
 
 const indexRoute = require("./routes/Indexroute.js");
 const foodRoute = require("./routes/foodroute.js");
@@ -28,6 +28,9 @@ const confirmPaymentRoute = require("./routes/confirmPaymentroute.js");
 const viewBookingsRoute = require("./routes/viewBookingsroute.js");
 const chatRoute = require("./routes/chatroute.js");
 const editCities = require("./routes/editcitiesroute.js");
+const wishlistRoute = require("./routes/wishlistroute.js");
+
+
 
 const bodyParser = require("body-parser");
 
@@ -119,5 +122,7 @@ app.use("/addcities", addcity);
 app.use("/chat", chatRoute);
 app.use("/editcities", editCities);
 app.use("/viewbookings", viewBookingsRoute);
+app.use("/wishlist", wishlistRoute);
+
 
 

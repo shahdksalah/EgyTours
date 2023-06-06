@@ -26,67 +26,72 @@
             <div id="empty" style="margin-left: 40%; margin-top: 10%; display: none;">
                 <h2>Your Cart Is Empty</h2>
             </div>
-            <% if(hotels!="" && cart!=""){ %>
+            <% if(hotels!="" && cart!=""){%>
                  <%hotels.forEach((hotel)=>{%>  <!--showing hotels' cart -->
-            <div class="items" id="<%=d%>">
-                <div class="image">
-                    <div>
-                        <img src="../images/Hotels/<%= hotel.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
-                    </div>
-                </div>
-                <div class="item-info">
+                    <div class="items" id="<%=d%>">
+                        <div class="image">
+                            <div>
+                                <img src="../images/Hotels/<%= hotel.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
+                            </div>
+                        </div>
+                        <div class="item-info">
         
-                    <div>
-                        <h2><%= hotel.Name %></h2>
-                    </div>
+                            <div>
+                                <h2><%= hotel.Name%></h2>
+                            </div>
         
-                    <div class="section">
-                        <div class="icon">
-                            <i class="fa-solid fa-people-group"></i>
-                        </div>
-                        <div>
-                            <p><%= cart.Hotels[j].adults %> Adults, <%= cart.Hotels[j].children %> Children</p> 
-                        </div>
-                    </div>
+                            <div class="section">
+                                <div class="icon">
+                                    <i class="fa-solid fa-people-group"></i>
+                                </div>
+                                <div>
+                                    <%if(cart.Hotels[j].children !=""){%>
+                                        <p><%= cart.Hotels[j].adults%> Adults, <%=cart.Hotels[j].children%> Children</p>
+                                    <%}else{%>
+                                        <p><%= cart.Hotels[j].adults %> Adults</p>
+                                    <%}%>
+                                     
+                                </div>
+                            </div>
                     
-                    <div class="section">
-                        <div class="icon">
-                            <i class="fa-solid fa-calendar-days"></i>
-                        </div>
-                        <div>
-                            <p> From: <%=cart.Hotels[j].checkIn %>  To: <%=cart.Hotels[j].checkOut %></p>
-                        </div>
-                    </div>
+                            <div class="section">
+                                <div class="icon">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <div>
+                                    <p> From: <%=cart.Hotels[j].checkIn %>  To: <%=cart.Hotels[j].checkOut %></p>
+                                </div>
+                            </div>
                     
-                    <div class="section">
-                        <div class="icon">
-                            <i class="fa-solid fa-bed"></i>
-                        </div>
-                        <div>
-                            <p>Rooms: <%= cart.Hotels[j].rooms %>x <%=cart.Hotels[j].roomType  %></p>
-                        </div>
-                    </div>
+                            <div class="section">
+                                <div class="icon">
+                                    <i class="fa-solid fa-bed"></i>
+                                </div>
+                                <div>
+                                    <p>Rooms: <%= cart.Hotels[j].rooms %>x <%=cart.Hotels[j].roomType  %></p>
+                                </div>
+                            </div>
 
-                    <div class="section">
-                        <div class="icon">
-                            <i class="fa-solid fa-money-bill-wave"></i>
-                        </div>
-                        <div>
-                            <p>This activity is non-refundable</p>
+                            <div class="section">
+                                <div class="icon">
+                                    <i class="fa-solid fa-money-bill-wave"></i>
+                                </div>
+                                <div>
+                                    <p>This activity is non-refundable</p>
+                                </div>
+                            </div>
+                    
+                        </div> 
+                        <div class="item-right">
+                            <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='cart/<%=d%>';"></i>
+                            <p class="price"> <%=cart.Hotels[j].price%>LE</p>
                         </div>
                     </div>
-                    
-                </div> 
-                <div class="item-right">
-                    <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='cart/<%=d%>';"></i>
-                    <p class="price">$ <%=cart.Hotels[j].price%></p>
-                </div>
-            </div>
-             <% totalPrice+=cart.Hotels[j].price;%>
-             <% j++; %>
-             <% d++; %>
-             <% count++; %>
-               <% })%>
+                    <% totalPrice+=cart.Hotels[j].price;%>
+                    <% j++; %>
+                    <% d++; %>
+                    <% count++; %>
+                <% })%>
             <% } %>
         
         
@@ -94,94 +99,94 @@
         <%j=0; %>
         <% if(activities!="" && cart!=""){ %>
             <%activities.forEach((activity)=>{%>   <!--showing activities cart -->
-        <div class="items" id="<%=id%>">
-            <div class="image">
-                <div>
-                    <img src="../images/activities/<%=activity.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
-                </div>
-            </div>
-            <div class="item-info">
-    
-                <div>
-                    <h2><%= activity.Name %></h2>
-                </div>
-    
-                <div class="section">
-                    <div class="icon">
-                        <i class="fa-solid fa-calendar-days"></i>
+                <div class="items" id="<%=id%>">
+                    <div class="image">
+                        <div>
+                            <img src="../images/activities/<%=activity.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
+                        </div>
                     </div>
-                    <div>
-                        <p>Date: <%=cart.Activities[j].date%></p> 
-                    </div>
-                </div>
+                    <div class="item-info">
+    
+                        <div>
+                            <h2><%= activity.Name %></h2>
+                        </div>
+    
+                        <div class="section">
+                            <div class="icon">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <div>
+                                <p>Date: <%=cart.Activities[j].date%></p> 
+                            </div>
+                        </div>
                 
-                <div class="section">
-                    <div class="icon">
-                        <i class="fa-solid fa-calendar-days"></i>
-                    </div>
-                    <div>
-                        <p>From: <%=activity.Starttime%>  To:<%=activity.Endtime%></p> 
-                    </div>
-                </div>
+                        <div class="section">
+                            <div class="icon">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <div>
+                                <p>From: <%=activity.Starttime%>  To:<%=activity.Endtime%></p> 
+                            </div>
+                        </div>
 
-                <div class="section">
-                    <div class="icon">
-                        <i class="fa-solid fa-people-group"></i>
+                        <div class="section">
+                            <div class="icon">
+                                <i class="fa-solid fa-people-group"></i>
+                            </div>
+                            <div>
+                                <p>Participants: <%=cart.Activities[j].participants%></p> 
+                            </div>
+                        </div>
+                
+                        <div class="section">
+                            <div class="icon">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                            </div>
+                            <div>
+                                <p>This activity is non-refundable</p>
+                            </div>
+                        </div>
+                
                     </div>
-                    <div>
-                        <p>Participants: <%=cart.Activities[j].participants%></p> 
+                
+                    <div class="item-right">
+                        <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='cart/<%=id%>';"></i>
+                        <p class="price">Price: <%=cart.Activities[j].price%>LE </p>
                     </div>
                 </div>
-                
-                <div class="section">
-                    <div class="icon">
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                    </div>
-                    <div>
-                        <p>This activity is non-refundable</p>
-                    </div>
-                </div>
-                
-            </div>
-                
-            <div class="item-right">
-                <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='cart/<%=id%>';"></i>
-                <p class="price">Price: $<%=cart.Activities[j].price%> </p>
-            </div>
-        </div>
-        <%totalPrice+=cart.Activities[j].price;%>
-        <% j++;%>
-        <% id++;%>
-        <% count++; %>
+                <%totalPrice+=cart.Activities[j].price;%>
+                <% j++;%>
+                <% id++;%>
+                <% count++; %>
         <% }) %>
         <% } %>
-     </div>
+    </div>
         <% if(cart!="") {%>
-        <div class="r">
+            <div class="r">
             
-            <div class="right">
-                <div style="display:flex; height:30px;">
-                    <div style="flex:60%;">
-                        <span> <h3 >Total (<span id="cnt"><%=count%></span>):</h3></span>
-                    </div>
+                <div class="right">
+                    <div style="display:flex; height:30px;">
+                        <div style="flex:60%;">
+                            <span> <h3 >Total (<span id="cnt"><%=count%></span>):</h3></span>
+                        </div>
                     
+                        <div>
+                            <h3>
+                            <span id="total"><%=totalPrice%>LE</span>
+                            </h3>
+                        </div>
+                    
+                    </div>
                     <div>
-                        <h3>
-                           $ <span id="total"><%=totalPrice%></span>
-                        </h3>
+                    
+                        <p style="font-size:15px;">All taxes and fees included</p>
                     </div>
-                    
-                </div>
-                <div>
-                    
-                    <p style="font-size:15px;">All taxes and fees included</p>
-                </div>
-                <div style="text-align:center;">
-                    <button onclick="location.href='/paymentForm'">Checkout</button>
-                    <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='cart/clearCart'">Clear Cart</button>
+                    <div style="text-align:center;">
+                        <button onclick="location.href='/paymentForm'">Checkout</button>
+                        <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='cart/clearCart'">Clear Cart</button>
+                    </div>
                 </div>
             </div>
-        </div>
         <% } %>
             
 

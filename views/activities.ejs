@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,30 +36,7 @@
             display: none;
         }
     </style>
-    <script>
-        function filter(){
-            var match = false;
-            var query = document.getElementById('searchacts').value.toUpperCase();
-            var acts = document.getElementsByClassName('btn');
-            for (let index = 0; index < acts.length; index++) {
-                const element = acts[index];
-                var id = element.id.toUpperCase();
-                if(id.includes(query)){
-                    element.style.display='block';
-                    match = true;
-                }
-                else{
-                    element.style.display='none';
-                }
-            }
-            if(!match){
-                document.getElementById('nomatch').style.display='block';
-            }
-            else{
-                document.getElementById('nomatch').style.display='none';
-            }
-        }
-    </script>
+    
 </head>
 
 <body>
@@ -77,37 +54,47 @@
             <h2>Nothing matches your search...</h2>
         </div>
         
-
         <div class="first">
             <% if(activities!=="") { %>
-                <% let id=1; %>
-                <% activities.forEach((activity) => { %>
-                <div class="btn" id="<%=activity.Name%>" onclick="location.href= '/activities/<%=activity.Name%>'">
+                <% let id=0; %>
+                <% let i=0;%>
+                <% for (; i < activities.length; i++) {%>
+
+                <div id="nomatch">
+                        <h2>Nothing matches your search...</h2>
+                </div>
+                <%if(i < page || i > (end)){%>
+                        <%id =`hide:${i}`;%>
+                    <%}else{%>
+                        <%id = i;%>
+                    <%}%>
+                <div class="btn" id="<%=activities[i].Name%>-<%=id%>" onclick="location.href= '/activities/<%=activities[i].Name%>'">
                 <div>
-                    <img src="/images/activities/<%=activity.Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">
+                    <img src="/images/activities/<%=activities[i].Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">
                 </div>
 
             <div>
-                <h5><%=activity.Type%></h5>
-                <h4><%=activity.Header%> </h4>
-                <h5><%=activity.Duration%></h5>
-                <h5><mark><%=activity.Advantage%></mark></h5>
+                
+                <h5><%=activities[i].Type%></h5>
+                <h4><%=activities[i].Header%> <a href="/wishlist"> <i class="fa-regular fa-heart" style="color: #ff0000;"></i></a></h4>
+                <h5><%=activities[i].Duration%></h5>
+                <h5><mark><%=activities[i].Advantage%></mark></h5>
             </div>
-            <% if(activity.Reviews.length > 0){%>
+            <% if(activities[i].Reviews.length > 0){%>
             <div class="rating">
-                <%let revs = activity.Reviews;%>
+                <%let revs = activities[i].Reviews;%>
                 <% let sum =0;%>
                 <% revs.forEach((rev)=>{%>
                     <%sum+= parseInt(rev.Rating);%>
                 <%})%>
-                <%let avg = sum / (activity.Reviews.length)%>
+                <%let avg = sum / (activities[i].Reviews.length)%>
                 <% if(parseInt(avg) > 0){%>
                     <% for (let i = 0; i < avg; i++) {%>
                         <i class="fa-solid fa-star" style="color: rgb(238, 203, 5);"></i>
                     <%}%>
                     <div>
                         
-                        <p><span><i class="fa-sharp fa-solid fa-comments" style="color:black"></i></span> <%=activity.Reviews.length%> Reviews</p>
+                        <p><span><i class="fa-sharp fa-solid fa-comments" style="color:black"></i></span> <%=activities[i].Reviews.length%> Reviews</p>
                         
                     </div>
                     
@@ -119,11 +106,11 @@
                 </div>
             <%}%>
             <div>
-                <h4><%=activity.Price%>LE per person</h4>
+                <h4><%=activities[i].Price%>LE per person</h4>
             </div>
         </div>
         <% id++; %>
-        <% }); %>
+        <%}%>
     <% } %> 
     </div>
 </div>
@@ -133,16 +120,61 @@
     <div class="c">
         <div class="pagination">
                 <% let id1=0; %>
+                <%if(length!==undefined){%>
                 <% while(id1 !== length) { %>
-                <button type="submit" onclick="location.href='/activities/browse/page=<%=id1%>'"><p class="link" value="<%id1+1%>"><%=id1+1%></p></button>
+                <button type="submit" onclick="location.href='/activities/browse/page=<%=id1+1%>'"><p class="link" value="<%id1+1%>"><%=id1+1%></p></button>
                 <% id1++;%>
             <% } %>
+            <%}%>
         </div>
     </div>
     <% } %>
 
     <%- include("partials/footer.ejs") %>
 
+    <script>
+
+        var hide = document.querySelectorAll(`[id*="hide"]`);
+            hide.forEach(h => {
+                h.style.display = "none";
+            })
+
+        function filter() {
+            var match = false;
+            var query = document.getElementById('searchacts').value.toUpperCase();
+            var acts = document.getElementsByClassName('btn');
+            for (let index = 0; index < acts.length; index++) {
+                const element = acts[index];
+                var id = element.id.toUpperCase();
+                if (query !== "") {
+                    if (id.includes(query)) {
+                        element.style.display = 'flex';
+                        match = true;
+                    }
+                    else {
+                        element.style.display = 'none';
+                    }
+                }
+                else{
+                    if(!id.includes('HIDE')){
+                        console.log(element.id);
+                        element.style.display = 'flex';
+                    }
+                    else{
+                        element.style.display = 'none';
+                    }
+                    match = true;
+                }
+                        
+            }
+            if (!match) {
+                document.getElementById('nomatch').style.display = 'block';
+            }
+            else {
+                document.getElementById('nomatch').style.display = 'none';
+            }
+                }
+            </script>
 </body>
 
 </html>

@@ -4,11 +4,11 @@ const Activity = require('../models/activity.schema.js');
 const activityController=require('../controllers/activitiesController.js');
 
 
-router.get('/', activityController.getActivity);
+router.get('/', activityController.getActivities);
 
 router.get('/:name',activityController.getActivity1);
 
-router.get('/browse/page=:id',activityController.getActivitypage);
+router.get('/browse/page=:id',activityController.getActivityPage);
 
 router.post('/:name', activityController.postReview);
 

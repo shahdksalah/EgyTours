@@ -59,6 +59,7 @@ function donez(newid, list) {
     var typein = document.getElementById('addedtype');
     var roomin = document.getElementById('rooms');
     var capin = document.getElementById('cap');
+    var capin2 = document.getElementById('cap2');
 
     var newli;
 
@@ -83,9 +84,10 @@ function donez(newid, list) {
         newli.setAttribute('name', newid);
         document.getElementById('errorrooms').innerHTML = "";
         document.getElementById('errorcap').innerHTML = "";
+        document.getElementById('errorcap2').innerHTML = "";
         document.getElementById('errorprice').innerHTML = "";
         document.getElementById('success').innerHTML = "Saved successfully";
-        newli.innerHTML = `${typein.value} - ${price.value}LE | ${roomin.value} Rooms | Max. Capacity: ${capin.value}`;
+        newli.innerHTML = `${typein.value} - ${price.value}LE | ${roomin.value} Rooms | Capacity: ${capin.value} Adults + ${capin2.value} Children`;
 
         document.getElementById(list).appendChild(newli);
         document.getElementById(newli.id).parentNode.insertBefore(rembut, newli.nextSibling);
@@ -103,6 +105,7 @@ function donez(newid, list) {
             document.getElementById('errorprice').innerHTML = "";
             document.getElementById('errorrooms').innerHTML = "";
             document.getElementById('errorcap').innerHTML = "";
+            document.getElementById('errorcap2').innerHTML = "";
         })
     }
     if (roomin.value == "") {
@@ -113,8 +116,12 @@ function donez(newid, list) {
         document.getElementById('errorprice').innerHTML = "You must enter a price";
         document.getElementById('success').innerHTML = "";
     }
-    if (capin.value == "") {
-        document.getElementById('errorcap').innerHTML = "You must enter capacity";
+    if (capin.value === "") {
+        document.getElementById('errorcap').innerHTML = "You must enter adults capacity";
+        document.getElementById('success').innerHTML = "";
+    }
+    if(capin2.value === ""){
+        document.getElementById('errorcap2').innerHTML = "You must enter children capacity";
         document.getElementById('success').innerHTML = "";
     }
 
@@ -123,6 +130,7 @@ function donez(newid, list) {
         typein.value = "";
         roomin.value = "";
         capin.value = "";
+        capin2.value = "";
     }
 
 
@@ -160,7 +168,8 @@ document.getElementById('hotel').addEventListener('submit', e => {
     var typetext = document.getElementById('finaltypes');
     var pricetext = document.getElementById('finalprices');
     var roomtext = document.getElementById('finalrooms');
-    var captext = document.getElementById('finalcaps');
+    var adulttext = document.getElementById('finaladults');
+    var childtext = document.getElementById('finalchild');
 
     if (featlist.length == 0) {
         error = true;
@@ -188,7 +197,8 @@ document.getElementById('hotel').addEventListener('submit', e => {
             typetext.value += `${typelist[i].innerText.slice(0, typelist[i].innerText.indexOf('-') - 1)},`;
             pricetext.value += `${typelist[i].innerHTML.slice(typelist[i].innerText.indexOf('-') + 2, typelist[i].innerText.indexOf('L'))},`;
             roomtext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf('|') + 2, typelist[i].innerText.indexOf('R') - 1)},`;
-            captext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf(':') + 2, typelist[i].innerText.length)},`;
+            adulttext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf(':') + 2, typelist[i].innerText.indexOf('A') - 1)},`;
+            childtext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf('+') + 2, typelist[i].innerText.indexOf('C',typelist[i].innerText.indexOf("C")+1) - 1)},`;
         }
     }
 

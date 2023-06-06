@@ -56,7 +56,7 @@ const getSummary = async (req, res) => {
     }
 
 
-    res.render("AdminDashBoard",{Hotels:Hotels,Activities:Activities,tophotels:tophotelnames,
+    res.render("AdminDashboard",{Hotels:Hotels,Activities:Activities,tophotels:tophotelnames,
         hotelratings:avghotelratings,topactivities:topactivitynames,activityratings:avgactivityratings});
 
 }

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/wishlist.css">
+    <link rel="stylesheet" href="/css/styleHF_ALL.css">
+    <link rel="stylesheet" href="/css/styleForm.css">
+</head>
+<body>
+
+    <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
+ 
+    <%- include("partials/headerPages.ejs") %>
+
+    <h1 style="margin-left:2%;">Wish List</h1>
+    <% var j=0; %>
+    <% var d=1; %>
+    <% var count=0; %>
+
+    <div class="wishlist">
+        <div class="left" >
+            <% if(wishlist==="") {%>
+                <div style="margin-left: 40%; margin-top: 10%;">
+                    <h2>There is nothing in your favorites...</h2>
+                </div>
+            <% } %>
+            <div id="empty" style="margin-left: 40%; margin-top: 10%; display: none;">
+                <h2>There is nothing in your favorites...</h2>
+            </div>
+            <% if(hotels!="" && wishlist!=""){ %>
+                 <%hotels.forEach((hotel)=>{%>  
+            <div class="items" id="<%=d%>">
+                <div class="image">
+                    <div>
+                        <img src="../images/Hotels/<%= hotel.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
+                    </div>
+                </div>
+                <div class="item-info">
+        
+                    <div>
+                        <h2><%= hotel.Name %></h2>
+                    </div>
+                </div> 
+                <div class="item-right">
+                    <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='wishlist/<%=d%>';"></i>
+                    <p class="price">$ <%=wishlist.Hotels[j].price%></p>
+                </div>
+            </div>
+
+             <% j++; %>
+             <% d++; %>
+             <% count++; %>
+               <% })%>
+            <% } %>
+        
+        
+        <%var id=d; %>
+        <%j=0; %>
+        <% if(activities!="" && wishlist!=""){ %>
+            <%activities.forEach((activity)=>{%>   <!--showing activities cart -->
+        <div class="items" id="<%=id%>">
+            <div class="image">
+                <div>
+                    <img src="../images/activities/<%=activity.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
+                </div>
+            </div>
+            <div class="item-info">
+    
+                <div>
+                    <h2><%= activity.Name %></h2>
+                </div>
+                
+            </div>
+                
+            <div class="item-right">
+                <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='wishlist/<%=id%>';"></i>
+                <p class="price">Price: $<%=wishlist.Activities[j].price%> </p>
+            </div>
+        </div>
+        
+        <% j++;%>
+        <% id++;%>
+        <% count++; %>
+        <% }) %>
+        <% } %>
+     </div>
+        <% if(wishlist!="") {%>
+        <div class="r">
+            
+            <div class="right">
+                <div style="display:flex; height:30px;">
+                    <div style="flex:60%;">
+                        <span> <h3 >Total (<span id="cnt"><%=count%></span>):</h3></span>
+                    </div>
+                </div>
+               
+                <div style="text-align:center;">
+                    <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='wishlist/clearFavs'">Clear Favorites</button>
+                </div>
+            </div>
+        </div>
+        <% } %>
+            
+
+    </div>
+        
+    
+<div style="height:200px">
+
+</div>
+
+<%- include("partials/footer.ejs") %>
+
+</body>
+</html>

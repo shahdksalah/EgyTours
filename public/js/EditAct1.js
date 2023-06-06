@@ -119,7 +119,6 @@ function updateDate(showdate, confirmdate) {
   
   document.getElementById('act').addEventListener('submit', e => {
     var error = false;
-  e.preventDefault();
     var date = document.querySelectorAll(`[id^="dateinput"]`);
   
     var datelist = document.querySelectorAll(`[id^="dateli"]`);

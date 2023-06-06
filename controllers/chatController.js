@@ -8,8 +8,8 @@ const saveChat=async(req,res)=>{
             message:req.body.message
         });
 
-        await chat.save();
-        res.status(200).send({success:true,msg:'Chat inserted!'});
+        var newChat=await chat.save();
+        res.status(200).send({success:true,msg:'Chat inserted!',data:newChat});
     }
     catch(error){
         res.status(400).send({succes:false,msg:error.message});

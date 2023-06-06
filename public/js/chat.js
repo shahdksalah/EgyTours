@@ -34,7 +34,7 @@ function sendMessage() {
   };
 
   $.ajax({
-    url: "chat/submit",
+    url: "chat/saveChat",
     method: "POST",
     data: {  sender_id: sender.value,
       receiver_id:'6473bed00f4f61858f1cc898',

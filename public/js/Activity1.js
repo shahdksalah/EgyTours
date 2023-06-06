@@ -45,6 +45,7 @@ function isAvail(){
                       $('#participants').val(num);
                       $('#date').val(days);
                       $('#total1').html(sum);
+                      $('#price').val(sum);
                       $('#subForm').css("display","block");
                    }
                    else if(response==="Not Available"){

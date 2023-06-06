@@ -7,6 +7,7 @@ const activities = require('../models/activity.schema.js');
 const bcrypt = require("bcrypt");
 const { body, validationResult } = require('express-validator');
 
+
 const checkUN = (req, res) => {
     if (req.body.Username !== "" && !/\s/.test(req.body.Username) && req.body.Username.length >= 5) {
         var query = { Username: req.body.Username };
@@ -72,6 +73,7 @@ const validateLogin = async (req, res) => {
                             res.send("invalid");
                         }
                         else {
+                          
                             console.log("logged in sucessfully");
                             req.session.user = result[0];
                             req.session.authenticated = true;

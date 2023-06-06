@@ -93,27 +93,27 @@ function isAvail(){
   var roomType=document.getElementById("dropbtn4").value;
   var name=document.getElementById("name").value;
 
-$(document).ready(function () {
-     $.ajax({
-         url: `${name}/submit`,
-         method: 'POST',
-         data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType},
-         success: function (response) {
-           console.log(response);
-                if(response==="Available"){
-                 
-                   $('#subForm').css("display","block");
-                }
-                else if(response==="Not Available"){
-                 $('#avail').css("display","block");
-                }
 
-         },
-         error: function (err) {
+  $.ajax({
+      url: `${name}/submit`,
+      method: 'POST',
+      data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType},
+      success: function (response) {
+        console.log(response);
+            if(response==="Available"){
+              
+                $('#subForm').css("display","block");
+            }
+            else if(response==="Not Available"){
+              $('#avail').css("display","block");
+            }
 
-         }
-     });
+      },
+      error: function (err) {
+
+      }
+  });
      
-})
+
 
 }

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/styleForm.css">
   <link rel="stylesheet" href="/css/styleHotelTemplate.css">
 
+
 </head>
 
 <body>
@@ -277,7 +278,7 @@
             </div>
 
             <% if(user.Type !=="admin" || user==="" ){%>
-              <div class="booking">
+              <div class="booking" style="width:30%;">
                   <div id="inout">
                          <p id="name" style="display: none;"><%=hotel1[0].Name%></p>
                     <div id="in">
@@ -370,8 +371,8 @@
                     </div>
 
                   </div>
-                  <div>
-                    <button id="book" onclick="isAvail()">Check Availability</button>
+                  <div style="width:50%;">
+                    <button id="book" onclick="isAvail()" >Check Availability</button>
                     <span id="availerror"></span>
                   </div>
               </div>
@@ -379,7 +380,7 @@
                
 
               <form  id="subForm"  action="<%=hotel1[0].Name%>/<%=hotel1[0]._id%>"  method="post"
-                style="border: none;display: none;">
+                style="border: none;display: none; background-color:transparent;">
                 <div id="avail">
                   <h2>Available</h2>
                 

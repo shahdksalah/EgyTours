@@ -79,11 +79,11 @@
 
 <script>
   var sender_id='<%=user._id%>';
-  io('/user-namespace',{
-    auth:{
-      token:'<%=user._id%>'
-    }
-  });
+  // io('/user-namespace',{
+  //   auth:{
+  //     token:'<%=user._id%>'
+  //   }
+  // });
 </script>
 <script src="/socket.io/socket.io.js"></script>
 

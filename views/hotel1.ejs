@@ -278,7 +278,6 @@
 
             <% if(user.Type !=="admin" || user==="" ){%>
               <div class="booking">
-                <form id="bForm" action="<%=hotel1[0].Name%>/<%=hotel1[0]._id%>" method="post">
                   <div id="inout">
                          <input type="hidden" id="name" value=<%=hotel1[0].Name%>>
                     <div id="in">
@@ -375,10 +374,10 @@
                     <button id="book" onclick="isAvail()">Check Availability</button>
                     <span id="availerror"></span>
                   </div>
-
-                </form>
               </div>
               <%}%>
+
+              
                 <script src="/js/jazhotel.js"></script>
 
                 <% if(hotel1[0].Reviews.length !==0){%>

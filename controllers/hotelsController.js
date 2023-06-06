@@ -63,7 +63,6 @@ const getHotel1 = async (req, res) => {
 }
 
 const postActivityAvail = async (req, res) => {
-    var url = req.params.name;
     Activities = await Activity.find({ "Name": url });
     
     var adults=req.body.adults;
@@ -71,15 +70,26 @@ const postActivityAvail = async (req, res) => {
     var rooms=req.body.rooms;
     var roomType=req.body.roomType;
 
-  
-    var X = [];
-    const x = await Hotel.find().where("Name").equals(name);
 
-    X = Array.from(x);
-    console.log(X);
+    const hotel = await Hotel.find().where("Name").equals(req.params.name);
+
 
     var found = "false";
     var found2 = "false";
+
+    for(var i=0;i<hotel.RoomTypes.length;i++){
+        if(hotel.RoomTypes[i].Name === roomType){
+            if(hotel.RoomTypes[i].Capacity.RoomsBooked<hotel.RoomTypes[i].Rooms){
+                if(adults<=hotel.RoomTypes[i].Capacity.Adults && 
+                    children<=hotel.RoomTypes[i].Capacity.Children){
+                    found = "true";
+                }
+            }
+            else{
+                found2=true;
+            }
+        }
+    }
 
 
 

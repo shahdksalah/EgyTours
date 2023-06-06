@@ -280,7 +280,7 @@
               <div class="booking">
                 <form id="bForm" action="<%=hotel1[0].Name%>/<%=hotel1[0]._id%>" method="post">
                   <div id="inout">
-
+                         <input type="hidden" id="name" value=<%=hotel1[0].Name%>>
                     <div id="in">
                       <div>
                         <label for="checkIn" class="l">Check In</label>
@@ -372,7 +372,7 @@
 
                   </div>
                   <div>
-                    <button id="book" onclick="bookHotel()">Check Availability</button>
+                    <button id="book" onclick="isAvail()">Check Availability</button>
                     <span id="availerror"></span>
                   </div>
 

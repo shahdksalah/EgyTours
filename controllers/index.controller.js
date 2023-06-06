@@ -79,7 +79,7 @@ const validateLogin = async (req, res) => {
                             req.session.authenticated = true;
                             var array = [];
                             array = await city.find();
-                            res.redirect('/');
+                            res.redirect('back');
                             //res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alerts: "" });
                         }
                     })

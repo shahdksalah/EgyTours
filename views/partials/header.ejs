@@ -6,7 +6,7 @@
         border-radius: 7px;
         border: none;
         padding: 5px;
-        width: 30%;
+        width: 40%;
         float: right;
     } 
 
@@ -72,10 +72,10 @@
     .dropdown-content {
         position: relative;
         background-color: #f6f6f6;
-        width: 31.5%;
+        width: 41%;
         float: right;
         top: 52.5%;
-        left: 31.3%;
+        left: 41%;
         z-index: 0;
         border-radius: 10px;
 
@@ -111,11 +111,11 @@
     }
 
     #search {
-        flex: 67%;
+        flex: 63%;
     }
 
     .nav {
-        flex: 16%;
+        flex: 20%;
     }
 
     #dropItem {
@@ -201,7 +201,7 @@
 <div class="bgVisit">
     <header class="myHeader" id="myHeader" style="display: flex;">
         <div class="logoHead" style="flex:10%;">
-            <img id="logo" src="/images/homepage/logo.png" alt="logo">
+            <img id="logo" src="/images/homepage/EgyTours.png" alt="logo">
         </div>
 
         
@@ -218,13 +218,18 @@
                     <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
                     <%if(user!=="" && user.Type==='admin'){%>
                         <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
+                        <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
+                    <%}else if(user!=="" && user.Type==="client"){%>
+                        <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
+                        <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
                     <%}else{%>
                         <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
                         <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
                     <%}%>
                     
                     <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
-                    <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
+                    
                 </nav>
 
                 <div style="flex:7%" class="sign">

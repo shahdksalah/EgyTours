@@ -5,7 +5,7 @@ const chatController=require('../controllers/chatController.js');
 
 
 router.get("/", function (req, res) {
-  res.render("chat", {
+  res.render("chat1", {
     user: !req.session.authenticated ? "" : req.session.user,
   });
 });

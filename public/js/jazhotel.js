@@ -91,13 +91,15 @@ function isAvail(){
   var children=document.getElementById("dropbtn2").value;
   var rooms=document.getElementById("dropbtn3").value;
   var roomType=document.getElementById("dropbtn4").value;
-  var name=document.getElementById("name").value;
+  var name=document.getElementById("name").innerHTML;
+
+  console.log(name);
 
 
   $.ajax({
       url: `${name}/submit`,
       method: 'POST',
-      data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType},
+      data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType,name:name},
       success: function (response) {
         console.log(response);
             if(response==="Available"){

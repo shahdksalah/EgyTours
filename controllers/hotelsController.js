@@ -63,43 +63,61 @@ const getHotel1 = async (req, res) => {
 }
 
 const postHotelAvail = async (req, res) => {
-    Activities = await Activity.find({ "Name": url });
+   
     
     var adults=req.body.adults;
     var children=req.body.children;
     var rooms=req.body.rooms;
     var roomType=req.body.roomType;
+    var hotel;
+    console.log(roomType);
+    console.log(req.params.name);
 
+     await Hotel.find().where("Name").equals(req.body.name)
+    .then(result=>{
+        if(result.length>0){
 
-    const hotel = await Hotel.find().where("Name").equals(req.params.name);
+              hotel=result[0];
+              var found = "false";
+              var found2 = "false";
+              var roomsLeft;
 
+              console.log(roomType);
+          
+              for(var i=0;i<hotel.RoomTypes.length;i++){
+                  if(hotel.RoomTypes[i].Name === roomType){
+                     console.log("enetered");
+                      roomsLeft=hotel.RoomTypes[i].Rooms-hotel.RoomTypes[i].Capacity.RoomsBooked;
+          
+                      if(hotel.RoomTypes[i].Capacity.RoomsBooked<hotel.RoomTypes[i].Rooms  && rooms<=roomsLeft){
+                          if(adults<=hotel.RoomTypes[i].Capacity.Adults && 
+                              children<=hotel.RoomTypes[i].Capacity.Children){
+                              found = "true";
+                          }
+                      }
+                      else{
+                          found2="true";
+                      }
+                  }
+              }
+          
+          
+          
+              if (found === "true") {
+                  console.log("found");
+                  res.send("Available");
+              }
+          
+              else if (found2 === "true") {
+                  console.log("found2");
+                  res.send("Not Available");
+              }
 
-    var found = "false";
-    var found2 = "false";
-
-    for(var i=0;i<hotel.RoomTypes.length;i++){
-        if(hotel.RoomTypes[i].Name === roomType){
-            if(hotel.RoomTypes[i].Capacity.RoomsBooked<hotel.RoomTypes[i].Rooms){
-                if(adults<=hotel.RoomTypes[i].Capacity.Adults && 
-                    children<=hotel.RoomTypes[i].Capacity.Children){
-                    found = "true";
-                }
-            }
-            else{
-                found2=true;
-            }
         }
-    }
 
+    })
 
-
-    if (found === "true") {
-        res.send("Available");
-    }
-
-    else if (found2 === "true") {
-        res.send("Not Available");
-    }
+   
 
 }
 

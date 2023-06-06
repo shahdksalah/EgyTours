@@ -284,7 +284,7 @@
                       <div>
                         <label for="checkIn" class="l">Check In</label>
                         <% let tod=new Date().toISOString().split('T')[0];%>
-                            <input type="date" id="checkIn" name="checkIn" min="<%=tod%>">
+                            <input type="date" id="checkIn"  min="<%=tod%>">
 
                             <div id="ci-error" class="error-message">
                             </div>
@@ -294,7 +294,7 @@
                     <div id="out">
                       <div>
                         <label for="checkOut" class="l">Check Out</label>
-                        <input type="date" id="checkOut" name="checkOut" min="<%=tod%>">
+                        <input type="date" id="checkOut"  min="<%=tod%>">
 
                         <div id="co-error" class="error-message">
                         </div>
@@ -305,7 +305,7 @@
 
                   <div id="reserv">
                     <div>
-                      <input id="dropbtn1" list="Adults" placeholder="Adults" name="adults">
+                      <input id="dropbtn1" list="Adults" placeholder="Adults">
                       <datalist id="Adults">
                         <option value="1"></option>
                         <option value="2"></option>
@@ -320,7 +320,7 @@
                       </datalist>
                       <div id="ad-error" class="error-message">
                       </div>
-                      <input id="dropbtn2" list="Children" placeholder="Children" name="children">
+                      <input id="dropbtn2" list="Children" placeholder="Children" >
                       <datalist id="Children">
                         <option value="1"></option>
                         <option value="2"></option>
@@ -338,7 +338,7 @@
                     </div>
 
                     <div>
-                      <input id="dropbtn3" list="Rooms" placeholder="Rooms" name="rooms">
+                      <input id="dropbtn3" list="Rooms" placeholder="Rooms" >
                       <datalist id="Rooms">
                         <option value="1"></option>
                         <option value="2"></option>
@@ -353,7 +353,7 @@
                       </datalist>
                       <div id="r-error" class="error-message">
                       </div>
-                      <input id="dropbtn4" list="Types" placeholder="Room Type" name="roomType">
+                      <input id="dropbtn4" list="Types" placeholder="Room Type" >
                       <datalist id="Types">
                         <% if(hotel1[0]!=="" ){%>
                           <% let rooms=hotel1[0].RoomTypes%>
@@ -376,8 +376,32 @@
                   </div>
               </div>
               <%}%>
+               
 
-              
+              <form  id="subForm"  action="<%=hotel1[0].Name%>/<%=hotel1[0]._id%>"  method="post"
+                style="border: none;display: none;">
+                <div id="avail">
+                  <h2>Available</h2>
+                
+                
+                  <input type="hidden" id="checkin" name="checkIn" >
+                  <input type="hidden" id="checkout" name="checkOut" >
+                  <input type="hidden" id="ad" name="adults" >
+                  <input type="hidden" id="ch" name="children" >
+                  <input type="hidden" id="ro" name="rooms" >
+                  <input type="hidden" id="rt" name="roomType" >
+                  
+                  <div style="text-align: center; margin-top:15px;">
+                    <button type="submit" style="width:150px;cursor: pointer;">Add To Cart</button>
+                  </div>
+          
+                </div>
+              </form>
+
+              <div id="avail" style="display: none;">
+                <h2>No Availability</h2>
+              </div>
+
                 <script src="/js/jazhotel.js"></script>
 
                 <% if(hotel1[0].Reviews.length !==0){%>

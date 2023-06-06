@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Chat = require("../models/chatdb");
+
+
+
 router.get("/", function (req, res) {
-  res.render("chat", {
+  res.render("chat1", {
     user: !req.session.authenticated ? "" : req.session.user,
   });
 });
@@ -15,7 +18,7 @@ router.post("/submit", (req, res) => {
   chat
     .save()
     .then((result) => {
-      response.redirect("/chat");
+      response.redirect("/chat1");
     })
     .catch((err) => {
       console.log(err);

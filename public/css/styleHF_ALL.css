@@ -420,6 +420,22 @@ footer{
         height:50%;
 
     }
+
+    #myHeader button {
+        width: 4rem;
+        height: 2rem;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    #myHeader{
+        max-width: 100%;
+    }
+
+    .buttons{
+        margin-top: 10px;
+    }
+    
     
 
 }

@@ -44,17 +44,21 @@ function sendMessage() {
   $.ajax({
     url: "chat/saveChat",
     method: "POST",
-    data: {  sender_id: sender.value,
+    data: {  
+      sender_id: sender.value,
       receiver_id:'6473bed00f4f61858f1cc898',
+      name:nameInput.innerHTML,
       message: messageInput.value,
       dateTime: new Date(),  },
 
     success: function (response) {
       if(response.success){
         console.log(response);
-        messageInput.value = "";
-        addMessagetoUI(true, data);
+       
         socket.emit("newChat", data);
+        addMessagetoUI(true, data);
+        messageInput.value = "";
+        
       }
       else{
         alert(response.msg)

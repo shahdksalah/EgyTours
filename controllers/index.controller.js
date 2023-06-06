@@ -73,25 +73,7 @@ const validateLogin = async (req, res) => {
                             res.send("invalid");
                         }
                         else {
-                            var io = req.app.get('socketio');
-                            // let sockesConnected = new Set();
-                            // function onConnected(socket) {
-                            //     console.log("user connected");
-                            //     console.log("new socket added", socket.id);
-                            //     sockesConnected.add(socket.id);
-    
-                            //     socket.on("disconnect", () => {
-                            //         console.log("socket disconnected", socket.id);
-                            //         sockesConnected.delete(socket.id);
-                            //     });
-    
-                            //     socket.on("message", (data) => {
-                            //         socket.broadcast.emit("chat-message", data);
-                            //     });
-                            //     }
-                            // io.on("connection", onConnected);
-                           
-
+                          
                             console.log("logged in sucessfully");
                             req.session.user = result[0];
                             req.session.authenticated = true;

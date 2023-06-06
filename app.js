@@ -120,4 +120,4 @@ app.use("/chat", chatRoute);
 app.use("/editcities", editCities);
 app.use("/viewbookings", viewBookingsRoute);
 
-module.exports={io};
+

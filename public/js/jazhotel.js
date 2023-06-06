@@ -101,7 +101,12 @@ function isAvail(){
       success: function (response) {
         console.log(response);
             if(response==="Available"){
-              
+                $('#checkin').val(checkIn);
+                $('#checkout').val(checkOut);
+                $('#ad').val(adults);
+                $('#ch').val(children);
+                $('#ro').val(rooms);
+                $('#rt').val(roomType);
                 $('#subForm').css("display","block");
             }
             else if(response==="Not Available"){

@@ -28,7 +28,7 @@ function sendMessage() {
   }
   const data = {
     sender_id: sender.value,
-    receiver_id:'6473bed00f4f61858f1cc898',
+    name:nameInput.value,
     message: messageInput.value,
     dateTime: new Date(),
   };
@@ -41,18 +41,20 @@ function sendMessage() {
       message: messageInput.value,
       dateTime: new Date(),  },
 
-    success: function (data) {
-      if(data.success){
+    success: function (response) {
+      if(response.success){
+        console.log(response);
         messageInput.value = "";
+        addMessagetoUI(true, data);
       }
       else{
-        alert(data.msg)
+        alert(response.msg)
       }
     },
 
   });
   socket.emit("message", data);
-  addMessagetoUI(true, data);
+  
   
 }
 

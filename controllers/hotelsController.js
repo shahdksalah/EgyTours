@@ -62,6 +62,50 @@ const getHotel1 = async (req, res) => {
     res.render("hotel1", { hotel1: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
 }
 
+const postActivityAvail = async (req, res) => {
+    var url = req.params.name;
+    Activities = await Activity.find({ "Name": url });
+
+    var name = req.body.name2;
+    var num = req.body.num;
+    var date = req.body.days;
+    var X = [];
+    const x = await Activity.find().where("Name").equals(name);
+
+    X = Array.from(x);
+    console.log(X);
+
+    var found = "false";
+    var found2 = "false";
+
+    for (var s = 0; s < x[0].DatesDetails.length; s++) {
+        var k = x[0].DatesDetails[s].date;
+        console.log(k);
+
+        if (date === k) {
+            if (parseInt(num) + parseInt(x[0].DatesDetails[s].max) <= x[0].MaxParticipants) {
+                var newnum = parseInt(x[0].DatesDetails[s].max) + parseInt(num);
+                if (newnum <= x[0].MaxParticipants) {
+                    found = "true";
+                    number = s;
+                }
+            }
+            else {
+                found2 = "true";
+            }
+        }
+    }
+
+    if (found === "true") {
+        res.send("Available");
+    }
+
+    else if (found2 === "true") {
+        res.send("Not Available");
+    }
+
+}
+
 
 const addToCart = async (req, res) => {
     console.log('Entered')
@@ -191,4 +235,4 @@ const postReview = async (req, res) => {
     }
 }
 
-module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview };
+module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview , postActivityAvail};

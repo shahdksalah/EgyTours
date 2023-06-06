@@ -33,6 +33,7 @@
 
         <form class="message-form" id="message-form">
             <input type="text" name="message" id="message-input" class="message-input">
+            <input type="hidden" name="sender_id" id="sender" value="<%=user._id%>">
             <div class="v-divider"></div>
             <button type="submit" class="send-button">
                 send <span><i class="fas fa-paper-plane"></i></span>

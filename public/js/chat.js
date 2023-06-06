@@ -8,6 +8,8 @@ const messageForm = document.getElementById("message-form");
 
 const messageInput = document.getElementById("message-input");
 
+const senderId=document.getElementById("sender");
+
 var type = document.getElementById("usertype");
 
 messageForm.addEventListener("submit", (e) => {
@@ -25,7 +27,8 @@ function sendMessage() {
     name = nameInput.innerHTML;
   }
   const data = {
-    name: nameInput.innerHTML,
+    sender_id: sender.value,
+    receiver_id:'6473bed00f4f61858f1cc898',
     message: messageInput.value,
     dateTime: new Date(),
   };
@@ -33,12 +36,24 @@ function sendMessage() {
   $.ajax({
     url: "chat/submit",
     method: "POST",
-    data: { mydata: data },
-    success: function (response) {},
+    data: {  sender_id: sender.value,
+      receiver_id:'6473bed00f4f61858f1cc898',
+      message: messageInput.value,
+      dateTime: new Date(),  },
+
+    success: function (data) {
+      if(data.success){
+        messageInput.value = "";
+      }
+      else{
+        alert(data.msg)
+      }
+    },
+
   });
   socket.emit("message", data);
   addMessagetoUI(true, data);
-  messageInput.value = "";
+  
 }
 
 //for receiving a message

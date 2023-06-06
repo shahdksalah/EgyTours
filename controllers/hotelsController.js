@@ -87,9 +87,10 @@ const postHotelAvail = async (req, res) => {
               for(var i=0;i<hotel.RoomTypes.length;i++){
                   if(hotel.RoomTypes[i].Name === roomType){
                      console.log("enetered");
-                      roomsLeft=hotel.RoomTypes[i].Rooms-hotel.RoomTypes[i].Capacity.RoomsBooked;
+                      roomsLeft=parseInt(hotel.RoomTypes[i].Rooms)-parseInt(hotel.RoomTypes[i].RoomsBooked);
+                      console.log(roomsLeft);
           
-                      if(hotel.RoomTypes[i].Capacity.RoomsBooked<hotel.RoomTypes[i].Rooms  && rooms<=roomsLeft){
+                      if(hotel.RoomTypes[i].RoomsBooked<hotel.RoomTypes[i].Rooms  && rooms<=roomsLeft){
                           if(adults<=hotel.RoomTypes[i].Capacity.Adults && 
                               children<=hotel.RoomTypes[i].Capacity.Children){
                               found = "true";

@@ -84,6 +84,11 @@ async function onConnected(socket) {
     console.log("socket disconnected", socket.id);
     sockesConnected.delete(socket.id);
   });
+  
+  //chatting implementation
+  socket.on('newChat',function(data){
+       socket.broadcast.emit('loadNewChat',data)
+  })
 
   // socket.on("message", (data) => {
   //   socket.broadcast.emit("chat-message", data);

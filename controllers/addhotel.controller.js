@@ -7,7 +7,7 @@ const { body, validationResult } = require('express-validator');
 router.use(fileUpload());
 
 const getAddHotel = async (req, res) => {
-    res.render("addhotel", { alert: undefined, img: "" });
+    res.render("AddHotel", { alert: undefined, img: "" });
 }
 
 const validateHotel = () => {

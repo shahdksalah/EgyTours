@@ -1,96 +1,95 @@
-const express=require('express')
-const router=express.Router()
-const validate =require('../public/js/formsVal.js');
-const User =require('../models/usersdb.js');
-const mongoose =require('mongoose');
+const express = require('express')
+const router = express.Router()
+const validate = require('../public/js/formsVal.js');
+const User = require('../models/usersdb.js');
+const mongoose = require('mongoose');
 var db = mongoose.connection;
-const bodyParser=require('body-parser');
-const{check,validationResult} =require('express-validator');
-const urlencodedParser=bodyParser.urlencoded({ extended: false });
-const {getUsers,updateUser,deleteUser,toAdmin,toClient}=require('../controllers/usersController.js');
+const bodyParser = require('body-parser');
+const { check, validationResult } = require('express-validator');
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const { getUsers, updateUser, deleteUser, toAdmin, toClient,validateSignUp } = require('../controllers/usersController.js');
 router.use(bodyParser.json());
+const bcrypt = require("bcrypt");
+const city = require("../models/addcitiesdb.js");
 
 router.use((req, res, next) => {
   if (req.session.user !== undefined && req.session.user.Type === 'admin') {
-      next();
+    next();
   }
   else {
-      res.render('err', { err: 'You are not an Admin', user: (!req.session.authenticated) ? "" : req.session.user  })
+    res.render('err', { err: 'You are not an Admin', user: (!req.session.authenticated) ? "" : req.session.user })
   }
 
 });
 
-router.post('/success',urlencodedParser,[
-    check('uname','Username must be 3+ characters long')
-    .exists()
-    .isLength({min:3})
-    ,
-  
-    check('email','Email is not valid')
-    .isEmail()
-    .normalizeEmail(),
-    
-    check('number','Invalid phone number')
-    .isMobilePhone(),
-  
-    check('psw','Invalid Password')
-    .exists()
-    .isLength({min:6}),
-  
-    check('confpsw','Invalid Password')
-    .exists()
-    .isLength({min:6})
-  
-  ] ,(request, response) =>  {
-   // console.log("entered");
-  
-    const errors=validationResult(request)
-    if(!errors.isEmpty()){
-        const alert=errors.array();
-    }
-   else{
-      const userdetails = new User({
-          Username: request.body.uname,
-          Email: request.body.email,
-          PhoneNumber: request.body.number,
-          Password: request.body.psw,
-          ConfPassword: request.body.confpsw,
-        });
-        db.collection("users").insertOne(userdetails,(err,result)=>{
-          if(err)
-          {
-           console.log(err);
-          }
-          else{
-           console.log("saved");
-           response.redirect('/');
-          }
-    })
-   }
-    });
 
-router.post('/',urlencodedParser,[
-  check('upuname','Username must be 3+ characters long')
-  .exists()
-  .isLength({min:3})
+router.post("/success", validateSignUp(), async (req, res) => {
+  var Users=await User.find();
+
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const alert = errors.array();
+      console.log(alert);
+      res.render('users', {users:(Users==='undefined'?"":Users),userUpdated:false,msg:"", alert: alert });
+    }
+
+
+    else {
+      var type = "client";
+      console.log("signing up");
+      let hashedPass;
+      const saltRounds = 10;
+      bcrypt.hash(req.body.psw, saltRounds).then((hash) => {
+        hashedPass = hash;
+        console.log("Hash ", hashedPass);
+
+        var user = new User({
+          Username: req.body.uname,
+          Email: req.body.email,
+          PhoneNumber: req.body.number,
+          Password: hashedPass,
+          ConfPassword: hashedPass,
+          Type: type,
+        });
+        user.save().then((result) => {
+          console.log("user added");
+          res.render("users", {users:(Users==='undefined'?"":Users),userUpdated:false,msg:"", alert: alert });
+        });
+      });
+    }
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
+
+
+
+
+
+router.post('/', urlencodedParser, [
+  check('upuname', 'Username must be 3+ characters long')
+    .exists()
+    .isLength({ min: 3 })
   ,
 
-  check('upemail','Email is not valid')
-  .isEmail()
-  .normalizeEmail(),
-  
-  check('upnumber','Invalid phone number')
-  .isMobilePhone(),
+  check('upemail', 'Email is not valid')
+    .isEmail()
+    .normalizeEmail(),
 
-  check('uppsw','Invalid Password')
-  .exists()
-  .isLength({min:6}),
+  check('upnumber', 'Invalid phone number')
+    .isMobilePhone(),
 
-] ,updateUser);
+  check('uppsw', 'Invalid Password')
+    .exists()
+    .isLength({ min: 6 }),
 
-router.get('/',getUsers);
-router.post('/delete',deleteUser);
+], updateUser);
+
+router.get('/', getUsers);
+router.post('/delete', deleteUser);
 router.get("/toAdmin/:id", toAdmin);
 router.get("/toClient/:id", toClient);
-module.exports=router;
+module.exports = router;
 

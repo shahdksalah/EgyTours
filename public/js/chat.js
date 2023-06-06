@@ -28,7 +28,8 @@ function sendMessage() {
   }
   const data = {
     sender_id: sender.value,
-    name:nameInput.value,
+    receiver_id:'6473bed00f4f61858f1cc898',
+    name:nameInput.innerHTML,
     message: messageInput.value,
     dateTime: new Date(),
   };
@@ -46,6 +47,7 @@ function sendMessage() {
         console.log(response);
         messageInput.value = "";
         addMessagetoUI(true, data);
+        socket.emit("newChat", data);
       }
       else{
         alert(response.msg)
@@ -53,7 +55,7 @@ function sendMessage() {
     },
 
   });
-  socket.emit("message", data);
+ 
   
   
 }

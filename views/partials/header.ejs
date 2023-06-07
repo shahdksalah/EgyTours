@@ -8,7 +8,7 @@
         padding: 5px;
         width: 40%;
         float: right;
-    } 
+    }
 
     .nav {
         position: relative;
@@ -143,46 +143,84 @@
             width: 100%;
         }
 
-        #logo {
-            width: 300%;
-        }
+
 
         .nav {
-
             height: 20%;
             display: flex;
         }
 
         #search {
             position: relative;
-            left: 50%;
-            top: 51%;
-            flex: 60%;
-            width: 30%;
-            height: 60%;
         }
 
         #searchbar {
-            width: 180%;
+            width: 80%;
+            top: 55%;
+            left: 40%;
         }
 
-        header {
-            margin-right: 1%;
-        }
-
-        #dis {
+        .sign button {
+            left: -30%;
             position: relative;
-            bottom: 20px;
-            font-size: 25px;
         }
 
-        #but {
+        /* #but {
             margin-top: -83%;
             width: 30%;
             margin-left: -17%;
             font-size: 16px;
             height: 140%;
+        } */
+
+        #tex1 {
+            font-size: 22px;
         }
+
+        #signup,
+        #signin {
+            width: 60%;
+            height: 50%;
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        body {
+            width: 100%;
+        }
+
+        #logo {
+            width: 50px;
+        }
+
+        .nav {
+            height: 20%;
+            display: flex;
+        }
+
+        #search {
+            position: relative;
+        }
+
+        /* #searchbar {
+            width: 20%;
+            top: 70%;
+            left: 200%;
+            display: inline;
+        } */
+
+        .sign button {
+            left: -30%;
+            position: relative;
+        }
+
+        /* #but {
+            margin-top: -83%;
+            width: 30%;
+            margin-left: -17%;
+            font-size: 16px;
+            height: 140%;
+        } */
 
         #tex1 {
             font-size: 22px;
@@ -204,60 +242,55 @@
             <img id="logo" src="/images/homepage/egytours.png" alt="logo">
         </div>
 
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="/js/ajax-SEARCH.js"></script>
+        <div id='search'>
+            <input id="searchbar" name="searchbar" type="text" placeholder="Search..">
+            <div id="searchResults" class="dropdown-content">
+            </div>
+        </div>
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                <script src="/js/ajax-SEARCH.js"></script>
-                <div id='search'>
-                    <input id="searchbar" name="searchbar" type="text" placeholder="Search..">
-                    <div id="searchResults" class="dropdown-content">
-                    </div>
-                </div>
-
-                <nav class="nav">
-                    <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
-                    <%if(user!=="" && user.Type==='admin'){%>
-                        <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
-                        <!-- <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a> -->
-                    <%}else if(user!=="" && user.Type==="client"){%>
-                        <a href="/chat1" class="links"> <i class="fa-solid fa-comment"></i></i></a>
-                        <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
-                        <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
+        <nav class="nav">
+            <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
+            <%if(user!=="" && user.Type==='admin' ){%>
+                <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
+                <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
+                <%}else if(user!=="" && user.Type==="client" ){%>
+                    <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
+                    <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
                     <%}else{%>
                         <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
                         <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
-                    <%}%>
-                    
-                    <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
-                    
-                </nav>
+                        <%}%>
 
-                
+                            <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
 
+        </nav>
 
-                <div style="flex:7%" class="sign">
-                    <% if(user==="" ){ %>
-                        <span><button onclick="show('signin')">Sign In</button> </span>
-                        <%} else{%>
-                            <div>
-                                <button onmouseenter="showdrop()" class="dropbtn">
-                                    <%=user.Username%>
-                                </button>
-                                <div id="drop" onmouseleave="hidedrop()" style="display: none;">
+        <div style="flex:7%" class="sign">
+            <% if(user==="" ){ %>
+                <span><button onclick="show('signin')">Sign In</button> </span>
+                <%} else{%>
+                    <div>
+                        <button onmouseenter="showdrop()" class="dropbtn">
+                            <%=user.Username%>
+                        </button>
+                        <div id="drop" onmouseleave="hidedrop()" style="display: none;">
 
-                                    <a id='dropItem' href='/profile'><span><i class="fa-solid fa-user"></i></span> View
-                                        Profile</a>
-                                    <a id='dropItem' href='/signout'><span><i
-                                                class="fa-solid fa-right-from-bracket"></i></span> Logout</a>
-                                </div>
-                            </div>
-                            <% } %>
-                </div>
+                            <a id='dropItem' href='/profile'><span><i class="fa-solid fa-user"></i></span> View
+                                Profile</a>
+                            <a id='dropItem' href='/signout'><span><i class="fa-solid fa-right-from-bracket"></i></span>
+                                Logout</a>
+                        </div>
+                    </div>
+                    <% } %>
+        </div>
 
-                <script>
+        <script>
 
 
-                </script>
+        </script>
     </header>
 
     <div class="slogan">
@@ -313,13 +346,13 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="/js/ajax-LOGIN.js"></script>
-<script src="/js/ajax-UN.js"></script>
+
 <script src="/js/ajax-SIGNUP.js"></script>
 
 <script src="/js/popupJS.js" type="text/javascript"></script>
 <div class="signup" id="signup">
     <form class="form" method="post" action="/">
-        <div class="divclose2">
+        <div class="divclose2"> 
             <button type="button" class="close" onclick="hide2('signup','signin')"><i class="fa fa-close"></i></button>
         </div>
         <div class="signuptitle">
@@ -332,6 +365,7 @@
                 <span class="error-message" id="unam"></span>
                 <span class="error-message" id="result"></span>
             </div>
+            <script src="/js/ajax-UN.js"></script>
 
             <div class="input-group">
                 <label for="femail">Email</label>
@@ -357,7 +391,7 @@
                 <span class="error-message" id="pc"></span>
             </div>
 
-            <input type="hidden" name="type" value="client">
+            <input type="hidden" id="type" name="type" value="client">
             <span id="error"></span>
 
             <button type="submit" class="subutton" id="sub">Sign Up</button>

@@ -12,51 +12,43 @@
     <%- include("partials/headerPages.ejs") %>
 
     <h1 style="margin-left:2%;">Wish List</h1>
-    <% var j=0; %>
-    <% var d=1; %>
-    <% var count=0; %>
+    <%var count = 0%>
 
     <div class="wishlist">
         <div class="left" >
-            <% if(wishlist==="") {%>
+            <%if(user!==""){%>
+            <% if(user.Wishlist==="") {%>
                 <div style="margin-left: 40%; margin-top: 10%;">
                     <h2>There is nothing in your favorites...</h2>
                 </div>
             <% } %>
-            <div id="empty" style="margin-left: 40%; margin-top: 10%; display: none;">
-                <h2>There is nothing in your favorites...</h2>
-            </div>
-            <% if(hotels!="" && wishlist!=""){ %>
-                 <%hotels.forEach((hotel)=>{%>  
-            <div class="items" id="<%=d%>">
-                <div class="image">
-                    <div>
-                        <img src="../images/Hotels/<%= hotel.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
-                    </div>
-                </div>
-                <div class="item-info">
-        
-                    <div>
-                        <h2><%= hotel.Name %></h2>
-                    </div>
-                </div> 
-                <div class="item-right">
-                    <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='wishlist/<%=d%>';"></i>
-                    <p class="price">$ <%=wishlist.Hotels[j].price%></p>
-                </div>
-            </div>
+            
+            <%user.Wishlist.Hotels.forEach((hotel)=>{%>  
+                <div class="items" type="button" id="<%=hotel.Name%>" >
 
-             <% j++; %>
-             <% d++; %>
-             <% count++; %>
-               <% })%>
-            <% } %>
-        
-        
-        <%var id=d; %>
+                    <div class="image" style="flex:20%;" onclick="location.href= '/hotels/<%=hotel.Name%>'">
+                            <img src="../images/Hotels/<%=hotel.Picture%>" alt="icon" style="width:250px; height:200px;">
+                    </div>
+
+                    <div class="item-info" style="flex:50%" onclick="location.href= '/hotels/<%=hotel.Name%>'">
+                            <h2><%=hotel.Name%></h2>
+                            <h4><%=hotel.Location%></h4>
+                            <p><%=hotel.Caption%></p>
+                    </div> 
+                    <div class="item-right" style="flex:30%">
+                        <i class="fa-solid fa-trash-can" style="margin-left:10%; padding:20px;" onclick="location.href='/wishlist/remove-from-wishlist/<%=hotel.HotelID%>';"></i>
+                    </div>
+
+                </div>
+                <%count++;%>
+            <% })%>
         <%j=0; %>
-        <% if(activities!="" && wishlist!=""){ %>
-            <%activities.forEach((activity)=>{%>   <!--showing activities cart -->
+
+
+
+
+        <% if(user.Wishlist.Activities.length!=0){ %>
+            <%user.Wishlist.Activities.forEach((activity)=>{%>   <!--showing activities cart -->
         <div class="items" id="<%=id%>">
             <div class="image">
                 <div>
@@ -73,7 +65,7 @@
                 
             <div class="item-right">
                 <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='wishlist/<%=id%>';"></i>
-                <p class="price">Price: $<%=wishlist.Activities[j].price%> </p>
+                <p class="price">Price: $<%=wishlist.Activities[j].price%></p>
             </div>
         </div>
         
@@ -82,19 +74,26 @@
         <% count++; %>
         <% }) %>
         <% } %>
+        <%}else{%>
+            <div style="margin-left: 40%; margin-top: 10%;">
+                <%if(msg!=""){%>
+                    <h2><%=msg%></h2>
+                <%}%>
+                
+            </div>
+        <%}%>
      </div>
-        <% if(wishlist!="") {%>
-        <div class="r">
+        <% if(user!="" && user.Wishlist!="") {%>
+        <div class="r"style="flex:30%;">
             
-            <div class="right">
-                <div style="display:flex; height:30px;">
-                    <div style="flex:60%;">
-                        <span> <h3 >Total (<span id="cnt"><%=count%></span>):</h3></span>
-                    </div>
+            <div class="right" style="height:auto">
+                <div>
+                        <span style="text-align: center;"> <h3 >Total (<span id="cnt"><%=count%></span>) Items</h3></span>
+                    
                 </div>
                
                 <div style="text-align:center;">
-                    <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='wishlist/clearFavs'">Clear Favorites</button>
+                    <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='wishlist/clear'">Clear Favorites</button>
                 </div>
             </div>
         </div>

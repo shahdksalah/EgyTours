@@ -70,6 +70,8 @@
                     <%}else{%>
                         <%id = i;%>
                     <%}%>
+                    <input type="hidden" name="actname" value="<%=activities[i].Name%>">
+
                 <div class="btn" id="<%=activities[i].Header%>-<%=id%>" onclick="location.href= '/activities/<%=activities[i].Name%>'">
                 <div>
                     <img src="/images/activities/<%=activities[i].Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">
@@ -78,7 +80,7 @@
             <div>
                 
                 <h5><%=activities[i].Type%></h5>
-                <h4><%=activities[i].Header%> <a href="/wishlist"> <i class="fa-regular fa-heart" style="color: #ff0000;"></i></a></h4>
+                <h4><%=activities[i].Header%></h4>
                 <h5><%=activities[i].Duration%></h5>
                 <h5><mark><%=activities[i].Advantage%></mark></h5>
             </div>

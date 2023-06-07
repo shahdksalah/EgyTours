@@ -1,20 +1,21 @@
-html{
-    height:100%;
-}
-body{
-    position:relative;
-    margin:0;
-    min-height:100%;
-}  
-
-.myHeader{
-    height:100px;
-    background:transparent;
+html {
+    height: 100%;
 }
 
-.logoHead{
+body {
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+}
+
+.myHeader {
+    height: 100px;
+    background: transparent;
+}
+
+.logoHead {
     display: inline-block;
-    margin:13px;
+    margin: 13px;
 }
 
 .topnav {
@@ -22,8 +23,9 @@ body{
     background: transparent;
     float: right;
     height: 100px;
-    width:70%;
+    width: 70%;
 }
+
 .links {
     float: right;
     display: block;
@@ -39,211 +41,257 @@ body{
 }
 
 .links:hover {
-    color:rgb(214, 53, 17);
+    color: rgb(214, 53, 17);
     background-color: transparent;
 }
-.topnav input{
+
+.topnav input {
     border-radius: 15px;
     border: none;
     position: absolute;
-    right:10px;
-    margin-top:55px;
+    right: 10px;
+    margin-top: 55px;
     font-size: 17px;
-    width:360px;
-    height:25px;
+    width: 360px;
+    height: 25px;
 }
-.topnav input:focus{
+
+.topnav input:focus {
     outline: none;
     border: none;
 }
-.topnav #searchbar
-{
+
+.topnav #searchbar {
     float: right;
     display: block;
     color: grey;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    margin-top:-5%;
+    margin-top: -5%;
     position: relative;
     right: 200px;
-    margin-right:18%;
-    margin-left:25%;
+    margin-right: 18%;
+    margin-left: 25%;
 }
-.topnav button{
-    float:right;
+
+.topnav button {
+    float: right;
     position: relative;
-    margin-top:2%;
-    right:3%;
+    margin-top: 2%;
+    right: 3%;
     width: 120px;
-    height:30px;
+    height: 30px;
     border-radius: 10px;
     border: none;
     background-color: rgb(255, 255, 255);
     color: rgb(62, 49, 36);
     font-weight: bold;
 }
-.topnav button:hover{
+
+.topnav button:hover {
     background-color: rgb(214, 53, 17);
     color: white;
     cursor: pointer;
 }
+
 .sticky {
     position: fixed;
     top: 0;
     width: 100%;
-    height:70px;
+    height: 70px;
     background-color: rgb(54, 36, 27);
     z-index: 1000;
     transition: 0.5s;
-    color:white;
+    color: white;
 }
 
-.sticky+.bgVisit{
-    padding:102;
+.sticky+.bgVisit {
+    padding: 102;
 }
 
-.sticky a:hover{
-    color:rgb(177, 165, 109);
+.sticky a:hover {
+    color: rgb(177, 165, 109);
 }
 
-.sticky .topnav{
-    margin-top:0.5%;
+.sticky .topnav {
+    margin-top: 0.5%;
 }
 
-.sticky button:hover{
-    background-color:rgb(177, 165, 109);
-    color:rgb(54, 36, 27);
+.sticky button:hover {
+    background-color: rgb(177, 165, 109);
+    color: rgb(54, 36, 27);
 }
 
-footer{
-    position:relative;
-    bottom:0%;
+footer {
+    position: relative;
+    bottom: 0%;
     left: 0%;
-    right:0%;
+    right: 0%;
     background-color: #36241b;
     height: 250px;
     display: block;
 }
-.info{
-    display:flex;
-    color:white;
+
+.info {
+    display: flex;
+    color: white;
     justify-content: center;
 }
-.info a{
+
+.info a {
     text-decoration: none;
-    color:white;
+    color: white;
     cursor: pointer;
 }
-.info ul{
+
+.info ul {
     list-style-type: none;
     text-align: center;
     padding-left: 0;
-    
+
 }
-.col{
-    margin:1% 5% 1% 5%;
+
+.col {
+    margin: 1% 5% 1% 5%;
 }
-.titles{
+
+.titles {
     text-decoration: underline;
     text-underline-offset: 10px;
     text-align: center;
 }
-.lia{
-    text-decoration:none;
+
+.lia {
+    text-decoration: none;
     font-size: 12px;
 }
-.bottom{
-    width:100%;
+
+.bottom {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
-.botright{
-    flex:37%;
+
+.botright {
+    flex: 37%;
 }
-.botleft{
-    flex:63%;
-    padding-top:20px;
+
+.botleft {
+    flex: 63%;
+    padding-top: 20px;
     text-align: right;
 }
-.ficons i{
-    color:white;
-    margin-right:3%;
-    margin-top:2%;
+
+.ficons i {
+    color: white;
+    margin-right: 3%;
+    margin-top: 2%;
     font-size: 20px;
 }
-.copyright{
+
+.copyright {
     display: flex;
 }
 
 
-#tmail::-webkit-input-placeholder{
-    color:#a78c4c;
+#tmail::-webkit-input-placeholder {
+    color: #a78c4c;
 }
-#tmail{
-    border:3px solid #a78c4c;
-    padding:10px;
+
+#tmail {
+    border: 3px solid #a78c4c;
+    padding: 10px;
     background-color: #36241b;
-    color:#a78c4c;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    border-radius:20px;
-    width:350px;
+    color: #a78c4c;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    width: 350px;
 }
-#subscribe{
-    padding:10px;
-    border:0;
+
+#subscribe {
+    padding: 10px;
+    border: 0;
     color: white;
-    text-shadow:15px ;
+    text-shadow: 15px;
     font-size: 17px;
-    background-color:#a78c4c;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    border-radius:20px;
-    position:relative;
-    bottom:0px;
-    right:55px;
-    top:1px;
-    height:42px;
-    width:160px;
+    background-color: #a78c4c;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    position: relative;
+    bottom: 0px;
+    right: 55px;
+    top: 1px;
+    height: 42px;
+    width: 160px;
     cursor: pointer;
 }
+
 #subscribe:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 
 .dropdown {
-  position: relative;
-  display: inline-block;
-  height:60px;
+    position: relative;
+    display: inline-block;
+    height: 60px;
 }
 
 #dropdown-content {
-  display: none;
-  position: absolute;
-  right:30px;
-  margin-top: 50px;
-  background-color: #f9f9f9;
-  height: 50px;
-  width:120px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-radius: 5px;
+    display: none;
+    position: absolute;
+    right: 30px;
+    margin-top: 50px;
+    background-color: #f9f9f9;
+    height: 50px;
+    width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 
 }
 
 #dropdown-content a {
-  color: black;
-  font-size: 14px;
-  text-decoration: none;
-  width: 70px;
-  margin: 5px;
-  height: 8px;
+    color: black;
+    font-size: 14px;
+    text-decoration: none;
+    width: 70px;
+    margin: 5px;
+    height: 8px;
 }
 
-#dropdown-content a:hover {background-color: #f1f1f1;}
-  
+#dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
 .dropdown:hover .dropbtn {
     background-color: rgb(214, 53, 17);
     color: white;
     cursor: pointer;
 }
 
+
+@media screen and (max-width: 1020px) {
+
+    .myHeader {
+        max-width: 100%;
+    }
+
+    .sticky {
+        max-width: 100%;
+    }
+
+}
+
+
+@media screen and (max-width: 375px) {
+
+    .myHeader {
+        max-width: 100%;
+    }
+
+    .sticky {
+        max-width: 100%;
+    }
+
+}

@@ -1,11 +1,13 @@
-body{
-    background-color:rgb(222, 221, 214) ;
+body {
+    background-color: rgb(222, 221, 214);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     font-family: Arial, Helvetica, sans-serif;
 }
-.signin, .signup {
+
+.signin,
+.signup {
     display: none;
     position: fixed;
     width: 400px;
@@ -16,23 +18,28 @@ body{
     margin-top: -100px;
     z-index: 20;
     border-radius: 90px;
-    padding:10px;
+    padding: 10px;
 }
-.signup{
+
+.signup {
     height: 630px;
-    top:20%;
+    top: 20%;
 }
-#signin:after, #signup:after {
+
+#signin:after,
+#signup:after {
     position: fixed;
     content: "";
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: -2;
 }
-#signin:before, #signup:before {
+
+#signin:before,
+#signup:before {
     position: absolute;
     content: "";
     top: 0;
@@ -47,12 +54,13 @@ body{
 
 
 
-form{
+form {
     border: 3px solid #f1f1f1;
     border-radius: 10px;
-    padding:10px;
+    padding: 10px;
 }
-form input{
+
+form input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -61,9 +69,9 @@ form input{
     box-sizing: border-box;
 }
 
-.error-message{
-    height:15px;
-    color:red;
+.error-message {
+    height: 15px;
+    color: red;
     font-size: 13px;
     float: right;
 }
@@ -71,17 +79,19 @@ form input{
 .subutton {
     background-color: rgb(54, 36, 27);
     color: white;
-    margin-left:20%;
-    margin-top:2%;
+    margin-left: 20%;
+    margin-top: 2%;
     border: none;
     cursor: pointer;
     width: 60%;
     border-radius: 10px;
 }
-.divclose2{
-    float:left;
+
+.divclose2 {
+    float: left;
 }
-.close{
+
+.close {
     background-color: rgb(54, 36, 27);
     color: white;
     border-radius: 5px;
@@ -91,20 +101,21 @@ form input{
 .container {
     padding: 10px;
 }
-.container label{
-    color:rgb(54, 36, 27);
-    font-size: 15px; 
+
+.container label {
+    color: rgb(54, 36, 27);
+    font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-.signuptitle h2{
+.signuptitle h2 {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-.message{
+.message {
     color: #9e9e9e;
     font-size: 15px;
     text-align: center;
@@ -124,25 +135,29 @@ form input{
 
 
 
-#myHeader{
+#myHeader {
     margin-top: 0;
     width: 100%;
-    height:70px;
+    height: 70px;
     background-color: rgb(54, 36, 27);
     transition: 0.5s;
-    color:white;
+    color: white;
     display: flex;
-    
+
 }
-#myHeader button{
+
+#myHeader button {
     cursor: pointer;
 }
-#myHeader a:hover{
-    color:rgb(177, 165, 109);
+
+#myHeader a:hover {
+    color: rgb(177, 165, 109);
 }
-.sibutton{
-    flex:5%
+
+.sibutton {
+    flex: 5%
 }
+
 .headicons {
     color: rgb(255, 255, 255);
     font-weight: bold;
@@ -150,99 +165,110 @@ form input{
     text-decoration: none;
     font-size: 20px;
 }
-.topnav{
-    flex:40%;
-    margin-top:10px;
+
+.topnav {
+    flex: 40%;
+    margin-top: 10px;
 }
 
-#myHeader img{
-    width:60px;
+#myHeader img {
+    width: 60px;
 }
+
 .headicons a {
-    float:right;
+    float: right;
     display: block;
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     font-size: 20px;
-    margin-top:2.5%;
-    margin-left:20px;
+    margin-top: 2.5%;
+    margin-left: 20px;
     position: relative;
-    right:40px;
+    right: 40px;
 }
-.topnav input{
+
+.topnav input {
     border-radius: 10px;
     border: none;
     position: absolute;
-    right:10px;
-    margin-top:55px;
+    right: 10px;
+    margin-top: 55px;
     font-size: 17px;
-    width:300px;
-    height:25px;
+    width: 300px;
+    height: 25px;
 }
-.topnav #searchbar
-{
+
+.topnav #searchbar {
     float: right;
     display: block;
     color: grey;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    margin-top:-4%;
+    margin-top: -4%;
     position: relative;
     right: 200px;
-    margin-right:10%;
-    margin-left:25%;
+    margin-right: 10%;
+    margin-left: 25%;
 }
-.topnav button:hover{
-    background-color: rgb(177, 165, 109);;
+
+.topnav button:hover {
+    background-color: rgb(177, 165, 109);
+    ;
     cursor: pointer;
-    color:#36241b;
+    color: #36241b;
 }
-.topnav button{
-    float:right;
+
+.topnav button {
+    float: right;
     position: relative;
     width: 80px;
-    height:30px;
+    height: 30px;
     border-radius: 10px;
     border: none;
     background-color: rgb(255, 255, 255);
     color: rgb(62, 49, 36);
     font-weight: bold;
-    right:20px;
-    top:10px;
+    right: 20px;
+    top: 10px;
 }
-.logoHead{
-    flex:34%;
-    margin-top:10px;
+
+.logoHead {
+    flex: 34%;
+    margin-top: 10px;
     position: relative;
-    left:15px;
+    left: 15px;
 }
-.buttons{
-    flex:31%;
-    margin-top:5px;
-    margin-left:170px;
-    display:flex;
+
+.buttons {
+    flex: 31%;
+    margin-top: 5px;
+    margin-left: 170px;
+    display: flex;
 
 }
-.buttons button{
+
+.buttons button {
     border-radius: 8px;
-    color:white;
-    width:100px;
-    height:60px;
-    margin:0;
-    margin-right:35px;
+    color: white;
+    width: 100px;
+    height: 60px;
+    margin: 0;
+    margin-right: 35px;
     font-size: 20px;
-    border:none;
+    border: none;
     background-color: transparent;
     text-align: center;
-  }
-.buttons button:hover{
-    color:rgb(177, 165, 109);
 }
+
+.buttons button:hover {
+    color: rgb(177, 165, 109);
+}
+
 .topnav a:hover {
-    color:rgb(177, 165, 109);
+    color: rgb(177, 165, 109);
     background-color: transparent;
 }
 
@@ -258,168 +284,235 @@ form input{
 
 
 
-footer{
-    position:relative;
-    bottom:0%;
+footer {
+    position: relative;
+    bottom: 0%;
     left: 0%;
-    right:0%;
+    right: 0%;
     background-color: #36241b;
     height: 250px;
     display: block;
 }
-.info{
-    display:flex;
-    color:white;
+
+.info {
+    display: flex;
+    color: white;
     justify-content: center;
 }
-.info a{
+
+.info a {
     text-decoration: none;
-    color:white;
+    color: white;
     cursor: pointer;
 }
-.info ul{
+
+.info ul {
     list-style-type: none;
     text-align: center;
     padding-left: 0;
-    
+
 }
-.col{
-    margin:1% 5% 1% 5%;
+
+.col {
+    margin: 1% 5% 1% 5%;
 }
-.titles{
+
+.titles {
     text-decoration: underline;
     text-underline-offset: 10px;
     text-align: center;
 }
-.lia{
-    text-decoration:none;
+
+.lia {
+    text-decoration: none;
     font-size: 12px;
 }
-.bottom{
-    width:100%;
+
+.bottom {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
-.botright{
-    flex:37%;
+
+.botright {
+    flex: 37%;
 }
-.botleft{
-    flex:63%;
-    padding-top:20px;
+
+.botleft {
+    flex: 63%;
+    padding-top: 20px;
     text-align: right;
 }
-.ficons i{
-    color:white;
-    margin-right:3%;
-    margin-top:2%;
+
+.ficons i {
+    color: white;
+    margin-right: 3%;
+    margin-top: 2%;
     font-size: 20px;
 }
-.copyright{
+
+.copyright {
     display: flex;
 }
 
 
-#tmail::-webkit-input-placeholder{
-    color:#a78c4c;
+#tmail::-webkit-input-placeholder {
+    color: #a78c4c;
 }
-#tmail{
-    border:3px solid #a78c4c;
-    padding:10px;
+
+#tmail {
+    border: 3px solid #a78c4c;
+    padding: 10px;
     background-color: #36241b;
-    color:#a78c4c;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    border-radius:20px;
-    width:350px;
+    color: #a78c4c;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    width: 350px;
 }
-#subscribe{
-    padding:10px;
-    border:0;
+
+#subscribe {
+    padding: 10px;
+    border: 0;
     color: white;
-    text-shadow:15px ;
+    text-shadow: 15px;
     font-size: 17px;
-    background-color:#a78c4c;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    border-radius:20px;
-    position:relative;
-    bottom:0px;
-    right:55px;
-    top:1px;
-    height:42px;
-    width:160px;
+    background-color: #a78c4c;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    position: relative;
+    bottom: 0px;
+    right: 55px;
+    top: 1px;
+    height: 42px;
+    width: 160px;
     cursor: pointer;
 }
+
 #subscribe:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
-    height:60px;
-  }
-  
-  #dropdown-content {
+    height: 60px;
+}
+
+#dropdown-content {
     display: none;
     position: absolute;
-    right:30px;
+    right: 30px;
     margin-top: 50px;
     background-color: #f9f9f9;
     height: 50px;
-    width:120px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-  
-  }
-  
-  #dropdown-content a {
+
+}
+
+#dropdown-content a {
     color: black;
     font-size: 14px;
     text-decoration: none;
     width: 70px;
     margin: 5px;
     height: 8px;
-  }
-  
-  #dropdown-content a:hover {background-color: #f1f1f1;}
-    
-  .dropdown:hover .dropbtn {
-      background-color: rgb(214, 53, 17);
-      color: white;
-      cursor: pointer;
-  }
-  
-  
+}
+
+#dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgb(214, 53, 17);
+    color: white;
+    cursor: pointer;
+}
 
 
-.admin{
+
+
+.admin {
     width: 90px;
     position: absolute;
-    left:70%;
-    top:1.7%;
+    left: 70%;
+    top: 1.7%;
     height: 30px;
 }
-.admin a{
+
+.admin a {
     text-decoration: none;
     color: white;
     font-size: 20px;
 }
 
-.admin a:hover{
+.admin a:hover {
     background-color: transparent;
     color: rgb(214, 53, 17);
 }
 
-@media screen and (max-width: 1020px)
-{
-    #signup,#signin
-    {
-        width:50%;
-        height:50%;
+@media screen and (max-width: 1020px) {
+
+    #signup,
+    #signin {
+        width: 50%;
+        height: 50%;
 
     }
-    
+
+    #myHeader button {
+        width: 4rem;
+        height: 2rem;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    #myHeader {
+        max-width: 100%;
+    }
+
+    .buttons {
+        margin-top: 10px;
+    }
+
+
 
 }
+
+
+@media screen and (max-width: 375px) {
+
+
+    #signup,
+    #signin {
+        width: 50%;
+        height: 50%;
+
+    }
+
+    #myHeader button {
+        width: 4rem;
+        height: 2rem;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    #myHeader {
+        max-width: 100%;
+    }
+
+    .buttons {
+        margin-top: 10px;
+    }
+
+    body {
+        width: 975px;
+    }
+
+
+}
+
 
 
 
@@ -444,10 +537,12 @@ footer{
     background-color: rgb(214, 53, 17);
     color: white;
 }
-#drop{
-    position:relative;
-    z-index:1;
+
+#drop {
+    position: relative;
+    z-index: 1;
 }
+
 #dropItem {
     background-color: #f9f9f9;
     padding: 9px 5px;

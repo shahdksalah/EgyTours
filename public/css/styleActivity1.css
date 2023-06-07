@@ -216,12 +216,14 @@ span {
   padding: 20px;
   border-radius: 15px;
 }
-.first{
-  overflow-x:visible;
-  height:60%;
+
+.first {
+  overflow-x: visible;
+  height: 60%;
 }
-.subutton{
-  padding:6px;
+
+.subutton {
+  padding: 6px;
 }
 
 .addReviews form {
@@ -232,4 +234,57 @@ span {
 
 .R {
   font-size: 13px;
+}
+
+
+@media screen and (max-width: 1020px) {
+
+  .group {
+    font-size: 1rem;
+  }
+
+  .mySlides img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .body {
+    font-size: 1.3rem;
+    justify-content: center;
+    justify-self: center;
+  }
+
+  .addReviews {
+    position: relative;
+    left: 20%;
+  }
+
+}
+
+
+
+
+
+@media screen and (max-width: 375px) {
+
+  .group {
+    font-size: 1rem;
+  }
+
+  .mySlides img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .body {
+    font-size: 1.3rem;
+    justify-content: center;
+    justify-self: center;
+  }
+
+  .addReviews {
+    position: relative;
+    left: 20%;
+  }
+
 }

@@ -191,7 +191,7 @@
      
         <form  id="subForm"  action="<%=activity1[0].Name%>/<%=activity1[0]._id%>"  method="post"
           style="border: none;display: none;">
-      <div id="avail">
+      <div id="av">
         <h2>Available</h2>
         <div class="duration">
         <span><strong>FROM: </strong></span>
@@ -213,7 +213,7 @@
          <input type="hidden" id="price" name="price"  >
         
         <div style="text-align: center; margin-top:15px;">
-          <button type="submit" style="width:150px;cursor: pointer;">Add To Cart</button>
+          <button type="submit" id="add" style="width:150px;cursor: pointer;">Add To Cart</button>
         </div>
 
         <div>
@@ -227,7 +227,7 @@
    
 
       
-        <div id="avail" style="display: none;">
+        <div id="notavail" style="display: none;">
           <h2>No Availability</h2>
         </div>
           

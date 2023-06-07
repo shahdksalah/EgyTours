@@ -155,7 +155,7 @@ const postActivityAvail = async (req, res) => {
     if(found==="true" && (!req.session.authenticated)){
         res.send("found")
   }
-  else if (found === "true") {
+  else if (found === "true"&& (req.session.authenticated)) {
       res.send("Available");
   }
 

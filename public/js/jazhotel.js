@@ -95,15 +95,19 @@ function isAvail(){
 
   document.getElementById("notavail").style.display="none";
   document.getElementById("subForm").style.display="none";
-  
+  document.getElementById("t-error").innerHTML=""
 
+  if(checkIn=="" || checkOut=="" || adults=="" || children=="" || rooms=="" || roomType=="" || name==""){
+     document.getElementById("t-error").innerHTML="All fields required"
+  }
+    
   $.ajax({
       url: `${name}/submit`,
       method: 'POST',
       data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType,name:name},
       success: function (response) {
-        console.log(response);
-            if(response==="Available"){
+        console.log(response.msg);
+            if(response.msg==="Available"){
                 $('#checkin').val(checkIn);
                 $('#checkout').val(checkOut);
                 $('#ad').val(adults);
@@ -112,10 +116,17 @@ function isAvail(){
                 $('#rt').val(roomType);
                 $('#subForm').css("display","block");
             }
-            else if(response==="Not Available"){
+            else if(response.msg==="Not Available"){
+              if(response.unavail="people"){
+                $('#t-error').html(`This room type takes maximum ${response.adults} adult(s) and ${response.children} child(ren)`)
+              }
+              else if(response.unavail="rooms"){
+                $('#t-error').html('Rooms of this type are fully booked');
+              }
+              $('#t-error').css("display","block")
               $('#notavail').css("display","block");
             }
-            else if(response==="found"){
+            else if(response.msg==="found"){
               $('#m').css("display","block")
               $('#add'). css("display","none")
               $('#subForm').css("display","block");

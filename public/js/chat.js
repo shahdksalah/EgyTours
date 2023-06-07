@@ -16,10 +16,13 @@ var type = document.getElementById("usertype");
 
 var receiver_id;
 var sender_id=document.getElementById("senderid").innerHTML;
+var url;
 
 if (type.value === "admin") {
+    url="chat/saveChat"
     receiver_id=document.getElementById("receiverid").innerHTML;
 } else {
+    url="chat1/saveChat"
     receiver_id='6473bed00f4f61858f1cc898';
 }
 
@@ -36,7 +39,7 @@ var name;
 
 
 $.ajax({
-    url: "chat/saveChat",
+    url: "chat1/saveChat",
     method: "POST",
     data: {  
     sender_id: sender_id,

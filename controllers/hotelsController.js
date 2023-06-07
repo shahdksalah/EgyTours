@@ -3,6 +3,7 @@ const router = express.Router()
 const Hotel = require('../models/hotel.schema.js');
 const Cart = require('../models/cartdb.js');
 const moment = require('moment');
+const User = require('../models/usersdb.js');
 
 const getHotels = async (req, res) => {
     const page =req.query.p || 0;
@@ -14,10 +15,25 @@ const getHotels = async (req, res) => {
     var Hotels1 = [];
     Hotels1 = await Hotel.find();
     var length=Math.ceil(Hotels1.length/actPerPage);
-    res.render("hotels", {
-        hotels: (Hotels === 'undefined' ? "" : Hotels),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1
-    });
+    if(req.session.authenticated){
+        await User.findById(req.session.user._id)
+        .then(async result =>{
+            req.session.user = result;
+            req.session.authenticated = true;
+            console.log("session updated");
+            res.render("hotels", {
+                hotels: (Hotels === 'undefined' ? "" : Hotels),
+                user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1
+            });
+        })  
+    }else{
+        res.render("hotels", {
+            hotels: (Hotels === 'undefined' ? "" : Hotels),
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1
+        });
+    }
+    
+    
 }
 
 const getHotelPage = async (req, res) => {
@@ -46,12 +62,23 @@ const getHotelPage = async (req, res) => {
         end = actPerPage-1;
     }
 
+    if(req.session.authenticated){
+        await User.findById(req.session.user._id)
+        .then(async result =>{
+            req.session.user = result;
+            req.session.authenticated = true;
+            console.log("session updated");
+            res.render("hotels", {
+                hotels: (Hotels === 'undefined' ? "" : Hotels),
+                user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end});
+        }) 
+    }
+    else{
+        res.render("hotels", {
+            hotels: (Hotels === 'undefined' ? "" : Hotels),
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end});
+    }
     
-    res.render("hotels", {
-        hotels: (Hotels === 'undefined' ? "" : Hotels),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end});
-
-
 }
 
 

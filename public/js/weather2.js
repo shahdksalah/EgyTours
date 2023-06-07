@@ -1,8 +1,8 @@
 let weather = {
-    //api_key: "70ad934c4fb447329e0e66c606a80637",
+    api_key: "70ad934c4fb447329e0e66c606a80637",
 
     getweather: function (city) {
-        //fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.api_key)
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.api_key)
             .then(response => {
                 if (!response.ok) {
                     alert("No weather found");
@@ -25,8 +25,6 @@ let weather = {
         document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
         document.querySelector(".wind").innerText = "Wind speed: " + speed + "km/h";
         document.querySelector(".weather").classList.remove("loading");
-        document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + name + "')";
-
     },
 
     search: function () {

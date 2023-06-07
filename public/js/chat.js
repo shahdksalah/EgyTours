@@ -15,15 +15,16 @@ const senderId=document.getElementById("sender");
 var type = document.getElementById("usertype");
 
 var receiver_id;
-var sender_id=sender.value;
+var sender_id=document.getElementById("senderid").innerHTML;
 
 if (type.value === "admin") {
-    receiver_id='6473b4b88feb5746f0bf4530';
+    receiver_id=document.getElementById("receiverid").innerHTML;
 } else {
     receiver_id='6473bed00f4f61858f1cc898';
 }
 
 messageForm.addEventListener("submit", (e) => {
+console.log("submit")
 e.preventDefault();
 sendMessage();
 });
@@ -92,4 +93,13 @@ scrollToBottom();
 
 function scrollToBottom() {
 messageContainer.scrollTo(0, messageContainer.scrollHeight);
+}
+
+
+function openChat(name,id){
+    console.log(name);
+    console.log(id);
+     nameInput.innerHTML=name;
+     document.getElementById("receiverid").innerHTML=id;
+     document.getElementById("chat").style.display="block";
 }

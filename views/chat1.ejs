@@ -6,7 +6,7 @@
         integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" type="text/css" href="/css/styleHF.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleHF_ALL.css">
     <link rel="stylesheet" type="text/css" href="/css/styleForm.css">
     <link rel="stylesheet" type="text/css" href="/css/chat.css">
    
@@ -16,47 +16,46 @@
 <body>
    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <h1>iChat</h1>
-    <div class="main">
-        <div class="name">
-            <span><i class="far fa-user"></i></span>
-            <input type="hidden" value="<%=user.Type %>" id="usertype">
-            <p id="name-input" class="name-input" ><%=user.Username %></p> 
+
+    <%- include("partials/headerPages.ejs") %>
+
+    <div>
+        <div class="main" id="chat" style=" width: 460px;margin-top: 5%;margin-bottom: 6%;" >
+            <div class="name">
+                <span><i class="far fa-user"></i></span>
+                <input type="hidden" value="<%=user.Type %>" id="usertype">
+                <p id="name-input" class="name-input" ><%=user.Username %></p> 
+                 <p id="senderid"><%=user._id%></p>
+            </div>
+            <ul class="message-container" id="message-container">
+                <li class="message-left">
+                    <p class="message">
+                        <span></span>
+                    </p>
+                </li>
+                <li class="message-right">
+                    <p class="message">
+                        <span></span>
+                    </p>
+                </li>
+            </ul>
+
+            <form class="message-form" id="message-form">
+                <input type="text" name="message" id="message-input" class="message-input">
+                <input type="hidden" name="sender_id" id="sender" value="<%=user._id%>">
+                <div class="v-divider"></div>
+                <button type="submit" class="send-button">
+                    send <span><i class="fas fa-paper-plane"></i></span>
+                </button>
+            </form>
+
         </div>
-        <ul class="message-container" id="message-container">
-            <li class="message-left">
-                <p class="message">
-                    <span></span>
-                </p>
-            </li>
-            <li class="message-right">
-                <p class="message">
-                    <span></span>
-                </p>
-            </li>
-        </ul>
+   </div>
 
-        <form class="message-form" id="message-form">
-            <input type="text" name="message" id="message-input" class="message-input">
-            <input type="hidden" name="sender_id" id="sender" value="<%=user._id%>">
-            <div class="v-divider"></div>
-            <button type="submit" class="send-button">
-                send <span><i class="fas fa-paper-plane"></i></span>
-            </button>
-        </form>
-
+    <div id="foot">
+        <%- include("partials/footer.ejs") %>
     </div>
      
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-
-        var sender_id='<%=user._id%>';
-        
-
-     
-
-      
-    </script>
 
 
      <script src="/socket.io/socket.io.js"></script>
@@ -64,6 +63,8 @@
         integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         // <script src="/js/chat.js" type="text/javascript"></script>
+
 </body>
+
 
 </html>

@@ -1,5 +1,5 @@
 .chatbox{
-    border: 1px solid grey;
+    border: 1px solid lightblue;
     border-radius: 5px;
     width:300px;
     height:400px;
@@ -43,7 +43,7 @@
 
 
 .left-message, .right-message{
-    background-color: rgb(172, 171, 171);
+    background-color: lightblue;
     width:200px;
     height:30px;
     border-radius: 5px;
@@ -53,7 +53,7 @@
 
 .right-message{
     float:right;
-    background-color: rgb(187, 217, 245);
+    background-color: lightblue;
 }
 .right-message img,.left-message img{
     margin:7%;

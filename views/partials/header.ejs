@@ -143,7 +143,7 @@
             width: 100%;
         }
 
-       
+
 
         .nav {
             height: 20%;
@@ -160,7 +160,56 @@
             left: 40%;
         }
 
-        .sign button{
+        .sign button {
+            left: -30%;
+            position: relative;
+        }
+
+        /* #but {
+            margin-top: -83%;
+            width: 30%;
+            margin-left: -17%;
+            font-size: 16px;
+            height: 140%;
+        } */
+
+        #tex1 {
+            font-size: 22px;
+        }
+
+        #signup,
+        #signin {
+            width: 60%;
+            height: 50%;
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        body {
+            width: 100%;
+        }
+
+        #logo {
+            width: 50px;
+        }
+
+        .nav {
+            height: 20%;
+            display: flex;
+        }
+
+        #search {
+            position: relative;
+        }
+
+        /* #searchbar {
+            width: 20%;
+            top: 70%;
+            left: 200%;
+            display: inline;
+        } */
+
+        .sign button {
             left: -30%;
             position: relative;
         }
@@ -193,13 +242,13 @@
             <img id="logo" src="/images/homepage/egytours.png" alt="logo">
         </div>
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                <script src="/js/ajax-SEARCH.js"></script>
-                <div id='search'>
-                    <input id="searchbar" name="searchbar" type="text" placeholder="Search..">
-                    <div id="searchResults" class="dropdown-content">
-                    </div>
-                </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="/js/ajax-SEARCH.js"></script>
+        <div id='search'>
+            <input id="searchbar" name="searchbar" type="text" placeholder="Search..">
+            <div id="searchResults" class="dropdown-content">
+            </div>
+        </div>
 
         <nav class="nav">
             <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>

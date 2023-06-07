@@ -273,11 +273,24 @@ footer {
 
 @media screen and (max-width: 1020px) {
 
-    .myHeader{
+    .myHeader {
         max-width: 100%;
     }
 
-    .sticky{
+    .sticky {
+        max-width: 100%;
+    }
+
+}
+
+
+@media screen and (max-width: 375px) {
+
+    .myHeader {
+        max-width: 100%;
+    }
+
+    .sticky {
         max-width: 100%;
     }
 

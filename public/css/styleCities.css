@@ -60,15 +60,31 @@
     font-weight: bold;
 }
 
-@media screen and (max-width: 1020px)
-{
+
+@media screen and (max-width: 1020px) {
 
     .allimages {
-       max-width: 100%;
-       flex-wrap: wrap;
+        max-width: 100%;
+        flex-wrap: wrap;
     }
-    
+
     .row {
+        display: flex;
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+
+}
+
+@media screen and (max-width: 375px) {
+
+    .allimages {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .row {
+        display: flex;
         max-width: 100%;
         flex-wrap: wrap;
     }

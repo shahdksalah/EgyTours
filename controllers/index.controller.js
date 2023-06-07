@@ -164,5 +164,42 @@ const validateSignUp = () => {
 
 }
 
+const UserSignUp = async (req,res)=>{
+    try {
+        console.log("ajax");
+        var array = [];
+        array = await city.find();
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          var alerts = errors.array();
+          console.log(alerts);
+          res.send(alerts);
+        } else {
+          console.log("signing up");
+          let hashedPass;
+          const saltRounds = 10;
+          bcrypt.hash(req.body.Password, saltRounds).then((hash) => {
+            hashedPass = hash;
+            var user = new User({
+              Username: req.body.Username,
+              Email: req.body.Email,
+              PhoneNumber: req.body.Number,
+              Password: hashedPass,
+              ConfPassword: hashedPass,
+              Type: req.body.Type,
+            });
+            user.save().then((result) => {
+              console.log("client added and logged in");
+              req.session.user = result;
+              req.session.authenticated = true;
+              res.redirect("back");
+            });
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+}
 
-module.exports = { validateLogin, checkUN, searchHandler, validateSignUp };
+
+module.exports = { validateLogin, checkUN, searchHandler, validateSignUp, UserSignUp };

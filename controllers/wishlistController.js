@@ -20,7 +20,7 @@ const viewFavs = async function (req, res) {
 
 const removeFromFavs = async (req, res) => {
   var finalhotels = [];
-  console.log("remove from favs");
+  console.log("removing hotel from wishlist");
   await Hotel.findById(req.params.id)
     .then(async result => {
       await User.findById(req.session.user._id)
@@ -37,7 +37,6 @@ const removeFromFavs = async (req, res) => {
           })
             .then(async resss => {
               console.log("hotel deleted from wish list");
-              console.log(finalhotels);
               req.session.user = resu;
               req.session.authenticated = true;
               console.log("session updated");

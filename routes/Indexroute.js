@@ -14,6 +14,7 @@ const {
   checkUN,
   searchHandler,
   validateSignUp,
+  UserSignUp
 } = require("../controllers/index.controller.js");
 router.use(bodyParser.json());
 
@@ -67,44 +68,8 @@ router.get("/cities/:name", async function (req, res) {
   });
 });
 
-//router.post('/', validateSignUp(), userSignUp);
 
-router.post("/signup", validateSignUp(), async (req, res) => {
-  try {
-    console.log("ajax");
-    var array = [];
-    array = await city.find();
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      var alerts = errors.array();
-      console.log(alerts);
-      res.send(alerts);
-    } else {
-      console.log("signing up");
-      let hashedPass;
-      const saltRounds = 10;
-      bcrypt.hash(req.body.Password, saltRounds).then((hash) => {
-        hashedPass = hash;
-        var user = new User({
-          Username: req.body.Username,
-          Email: req.body.Email,
-          PhoneNumber: req.body.Number,
-          Password: hashedPass,
-          ConfPassword: hashedPass,
-          Type: req.body.Type,
-        });
-        user.save().then((result) => {
-          console.log("client added and logged in");
-          req.session.user = result;
-          req.session.authenticated = true;
-          res.redirect("back");
-        });
-      });
-    }
-  } catch (err) {
-    console.log(err);
-  }
-});
+router.post("/signup", validateSignUp(), UserSignUp);
 
 router.post("/checkUN", checkUN);
 

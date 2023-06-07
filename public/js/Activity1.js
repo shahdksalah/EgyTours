@@ -69,8 +69,9 @@ function isAvail(){
             $('#total1').html(sum);
             $('#price').val(sum);
             $('#m').css("display","block")
-            $('#add'). css("display","none")
             $('#subForm').css("display","block");
+            $('#avail').css("display","block");
+
           }
 
         },

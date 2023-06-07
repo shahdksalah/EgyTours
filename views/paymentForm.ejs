@@ -31,7 +31,7 @@
                                     </p>
                                     <p>Rooms: <%= hotel.rooms %>x <%=hotel.roomType %>
                                     </p>
-                                    <p>Price: <%=hotel.days%>x $<%=hotel.price /hotel.days%>
+                                    <p>Price: <%=hotel.days%>x <%=hotel.price /hotel.days%>LE
                                     </p>
                                 </div>
                                 <% totalPrice+=hotel.price %>
@@ -49,15 +49,15 @@
                                                             <p> From: <%=activities[i].Starttime %> To:
                                                                     <%=activities[i].Endtime %>
                                                             </p>
-                                                            <p>Price: <%=activity.participants%>x $<%=activity.price
-                                                                        /activity.participants%>
+                                                            <p>Price: <%=activity.participants%>x <%=activity.price
+                                                                        /activity.participants%>LE
                                                             </p>
                                                         </div>
                                                         <% totalPrice+=activity.price %>
                                                             <% }) %>
                                                                 <% } %>
                                                                     <hr>
-                                                                    <p>Total Price: $<%=totalPrice%>
+                                                                    <p>Total Price: <%=totalPrice%>LE
                                                                     </p>
             </div>
 

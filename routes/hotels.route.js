@@ -13,11 +13,11 @@ router.get('/page=:id', hotelController.getHotelPage);
 
 router.get('/browse/:name', hotelController.getHotel1);
 
-router.post('/:name', hotelController.postReview);
+router.post('/browse/:name', hotelController.postReview);
 
-router.post('/:name/submit', hotelController.postHotelAvail);
+router.post('/browse/:name/submit', hotelController.postHotelAvail);
 
-router.post('/:name/:id', hotelController.addToCart);
+router.post('/browse/:name/:id', hotelController.addToCart);
 
 router.get('/add-to-wishlist/:name', hotelController.addToWishlist);
 

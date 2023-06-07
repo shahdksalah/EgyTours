@@ -102,7 +102,7 @@ function isAvail(){
   }
     
   $.ajax({
-      url: `${name}/submit`,
+      url:`/hotels/browse/${name}/submit`,
       method: 'POST',
       data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType,name:name},
       success: function (response) {

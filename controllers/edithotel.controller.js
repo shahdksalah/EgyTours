@@ -32,7 +32,8 @@ const updateHotel = async (req, res) => {
 
     await Hotel.findById(req.body.id)
     .then((result)=>{
-        var prevbooked;
+        if(result){
+            var prevbooked;
         for (var i = 0; i < reqtypes.length - 1; i++) {
             prevbooked = result.RoomTypes[i].RoomsBooked;
             types[i] = {
@@ -46,6 +47,8 @@ const updateHotel = async (req, res) => {
                 RoomsBooked: prevbooked,
             }
         }
+        }
+        
     })
     
 

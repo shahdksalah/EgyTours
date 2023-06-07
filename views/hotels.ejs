@@ -83,7 +83,6 @@
                                         <% var found = false;%>
                                          <%if(user.Wishlist.Hotels.length!=0){%>
                                             <%user.Wishlist.Hotels.forEach(hot=>{%>
-                                                <%console.log(hot.HotelID);%>
                                                 <%if(hot.HotelID.equals(hotels[i]._id)){%>
                                                     <%found = true;%>
                                                     <%}%>

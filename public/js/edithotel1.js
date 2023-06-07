@@ -295,17 +295,14 @@ document.getElementById('MYFORM').addEventListener('submit', event => {
   var childtext = document.getElementById('finalchild');
 
   for (var i = 0; i < featlist.length; i++) {
-    console.log(featlist[i].innerHTML);
     feattext.value += `${featlist[i].innerHTML},`;
   }
 
   for (var i = 0; i < amenlist.length; i++) {
-    console.log(amenlist[i].innerHTML);
     amentext.value += `${amenlist[i].innerHTML},`;
   }
 
   for (var i = 0; i < typelist.length; i++) {
-    console.log(typelist[i].innerText);
     typetext.value += `${typelist[i].innerText.slice(0, typelist[i].innerText.indexOf('-') - 1)},`;
     pricetext.value += `${typelist[i].innerHTML.slice(typelist[i].innerText.indexOf('-') + 2, typelist[i].innerText.indexOf('L'))},`;
     roomtext.value += `${typelist[i].innerText.slice(typelist[i].innerText.indexOf('|') + 2, typelist[i].innerText.indexOf('R') - 1)},`;

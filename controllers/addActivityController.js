@@ -11,7 +11,6 @@ const { body, validationResult } = require('express-validator');
 const getAddActivity = async (req, res) => {
   res.render("AddActivity", { alert: undefined });
 }
-
 const validateActivity = () => {
   return [
           body('Aname')

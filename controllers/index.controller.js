@@ -73,7 +73,6 @@ const validateLogin = async (req, res) => {
                             res.send("invalid");
                         }
                         else {
-                          
                             console.log("logged in sucessfully");
                             req.session.user = result[0];
                             req.session.authenticated = true;
@@ -158,7 +157,7 @@ const validateSignUp = () => {
             .isLength({ min: 6 })
             .withMessage('Password confirmation must be 6+ characters')
             .bail()
-            .custom((value, { req }) => value === req.body.psw)
+            .custom((value, { req }) => value === req.body.Password)
             .withMessage("Passwords do not match"),
     ]
 

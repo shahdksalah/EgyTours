@@ -70,6 +70,8 @@ const postHotelAvail = async (req, res) => {
     var rooms=req.body.rooms;
     var roomType=req.body.roomType;
     var hotel;
+    var unavail;
+    var ad,ch;
     console.log(roomType);
     console.log(req.params.name);
 
@@ -96,10 +98,14 @@ const postHotelAvail = async (req, res) => {
                               found = "true";
                           }
                           else{
+                            unavail="people"
+                            ad=hotel.RoomTypes[i].Capacity.Adults;
+                            ch=hotel.RoomTypes[i].Capacity.Children;
                             found2="true"
                           }
                       }
                       else{
+                          unavail="rooms"
                           found2="true";
                       }
                   }
@@ -107,17 +113,22 @@ const postHotelAvail = async (req, res) => {
           
                
               if(!req.session.authenticated && found==="true"){
-                 res.send("found");
+                 res.send({msg:"found"});
               }
           
               else if (found === "true") {
                   console.log("found");
-                  res.send("Available");
+                  res.send({msg:"Available"});
               }
           
               else if (found2 === "true") {
                   console.log("found2");
-                  res.send("Not Available");
+                  if(unavail="people"){
+                  res.send({msg:"Not Available",unavail:"people",adults:ad,children:ch});
+                  }
+                  else{
+                    res.send({msg:"Not Available",unavail:"rooms"})
+                  }
               }
 
         }

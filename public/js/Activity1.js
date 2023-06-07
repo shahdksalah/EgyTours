@@ -27,8 +27,14 @@ function isAvail(){
      var name2=document.getElementById("name").value;
      var num=document.getElementsByClassName("l")[0].value;
      var days=document.getElementsByClassName("l")[1].value;
-     console.log(num);
-     console.log(days);
+     document.getElementById("avail").style.display="none";
+     document.getElementById("subForm").style.display="none";
+     document.getElementById("date-msg").innerHTML="";
+     
+     if(num=="" || days==""){
+      document.getElementById("date-msg").innerHTML="All fields required";
+
+     }
   
     $.ajax({
         url: `${name2}/submit`,
@@ -49,7 +55,8 @@ function isAvail(){
             $('#subForm').css("display","block");
           }
           if(response==="Not Available"){
-          $('#avail').css("display","block");
+              $('date-msg').html("This date is fully booked")
+              $('#avail').css("display","block");
           }
           if(response==="found" && num!=0){
             $('#num1').html(num);

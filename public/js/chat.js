@@ -39,7 +39,7 @@ var name;
 
 
 $.ajax({
-    url: "chat1/saveChat",
+    url: url,
     method: "POST",
     data: {  
     sender_id: sender_id,

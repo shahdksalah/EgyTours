@@ -9,6 +9,7 @@ const { body, validationResult } = require('express-validator');
 
 
 const checkUN = (req, res) => {
+    console.log("ajax testing");
     if (req.body.Username !== "" && !/\s/.test(req.body.Username) && req.body.Username.length >= 5) {
         var query = { Username: req.body.Username };
         User.find(query)

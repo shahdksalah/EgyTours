@@ -36,7 +36,7 @@
                             <p><%=hotel.Caption%></p>
                     </div> 
                     <div class="item-right" style="flex:30%">
-                        <i class="fa-solid fa-trash-can" style="margin-left:10%; padding:20px;" onclick="location.href='/remove-from-wishlist/<%=hotel.Name%>';"></i>
+                        <i class="fa-solid fa-trash-can" style="margin-left:10%; padding:20px;" onclick="location.href='/wishlist/remove-from-wishlist/<%=hotel.HotelID%>';"></i>
                     </div>
 
                 </div>
@@ -65,7 +65,7 @@
                 
             <div class="item-right">
                 <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='wishlist/<%=id%>';"></i>
-                <p class="price">Price: $<%=wishlist.Activities[j].price%> </p>
+                <p class="price">Price: $<%=wishlist.Activities[j].price%></p>
             </div>
         </div>
         
@@ -93,7 +93,7 @@
                 </div>
                
                 <div style="text-align:center;">
-                    <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='wishlist/clearFavs'">Clear Favorites</button>
+                    <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='wishlist/clear'">Clear Favorites</button>
                 </div>
             </div>
         </div>

@@ -13,8 +13,13 @@
         
         <div class="headicons">
             <a href="/aboutus"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
-            <%if(user!=="" && user.Type==='admin'){%>
-                <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
+            <%if(user!==undefined){%>
+                <%if(user.Type==='admin'){%>
+                    <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
+                <%}else{%>
+                    <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
+                <%}%>  
             <%}else{%>
                 <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
                 <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
@@ -119,7 +124,7 @@
                 <span class="error-message" id="pc"></span>
             </div>
 
-            <input type="hidden" name="type" value="client">
+            <input type="hidden" id="type" name="type" value="client">
             <span id="error"></span>
 
             <button type="submit" class="subutton" id="sub">Sign Up</button>

@@ -9,102 +9,22 @@ const viewFavs = async function (req, res) {
   var length;
   var counter = 0;
   var cont = false;
-  
-  if (req.session.authenticated) {    
-    console.log("authenticated")
-    const promise1 = new Promise(async (resolve, reject) => {
 
-      await Wishlist.find().where("User").equals(req.session.user._id)  
-        .then(result => {
-
-          if (result.length !== 0) {
-            wishlist = result[0];
-            length = wishlist.Hotels.length + wishlist.Activities.length;
-            cont = true;
-          }
-          if (result.length > 0) {
-            resolve(
-                wishlist.Hotels.forEach(async hotel => {
-
-                await Hotel.find().where("_id").equals(hotel.id)
-                  .then(resu => {
-                    if (resu.length > 0) {
-                      console.log("hotel added");
-                      hotels.push(resu[0]);
-                      counter++;
-
-                      if (activities != "") {
-                        res.render("wishlist", {
-                          user: (!req.session.authenticated) ? "" : req.session.user,
-                          wishlist: wishlist, hotels: hotels, activities: activities
-                        });  
-                      }
-
-                      if (wishlist.Activities.length === 0 && counter === length) {   
-                        res.render("wishlist", {
-                          user: (!req.session.authenticated) ? "" : req.session.user,
-                          wishlist: wishlist, hotels: hotels, activities: activities
-                        });
-                      }
-                    }
-                  })
-                  .catch(err => {
-                    console.log(err);
-                  })
-              })
-
-            )
-          }
-          else {
-            resolve();   
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        })
-
-    })
-
-    promise1.then(() => {
-      if (cont) {
-        wishlist.Activities.forEach(async activity => {
-          await Activity.find().where("_id").equals(activity.id)
-            .then(resul => {
-              if (resul.length > 0) {
-                console.log("activity added");
-                activities.push(resul[0]);
-                counter++;
-                if (counter === length) {    
-                  res.render("wishlist", {
-                    user: (!req.session.authenticated) ? "" : req.session.user,
-                    cart: cart, hotels: hotels, activities: activities
-                  });
-                }
-              }
-            })
-            .catch(err => {
-              console.log(err);
-            })
-        })
-      }
-      else {
-        res.render("wishlist", {   
-          user: (!req.session.authenticated) ? "" : req.session.user,
-          wishlist: "", hotels: "", activities: ""
-        })
-      }
+  if (req.session.authenticated) {
+    console.log("authenticated");
+    res.render("wishlist", {
+      user: (!req.session.authenticated) ? "" : req.session.user, msg:""
     })
   }
   else {
-    res.render("wishlist", {     
-      user: (!req.session.authenticated) ? "" : req.session.user,
-      wishlist: "", hotels: "", activities: ""
+    res.render("wishlist", {
+      user: (!req.session.authenticated) ? "" : req.session.user, msg:"Sign in to view your favourites"
     })
   }
 }
 
 const removeFromFavs = async (req, res) => {
-  
+
   var hotels = [];
   var activities = [];
   var wishlist;
@@ -125,25 +45,25 @@ const removeFromFavs = async (req, res) => {
           }
         }
         if (item == "hotel") {
-          activities=wishlist.Activities;
+          activities = wishlist.Activities;
           await Wishlist.findOneAndUpdate({ User: req.session.user._id }, { Hotels: hotels }, {
             new: true
           })
             .then(async () => {
-             
-                if (hotels.length === 0 && activities.length === 0) {
-                  console.log("Entered")
-                  await Wishlist.findByIdAndDelete(wishlist._id)
-                    .then(() => {
-                      console.log("delete hotel 0");
-                      res.redirect('back')
-                    });
-                }
-                else {
-                  console.log("delete hotel");
-                  res.redirect('back')
-                }
-              
+
+              if (hotels.length === 0 && activities.length === 0) {
+                console.log("Entered")
+                await Wishlist.findByIdAndDelete(wishlist._id)
+                  .then(() => {
+                    console.log("delete hotel 0");
+                    res.redirect('back')
+                  });
+              }
+              else {
+                console.log("delete hotel");
+                res.redirect('back')
+              }
+
             })
         }
 
@@ -159,12 +79,12 @@ const removeFromFavs = async (req, res) => {
         }
 
         if (item === "activity") {
-           hotels=wishlist.Hotels;
+          hotels = wishlist.Hotels;
           await Wishlist.findOneAndUpdate({ User: req.session.user._id }, { Activities: activities }, {
             new: true
           })
             .then(async () => {
-        
+
               if (hotels.length === 0 && activities.length === 0) {
                 console.log("Entered")
                 await Wishlist.findByIdAndDelete(wishlist._id)

@@ -79,25 +79,22 @@ router.post("/signup", validateSignUp(), async (req, res) => {
       var alerts = errors.array();
       console.log(alerts);
       res.send(alerts);
-      //res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alerts: alerts });
     } else {
       console.log("signing up");
       let hashedPass;
       const saltRounds = 10;
-      bcrypt.hash(req.body.psw, saltRounds).then((hash) => {
+      bcrypt.hash(req.body.Password, saltRounds).then((hash) => {
         hashedPass = hash;
-        console.log("Hash ", hashedPass);
-
         var user = new User({
-          Username: req.body.uname,
-          Email: req.body.email,
-          PhoneNumber: req.body.number,
+          Username: req.body.Username,
+          Email: req.body.Email,
+          PhoneNumber: req.body.Number,
           Password: hashedPass,
           ConfPassword: hashedPass,
-          Type: req.body.type,
+          Type: req.body.Type,
         });
         user.save().then((result) => {
-          console.log("user added and logged in");
+          console.log("client added and logged in");
           req.session.user = result;
           req.session.authenticated = true;
           res.redirect("back");

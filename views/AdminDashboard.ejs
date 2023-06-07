@@ -34,8 +34,6 @@
                         <%topactivities.forEach((topactivity) => { %>
                             <%let rate1=activityratings[id1]; %>
                             <% Activities.forEach((Activity) => { %>
-                            <% console.log(Activity.Name.split(',')); %>
-                            <% console.log(topactivity.split(',')); %>
                             <% if( (Activity.Name.split(',').toString()) === (topactivity.split(',').toString()) ) { %>
                     <div class="btn">
                         <div>
@@ -70,8 +68,6 @@
                         <%tophotels.forEach((tophotel) => { %>
                             <%let rate2=hotelratings[id2]; %>
                         <% Hotels.forEach((hotel) => { %>
-                            <% console.log(hotel.Name.split(',')); %>
-                            <% console.log(tophotel.split(',')); %>
                             <% if( (hotel.Name.split(',').toString()) === (tophotel.split(',').toString()) ) { %>
                     <div class="btn">
                         <div>
@@ -91,7 +87,6 @@
                          
                         </div>
                         <% } %>
-                        <% console.log ("hi") %>
                         <% id2++; %>
                         <% }); %>
                         <% }); %>

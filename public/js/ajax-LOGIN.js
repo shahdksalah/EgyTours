@@ -44,7 +44,8 @@ $(document).ready(function () {
                     else{
                         $('#un').html("");
                         $('#pass').html("");
-                        $("body").html(response);
+                        //$("body").html(response);
+                        location.reload();
                     }
 
                 },

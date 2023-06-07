@@ -32,6 +32,10 @@ const userSchema = new Schema ({
         required:true,
         trim:true
     },
+    Wishlist:{
+        Hotels:{type:Array},
+        Activities:{type:Array},
+    },
     Type:{
         type:String,
         required:true,

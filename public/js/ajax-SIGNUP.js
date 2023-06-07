@@ -6,16 +6,15 @@ $(document).ready(function () {
         var data2 = $("#number").val();
         var data3 = $("#password").val();
         var data4 = $("#password-confirmation").val();
+        var data5 = $("#type").val();
         $.ajax({
             url: '/signup',
             method: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({ Username: data, Email: data1, Number: data2, Password: data3, PasswordConf: data4 }),
+            data: JSON.stringify({ Username: data, Email: data1, Number: data2, Password: data3, PasswordConf: data4, Type: data5 }),
             success: function (response) {
-                console.log(response);
-                if (response !== 'okay') {
+                if (response.indexOf('html') == -1) {
                     response.forEach(alert => {
-                        console.log(alert.msg);
                         if (alert.msg.indexOf('Username') > -1) {
                             $("#unam").html(alert.msg);
                             $("#result").html("");
@@ -34,6 +33,9 @@ $(document).ready(function () {
                             $("#pa").html(alert.msg);
                         }
                     });
+                }
+                else{
+                    location.reload();
                 }
                 
 

@@ -70,6 +70,14 @@
                     <%}else{%>
                         <%id = i;%>
                     <%}%>
+                    <input type="hidden" name="actname" value="<%=activities[i].Name%>">
+                    <%if(user!=="" && user.Wishlist.Activites.includes(activities[i]._id)){%>
+                        <input type="text" name="user" value=<%=user._id%>>
+                        <a href="hotels//add-to-wishlist/hotel"><i class="fa-filled fa-heart" id="icon-<%=activities[i]._id%>" style="color: #ff0000;"></i></a>
+                    <%}else if(user!==""){%>
+                        <input type="text" name="user" value=<%=user._id%>>
+                        <a href="hotels/add-to-wishlist/activity"><i class="fa-regular fa-heart" id="icon-<%=activites[i]._id%>" style="color: #ff0000;"></i></a>
+                    <%}%>
                 <div class="btn" id="<%=activities[i].Header%>-<%=id%>" onclick="location.href= '/activities/<%=activities[i].Name%>'">
                 <div>
                     <img src="/images/activities/<%=activities[i].Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">

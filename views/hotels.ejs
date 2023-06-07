@@ -48,9 +48,11 @@
             <div id="searchResults" class="dropdown-content">
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="/js/ajax-wishlist.js"></script>  
+        
 
         <div id="parent">
-
             <% if(hotels!=="" ) {%>
                 <% let id=0; %>
                     <% let i=0;%>
@@ -65,17 +67,47 @@
                             <%}else{%>
                                 <%id = i;%>
                             <%}%>
-                            <div class="btn" type="button" id="<%=hotels[i].Name%>-<%=id%>" onclick="location.href= '/hotels/<%=hotels[i].Name%>'">
 
+                            <input type="hidden" name="hotname" value="<%=hotels[i].Name%>">
+                            
+                            <div class="btn" type="button" id="<%=hotels[i].Name%>-<%=id%>" onclick="location.href= '/hotels/browse/<%=hotels[i].Name%>'">
+                               
                                 <div class="image">
                                     <img src="/images/Hotels/<%=hotels[i].Picture[0]%>">
                                 </div>
-
+                                
                                 <div class="cols">
                                     <h2 id='name' + <%=id %> name='title' class="h2hotels">
-                                        <%=hotels[i].Name%>
-                                        <a href="/wishlist"> <i class="fa-regular fa-heart" style="color: #ff0000;"></i></a>
+                                       <%=hotels[i].Name%>
+                                       <%if(user!==""){%>
+                                        <% var found = false;%>
+                                         <%if(user.Wishlist.Hotels.length!=0){%>
+                                            <%user.Wishlist.Hotels.forEach(hot=>{%>
+                                                <%console.log(hot.HotelID);%>
+                                                <%if(hot.HotelID.equals(hotels[i]._id)){%>
+                                                    <%found = true;%>
+                                                    <%}%>
+                                                <%})%>
+                                                    <%if(found){%>
+                                                        <input type="hidden" name="user" value=<%=user._id%>>
+                                                        <a href=""><i class="fa-solid fa-heart" id="icon-<%=hotels[i]._id%>" style="color: #ff0000;"></i></a>
+                                                    <%}else{%>
+                                                        <input type="hidden" name="user" value=<%=user._id%>>
+                                                        <a  href="/hotels/add-to-wishlist/<%=hotels[i].Name%>"><i class="fa-regular fa-heart" id='heart<%=id%>' onclick="displayFilled(this.id)" style="color: #ff0000;"></i></a>
+                                                    <%}%> 
+                                            <%}else{%>
+                                                    <input type="hidden" name="user" value=<%=user._id%>>
+                                                    <a  href="/hotels/add-to-wishlist/<%=hotels[i].Name%>"><i class="fa-regular fa-heart" id='heart<%=id%>' onclick="displayFilled(this.id)" style="color: #ff0000;"></i></a>
+                                                <%}%>
+                                        <%}%>
+                                        <script>
+                                            function displayFilled(heart){
+                                                var d = document.getElementById(heart);
+                                                d.setAttribute('class', 'fa-solid fa-heart');
+                                            }
+                                        </script>
                                     </h2>
+                                    
                                     <% if(hotels[i].Reviews.length> 0){%>
                                         <div class="rating">
                                             <%let revs=hotels[i].Reviews;%>
@@ -115,18 +147,18 @@
                                                     </div>
                                             </div>
                                         </div>
-                                        <% id++; %>
+                                        <% id++;%>
                             <%}%>
             <%}%>
         </div>
-
+         
         <% if(hotels !==0) { %>
             <div class="c" id="pages">
                 <div class="pagination">
                 <% let id1=0; %>
                 <%if(length!==undefined){%>
                     <% while(id1 !==length) { %>
-                        <button type="submit" onclick="location.href='/hotels/browse/page=<%=id1+1%>'">
+                        <button type="submit" onclick="location.href='/hotels/page=<%=id1+1%>'">
                         <p class="link" value="<%id1+1%>"><%=id1+1%></p>
                         </button>
                         <% id1++;%>

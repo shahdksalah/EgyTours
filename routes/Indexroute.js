@@ -59,8 +59,8 @@ router.get("/cities/:name", async function (req, res) {
       res.render("cities", {
         user: !req.session.authenticated ? "" : req.session.user,
         alerts: "",
-        activities: activ,
-        hotels: Hotels,
+        activities: dispactiv,
+        hotels: disphotel,
         city: cities1,
       });
     }

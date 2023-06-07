@@ -17,7 +17,7 @@ router.use((req, res, next) => {
 });
 
 router.get("/", citycontroller.getCities);
-router.get("/delete/:id", citycontroller.deleteCity);
+router.get("/delete/:pic/:id", citycontroller.deleteCity);
 router.post("/", citycontroller.updateCity);
 
 module.exports = router;

@@ -101,6 +101,9 @@ async function onConnected(socket) {
 }
 
 
+
+
+
 app.use("/activities", activitiesRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/addactivity", addActivityRoute);
@@ -126,5 +129,7 @@ app.use("/editcities", editCities);
 app.use("/viewbookings", viewBookingsRoute);
 app.use("/wishlist", wishlistRoute);
 
-
-
+//404 page
+app.use((req,res)=>{
+  res.status(404).render('404',{user:(req.session.user === undefined ? "":req.session.user) });
+});

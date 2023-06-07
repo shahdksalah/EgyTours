@@ -8,7 +8,7 @@
         padding: 5px;
         width: 40%;
         float: right;
-    } 
+    }
 
     .nav {
         position: relative;
@@ -143,46 +143,35 @@
             width: 100%;
         }
 
-        #logo {
-            width: 300%;
-        }
+       
 
         .nav {
-
             height: 20%;
             display: flex;
         }
 
         #search {
             position: relative;
-            left: 50%;
-            top: 51%;
-            flex: 60%;
-            width: 30%;
-            height: 60%;
         }
 
         #searchbar {
-            width: 180%;
+            width: 80%;
+            top: 55%;
+            left: 40%;
         }
 
-        header {
-            margin-right: 1%;
-        }
-
-        #dis {
+        .sign button{
+            left: -30%;
             position: relative;
-            bottom: 20px;
-            font-size: 25px;
         }
 
-        #but {
+        /* #but {
             margin-top: -83%;
             width: 30%;
             margin-left: -17%;
             font-size: 16px;
             height: 140%;
-        }
+        } */
 
         #tex1 {
             font-size: 22px;
@@ -212,47 +201,47 @@
                     </div>
                 </div>
 
-                <nav class="nav">
-                    <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
-                    <%if(user!=="" && user.Type==='admin'){%>
-                        <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
-                        <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
-                    <%}else if(user!=="" && user.Type==="client"){%>
-                        <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
-                        <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
-                        <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
+        <nav class="nav">
+            <a href="/aboutus" class="links"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
+            <%if(user!=="" && user.Type==='admin' ){%>
+                <a href="/adminboard" class="links"> <i class="fa-solid fa-hammer"></i></i></a>
+                <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
+                <%}else if(user!=="" && user.Type==="client" ){%>
+                    <a href="/chat" class="links"> <i class="fa-solid fa-comment"></i></i></a>
+                    <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
                     <%}else{%>
                         <a href="/cart" class="links"> <i class="fa-solid fa-cart-shopping"></i></a>
                         <a href="/wishlist" class="links"> <i class="fa-solid fa-heart"></i></a>
-                    <%}%>
-                    
-                    <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
-                    
-                </nav>
+                        <%}%>
 
-                <div style="flex:7%" class="sign">
-                    <% if(user==="" ){ %>
-                        <span><button onclick="show('signin')">Sign In</button> </span>
-                        <%} else{%>
-                            <div>
-                                <button onmouseenter="showdrop()" class="dropbtn">
-                                    <%=user.Username%>
-                                </button>
-                                <div id="drop" onmouseleave="hidedrop()" style="display: none;">
+                            <a href="/" class="links"> <i class="fa-solid fa-house fa-fw"></i> </a>
 
-                                    <a id='dropItem' href='/profile'><span><i class="fa-solid fa-user"></i></span> View
-                                        Profile</a>
-                                    <a id='dropItem' href='/signout'><span><i
-                                                class="fa-solid fa-right-from-bracket"></i></span> Logout</a>
-                                </div>
-                            </div>
-                            <% } %>
-                </div>
+        </nav>
 
-                <script>
+        <div style="flex:7%" class="sign">
+            <% if(user==="" ){ %>
+                <span><button onclick="show('signin')">Sign In</button> </span>
+                <%} else{%>
+                    <div>
+                        <button onmouseenter="showdrop()" class="dropbtn">
+                            <%=user.Username%>
+                        </button>
+                        <div id="drop" onmouseleave="hidedrop()" style="display: none;">
+
+                            <a id='dropItem' href='/profile'><span><i class="fa-solid fa-user"></i></span> View
+                                Profile</a>
+                            <a id='dropItem' href='/signout'><span><i class="fa-solid fa-right-from-bracket"></i></span>
+                                Logout</a>
+                        </div>
+                    </div>
+                    <% } %>
+        </div>
+
+        <script>
 
 
-                </script>
+        </script>
     </header>
 
     <div class="slogan">

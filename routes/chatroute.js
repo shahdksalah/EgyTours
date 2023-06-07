@@ -11,6 +11,7 @@ router.get("/", function (req, res) {
 });
 
 router.post('/saveChat',chatController.saveChat);
+router.post('chat/saveChat',chatController.sChat);
 
 // router.post("/submit", (req, res) => {
 //   const chat = new Chat({

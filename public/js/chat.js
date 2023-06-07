@@ -16,35 +16,49 @@ var type = document.getElementById("usertype");
 
 var receiver_id;
 var sender_id=document.getElementById("senderid").innerHTML;
-var url;
+var ur;
+
+console.log(type.value);
+console.log(sender_id);
 
 if (type.value === "admin") {
-    url="chat/saveChat"
-    receiver_id=document.getElementById("receiverid").innerHTML;
+    ur="chat/saveChat"
+    receiver_id=document.getElementById("receiverid").innerText;
 } else {
-    url="chat1/saveChat"
+    ur="chat1/saveChat"
     receiver_id='6473bed00f4f61858f1cc898';
 }
+
+
 
 messageForm.addEventListener("submit", (e) => {
 console.log("submit")
 e.preventDefault();
+
+if (type.value === "admin") {
+    ur="chat/saveChat"
+    receiver_id=document.getElementById("receiverid").innerText;
+} else {
+    ur="chat1/saveChat"
+    receiver_id='6473bed00f4f61858f1cc898';
+}
+
+console.log(receiver_id);
 sendMessage();
 });
 
 function sendMessage() {
 if (messageInput.value === "") return;
 console.log(messageInput.value);
-var name;
+
 
 
 $.ajax({
-    url: url,
+    url: ur,
     method: "POST",
     data: {  
     sender_id: sender_id,
     receiver_id:receiver_id,
-    name:nameInput.innerHTML,
     message: messageInput.value,
     dateTime: new Date(),  },
 

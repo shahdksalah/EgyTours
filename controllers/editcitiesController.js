@@ -10,7 +10,7 @@ router.use(fileUpload());
 const getCities = async (req, res) => {
   var cities = [];
   cities = await City.find();
-  res.render("editcities", { city: cities });
+  res.render("EditCities", { city: cities });
 };
 
 const updateCity = async (req, res) => {

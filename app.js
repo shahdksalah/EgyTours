@@ -27,6 +27,7 @@ const paymentRoute = require("./routes/paymentroute.js");
 const confirmPaymentRoute = require("./routes/confirmPaymentroute.js");
 const viewBookingsRoute = require("./routes/viewBookingsroute.js");
 const chatRoute = require("./routes/chatroute.js");
+const chatNamesRoute = require("./routes/Nameschat.js");
 const editCities = require("./routes/editcitiesroute.js");
 const wishlistRoute = require("./routes/wishlistroute.js");
 
@@ -65,25 +66,44 @@ mongoose
 const server = app.listen(PORT, () =>
   console.log(`server is running on port ${PORT}`)
 );
+const cors = require("cors");
+app.use(cors({ origin: true }));
 const io = require("socket.io")(server);
+app.set('socketio', io);
 
+app.use("/", indexRoute);
+
+const User=require('./models/usersdb.js')
+
+var usp=io.of('/user-namespace');
 let sockesConnected = new Set();
+
 io.on("connection", onConnected);
-function onConnected(socket) {
+async function onConnected(socket) {
+  console.log("user connected");
   console.log("new socket added", socket.id);
   sockesConnected.add(socket.id);
+  var userId=socket.handshake.auth.token;
 
   socket.on("disconnect", () => {
     console.log("socket disconnected", socket.id);
     sockesConnected.delete(socket.id);
   });
+  
+  //chatting implementation
+  socket.on('newChat',function(data){
+       socket.broadcast.emit('loadNewChat',data)
+  })
 
-  socket.on("message", (data) => {
-    socket.broadcast.emit("chat-message", data);
-  });
+  // socket.on("message", (data) => {
+  //   socket.broadcast.emit("chat-message", data);
+  // });
 }
 
-app.use("/", indexRoute);
+
+
+
+
 app.use("/activities", activitiesRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/addactivity", addActivityRoute);
@@ -103,8 +123,13 @@ app.use("/profile", profileRoute);
 app.use("/users", usersRoute);
 app.use("/weeklysummary", weeklysummaryRoute);
 app.use("/addcities", addcity);
-app.use("/chat", chatRoute);
+app.use("/chat1", chatRoute);
+app.use("/chat", chatNamesRoute);
 app.use("/editcities", editCities);
 app.use("/viewbookings", viewBookingsRoute);
 app.use("/wishlist", wishlistRoute);
 
+//404 page
+app.use((req,res)=>{
+  res.status(404).render('404',{user:(req.session.user === undefined ? "":req.session.user) });
+});

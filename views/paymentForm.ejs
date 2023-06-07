@@ -15,6 +15,9 @@
 <body>
     <%- include("partials/headerPages.ejs") %>
         <div class="container">
+            <div id="erroroccured">
+
+            </div>
             <div class="left">
                 <h4>Booking Summary</h4>
                 <%var i=0; %>
@@ -169,18 +172,20 @@
             error = true;
             document.getElementById('numerr').innerHTML = "Card Number is invalid";
         }
-        else if (cardName.value === "") {
+        if (cardName.value === "") {
             error = true;
             document.getElementById('nameerr').innerHTML = "Card Name cannot be blank";
         }
-        else if (CVV.value === "" || !CVV.value.isNaN()) {
+        if (CVV.value === "") {
             error = true;
             document.getElementById('cvverr').innerHTML = "CVV cannot be blank";
         }
 
         if (error) {
+            console.log("card error");
             e.preventDefault();
         }
+        error=false;
     })
 
 </script>

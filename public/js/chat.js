@@ -1,4 +1,6 @@
-const socket = io();
+const socket=io();
+
+
 
 const messageContainer = document.getElementById("message-container");
 
@@ -8,49 +10,73 @@ const messageForm = document.getElementById("message-form");
 
 const messageInput = document.getElementById("message-input");
 
+const senderId=document.getElementById("sender");
+
 var type = document.getElementById("usertype");
 
+var receiver_id;
+var sender_id=sender.value;
+
+if (type.value === "admin") {
+    receiver_id='6473b4b88feb5746f0bf4530';
+} else {
+    receiver_id='6473bed00f4f61858f1cc898';
+}
+
 messageForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  sendMessage();
+e.preventDefault();
+sendMessage();
 });
 
 function sendMessage() {
-  if (messageInput.value === "") return;
-  console.log(messageInput.value);
-  var name;
-  if (type.value === "admin") {
-    name = "admin";
-  } else {
-    name = nameInput.innerHTML;
-  }
-  const data = {
-    name: nameInput.innerHTML,
-    message: messageInput.value,
-    dateTime: new Date(),
-  };
+if (messageInput.value === "") return;
+console.log(messageInput.value);
+var name;
 
-  $.ajax({
-    url: "chat/submit",
+
+$.ajax({
+    url: "chat/saveChat",
     method: "POST",
-    data: { mydata: data },
-    success: function (response) {},
-  });
-  socket.emit("message", data);
-  addMessagetoUI(true, data);
-  messageInput.value = "";
-}
+    data: {  
+    sender_id: sender_id,
+    receiver_id:receiver_id,
+    name:nameInput.innerHTML,
+    message: messageInput.value,
+    dateTime: new Date(),  },
 
-//for receiving a message
-socket.on("chat-message", (data) => {
-  console.log(data);
-  addMessagetoUI(false, data);
+    success: function (response) {
+    if(response.success){
+        console.log(response);
+    
+        socket.emit("newChat", response.data);
+        addMessagetoUI(true, response.data);
+        messageInput.value = "";
+        
+    }
+    else{
+        alert(response.msg)
+    }
+    },
+
 });
 
+}
+
+    //for receiving a message
+    socket.on('loadNewChat', (data) => {
+        console.log()
+        if(sender_id==data.receiver_id && receiver_id==data.sender_id){
+            console.log(data);
+            addMessagetoUI(false, data);
+        }
+    });
+
+
+
 function addMessagetoUI(isOwnMessage, data) {
-  const element = `
+const element = `
                     <li class="${
-                      isOwnMessage ? "message-right" : "message-left"
+                    isOwnMessage ? "message-right" : "message-left"
                     }">
                     <p class="message">
                         ${data.message}
@@ -60,10 +86,10 @@ function addMessagetoUI(isOwnMessage, data) {
                     </p>
                     </li>
                 `;
-  messageContainer.innerHTML += element;
-  scrollToBottom();
+messageContainer.innerHTML += element;
+scrollToBottom();
 }
 
 function scrollToBottom() {
-  messageContainer.scrollTo(0, messageContainer.scrollHeight);
+messageContainer.scrollTo(0, messageContainer.scrollHeight);
 }

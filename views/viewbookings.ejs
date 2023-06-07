@@ -42,76 +42,82 @@
             <% } %>
             <% }) %> 
             
-           
-                <% if(booking.Hotels[0] !== undefined) { %>
+            <% booking.Hotels.forEach((hotel1)=>{%>
+                <% if(hotel1 !== undefined) { %>
                     <% const date = new Date().getTime();%>
                     <%console.log(date)%>
-                    <% const year =booking.Hotels[0].checkOut.split("-")[0]; %>
-                    <% const month =booking.Hotels[0].checkOut.split("-")[1]; %>
-                    <% const day = booking.Hotels[0].checkOut.split("-")[2]; %>
+                    <% const year =hotel1.checkOut.split("-")[0]; %>
+                    <% const month =hotel1.checkOut.split("-")[1]; %>
+                    <% const day = hotel1.checkOut.split("-")[2]; %>
                     <% const checkout = new Date(year,month-1,day ).getTime(); %>
                     <%console.log(checkout)%>
                     <% if(checkout > date) { %>
                     <div id="btn" style="margin-right:30px;">
                 <% hotels.forEach((hotel) => { %>
-                 <% if(booking.Hotels[0].id == hotel._id) { %>
+                 <% if(hotel1.id == hotel._id) { %>
                     <h1><%=name%></h1>
                     <h2><%=hotel.Name%></h2>
                 <% } %>
                 <% }) %>
+                <% } %>
+               
                     
                     <strong>Check in:</strong>
-                    <%=booking.Hotels[0].checkIn %>
+                    <%=hotel1.checkIn %>
                     <strong>Check out:</strong>
-                    <%=booking.Hotels[0].checkOut %>
+                    <%=hotel1.checkOut %>
                     <strong>Days:</strong>
-                    <%=booking.Hotels[0].days %>
+                    <%=hotel1.days %>
                     <br>
                     <strong>Children:</strong>
-                    <%=booking.Hotels[0].children %>
+                    <%=hotel1.children %>
                     <strong>Adults:</strong>
-                    <%=booking.Hotels[0].adults %>
+                    <%=hotel1.adults %>
                     <br>
                     <strong>Rooms:</strong>
-                    <%=booking.Hotels[0].rooms %>
+                    <%=hotel1.rooms %>
                     <strong>RoomType:</strong>
-                    <%=booking.Hotels[0].roomType %>
+                    <%=hotel1.roomType %>
                     <br>
                     <strong>Price:</strong>
-                    <%=booking.Hotels[0].price %>
+                    <%=hotel1.price %>
                  </div>    
+                 
                 <% } %>
-                <% } %>
+                <% }) %>
+               
                 
                
-                    <% if(booking.Activities[0]!== undefined) { %>
+                <% booking.Activities.forEach((activity1)=>{%>
+                    <% if(activity1 !== undefined) { %>
                         <% const dat = new Date().getTime();%>
                         <%console.log(dat)%>
-                        <% const d =booking.Activities[0].date.split("-")[0]; %>
-                        <% const m =booking.Activities[0].date.split("-")[1]; %>
-                        <% const y = booking.Activities[0].date.split("-")[2]; %>
+                        <% const y =activity1.date.split("-")[0]; %>
+                        <% const m =activity1.date.split("-")[1]; %>
+                        <% const d = activity1.date.split("-")[2]; %>
                         <% const Actdate = new Date(y,m-1,d).getTime(); %>
                         <%console.log(Actdate)%>
                         <% if(Actdate > dat) { %>
                         <div id="btn" style="margin-right:30px;">
                     <% activities.forEach((activity) => { %>
-                     <% if( booking.Activities[0].id == activity._id) { %>
+                     <% if( activity1.id == activity._id) { %>
                         <h1><%=name%></h1>
                         <h2><%=activity.Header%></h2>
                     <% } %>
                     <% }) %>
                     <strong>Participants:</strong>
-                    <%=booking.Activities[0].participants %>
+                    <%=activity1.participants %>
                     <strong>Date:</strong>
-                    <%=booking.Activities[0].date %>
+                    <%=activity1.date %>
                     <strong>Price:</strong>
-                    <%=booking.Activities[0].price %>
+                    <%=activity1.price %>
                     <br>
                     
                 </div>
                 <% } %>
                 <% } %>
                 <% id++; %>
+                <% }) %>
                 <% }) %>
                 <% } %>
             

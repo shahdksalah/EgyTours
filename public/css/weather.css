@@ -93,3 +93,14 @@ h1.temp {
     top: 0;
     left: 20px;
 }
+
+
+@media screen and (max-width: 1020px)
+{
+    .weather-card {
+        left: 60%;
+        top: 150px;
+        max-width: 250px;
+    }
+
+}

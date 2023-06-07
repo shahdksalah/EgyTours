@@ -69,7 +69,7 @@ body{
 }
 .navigation ul li:nth-child(1)
 {
-    margin-bottom:20px;
+    margin-bottom:50px;
     pointer-events:none;
 }
 .navigation ul li a{
@@ -79,7 +79,7 @@ body{
     display:flex;
     text-decoration:none;
     color: var(--white);
-    height:60px;
+    height:50px;
 }
 .navigation ul li:hover a{
     color:var(--blue);

@@ -6,31 +6,50 @@ const moment = require('moment');
 
 const getHotels = async (req, res) => {
     const page =req.query.p || 0;
-    const actPerPage =1;
+    const actPerPage =3 ;
      
     var Hotels = [];
-    Hotels = await Hotel.find().skip(page * actPerPage).limit(actPerPage);
+    Hotels = await Hotel.find();
+    // .skip(page * actPerPage).limit(actPerPage);
     var Hotels1 = [];
     Hotels1 = await Hotel.find();
     var length=Math.ceil(Hotels1.length/actPerPage);
     res.render("hotels", {
         hotels: (Hotels === 'undefined' ? "" : Hotels),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1
     });
 }
 
 const getHotelPage = async (req, res) => {
     var Hotels = [];
     var url = req.params.id;
-    const actPerPage =1;
-    Hotels = await Hotel.find().skip(url.split('=') * actPerPage).limit(actPerPage);
+    const actPerPage =3;
+    Hotels = await Hotel.find();
     var Hotels1 = [];
     Hotels1 = await Hotel.find();
     var length=Math.ceil(Hotels1.length/actPerPage);
+    var now;
+    var display;
+    var end;
+    if((url-1)!=0){
+        now = url-1;
+        display = actPerPage*now;
+        if((Hotels1.length%actPerPage)>=1){
+            end = display + Hotels1.length%actPerPage+1;
+        }else{
+            end = display + (Hotels1.length%actPerPage)+(actPerPage-1);
+        }
+    }
+    else{
+        now = 1;
+        display = 0;
+        end = actPerPage-1;
+    }
+
+    
     res.render("hotels", {
         hotels: (Hotels === 'undefined' ? "" : Hotels),
-        user: (!req.session.authenticated) ? "" : req.session.user, msg: "",length:length
-    });
+        user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end});
 
 
 }
@@ -41,6 +60,66 @@ const getHotel1 = async (req, res) => {
     var url = req.params.name;
     Hotels = await Hotel.find({ "Name": url });
     res.render("hotel1", { hotel1: (Hotels === 'undefined' ? "" : Hotels), user: (!req.session.authenticated) ? "" : req.session.user, msg: "" });
+}
+
+const postHotelAvail = async (req, res) => {
+   
+    
+    var adults=req.body.adults;
+    var children=req.body.children;
+    var rooms=req.body.rooms;
+    var roomType=req.body.roomType;
+    var hotel;
+    console.log(roomType);
+    console.log(req.params.name);
+
+     await Hotel.find().where("Name").equals(req.body.name)
+    .then(result=>{
+        if(result.length>0){
+
+              hotel=result[0];
+              var found = "false";
+              var found2 = "false";
+              var roomsLeft;
+
+              console.log(roomType);
+          
+              for(var i=0;i<hotel.RoomTypes.length;i++){
+                  if(hotel.RoomTypes[i].Name === roomType){
+                     console.log("enetered");
+                      roomsLeft=parseInt(hotel.RoomTypes[i].Rooms)-parseInt(hotel.RoomTypes[i].RoomsBooked);
+                      console.log(roomsLeft);
+          
+                      if(hotel.RoomTypes[i].RoomsBooked<hotel.RoomTypes[i].Rooms  && rooms<=roomsLeft){
+                          if(adults<=hotel.RoomTypes[i].Capacity.Adults && 
+                              children<=hotel.RoomTypes[i].Capacity.Children){
+                              found = "true";
+                          }
+                      }
+                      else{
+                          found2="true";
+                      }
+                  }
+              }
+          
+          
+          
+              if (found === "true") {
+                  console.log("found");
+                  res.send("Available");
+              }
+          
+              else if (found2 === "true") {
+                  console.log("found2");
+                  res.send("Not Available");
+              }
+
+        }
+
+    })
+
+   
+
 }
 
 
@@ -172,4 +251,4 @@ const postReview = async (req, res) => {
     }
 }
 
-module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview };
+module.exports = { getHotels,getHotelPage, getHotel1, addToCart, postReview , postHotelAvail};

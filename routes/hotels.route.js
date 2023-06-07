@@ -14,6 +14,8 @@ router.get('/:name', hotelController.getHotel1);
 
 router.post('/:name', hotelController.postReview);
 
+router.post('/:name/submit',hotelController.postHotelAvail);
+
 router.post('/:name/:id', hotelController.addToCart);
 
 

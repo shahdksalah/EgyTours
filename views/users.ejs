@@ -10,6 +10,30 @@
     <link rel="stylesheet" href="/css/styleForm.css">
     <link rel="stylesheet" href="/css/styleUsers.css">
 </head>
+<style>
+    .delete .inf
+    {
+        position:relative;
+        bottom:18px;
+
+    }
+    .update .info{
+        position:relative;
+        bottom:13px;
+    }
+    #userType:link, #userType:visited {
+  background-color: #a78c4c;
+  color: white;
+  padding: 4px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#userType:hover, #userType:active {
+  background-color: rgb(54, 36, 27);
+}
+</style>
 
 <body>
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
@@ -17,7 +41,16 @@
 
     <%- include("partials/adminHeader.ejs") %>
     <div class="main-content">
-        
+        <div class="err" style="width:30%">
+        <%if(alert !=undefined){%>
+            <% alert.forEach((alr)=>{%>
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <%=alr.msg%>
+                </div>
+                <%})%>
+                    <%}%>
+                </div>
 
         <div class="right">
             <div id="container">
@@ -25,39 +58,40 @@
                     <form class="form" method="post" action="/users/success">
                        
                               <h2><ins>Add User Info</ins></h2>
+                              
                         
                         <div class="container">
                           <div class="input-group">
                             <label for="uname">Username</label>
                             <input id="uname" type="text" placeholder="Enter Username" name="uname">
-                            <span class="error-message"></span>
+                           
                           </div>
                           
                           <div class="input-group">
                             <label for="email">Email</label>
                             <input id="femail" type="email" placeholder="Enter Email" name="email" >
-                            <span class="error-message"></span>
+                            
                           </div>
               
                           <div class="input-group">
                             <label for="number">Phone Number</label>
                             <input id="number" type="number" placeholder="Enter Phone Number" name="number">
-                            <span class="error-message"></span>
+                            
                           </div>
                           
                           <div class="input-group">
                             <label for="psw">Password</label>
                             <input id="password" type="password" placeholder="Enter Password" name="psw">
-                            <span class="error-message"></span>
+                           
                           </div>
               
                           <div class="input-group">
                             <label for="psw">Password Confirmation</label>
-                            <input id="password-confirmation" type="password" placeholder="Repeat Password" name="psw">
-                            <span class="error-message"></span>
+                            <input id="password-confirmation" type="password" placeholder="Repeat Password" name="confpsw">
+                           
                           </div>
                       
-                          <div class="form-btns">
+                          <div class="form-btns" style="position:relative; right:30px;">
                             <button type="submit" >Add</button>
                             <button onclick="reset()">Reset</button>
                           </div>
@@ -69,7 +103,7 @@
 
 
 
-                <div class="view">
+                <div class="view" style="position:relative; top:60px;">
                     <div id="search">
                         <div id="sBar">
                             <i id="sIcon" class="fa-sharp fa-solid fa-magnifying-glass"></i>
@@ -95,7 +129,7 @@
                 
                 <div id="updateInfo">
             
-                <form id="uform" method="post" action="/users" >
+                <form id="uform" method="post" action="/users" style="position:relative; top:50px; right:55px;" >
                     <div id="updateType">
                         <a  id="userType"></a>
                     </div>
@@ -129,7 +163,7 @@
                             </div>
                            
                     </div>
-                    <div class="update">
+                    <div class="update" style="display:none;">
                         <div class="icol">
                             <h4>Password:</h4>
                         </div>
@@ -151,17 +185,15 @@
                 </form>
                 </div>
                 <% if(msg!="") {%>
-                <div id="smsg">
-                    <span><%=msg %>></span>
+                <div id="smsg" style="position:relative; top:90px;">
+                    <span ><%=msg %></span>
                  </div>
                  <% } %>
 
                 <div id="deleteUser">
-                    <form action="/users/delete" method="post">
+                    <form action="/users/delete" method="post" style="position:relative; top:70px;">
                     <div class="delete">
-                        <div>
-                            <h4>Username:</h4>
-                        </div>
+                            <h4 class="field">Username:</h4>
                         <div class="inf">
                             <p id="d1"></p>
                         </div>
@@ -182,7 +214,7 @@
                             <p id="d3"></p>
                         </div>
                     </div>
-                    <div class="delete">
+                    <div class="delete" style="display:none;">
                         <div>
                             <h4>Password:</h4>
                         </div>
@@ -195,7 +227,7 @@
                         <button type="button" onclick="document.getElementById('id01').style.display='block'">Remove</button>
 
                         <div id="id01" class="modal">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                           
                             
                             <div class="container">
                                 <h1>Delete User</h1>

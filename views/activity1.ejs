@@ -170,19 +170,26 @@
               <select name="days"  id="dropbtn" style="margin-top:5px;" class="l">
                 <%for(var i=0;i< activity1[0].DatesDetails.length; i++) { %>
                   <% var b=activity1[0].DatesDetails[i].date; %>
+                  <% const dat = new Date().getTime();%>
+                  <% const y =b.split("-")[0]; %>
+                  <% const m =b.split("-")[1]; %>
+                  <% const d = b.split("-")[2]; %>
+                  <% const Actdate = new Date(y,m-1,d).getTime(); %>
+                  <% if(Actdate > dat) { %>
                   <option value=<%=b %>><%=b %> </option>
+              <% } %>
               <% } %>
               </select>
             <div id="date-msg" class="check-error"></div>
           </div>
           <div> 
-            <button onclick="isAvail()" id="check">Check Availability</button>
+            <button onclick="isAvail()" id="check" >Check Availability</button>
           </div>
           </div>
           <%}%>
         
      
-        <form  id="subForm"  action="<%=activity1[0]._id%>"  method="post"
+        <form  id="subForm"  action="<%=activity1[0].Name%>/<%=activity1[0]._id%>"  method="post"
           style="border: none;display: none;">
       <div id="avail">
         <h2>Available</h2>

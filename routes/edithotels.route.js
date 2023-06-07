@@ -20,7 +20,7 @@ router.use((req, res, next) => {
 router.get('/', async function (req, res) {
     var Hotels = [];
     Hotels = await Hotel.find();
-    res.render("edithotels", { hotels: (Hotels === 'undefined' ? "" : Hotels) });
+    res.render("EditHotels", { hotels: (Hotels === 'undefined' ? "" : Hotels) });
 });
 
 router.get('/delete/:id', async function (req,res){

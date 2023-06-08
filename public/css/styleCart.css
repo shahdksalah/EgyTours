@@ -21,6 +21,7 @@
     flex:30%;
     display: block;
 }
+
 .right button{
     border-radius: 10px;
     background-color: orangered; 
@@ -33,9 +34,6 @@
 }
 .right button:hover{
     background-color: rgb(171, 51, 8);
-}
-.clear :hover{
-    background-color: rgb(69, 40, 21);
 }
 .items{
     display:flex;
@@ -86,6 +84,9 @@
     margin-top:5%;
 }
 
+.clear:hover{
+    background-color:rgb(165, 107, 52);
+}
 
 
 

@@ -4,28 +4,16 @@ const Chat = require("../models/chatdb");
 const chatController=require('../controllers/chatController.js');
 
 
-router.get("/", function (req, res) {
+router.get("/", async function (req, res) {
+  var chats=await Chat.find();
   res.render("chat1", {
-    user: !req.session.authenticated ? "" : req.session.user,
+    user: !req.session.authenticated ? "" : req.session.user,chats:chats
   });
 });
 
 router.post('/saveChat',chatController.saveChat);
 router.post('chat/saveChat',chatController.sChat);
 
-// router.post("/submit", (req, res) => {
-//   const chat = new Chat({
-//     senderName: req.body.mydata.name,
-//     message: req.body.mydata.message,
-//   });
-//   chat
-//     .save()
-//     .then((result) => {
-//       res.redirect("/chat");
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+
 
 module.exports = router;

@@ -61,7 +61,7 @@ td button {
 .next {
   cursor: pointer;
   position: absolute;
-  top: 25%;
+  top: 15%;
   width: auto;
   padding: 16px;
   margin-top: -50px;
@@ -74,7 +74,7 @@ td button {
 }
 
 .next {
-  margin-left: 47.4%;
+  margin-left: 48.5%;
 }
 
 .prev:hover,

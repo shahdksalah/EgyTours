@@ -95,10 +95,15 @@ const postHotelAvail = async (req, res) => {
     var rooms=req.body.rooms;
     var roomType=req.body.roomType;
     var hotel;
-    var unavail;
     var ad,ch;
-    console.log(roomType);
-    console.log(req.params.name);
+    var price;
+    var days;
+
+    var date1 = moment(req.body.checkIn);
+    var date2 = moment(req.body.checkOut);
+    if (date1.isValid() && date2.isValid()) {
+        days = date2.diff(date1, 'days')
+    }
 
      await Hotel.find().where("Name").equals(req.body.name)
     .then(result=>{
@@ -108,6 +113,7 @@ const postHotelAvail = async (req, res) => {
               var found = "false";
               var found2 = "false";
               var roomsLeft;
+
 
               console.log(roomType);
           
@@ -120,6 +126,11 @@ const postHotelAvail = async (req, res) => {
                       if(hotel.RoomTypes[i].RoomsBooked<hotel.RoomTypes[i].Rooms  && rooms<=roomsLeft){
                           if(adults<=hotel.RoomTypes[i].Capacity.Adults && 
                               children<=hotel.RoomTypes[i].Capacity.Children){
+                                hotel.RoomTypes.forEach((room) => {
+                                    if (room.Name ===roomType) {
+                                        price = room.Price * rooms * days;
+                                    }
+                                })
                               found = "true";
                           }
                           else{
@@ -138,12 +149,14 @@ const postHotelAvail = async (req, res) => {
           
                
               if(!req.session.authenticated && found==="true"){
-                 res.send({msg:"found"});
+                 res.send({msg:"found",price:price});
               }
           
               else if (found === "true") {
+                
                   console.log("found");
-                  res.send({msg:"Available"});
+                  console.log(price);
+                  res.send({msg:"Available",price:price});
               }
           
               else if (found2 === "true") {

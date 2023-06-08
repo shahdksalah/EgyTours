@@ -183,7 +183,9 @@
                     </div>
                     <div style="text-align:center;">
                         <button onclick="location.href='/paymentForm'">Checkout</button>
-                        <button class="clear" style="background-color: #36241b; color:white;" onclick="location.href='cart/clearCart'">Clear Cart</button>
+                        <form action="cart/clear" method="post" style="border:none; height:20px; width:100%;padding:0 ;">
+                        <button class="clear" type="submit"  style="background-color: #36241b; color:white;" >Clear Cart</button>
+                        </form>
                     </div>
                 </div>
             </div>

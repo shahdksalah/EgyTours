@@ -2,10 +2,10 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
-const PORT = 8000;
+const logger=require("morgan");
+
 
 const indexRoute = require("./routes/Indexroute.js");
-const foodRoute = require("./routes/foodroute.js");
 const activitiesRoute = require("./routes/activitiesroute.js");
 const hotelsRoute = require("./routes/hotels.route.js");
 const addActivityRoute = require("./routes/addactivityroute.js");
@@ -35,6 +35,7 @@ const wishlistRoute = require("./routes/wishlistroute.js");
 
 const bodyParser = require("body-parser");
 
+
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -52,6 +53,7 @@ app.use(
 
 app.set("view engine", "ejs");
 let path = require("path");
+app.use(logger("dev"));
 
 app.use(express.static(path.join(__dirname, "public"))); //All static assets in the public folder
 console.log(__dirname);
@@ -60,45 +62,41 @@ const dburl =
   "mongodb+srv://newuser:newuser123@cluster0.7xhafht.mongodb.net/Tours?retryWrites=true&w=majority";
 mongoose
   .connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
-  //   .then((result) => app.listen(PORT))
   .catch((err) => console.log(err));
 
-const server = app.listen(PORT, () =>
-  console.log(`server is running on port ${PORT}`)
-);
 const cors = require("cors");
 app.use(cors({ origin: true }));
-const io = require("socket.io")(server);
-app.set('socketio', io);
+
+// const server=require("./bin/www");
+// const io = require("socket.io")(server);
+// app.set('socketio', io);
 
 app.use("/", indexRoute);
 
-const User=require('./models/usersdb.js')
 
-var usp=io.of('/user-namespace');
 let sockesConnected = new Set();
 
-io.on("connection", onConnected);
-async function onConnected(socket) {
-  console.log("user connected");
-  console.log("new socket added", socket.id);
-  sockesConnected.add(socket.id);
-  var userId=socket.handshake.auth.token;
+// io.on("connection", onConnected);
+// async function onConnected(socket) {
+//   console.log("user connected");
+//   console.log("new socket added", socket.id);
+//   sockesConnected.add(socket.id);
+//   var userId=socket.handshake.auth.token;
 
-  socket.on("disconnect", () => {
-    console.log("socket disconnected", socket.id);
-    sockesConnected.delete(socket.id);
-  });
+//   socket.on("disconnect", () => {
+//     console.log("socket disconnected", socket.id);
+//     sockesConnected.delete(socket.id);
+//   });
   
-  //chatting implementation
-  socket.on('newChat',function(data){
-       socket.broadcast.emit('loadNewChat',data)
-  })
+//   //chatting implementation
+//   socket.on('newChat',function(data){
+//        socket.broadcast.emit('loadNewChat',data)
+//   })
 
-  // socket.on("message", (data) => {
-  //   socket.broadcast.emit("chat-message", data);
-  // });
-}
+//   socket.on("message", (data) => {
+//     socket.broadcast.emit("chat-message", data);
+//   });
+// }
 
 
 
@@ -144,5 +142,5 @@ app.use(function(err, req, res, next) {
   res.render('404');
 });
 
-//console.log("ENV: ", app.get('env'));
+console.log("ENV: ", app.get('env'));
 module.exports= app;

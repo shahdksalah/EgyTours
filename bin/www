@@ -5,7 +5,7 @@
  * Module dependencies.
  */
 
-import app from '../app.js';
+const app=require("../app.js");
 
 const { createServer }=require("http");
 const dotenv=require("dotenv")
@@ -17,6 +17,7 @@ dotenv.config()
 
 const PORT = (process.env.PORT || '8000');
 const HOST = (process.env.HOST || 'localhost');
+console.log(PORT);
 app.set('port', PORT);
 app.set('host', HOST);
 app.set('env', process.env.ENV);
@@ -61,6 +62,29 @@ function onError(error) {
   }
 }
 
+const io = require("socket.io")(server);
+app.set('socketio', io);
+
+io.on("connection", onConnected);
+async function onConnected(socket) {
+  console.log("user connected");
+  console.log("new socket added", socket.id);
+  var userId=socket.handshake.auth.token;
+
+  socket.on("disconnect", () => {
+    console.log("socket disconnected", socket.id);
+  });
+  
+  //chatting implementation
+  socket.on('newChat',function(data){
+       socket.broadcast.emit('loadNewChat',data)
+  })
+
+  socket.on("message", (data) => {
+    socket.broadcast.emit("chat-message", data);
+  });
+}
+
 /**
  * Event listener for HTTP server "listening" event.
  */
@@ -70,3 +94,5 @@ function onListening() {
   var bind = 'Port ' + addr.port;
     console.log('Listening on ' + bind);
 }
+
+module.exports=server;

@@ -21,6 +21,7 @@
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mongodb": "^5.4.0",

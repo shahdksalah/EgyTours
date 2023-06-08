@@ -82,7 +82,21 @@ $.ajax({
 
     //for receiving a message
     socket.on('loadNewChat', (data) => {
-        console.log()
+        console.log("received")
+
+        if (type.value === "admin") {
+            receiver_id=document.getElementById("receiverid").innerText;
+        } else {
+            receiver_id='6473bed00f4f61858f1cc898';
+        }
+
+        console.log(sender_id);
+        console.log(data.receiver_id);
+        console.log(receiver_id);
+        console.log(data.sender_id);
+        
+
+
         if(sender_id==data.receiver_id && receiver_id==data.sender_id){
             console.log(data);
             addMessagetoUI(false, data);

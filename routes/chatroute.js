@@ -13,19 +13,6 @@ router.get("/", function (req, res) {
 router.post('/saveChat',chatController.saveChat);
 router.post('chat/saveChat',chatController.sChat);
 
-// router.post("/submit", (req, res) => {
-//   const chat = new Chat({
-//     senderName: req.body.mydata.name,
-//     message: req.body.mydata.message,
-//   });
-//   chat
-//     .save()
-//     .then((result) => {
-//       res.redirect("/chat");
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+
 
 module.exports = router;

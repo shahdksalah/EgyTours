@@ -104,7 +104,7 @@ const validateCard = () => {
       .exists({ checkFalsy: true })
       .withMessage('Card number cannot be blank')
       .bail()
-      .isNumeric()
+      .isCreditCard()
       .withMessage('Card number is invalid'),
 
     body('cvv')
@@ -135,8 +135,6 @@ const pay = async (req, res) => {
   console.log("validating card");
   if (!errors.isEmpty()) {
     console.log("card errors");
-    var alerts = errors.array();
-    //res.send(alerts);
     res.redirect("back"); 
   }
   else {
@@ -253,7 +251,7 @@ const pay = async (req, res) => {
 
                       await Hotel.findOneAndUpdate(fi, up)    //update RoomsBooked in hotel
                         .then(() => {
-                          console.log("hotel updated successfully");
+                          console.log("hotel room/s booked successfully");
                         })
                         .catch(err => {
                           console.log(err);
@@ -261,12 +259,11 @@ const pay = async (req, res) => {
 
                       await Activity.findOneAndUpdate(filter, update)   //update spots left in activity
                         .then(() => {
-                          console.log("activity updated successfully");
+                          console.log("activity booked successfully");
                         })
                         .catch(err => {
                           console.log(err);
                         })
-                      //res.redirect('back');
                       res.render("confirmPayment", { user: (!req.session.authenticated) ? "" : req.session.user, price: totalPrice, card: req.body.number })
                     })
                     .catch(err => {

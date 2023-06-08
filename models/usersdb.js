@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose');
-const vaidator=require('validator');
+const validator=require('validator');
 
 const Schema = mongoose.Schema;
 app.use(express.urlencoded({extended:true}));

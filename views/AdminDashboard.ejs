@@ -24,17 +24,18 @@
     <script src="/js/chat.js"></script>
 
     <%- include("partials/adminHeader.ejs") %>
-
+<%var rate1;%>
+<%var id1;%>
         <div class="main-content">
             <div class="right">
                 <h2 class="head">TOP ACTIVITIES</h2>
                 <div class="first">
                     <% if(Activities!=="") {%>
-                        <% let id1=0; %>
+                        <% id1=0; %>
                         <%topactivities.forEach((topactivity) => { %>
-                            <%let rate1=activityratings[id1]; %>
+                            <%rate1=activityratings[id1]; %>
                             <% Activities.forEach((Activity) => { %>
-                            <% if( (Activity.Name.split(',').toString()) === (topactivity.split(',').toString()) ) { %>
+                            <% if( (Activity.Name.toString()) === (topactivity.toString() ) ){ %>
                     <div class="btn">
                         <div>
                             <img src="/images/activities/<%=Activity.Picture[0]%>" width="260 px" height="200 px" >
@@ -45,14 +46,14 @@
                             <h4><%=Activity.Advantage%> </h4>
                         </div>
                         <span class="rating">
-                            <% for(var k =0; k < rate1;k++){ %>
-                                <i class="fa-solid fa-star"></i>
+                            <% for(var k =0; k <rate1 ;k++){ %>
+                                <i class="fa-solid fa-star"></i> 
                                 <% } %>
                             </span>
 
                     </div>
-                    <% } %>
                     <% id1++; %>
+                    <% } %>
                     <% }); %>
                     <% }); %>
                 <% }%>
@@ -60,15 +61,16 @@
                 </div>
                 
 
-
+                <%var rate2;%>
+                <%var id2;%>
                 <h2 class="head">TOP HOTELS</h2>
                 <div class="first">
                     <% if(Hotels!=="") {%>
-                        <% let id2=0; %>
+                        <%id2=0; %>
                         <%tophotels.forEach((tophotel) => { %>
-                            <%let rate2=hotelratings[id2]; %>
+                            <%rate2=hotelratings[id2]; %>
                         <% Hotels.forEach((hotel) => { %>
-                            <% if( (hotel.Name.split(',').toString()) === (tophotel.split(',').toString()) ) { %>
+                            <% if( (hotel.Name.toString()) === (tophotel.toString()) ) { %>
                     <div class="btn">
                         <div>
                             <img src="/images/Hotels/<%=hotel.Picture[0]%>" width="260 px" height="200 px" >
@@ -86,8 +88,8 @@
                         </span>
                          
                         </div>
-                        <% } %>
                         <% id2++; %>
+                        <% } %>
                         <% }); %>
                         <% }); %>
                     <% } %> 

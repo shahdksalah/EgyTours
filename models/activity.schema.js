@@ -29,7 +29,6 @@ const ActivitySchema = new Schema ({
     Picture:{
         type:Array,
         required:[true,'Activity Pictures is required'],
-        minlength:[3,'Minimum number of pictures are three.']
     },
     Advantage:{
         type:String,

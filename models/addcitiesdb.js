@@ -16,7 +16,7 @@ const CitySchema = new Schema(
     picture: {
       type: Array,
       required: [true,'Picture is required'],
-      maxlength:[1,'Maximum number of pictures is one']
+
     },
   },
   { timestamp: true }

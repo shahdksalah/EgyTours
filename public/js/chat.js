@@ -90,12 +90,6 @@ $.ajax({
             receiver_id='6473bed00f4f61858f1cc898';
         }
 
-        console.log(sender_id);
-        console.log(data.receiver_id);
-        console.log(receiver_id);
-        console.log(data.sender_id);
-        
-
 
         if(sender_id==data.receiver_id && receiver_id==data.sender_id){
             console.log(data);
@@ -113,7 +107,7 @@ const element = `
                     <p class="message">
                         ${data.message}
                         <span>
-                        ${data.name} ${moment(data.dateTime).fromNow()}
+                        ${moment(data.dateTime).fromNow()}
                         </span>
                     </p>
                     </li>

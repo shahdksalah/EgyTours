@@ -5,7 +5,7 @@ const Activity = require('../models/activity.schema.js');
 const User = require('../models/usersdb.js');
 const hotelController = require('../controllers/hotelsController.js')
 
-
+ 
 
 router.get('/', hotelController.getHotels);
 
@@ -19,7 +19,7 @@ router.post('/browse/:name/submit', hotelController.postHotelAvail);
 
 router.post('/browse/:name/:id', hotelController.addToCart);
 
-router.get('/add-to-wishlist/:name', hotelController.addToWishlist);
+router.post('/add-to-wishlist', hotelController.addToWishlist);
 
 
 

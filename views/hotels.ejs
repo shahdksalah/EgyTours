@@ -35,6 +35,15 @@
         #nomatch {
             display: none;
         }
+        #wishdot{
+            position: absolute;
+            color: #ff0000;
+            font-size: 10px;
+            float:right;
+            left:80.9%;
+            top:2.8%;
+            display: none;
+        }
     </style>
     
 </head>
@@ -50,6 +59,9 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="/js/ajax-wishlist.js"></script>  
+        
+        
+        <i class="fa-sharp fa-solid fa-circle" id='wishdot'></i>
         
 
         <div id="parent">
@@ -70,41 +82,16 @@
 
                             <input type="hidden" name="hotname" value="<%=hotels[i].Name%>">
                             
-                            <div class="btn" type="button" id="<%=hotels[i].Name%>-<%=id%>" onclick="location.href= '/hotels/browse/<%=hotels[i].Name%>'">
+                                
+                            <div class="btn" type="button" id="<%=hotels[i].Name%>-<%=id%>" >
                                
-                                <div class="image">
+                                <div class="image" onclick="location.href= '/hotels/browse/<%=hotels[i].Name%>'">
                                     <img src="/images/Hotels/<%=hotels[i].Picture[0]%>">
                                 </div>
                                 
-                                <div class="cols">
+                                <div class="cols" onclick="location.href= '/hotels/browse/<%=hotels[i].Name%>'">
                                     <h2 id='name' + <%=id %> name='title' class="h2hotels">
-                                       <%=hotels[i].Name%>
-                                       <%if(user!==""){%>
-                                        <% var found = false;%>
-                                         <%if(user.Wishlist.Hotels.length!=0){%>
-                                            <%user.Wishlist.Hotels.forEach(hot=>{%>
-                                                <%if(hot.HotelID.equals(hotels[i]._id)){%>
-                                                    <%found = true;%>
-                                                    <%}%>
-                                                <%})%>
-                                                    <%if(found){%>
-                                                        <input type="hidden" name="user" value=<%=user._id%>>
-                                                        <a href=""><i class="fa-solid fa-heart" id="icon-<%=hotels[i]._id%>" style="color: #ff0000;"></i></a>
-                                                    <%}else{%>
-                                                        <input type="hidden" name="user" value=<%=user._id%>>
-                                                        <a  href="/hotels/add-to-wishlist/<%=hotels[i].Name%>"><i class="fa-regular fa-heart" id='heart<%=id%>' onclick="displayFilled(this.id)" style="color: #ff0000;"></i></a>
-                                                    <%}%> 
-                                            <%}else{%>
-                                                    <input type="hidden" name="user" value=<%=user._id%>>
-                                                    <a  href="/hotels/add-to-wishlist/<%=hotels[i].Name%>"><i class="fa-regular fa-heart" id='heart<%=id%>' onclick="displayFilled(this.id)" style="color: #ff0000;"></i></a>
-                                                <%}%>
-                                        <%}%>
-                                        <script>
-                                            function displayFilled(heart){
-                                                var d = document.getElementById(heart);
-                                                d.setAttribute('class', 'fa-solid fa-heart');
-                                            }
-                                        </script>
+                                        <%=hotels[i].Name%>
                                     </h2>
                                     
                                     <% if(hotels[i].Reviews.length> 0){%>
@@ -119,9 +106,10 @@
                                                 <% for (let i=0; i <Math.floor(avg); i++) {%>
                                                         <i class="fa-solid fa-star"></i>
                                                         <%}%>
+                                                        <span><%=Math.floor(avg)%>/5</span>
                                                         <div>
                                                             <p><span><i class="fa-sharp fa-solid fa-comments" style="color:black"></i></span>
-                                                                <%=hotels[i].Reviews.length%>Reviews
+                                                                <%=hotels[i].Reviews.length%> Reviews
                                                             </p>
                                                         </div>
                                         </div>
@@ -144,6 +132,28 @@
                                                             <p>Read more..</p>
                                                         </p>
                                                     </div>
+                                            </div>
+                                            <div class="right">
+                                                <%if(user!==""){%>
+                                                    <% var found = false;%>
+                                                     <%if(user.Wishlist.Hotels.length!=0){%>
+                                                        <%user.Wishlist.Hotels.forEach(hot=>{%>
+                                                            <%if(hot.HotelID.equals(hotels[i]._id)){%>
+                                                                <%found = true;%>
+                                                                <%}%>
+                                                            <%})%>
+                                                                <%if(found){%>
+                                                                    <input type="hidden" name="user" value=<%=user._id%>>
+                                                                    <a ><i class="fa-solid fa-heart" style="color: #ff0000; font-size: 25px;"></i></a>
+                                                                <%}else{%>
+                                                                    <input type="hidden" name="user" value=<%=user._id%>>
+                                                                    <a id="hotelwish"  data-hotelid="<%=hotels[i].Name%>" ><i  class="fa-regular fa-heart" style="color: #ff0000; font-size: 25px;"></i></a>
+                                                                <%}%> 
+                                                        <%}else{%>
+                                                            <input type="hidden" name="user" value=<%=user._id%>>
+                                                            <a id="hotelwish"  data-hotelid="<%=hotels[i].Name%>"><i  class="fa-regular fa-heart" style="color: #ff0000; font-size: 25px;"></i></a>
+                                                        <%}%>
+                                                    <%}%>
                                             </div>
                                         </div>
                                         <% id++;%>

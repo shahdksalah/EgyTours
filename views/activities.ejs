@@ -37,14 +37,28 @@
             height:560px;
             margin-left:30px;
         }
+        #wishdot{
+            position: absolute;
+            color: #ff0000;
+            font-size: 10px;
+            float:right;
+            left:80.9%;
+            top:3.3%;
+            display: none;
+        }
     </style>
     
 </head>
 
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/js/ajax-wishlist.js"></script>  
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
 
     <%- include("partials/headerPages.ejs") %>
+
+    <i class="fa-sharp fa-solid fa-circle" id='wishdot'></i>
+
     <div id="search">
         <input id="searchacts" name="searchacts" onkeyup=filter() type="text" placeholder="Search Activities">
             <div id="searchResults" class="dropdown-content">
@@ -62,9 +76,6 @@
                 <% let i=0;%>
                 <% for (; i < activities.length; i++) {%>
 
-                <div id="nomatch">
-                        <h2>Nothing matches your search...</h2>
-                </div>
                 <%if(i < page || i > (end)){%>
                         <%id =`hide:${i}`;%>
                     <%}else{%>
@@ -72,20 +83,43 @@
                     <%}%>
                     <input type="hidden" name="actname" value="<%=activities[i].Name%>">
 
-                <div class="btn" id="<%=activities[i].Header%>-<%=id%>" onclick="location.href= '/activities/<%=activities[i].Name%>'">
-                <div>
+                <div class="btn" id="<%=activities[i].Header%>-<%=id%>">
+
+                <div  onclick="location.href= '/activities/<%=activities[i].Name%>'">
                     <img src="/images/activities/<%=activities[i].Picture[2]%>"  alt="qaitbay" width="300 px" height="200 px">
                 </div>
 
             <div>
                 
-                <h5><%=activities[i].Type%></h5>
-                <h4><%=activities[i].Header%></h4>
-                <h5><%=activities[i].Duration%></h5>
-                <h5><mark><%=activities[i].Advantage%></mark></h5>
+                <h5>
+                    <%if(user!==""){%>
+                        <% var found = false;%>
+                         <%if(user.Wishlist.Activities.length!=0){%>
+                            <%user.Wishlist.Activities.forEach(act=>{%>
+                                <%if(act.ActID.equals(activities[i]._id)){%>
+                                    <%found = true;%>
+                                    <%}%>
+                                <%})%>
+                                    <%if(found){%>
+                                        <input type="hidden" name="user" value=<%=user._id%>>
+                                        <a ><i class="fa-solid fa-heart" style="color: #ff0000; font-size: 20px;"></i></a>
+                                    <%}else{%>
+                                        <input type="hidden" name="user" value=<%=user._id%>>
+                                        <a id="actwish"  data-actid="<%=activities[i].Name%>" ><i  class="fa-regular fa-heart" style="color: #ff0000; font-size: 20px;"></i></a>
+                                    <%}%> 
+                            <%}else{%>
+                                <input type="hidden" name="user" value=<%=user._id%>>
+                                <a id="actwish"  data-actid="<%=activities[i].Name%>"><i  class="fa-regular fa-heart" style="color: #ff0000; font-size: 20px;"></i></a>
+                            <%}%>
+                        <%}%>
+                        <%=activities[i].Type%>
+                </h5>
+                <h4  onclick="location.href= '/activities/<%=activities[i].Name%>'"><%=activities[i].Header%></h4>
+                <h5  onclick="location.href= '/activities/<%=activities[i].Name%>'"><i class="fa-sharp fa-solid fa-timer"></i><%=activities[i].Duration%></h5>
+                <h5  onclick="location.href= '/activities/<%=activities[i].Name%>'"><mark><%=activities[i].Advantage%></mark></h5>
             </div>
             <% if(activities[i].Reviews.length > 0){%>
-            <div class="rating">
+            <div class="rating"  onclick="location.href= '/activities/<%=activities[i].Name%>'">
                 <%let revs = activities[i].Reviews;%>
                 <% let sum =0;%>
                 <% revs.forEach((rev)=>{%>
@@ -93,10 +127,11 @@
                 <%})%>
                 <%let avg = sum / (activities[i].Reviews.length)%>
                 <% if(parseInt(avg) > 0){%>
-                    <% for (let i = 0; i < avg; i++) {%>
+                    <% for (let i = 0; i < Math.floor(avg); i++) {%>
                         <i class="fa-solid fa-star" style="color: rgb(238, 203, 5);"></i>
                     <%}%>
-                    <div>
+                    <span><%=Math.floor(avg)%>/5</span>
+                    <div onclick="location.href= '/activities/<%=activities[i].Name%>'">
                         
                         <p><span><i class="fa-sharp fa-solid fa-comments" style="color:black"></i></span> <%=activities[i].Reviews.length%> Reviews</p>
                         
@@ -105,11 +140,11 @@
             </div>
             <%}%>
             <%}else{%>
-                <div>
+                <div  onclick="location.href= '/activities/<%=activities[i].Name%>'">
                     <p>No Reviews Yet</p>
                 </div>
             <%}%>
-            <div>
+            <div  onclick="location.href= '/activities/<%=activities[i].Name%>'">
                 <h4><%=activities[i].Price%>LE per person</h4>
             </div>
         </div>

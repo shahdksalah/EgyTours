@@ -14,7 +14,9 @@ router.post('/:name', activityController.postReview);
 
 router.post('/:name/submit',activityController.postActivityAvail);
 
-router.post('/:name/:id',activityController.addToCart)
+router.post('/:name/:id',activityController.addToCart);
+
+router.post('/add/to/wishlist', activityController.addToWishlist);
 
 module.exports=router;
 

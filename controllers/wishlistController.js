@@ -18,7 +18,7 @@ const viewFavs = async function (req, res) {
   }
 }
 
-const removeFromFavs = async (req, res) => {
+const removeHotel = async (req, res) => {
   var finalhotels = [];
   console.log("removing hotel from wishlist");
   await Hotel.findById(req.params.id)
@@ -46,15 +46,52 @@ const removeFromFavs = async (req, res) => {
                     req.session.user = result;
                     req.session.authenticated = true;
                     console.log("session updated");
-                    res.render("wishlist", {
-                      user: (!req.session.authenticated) ? "" : req.session.user, msg: ""
-                    })
+                    res.redirect('back');
                   })
               }
               else {
-                res.render("wishlist", {
-                  user: (!req.session.authenticated) ? "" : req.session.user, msg: "Sign in to view your favourites"
-                })
+                res.redirect("back");
+              }
+
+            })
+        })
+    })
+}
+
+const removeActivity = async (req, res) => {
+  var finalacts = [];
+  console.log("removing activity from wishlist");
+  await Activity.findById(req.params.id)
+    .then(async result => {
+      await User.findById(req.session.user._id)
+        .then(async resu => {
+          resu.Wishlist.Activities.forEach(act => {
+            if (act.Name !== (result.Name)) {
+              finalacts.push(act);
+            }
+          })
+          var hotels = resu.Wishlist.Hotels;
+          await User.findByIdAndUpdate(req.session.user._id, {
+            Wishlist: {
+              Hotels: hotels,
+              Activities:finalacts,
+            }
+          })
+            .then(async resss => {
+              console.log("activity deleted from wish list");
+              req.session.user = resu;
+              req.session.authenticated = true;
+              if (req.session.authenticated) {
+                await User.findById(req.session.user._id)
+                  .then(async result => {
+                    req.session.user = result;
+                    req.session.authenticated = true;
+                    console.log("session updated");
+                    res.redirect('back');
+                  })
+              }
+              else {
+                res.redirect("back");
               }
 
             })
@@ -64,33 +101,30 @@ const removeFromFavs = async (req, res) => {
 
 const clearFavs = async (req, res) => {
   var hotels = [];
+  var acts = [];
   await User.findByIdAndUpdate(req.session.user._id, {
     Wishlist: {
       Hotels: hotels,
+      Activities: acts,
     }
   })
     .then(async resu => {
-      console.log("wishlist hotels empty");
+      console.log("wishlist is empty");
       req.session.user = resu;
       req.session.authenticated = true;
-      console.log("session updated");
       if (req.session.authenticated) {
         await User.findById(req.session.user._id)
           .then(async result => {
             req.session.user = result;
             req.session.authenticated = true;
             console.log("session updated");
-            res.render("wishlist", {
-              user: (!req.session.authenticated) ? "" : req.session.user, msg: ""
-            })
+            res.redirect('back');
           })
       }
       else {
-        res.render("wishlist", {
-          user: (!req.session.authenticated) ? "" : req.session.user, msg: "All favorites deleted"
-        })
+        res.redirect('back');
       }
     })
 }
 
-module.exports = { viewFavs, removeFromFavs, clearFavs };
+module.exports = { viewFavs, removeHotel, removeActivity, clearFavs };

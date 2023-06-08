@@ -6,20 +6,22 @@
     <link rel="stylesheet" href="/css/styleForm.css">
 </head>
 <body>
+    <title>WishList</title>
 
     <script src="https://kit.fontawesome.com/ee4053c9b9.js" crossorigin="anonymous"></script>
  
     <%- include("partials/headerPages.ejs") %>
 
+    
     <h1 style="margin-left:2%;">Wish List</h1>
     <%var count = 0%>
 
     <div class="wishlist">
         <div class="left" >
             <%if(user!==""){%>
-            <% if(user.Wishlist==="") {%>
+            <% if(user.Wishlist.Hotels.length==0 && user.Wishlist.Activities.length==0) {%>
                 <div style="margin-left: 40%; margin-top: 10%;">
-                    <h2>There is nothing in your favorites...</h2>
+                    <h2>Your wishlist is empty...</h2>
                 </div>
             <% } %>
             
@@ -32,64 +34,74 @@
 
                     <div class="item-info" style="flex:50%" onclick="location.href= '/hotels/<%=hotel.Name%>'">
                             <h2><%=hotel.Name%></h2>
-                            <h4><%=hotel.Location%></h4>
-                            <p><%=hotel.Caption%></p>
+                            <p><span style="margin-right:5px"><i class="fa-solid fa-location-dot"></i></span><%=hotel.Location%>, Egypt</p>
+                            <p><span style="margin-right:5px"><i class="fa-solid fa-circle-info"></i></span><%=hotel.Caption%>...</p>
+                            <div style="display: flex; gap:5px;">
+                                <%for (let i = 0; i < hotel.Rating; i++) {%>
+                                    <i class="fa-solid fa-star" style="color:rgb(238, 203, 5)"></i>
+                                <%}%>
+                                <span><p style="margin-top:0px; margin-left:10px;"><%=hotel.Rating%>/5</p></span>
+                            </div>
                     </div> 
+                    
                     <div class="item-right" style="flex:30%">
-                        <i class="fa-solid fa-trash-can" style="margin-left:10%; padding:20px;" onclick="location.href='/wishlist/remove-from-wishlist/<%=hotel.HotelID%>';"></i>
+                        <i class="fa-solid fa-trash-can" style="margin-left:15%; padding:20px;" onclick="location.href='/wishlist/remove-hotel-wishlist/<%=hotel.HotelID%>';"></i>
                     </div>
 
                 </div>
                 <%count++;%>
             <% })%>
-        <%j=0; %>
 
 
 
 
         <% if(user.Wishlist.Activities.length!=0){ %>
             <%user.Wishlist.Activities.forEach((activity)=>{%>   <!--showing activities cart -->
-        <div class="items" id="<%=id%>">
+            <div class="items" id="<%=activity.Name%>">
             <div class="image">
                 <div>
-                    <img src="../images/activities/<%=activity.Picture[0] %>" alt="icon" style="width:250px; height:200px;">
+                    <img src="../images/activities/<%=activity.Picture %>" alt="icon" style="width:250px; height:200px;">
                 </div>
             </div>
             <div class="item-info">
     
+                
                 <div>
-                    <h2><%= activity.Name %></h2>
+                    <h2><%=activity.Name%></h2>
+                </div>
+                <div>
+                    <p><span style="margin-right:5px"><i class="fa-solid fa-location-dot"></i></span><%=activity.Header%></p>
+                    <h5><%=activity.Type%></h5>
+                </div>
+                <div style="display: flex; gap:5px;">
+                    <%for (let i = 0; i < activity.Rating; i++) {%>
+                        <i class="fa-solid fa-star" style="color:rgb(238, 203, 5)"></i>
+                    <%}%>
+                    <span><p style="margin-top:0px; margin-left:10px;"><%=activity.Rating%>/5</p></span>
                 </div>
                 
             </div>
                 
             <div class="item-right">
-                <i class="fa-solid fa-trash-can" style="margin-left:10%;" onclick="location.href='wishlist/<%=id%>';"></i>
-                <p class="price">Price: $<%=wishlist.Activities[j].price%></p>
+                <i class="fa-solid fa-trash-can" style="margin-left:15%;" onclick="location.href='/wishlist/remove-activity-wishlist/<%=activity.ActID%>';"></i>
             </div>
         </div>
         
-        <% j++;%>
-        <% id++;%>
-        <% count++; %>
-        <% }) %>
+            <% count++; %>
+            <% }) %>
         <% } %>
         <%}else{%>
             <div style="margin-left: 40%; margin-top: 10%;">
-                <%if(msg!=""){%>
-                    <h2><%=msg%></h2>
-                <%}%>
-                
+                    <h2>Sign in to view your wishlist..</h2>
             </div>
         <%}%>
      </div>
-        <% if(user!="" && user.Wishlist!="") {%>
+
+        <% if(user!="" && (user.Wishlist.Hotels.length!=0 || user.Wishlist.Activities.length!=0)) {%>
         <div class="r"style="flex:30%;">
-            
             <div class="right" style="height:auto">
                 <div>
-                        <span style="text-align: center;"> <h3 >Total (<span id="cnt"><%=count%></span>) Items</h3></span>
-                    
+                    <span style="text-align: center;"> <h3 >Total (<span id="cnt"><%=count%></span>) Items</h3></span>
                 </div>
                
                 <div style="text-align:center;">

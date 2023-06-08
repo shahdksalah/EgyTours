@@ -9,16 +9,19 @@ const ChatSchema = new Schema(
   {
     sender_id: {
       type: String,
+      required:[true,'Sender id is required'],
     },
     receiver_id: {
       type: String,
+      required:[true,'Receiver id is required'],
     },
     message: {
       type: String,
-      required: true,
+      required: [true,'Message is required'],
     },
     dateTime: {
       type: Date,
+      required: [true,'Date is required'],
     },
   },
   { timestamps: true }

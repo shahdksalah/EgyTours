@@ -33,6 +33,7 @@ const getSummary = async (req, res) => {
             max1 = avg1;
         }
     }
+    
 
     var topactivitynames = [];
     var avgactivityratings=[];
@@ -54,6 +55,8 @@ const getSummary = async (req, res) => {
             max2 = avg2;
         }
     }
+    console.log(topactivitynames);
+    console.log(avgactivityratings);
 
 
     res.render("AdminDashboard",{Hotels:Hotels,Activities:Activities,tophotels:tophotelnames,

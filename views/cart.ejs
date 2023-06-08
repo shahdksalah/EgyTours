@@ -18,7 +18,11 @@
     <% var totalPrice=0; %>
     <div class="cart">
         <div class="left" >
-            <% if(cart==="") {%>
+            <% if(user==="") {%>
+                <div style="margin-left: 40%; margin-top: 10%;">
+                    <h2>Sign In To View Cart</h2>
+                </div>
+            <%}else if(cart==="") {%>
                 <div style="margin-left: 40%; margin-top: 10%;">
                     <h2>Your Cart Is Empty</h2>
                 </div>
@@ -72,14 +76,6 @@
                                 </div>
                             </div>
 
-                            <div class="section">
-                                <div class="icon">
-                                    <i class="fa-solid fa-money-bill-wave"></i>
-                                </div>
-                                <div>
-                                    <p>This activity is non-refundable</p>
-                                </div>
-                            </div>
                     
                         </div> 
                         <div class="item-right">
@@ -122,10 +118,10 @@
                 
                         <div class="section">
                             <div class="icon">
-                                <i class="fa-solid fa-calendar-days"></i>
+                                <i class="fa-solid fa-clock"></i>
                             </div>
                             <div>
-                                <p>From: <%=activity.Starttime%>  To:<%=activity.Endtime%></p> 
+                                <p>From: <%=activity.Starttime%>  To: <%=activity.Endtime%></p> 
                             </div>
                         </div>
 
@@ -138,14 +134,6 @@
                             </div>
                         </div>
                 
-                        <div class="section">
-                            <div class="icon">
-                                <i class="fa-solid fa-money-bill-wave"></i>
-                            </div>
-                            <div>
-                                <p>This activity is non-refundable</p>
-                            </div>
-                        </div>
                 
                     </div>
                 

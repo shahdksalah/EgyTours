@@ -75,16 +75,12 @@
                             <div class="select-txt hr">
                                 <p class="pymt-type-name">Credit Card</p>
                                 <p class="pymt-type-desc">Safe money transfer using your bank account. Safe payment
-                                    online. Credit card needed. Visa, Maestro, Discover, American Express</p>
+                                    online. Master Card or Visa needed.</p>
                             </div>
                             <div class="select-logo">
                                 <div class="select-logo-sub logo-spacer">
-                                    <img src="https://www.dropbox.com/s/by52qpmkmcro92l/logo-visa.png?raw=1"
+                                    <img src="/images/homepage/visa-and-mastercard-logo-26.png" style="width:170px; height:50px;"
                                         alt="Visa" />
-                                </div>
-                                <div class="select-logo-sub">
-                                    <img src="https://www.dropbox.com/s/6f5dorw54xomw7p/logo-mastercard.png?raw=1"
-                                        alt="MasterCard" />
                                 </div>
                             </div>
 
@@ -93,7 +89,7 @@
                     <div class="form-cc">
                         <div class="row-cc">
                             <div class="cc-field">
-                                <div class="cc-title">Credit Card Number
+                                <div class="cc-title">Master Card/ Visa Number
                                 </div>
                                 <input id="cardnum" type="text" class="input cc-txt text-validated" name="number" />
                                 <span class="error-message" id="numerr"></span>
@@ -103,7 +99,9 @@
                             <div class="cc-field">
                                 <div class="cc-title">Expiry Date
                                 </div>
+                                <div class="error-message" id="merr"></div>
                                 <select class="input cc-ddl" name="expMonth" id="expm">
+                                    <option>00</option>
                                     <option>01</option>
                                     <option>02</option>
                                     <option>03</option>
@@ -117,8 +115,9 @@
                                     <option>11</option>
                                     <option>12</option>
                                 </select>
-                                <span class="error-message" id="merr"></span>
+                                
                                 <select class="input cc-ddl" name="expYear" id="expy">
+                                    <option>00</option>
                                     <option>23</option>
                                     <option>24</option>
                                     <option>25</option>
@@ -126,7 +125,7 @@
                                     <option>27</option>
                                     <option>28</option>
                                 </select>
-                                <span class="error-message" id="yerr"></span>
+                                <div class="error-message" id="yerr"></div>
                             </div>
                             <div class="cc-field">
                                 <div class="cc-title">CVV Code<span class="numberCircle">?</span>
@@ -165,12 +164,28 @@
     var cardName = document.getElementById('cardname');
     var cardNum = document.getElementById('cardnum');
     var CVV = document.getElementById('cvv');
-    var error = false;
+    var expm = document.getElementById('expm');
+    var expy = document.getElementById('expy');
+    
     var cardform = document.getElementById('cardform');
     cardform.addEventListener('submit', (e) => {
-        if (cardNum.value === " " || cardNum.value.length < 16) {
+        var error = false;
+        var err1, err2;
+        var number = cardNum.value;
+        
+        if (cardNum.value === "") {
             error = true;
-            document.getElementById('numerr').innerHTML = "Card Number is invalid";
+            document.getElementById('numerr').innerHTML = "Card Number cannot be blank";
+        }
+        else if(number[0] != 5 && number[0] != 4){
+            err1 = true;
+        }
+        else if(number.length !=16){
+            err2 = true;
+        }
+        if(err1 || err2){
+            error = true;
+            document.getElementById('numerr').innerHTML = "Card Number is not type Master Card or Visa";
         }
         if (cardName.value === "") {
             error = true;
@@ -180,10 +195,24 @@
             error = true;
             document.getElementById('cvverr').innerHTML = "CVV cannot be blank";
         }
+        if(expm.value == "00"){
+            error = true;
+            document.getElementById('merr').innerHTML = "Month cannot be blank";
+        }
+        if(expy.value=="00"){
+            error = true;
+            document.getElementById('yerr').innerHTML = "Year cannot be blank";
+        }
 
         if (error) {
             console.log("card error");
             e.preventDefault();
+        }
+        else{
+            document.getElementById('numerr').innerHTML = "";
+            document.getElementById('nameerr').innerHTML = "";
+            document.getElementById('cvverr').innerHTML = "";
+
         }
         error=false;
     })

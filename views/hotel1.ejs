@@ -161,15 +161,15 @@
                             </span>
                             <div id="exc">
                               <h3>
-                                <% if(avg===5){%>
+                                <% if(Math.floor(avg)===5){%>
                                   Excellent
-                                  <%}else if(avg===4){%>
+                                  <%}else if(Math.floor(avg)===4){%>
                                     Very Good
-                                    <%}else if(avg===3){%>
+                                    <%}else if(Math.floor(avg)===3){%>
                                       Good
-                                      <%}else if(avg===2){%>
+                                      <%}else if(Math.floor(avg)===2){%>
                                         Okay
-                                        <%}else if(avg===1){%>
+                                        <%}else if(Math.floor(avg)===1){%>
                                           Needs Improvement
                                           <%}else{%>
                                             No Reviews Yet

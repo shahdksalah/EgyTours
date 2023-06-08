@@ -11,7 +11,6 @@ const getHotels = async (req, res) => {
      
     var Hotels = [];
     Hotels = await Hotel.find();
-    // .skip(page * actPerPage).limit(actPerPage);
     var Hotels1 = [];
     Hotels1 = await Hotel.find();
     var length=Math.ceil(Hotels1.length/actPerPage);
@@ -23,13 +22,14 @@ const getHotels = async (req, res) => {
             console.log("session updated");
             res.render("hotels", {
                 hotels: (Hotels === 'undefined' ? "" : Hotels),
-                user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1
+                user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1,
+                wish:undefined,
             });
         })  
     }else{
         res.render("hotels", {
             hotels: (Hotels === 'undefined' ? "" : Hotels),
-            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:0, end:actPerPage-1,wish:undefined,
         });
     }
     
@@ -44,7 +44,7 @@ const getHotelPage = async (req, res) => {
     var Hotels1 = [];
     Hotels1 = await Hotel.find();
     var length=Math.ceil(Hotels1.length/actPerPage);
-    var now;
+    var now; 
     var display;
     var end;
     if((url-1)!=0){
@@ -70,13 +70,13 @@ const getHotelPage = async (req, res) => {
             console.log("session updated");
             res.render("hotels", {
                 hotels: (Hotels === 'undefined' ? "" : Hotels),
-                user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end});
+                user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end,wish:undefined,});
         }) 
     }
     else{
         res.render("hotels", {
             hotels: (Hotels === 'undefined' ? "" : Hotels),
-            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end});
+            user: (!req.session.authenticated) ? "" : req.session.user, msg: "", length:length, page:display, end:end,wish:undefined,});
     }
     
 }
@@ -90,8 +90,6 @@ const getHotel1 = async (req, res) => {
 }
 
 const postHotelAvail = async (req, res) => {
-   
-    
     var adults=req.body.adults;
     var children=req.body.children;
     var rooms=req.body.rooms;
@@ -182,30 +180,39 @@ const postHotelAvail = async (req, res) => {
 const addToWishlist = async (req,res)=>{
     await User.findById(req.session.user._id)
         .then(async result => {
-            await Hotel.find({ "Name": req.params.name })
+            await Hotel.find({ "Name": req.body.Name })
                 .then(async resu => {
+                    var rating;
+                    var sum=0;
+                    resu[0].Reviews.forEach(rev=>{
+                        sum += parseInt(rev.Rating);
+                    })
+                    rating = Math.floor((sum/resu[0].Reviews.length));
                     var hotelWish = {
                         HotelID: resu[0]._id,
                         Name: resu[0].Name,
                         Picture: resu[0].Picture[0],
                         Location: resu[0].Location,
-                        Caption: resu[0].About.substring(0,70),
+                        Caption: resu[0].About.substring(0,100),
+                        Rating: rating,
                     }
                     var hotels = result.Wishlist.Hotels;
+                    var acts = result.Wishlist.Activities;
                     hotels.push(hotelWish);
                     await User.findByIdAndUpdate(req.session.user._id, {
                         Wishlist: {
                             Hotels: hotels,
+                            Activities: acts,
                         }
 
                     })
                         .then(async r => {
-                            await Hotel.find({"Name": req.params.name})
+                            await Hotel.find({"Name": req.body.HotelName})
                             .then(async re=>{
                                 await User.findById(req.session.user._id)
                                 .then((rr)=>{
                                     console.log("hotel added to wishlist");
-                                    res.redirect('back');
+                                    res.send('okay');
                                 })
                                 
                             })

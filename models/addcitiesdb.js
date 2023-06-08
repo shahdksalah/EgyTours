@@ -11,11 +11,12 @@ const CitySchema = new Schema(
     Name: {
       type: String,
       trim: true,
-      required: true,
+      required:[true,'City Name is required'],
     },
     picture: {
       type: Array,
-      required: true,
+      required: [true,'Picture is required'],
+
     },
   },
   { timestamp: true }

@@ -9,11 +9,12 @@ app.use(express.urlencoded({extended:true}));
 const bookingSchema=new Schema({
     bookingNo:{
         type:Number,
-        required:true,
+        required:[true,'Booking number is required'],
         unique:true,
     },
     User:{
         type:String,
+        required:[true,'User id is required'],
         trim:true,
     },
     Hotels:{

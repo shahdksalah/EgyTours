@@ -97,9 +97,11 @@ function isAvail(){
   document.getElementById("subForm").style.display="none";
   document.getElementById("t-error").innerHTML=""
 
-  if(checkIn=="" || checkOut=="" || adults=="" || children=="" || rooms=="" || roomType=="" || name==""){
+  if(checkIn=="" || checkOut=="" || adults=="" || rooms=="" || roomType=="" || name==""){
      document.getElementById("t-error").innerHTML="All fields required"
   }
+  else{
+    var price;
     
   $.ajax({
       url:`/hotels/browse/${name}/submit`,
@@ -137,7 +139,8 @@ function isAvail(){
 
       }
   });
-     
+  
+  }
 
 
 }

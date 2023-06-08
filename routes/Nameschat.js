@@ -8,8 +8,9 @@ router.get("/", async function (req, res) {
     var query = "client";
     Users= await User.find( { "Type": query });
     console.log(Users);
+    var chats=await Chat.find();
     res.render("chat", { users: (Users === 'undefined' ? "" : Users),
-    user: !req.session.authenticated ? "" : req.session.user});
+    user: !req.session.authenticated ? "" : req.session.user,chats:chat});
   });
 
   router.post('/saveChat',async(req,res)=>{

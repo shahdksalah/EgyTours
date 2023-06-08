@@ -4,9 +4,10 @@ const Chat = require("../models/chatdb");
 const chatController=require('../controllers/chatController.js');
 
 
-router.get("/", function (req, res) {
+router.get("/", async function (req, res) {
+  var chats=await Chat.find();
   res.render("chat1", {
-    user: !req.session.authenticated ? "" : req.session.user,
+    user: !req.session.authenticated ? "" : req.session.user,chats:chats
   });
 });
 

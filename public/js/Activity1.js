@@ -35,6 +35,7 @@ function isAvail(){
       document.getElementById("date-msg").innerHTML="All fields required";
 
      }
+     else{
   
     $.ajax({
         url: `${name2}/submit`,
@@ -80,6 +81,7 @@ function isAvail(){
 
         }
     });
+  }
         
 
 

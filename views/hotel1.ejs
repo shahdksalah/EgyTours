@@ -380,8 +380,8 @@
                
 
               <form  id="subForm"  action="<%=hotel1[0].Name%>/<%=hotel1[0]._id%>"  method="post"
-                style="border: none;display: none; background-color:transparent;">
-                <div id="avail">
+                style="border: none;display: none; background-color:transparent; height:170px">
+                <div id="avail" style="height: 130px;">
                   <h2>Available</h2>
                 
                 
@@ -391,6 +391,10 @@
                   <input type="hidden" id="ch" name="children" >
                   <input type="hidden" id="ro" name="rooms" >
                   <input type="hidden" id="rt" name="roomType" >
+
+                  <div>
+                    <p id="p"></p>
+                  </div>
                   
                   <div style="text-align: center; margin-top:15px;">
                     <button type="submit" id="add" style="width:150px;cursor: pointer;">Add To Cart</button>

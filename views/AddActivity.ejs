@@ -31,16 +31,16 @@
                     <%}%>
         <form method="post" action="/AddActivity/submit" enctype="multipart/form-data" id="form">
         <h3>City's Name</h3>
-        <textarea id="ActName" rows="3" cols="60" name="Aname"></textarea>
+        <textarea id="ActName" rows="3" cols="60" name="Aname" placeholder="eg: Alexandria"></textarea>
         <p class='error-message' id="error-name"></p>
         <h3>Header: </h3>
-        <textarea id="ActHeader" rows="3" cols="60" name="Aheader"></textarea>
+        <textarea id="ActHeader" rows="3" cols="60" name="Aheader" placeholder="eg: Cairo: Full Day Tour of Historical Alexandria"></textarea>
         <p class='error-message' id="error-header"></p>
 
         <input type="hidden" id="dropbtn" list="Days" placeholder="Number of Days" name="Days" value="DAY TRIP">
 
         <h3>Type:</h3>
-        <textarea id="ActType" rows="2" cols="25" name="Atype"></textarea>
+        <textarea id="ActType" rows="2" cols="25" name="Atype" placeholder="eg: ADVENTURE"></textarea>
         <p class='error-message' id="error-type"></p>
 
         <input type="text" name="rate" value="0" style="display:none;">
@@ -51,39 +51,39 @@
         <span class='error-message' id="error-imgs"></span>
 
         <h3>Advantage:</h3>
-        <input type="text" id="adv" name="adv">
+        <input type="text" id="adv" name="adv" placeholder="eg: Excellent guide">
         <p class='error-message' id="error-adv"></p>
 
         <h2><ins>Details:</ins></h2>
 
         <h3>Brief Description: </h3>
-        <textarea id="Actbrief" rows="5" cols="60" name="Abrief"></textarea>
+        <textarea id="Actbrief" rows="5" cols="60" name="Abrief" placeholder="eg: See the highlights of Alexandria in just one day with this tour from Cairo...."></textarea>
         <p class='error-message' id="error-brief"></p>
 
         <h3>Detailed Description: </h3>
-        <textarea id="Actdetails" rows="10" cols="60" name="Adetails"></textarea>
+        <textarea id="Actdetails" rows="10" cols="60" name="Adetails" placeholder="eg: Enjoy a full-day trip to the historic city of Alexandria and experience the remnants of a bygone era. After pickup from yourEnjoy a full-day trip to the historic city of Alexandria and experience the remnants of a bygone era. After pickup from your hotel in Cairo or Giza, you'll drive towards Alexandria..."></textarea>
         <p class='error-message' id="error-details"></p>
 
         <h3>Plan: </h3>
-        <textarea id="ActPlan" rows="6" cols="60" name="Aplan"></textarea>
+        <textarea id="ActPlan" rows="6" cols="60" name="Aplan" placeholder="eg: 1.Marvel at the Roman amphitheater of Kom El-Deka2.Admire the architectural excellence of the Catacombs of Kom El Shoqafa3..."></textarea>
         <p class='error-message' id="error-plan"></p> 
 
         <h2><ins>About the trip:</ins></h2>
 
         <h3>Cancellation details: </h3>
-        <textarea id="ActCancel" rows="3" cols="60" name="Acancel"></textarea>
+        <textarea id="ActCancel" rows="3" cols="60" name="Acancel" placeholder="eg: Free Cancellation(Cancel up to 24 hours in advance)..."></textarea>
         <p class='error-message' id="error-cancel"></p>
 
         <h3>Duration: </h3>
-        <textarea id="ActTime" rows="2" cols="60" name="Atime"></textarea>
+        <textarea id="ActTime" rows="2" cols="60" name="Atime"  placeholder="eg: Duration 10-11 hours..."></textarea>
         <p class='error-message' id="error-duration"></p>
 
         <h3>Pickup Details: </h3>
-        <textarea id="ActPickup" rows="4" cols="60" name="Apickup"></textarea>
+        <textarea id="ActPickup" rows="4" cols="60" name="Apickup" placeholder="eg: Pickup is available from your hotel or selected location in Cairo. You will be contacted via WhatsApp, email, or phone ..." ></textarea>
         <p class='error-message' id="error-pickup"></p>
 
         <h3>Maximum Participants: </h3>
-        <textarea id="ActPart" rows="4" cols="60" name="Aparticipants"></textarea>
+        <textarea id="ActPart" rows="4" cols="60" name="Aparticipants"  placeholder="eg: 10"></textarea>
         <p class='error-message' id="error-max"></p>
 
         <h3 style="width:400px;">Starting time:</h3>
@@ -95,7 +95,7 @@
         <p class='error-message' id="error-end"></p>
 
         <h3 style="width:400px;">Price per person: </h3>
-        <input type="text" name="price" id="price">
+        <input type="text" name="price" id="price"  placeholder="eg: 500">
         <p class='error-message' id="error-price"></p>
 
 

@@ -27,8 +27,8 @@ const userSchema = new Schema ({
         type:String,
         required:[true,'Phone number is required'],
         trim:true,
-        minlength:[10,'Phone number is not valid'],
-        maxlength:[10,'Phone number is not valid']
+        minlength:[11,'Phone number is not valid'],
+        maxlength:[11,'Phone number is not valid']
 
     },
     Password:{

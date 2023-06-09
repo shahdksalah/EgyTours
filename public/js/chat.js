@@ -128,3 +128,5 @@ function openChat(name,id){
      document.getElementById("receiverid").innerHTML=id;
      document.getElementById("chat").style.display="block";
 }
+
+// messageContainer.scrollTo(0, messageContainer.scrollHeight);

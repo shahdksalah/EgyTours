@@ -37,8 +37,6 @@ const checkUN = (req, res) => {
 }
 
 const validateLogin = async (req, res) => {
-    console.log("user: " + req.body.Username);
-    console.log("pass: " + req.body.Password);
     var user = req.body.Username;
     var pass = req.body.Password;
     console.log("validating");
@@ -64,11 +62,13 @@ const validateLogin = async (req, res) => {
     else {
         console.log("username and password valid - trying login");
         var query = { Username: req.body.Username };
-        console.log(query);
         await User.find(query)
             .then(async result => {
-                if (!result) res.send('not found');
-                await bcrypt.compare(req.body.Password, result[0].Password)
+                if (result.length == 0){
+                    res.send('not found');
+                }
+                else{
+                    await bcrypt.compare(req.body.Password, result[0].Password)
                     .then(async resu => {
                         if (!resu) {
                             res.send("invalid");
@@ -77,13 +77,12 @@ const validateLogin = async (req, res) => {
                             console.log("logged in sucessfully");
                             req.session.user = result[0];
                             req.session.authenticated = true;
-                            var array = [];
-                            array = await city.find();
                             res.redirect('back');
-                            //res.render("index", { user: (!req.session.authenticated) ? "" : req.session.user, cities: array, alerts: "" });
                         }
                     })
                     .catch(err => console.log("1" + err));
+                }
+                
             })
             .catch(err => console.log("2" + err));
 

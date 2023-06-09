@@ -4,7 +4,6 @@ const { body, validationResult } = require('express-validator');
 
 const getUsers = async (req, res) => {
     var Users=await User.find();
-    console.log(Users);
     res.render("users",{users:(Users==='undefined'?"":Users),userUpdated:false,msg:"", alert: undefined});
 }
 
@@ -27,8 +26,7 @@ const updateUser = async (req, res) => {
             ConfPassword: req.body.uppsw
         })
             .then(async result => {
-                var Users = await User.find();
-                res.render("users", { users: Users, userUpdated: false, msg: "User Updated Successfully" , alert: undefined});
+                res.redirect('back');
             })
             .catch(err => {
                 console.log(err);
@@ -39,12 +37,9 @@ const updateUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-    console.log("entered");
-
     await User.findByIdAndDelete(req.body.id)
         .then(async result => {
-            var Users = await User.find();
-            res.render("users", { users: Users, userUpdated: false, msg: "" , alert: undefined});
+            res.redirect('back');
         })
         .catch(err => {
             console.log(err);
@@ -55,8 +50,7 @@ const deleteUser = async (req, res) => {
 const toAdmin = async (req, res) => {
     User.findByIdAndUpdate(req.params.id, { Type: 'admin' })
         .then(async result => {
-            var Users = await User.find();
-            res.render("users", { users: Users, userUpdated: true, msg: "" , alert: undefined});
+            res.redirect('back');
         })
         .catch(err => {
             console.log(err);

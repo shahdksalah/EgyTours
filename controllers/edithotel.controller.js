@@ -34,8 +34,15 @@ const updateHotel = async (req, res) => {
     .then((result)=>{
         if(result){
             var prevbooked;
+            var prev = result.RoomTypes.length;
         for (var i = 0; i < reqtypes.length - 1; i++) {
-            prevbooked = result.RoomTypes[i].RoomsBooked;
+            if(i < prev){
+                prevbooked = result.RoomTypes[i].RoomsBooked;
+                console.log(prevbooked);
+            }else{
+                prevbooked = 0;
+            }
+            
             types[i] = {
                 Name: reqtypes[i],
                 Price: reqprices[i],

@@ -69,11 +69,10 @@
                 <% let id=0; %>
                     <% let i=0;%>
                         <h1>Hotels</h1>
+                        <div id="nomatch">
+                            <h2>Nothing matches your search...</h2>
+                        </div>
                         <% for (; i < hotels.length; i++) {%>
-
-                            <div id="nomatch">
-                                <h2>Nothing matches your search...</h2>
-                            </div>
                             <%if(i < page || i > (end)){%>
                                 <%id =`hide:${i}`;%>
                             <%}else{%>
@@ -95,7 +94,7 @@
                                     </h2>
                                     
                                     <% if(hotels[i].Reviews.length> 0){%>
-                                        <div class="rating">
+                                        <div class="rating" onclick="location.href= '/hotels/browse/<%=hotels[i].Name%>'">
                                             <%let revs=hotels[i].Reviews;%>
                                             <% let sum=0;%>
                                             <% revs.forEach((rev)=>{%>
@@ -119,13 +118,13 @@
                                                         <p>No Reviews Yet</p>
                                                     </div>
                                                 <%}%>
-                                                    <div>
+                                                    <div onclick="location.href= '/hotels/browse/<%=hotels[i].Name%>'">
                                                         <p>
                                                             <span><i class="fa-sharp fa-solid fa-location-dot"></i></span>
                                                                 <%=hotels[i].Location%>, Egypt
                                                         </p>
                                                     </div>
-                                                    <div>
+                                                    <div onclick="location.href= '/hotels/browse/<%=hotels[i].Name%>'">
                                                         <p>
                                                             <span><i class="fa-sharp fa-solid fa-circle-info"></i></span>
                                                                 <%=hotels[i].Caption%>
@@ -134,7 +133,8 @@
                                                     </div>
                                             </div>
                                             <div class="right">
-                                                <%if(user!==""){%>
+                                                <%if(user!=="" ){%>
+                                                    <%if(user.Type!=='admin'){%>
                                                     <% var found = false;%>
                                                      <%if(user.Wishlist.Hotels.length!=0){%>
                                                         <%user.Wishlist.Hotels.forEach(hot=>{%>
@@ -152,6 +152,7 @@
                                                         <%}else{%>
                                                             <input type="hidden" name="user" value=<%=user._id%>>
                                                             <a id="hotelwish"  data-hotelid="<%=hotels[i].Name%>"><i  class="fa-regular fa-heart" style="color: #ff0000; font-size: 25px;"></i></a>
+                                                        <%}%>
                                                         <%}%>
                                                     <%}%>
                                             </div>

@@ -140,7 +140,7 @@ function donez(newid, list) {
 
 
 function addType() {
-    var letters = /^[A-Za-z]+$/;
+    var letters = /^[A-Za-z\s]*$/;
 
     if (document.getElementById('addedtype').value === "") {
         document.getElementById('errortype').innerHTML = "You must enter a room type";

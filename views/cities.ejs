@@ -55,7 +55,7 @@
 
                     <div class="slogan">Things to do in</div>
                     <div class="namec">
-                        <%=city.Name%>,Egypt
+                        <%=city.Name%>, Egypt
                     </div>
                 </div>
             </div>
@@ -63,13 +63,13 @@
 
 
 
-        <h1 class="head">
-            <%=city.Name%> Activities
-        </h1>
+        
 
-
+        <% if(activities.length!==0 ) { %>
+            <h1 class="head">
+                <%=city.Name%> Activities
+            </h1>
         <div class="first">
-            <% if(activities!=="" ) { %>
                 <% let id=1; %>
                     <% activities.forEach((activity)=> { %>
                         <div class="btn" onclick="location.href= '/activities/<%=activity.Name%>'">
@@ -85,87 +85,85 @@
                                 <h4>
                                     <%=activity.Header%>
                                 </h4>
-                                <h5>
-                                    <%=activity.Duration%>
-                                </h5>
                                 <h5><mark>
                                         <%=activity.Advantage%>
                                     </mark></h5>
                             </div>
                             <div>
-                                <% if(activity.Rate==="0" ) { %>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <% } %>
-                                        <% if(activity.Rate==="1" ) { %>
-                                            <i class="fa-solid fa-star"></i>
-                                            <% } %>
-                                                <% if(activity.Rate==="2" ) { %>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <% } %>
-                                                        <% if(activity.Rate==="3" ) { %>
-                                                            <i class="fa-solid fa-star"></i>
-                                                            <i class="fa-solid fa-star"></i>
-                                                            <i class="fa-solid fa-star"></i>
-                                                            <% } %>
-                                                                <% if(activity.Rate==="4" ) { %>
-                                                                    <i class="fa-solid fa-star"></i>
-                                                                    <i class="fa-solid fa-star"></i>
-                                                                    <i class="fa-solid fa-star"></i>
-                                                                    <i class="fa-solid fa-star"></i>
-                                                                    <% } %>
-                                                                        <% if(activity.Rate==="5" ){ %>
-                                                                            <i class="fa-solid fa-star"></i>
-                                                                            <i class="fa-solid fa-star"></i>
-                                                                            <i class="fa-solid fa-star"></i>
-                                                                            <i class="fa-solid fa-star"></i>
-                                                                            <i class="fa-solid fa-star"></i>
-                                                                            <% } %>
-                            </div>
-                            <div>
-                                <h3>From E£ <%=activity.Price%> per person</h3>
+                                <% let sum = 0;%>
+                                <% activity.Reviews.forEach(rev=>{%>
+                                    <%sum += parseInt(rev.Rating);%>
+                                <%})%>
+                                <%let avg = sum/(activity.Reviews.length);%>
+                                <%for(var i=0; i<Math.floor(avg); i++){%>
+                                    <i class="fa-solid fa-star" style="color:rgb(223, 204, 0)"></i>
+                                <%}%>
+                                <%if(Math.floor(avg)>0){%>
+                                    <%=Math.floor(avg)%>/5
+                                <%}else{%>
+                                    No Reviews Yet
+                                <%}%>
                             </div>
                         </div>
                         <% id++; %>
                             <% }); %>
-                                <% } %>
+                                <% }else{%>
+                                    <h1 class="head">
+                                        No Activities in <%=city.Name%> to Show
+                                    </h1>
+                                <%}%>
         </div>
-        <h1 class="head">
-            <%=city.Name%> Hotels
-        </h1>
+
+
+
+        
+        <% if(hotels.length!=0 ) { %>
+            <h1 class="head">
+                <%=city.Name%> Hotels
+            </h1>
         <div class="first">
-            <% if(hotels!=="" ) { %>
                 <% let id1=1; %>
                     <% hotels.forEach((ht)=> { %>
-                        <div class="btn">
+                        <div class="btn" onclick="location.href='/hotels/browse/<%=ht.Name%>'">
                             <div>
                                 <img src="/images/Hotels/<%=ht.Picture[0]%>" width="300 px" height="200 px" class="img">
                             </div>
 
                             <div>
-                                <h5>
+                                <h3>
                                     <%=ht.Name%>
-                                </h5>
+                                </h3>
                                 <h4>
-                                    <%=ht.Location%>
+                                    <%=ht.Location%>, Egypt
                                 </h4>
-                                <h5>
-                                    <%=ht.PropertyAmen%>
-                                </h5>
-                                <h5>
-                                    <%=ht.RoomFeatures%>
-                                </h5>
+                                <div>
+                                    <% let sum = 0;%>
+                                    <% ht.Reviews.forEach(rev=>{%>
+                                        <%sum += parseInt(rev.Rating);%>
+                                    <%})%>
+                                    <%let avg = sum/(ht.Reviews.length);%>
+                                    <%for(var i=0; i<Math.floor(avg); i++){%>
+                                        <i class="fa-solid fa-star" style="color:rgb(231, 211, 1)"></i>
+                                    <%}%>
+                                    <%if(Math.floor(avg)>0){%>
+                                        <%=Math.floor(avg)%>/5
+                                    <%}else{%>
+                                        No Reviews Yet
+                                    <%}%>
+                                    
+                                </div>
+                                
                             </div>
 
 
                         </div>
                         <% id1++; %>
                             <% }); %>
-                                <% } %>
+                                <% }else{%>
+                                    <h1 class="head">
+                                        No Hotels in <%=city.Name%> to Show
+                                    </h1>
+                                <%}%>
         </div>
 
 

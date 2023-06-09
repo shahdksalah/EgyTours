@@ -55,8 +55,6 @@ const getSummary = async (req, res) => {
             max2 = avg2;
         }
     }
-    console.log(topactivitynames);
-    console.log(avgactivityratings);
 
 
     res.render("AdminDashboard",{Hotels:Hotels,Activities:Activities,tophotels:tophotelnames,

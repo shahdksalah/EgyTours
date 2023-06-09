@@ -47,6 +47,8 @@
                                   <span>
                                     <%=Math.floor(avg)%>/5
                                   </span>
+                                  <%}else{%>
+                                    No Reviews Yet
                                   <%}%>
                                     <% } %>
             </span>
@@ -167,7 +169,7 @@
               <div id="msg" class="check-error"></div>
             </div>
             <div>
-              <select name="days"  id="dropbtn" style="margin-top:5px;" class="l">
+              <select name="days"  id="dropbtn"  class="l">
                 <%for(var i=0;i< activity1[0].DatesDetails.length; i++) { %>
                   <% var b=activity1[0].DatesDetails[i].date; %>
                   <% const dat = new Date().getTime();%>

@@ -33,16 +33,13 @@ router.post("/success", validateSignUp(), async (req, res) => {
       console.log(alert);
       res.render('users', {users:(Users==='undefined'?"":Users),userUpdated:false,msg:"", alert: alert });
     }
-
-
     else {
       var type = "client";
-      console.log("signing up");
+      console.log("adding user");
       let hashedPass;
       const saltRounds = 10;
       bcrypt.hash(req.body.psw, saltRounds).then((hash) => {
         hashedPass = hash;
-        console.log("Hash ", hashedPass);
 
         var user = new User({
           Username: req.body.uname,
@@ -54,7 +51,7 @@ router.post("/success", validateSignUp(), async (req, res) => {
         });
         user.save().then((result) => {
           console.log("user added");
-          res.render("users", {users:(Users==='undefined'?"":Users),userUpdated:false,msg:"", alert: alert });
+          res.redirect("back");
         });
       });
     }

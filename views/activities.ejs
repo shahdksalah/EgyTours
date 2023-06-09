@@ -93,6 +93,7 @@
                 
                 <h5>
                     <%if(user!==""){%>
+                        <%if(user.Type!=='admin'){%>
                         <% var found = false;%>
                          <%if(user.Wishlist.Activities.length!=0){%>
                             <%user.Wishlist.Activities.forEach(act=>{%>
@@ -110,6 +111,7 @@
                             <%}else{%>
                                 <input type="hidden" name="user" value=<%=user._id%>>
                                 <a id="actwish"  data-actid="<%=activities[i].Name%>"><i  class="fa-regular fa-heart" style="color: #ff0000; font-size: 20px;"></i></a>
+                            <%}%>
                             <%}%>
                         <%}%>
                         <%=activities[i].Type%>

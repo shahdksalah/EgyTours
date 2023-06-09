@@ -11,7 +11,7 @@ router.get("/", async function (req, res) {
   });
 });
 
-router.post('/saveChat',chatController.saveChat);
+router.post('/save',chatController.saveChat);
 router.post('chat/saveChat',chatController.sChat);
 
 

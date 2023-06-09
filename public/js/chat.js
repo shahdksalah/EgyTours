@@ -26,7 +26,7 @@ if (type.value === "admin") {
     receiver_id=document.getElementById("receiverid").innerText;
 } else {
     ur="chat1/saveChat"
-    receiver_id='6473bed00f4f61858f1cc898';
+    receiver_id='64826bd80151e2560e7fa4f5';
 }
 
 
@@ -36,11 +36,11 @@ console.log("submit")
 e.preventDefault();
 
 if (type.value === "admin") {
-    ur="chat/saveChat"
+    ur="chat/save"
     receiver_id=document.getElementById("receiverid").innerText;
 } else {
-    ur="chat1/saveChat"
-    receiver_id='6473bed00f4f61858f1cc898';
+    ur="chat1/save"
+    receiver_id='64826bd80151e2560e7fa4f5';
 }
 
 console.log(receiver_id);
@@ -51,6 +51,8 @@ function sendMessage() {
 if (messageInput.value === "") return;
 console.log(messageInput.value);
 
+console.log(sender_id);
+console.log(receiver_id);
 
 
 $.ajax({
@@ -59,8 +61,8 @@ $.ajax({
     data: {  
     sender_id: sender_id,
     receiver_id:receiver_id,
-    message: messageInput.value,
-    dateTime: new Date(),  },
+    message: messageInput.value},
+    // dateTime: new Date(),  },
 
     success: function (response) {
     if(response.success){
@@ -75,6 +77,15 @@ $.ajax({
         alert(response.msg)
     }
     },
+    error: function(xhr, status, err) {
+        switch (status){
+        case 'timeout': {}
+        case 'parseerror': {}
+        case 'abort': {}
+        case 'error': {}
+        default: {}
+        }
+      }
 
 });
 
@@ -87,7 +98,7 @@ $.ajax({
         if (type.value === "admin") {
             receiver_id=document.getElementById("receiverid").innerText;
         } else {
-            receiver_id='6473bed00f4f61858f1cc898';
+            receiver_id='64826bd80151e2560e7fa4f5';
         }
 
 
@@ -98,20 +109,19 @@ $.ajax({
     });
 
 
-
 function addMessagetoUI(isOwnMessage, data) {
-const element = `
-                    <li class="${
-                    isOwnMessage ? "message-right" : "message-left"
-                    }">
-                    <p class="message">
-                        ${data.message}
-                        <span>
-                        ${moment(data.dateTime).fromNow()}
-                        </span>
-                    </p>
-                    </li>
+var element = `
+<li class="${
+    isOwnMessage ? "message-right": "message-left"
+    }" >
+    <p class="message">
+        ${data.message}
+        <span>
+        </span>
+    </p>
+    </li>
                 `;
+
 messageContainer.innerHTML += element;
 scrollToBottom();
 }
@@ -128,3 +138,4 @@ function openChat(name,id){
      document.getElementById("receiverid").innerHTML=id;
      document.getElementById("chat").style.display="block";
 }
+

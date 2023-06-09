@@ -59,7 +59,7 @@ body:not(#foot){
 }
 
 .message-left,
-.message-right {
+.message-right,.m-left,.m-right {
     list-style: none;
     padding: 8px 12px;
     margin: 12px;
@@ -68,14 +68,14 @@ body:not(#foot){
     word-wrap: break-word;
 }
 
-.message-left {
+.message-left,.m-left {
     border-radius: 20px 20px 20px 0px;
     align-self: flex-start;
     background-color: #fff;
     box-shadow: -2px 2px 4px #dcdcdc;
 }
 
-.message-right {
+.message-right,.m-right {
     border-radius: 20px 20px 0px 20px;
     align-self: flex-end;
     background-color: #2d2d2d;
@@ -84,7 +84,9 @@ body:not(#foot){
 }
 
 .message-left>p>span,
-.message-right>p>span {
+.message-right>p>span,
+.m-right>p>span,
+.m-left>p>span {
     display: block;
     font-style: italic;
     font-size: 12px;

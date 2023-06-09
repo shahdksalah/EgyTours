@@ -4,18 +4,23 @@ const Activity = require('../models/activity.schema.js');
 const User = require('../models/usersdb.js');
 
 const viewFavs = async function (req, res) {
-
   if (req.session.authenticated) {
-    console.log("authenticated");
-    res.render("wishlist", {
-      user: (!req.session.authenticated) ? "" : req.session.user, msg: ""
-    })
+    await User.findById(req.session.user._id)
+      .then(async result => {
+        req.session.user = result;
+        req.session.authenticated = true;
+        console.log("session updated");
+        res.render("wishlist", {
+          user: (!req.session.authenticated) ? "" : req.session.user, msg: ""
+        })
+      })
   }
   else {
     res.render("wishlist", {
       user: (!req.session.authenticated) ? "" : req.session.user, msg: "Sign in to view your favourites"
     })
   }
+
 }
 
 const removeHotel = async (req, res) => {

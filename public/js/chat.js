@@ -98,7 +98,6 @@ $.ajax({
     });
 
 
-
 function addMessagetoUI(isOwnMessage, data) {
 const element = `
                     <li class="${
@@ -107,7 +106,6 @@ const element = `
                     <p class="message">
                         ${data.message}
                         <span>
-                        ${moment(data.dateTime).fromNow()}
                         </span>
                     </p>
                     </li>

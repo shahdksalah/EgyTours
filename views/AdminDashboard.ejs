@@ -14,8 +14,12 @@
 
 </head>
 <style>
-    .head{
+    .head,.rev{
         margin-bottom: 10px;
+    }
+    .first{
+        margin-bottom:30px;
+        width:100%;
     }
 </style>
 
@@ -36,19 +40,20 @@
                             <%rate1=activityratings[id1]; %>
                             <% Activities.forEach((Activity) => { %>
                             <% if( (Activity.Name.toString()) === (topactivity.toString() ) ){ %>
-                    <div class="btn">
+                    <div class="btn" style="width:250px">
                         <div>
-                            <img src="/images/activities/<%=Activity.Picture[0]%>" width="260 px" height="200 px" >
+                            <img src="/images/activities/<%=Activity.Picture[0]%>" width="200 px" height="150 px" >
                         </div>
 
                         <div>
                             <h5><%=Activity.Header%></h5>
-                            <h4><%=Activity.Advantage%> </h4>
+                            <p><%=Activity.Advantage%> </p>
                         </div>
                         <span class="rating">
                             <% for(var k =0; k <rate1 ;k++){ %>
                                 <i class="fa-solid fa-star"></i> 
                                 <% } %>
+                                <%=rate1%>/5
                             </span>
 
                     </div>
@@ -71,20 +76,21 @@
                             <%rate2=hotelratings[id2]; %>
                         <% Hotels.forEach((hotel) => { %>
                             <% if( (hotel.Name.toString()) === (tophotel.toString()) ) { %>
-                    <div class="btn">
+                    <div class="btn"  style="width:250px">
                         <div>
-                            <img src="/images/Hotels/<%=hotel.Picture[0]%>" width="260 px" height="200 px" >
+                            <img src="/images/Hotels/<%=hotel.Picture[0]%>" width="200 px" height="150 px" >
                         </div>
 
                         <div>
-                            <h3><%=hotel.Name%></h3>
-                            <h4><%=hotel.Location%> </h4>
+                            <h5><%=hotel.Name%></h5>
+                            <p><%=hotel.Location%>, Egypt </p>
                         </div>
 
                         <span class="rating">
                         <% for(var k =0; k < rate2;k++){ %>
                             <i class="fa-solid fa-star"></i>
                             <% } %>
+                            <%=rate1%>/5
                         </span>
                          
                         </div>
@@ -118,17 +124,18 @@
                     <% if( diffDays<=7 ) { %>
                         <div class="btn">
                             <div class="rev">
-                                <%=hotel.Name%>
+                                <h4><%=hotel.Name%></h4>
                             </div>
-                            <div class="rev" style="margin-bottom:6px;">
+                            <div class="rev" style="margin-bottom:20px;">
                                 <%var daterev= rev.Date.split(',')[0];%>
-                              <h6 class="R"> at <%=daterev%> </h6>
+                              <h6 class="R"><%=rev.Username%> wrote a review on at <%=daterev%> </h6>
                             </div>
                             <span class="rating">
                               <% let rates=rev.Rating;%>
                                 <% for(var i=0; i<rates; i++){%>
                                   <i class="fa-solid fa-star"></i>
                                   <%}%>
+                                  <%=rates%>/5
                                 </span>
                             <div>
                               <p>
@@ -165,17 +172,18 @@
                     <% if( diffDays<=7 ) { %>
                         <div class="btn">
                             <div class="rev">
-                                <%=activity.Header%>
+                                <h4><%=activity.Header%></h4>
                             </div>
                             <div class="rev" style="margin-bottom:6px;">
                                 <%var daterev= rev.Date.split(',')[0];%>
-                              <h6 class="R"> <%=rev.Username%> wrote a review at <%=daterev%> </h6>
+                              <h6 class="R"> <%=rev.Username%> wrote a review on <%=daterev%> </h6>
                             </div>
                             <span class="rating">
                               <% let rates=rev.Rating;%>
                                 <% for(var i=0; i<rates; i++){%>
                                   <i class="fa-solid fa-star"></i>
                                   <%}%>
+                                  <%=rates%>/5
                                 </span>
                             <div>
                               <p>

@@ -34,8 +34,8 @@ const validateHotel = () => {
             .isString()
             .withMessage("Description must be a string")
             .bail()
-            .isLength({min:70})
-            .withMessage("Description must be atleast 80 characters"),
+            .isLength({min:100})
+            .withMessage("Description must be atleast 100 characters"),
 
         body('finalamens')
             .exists({ checkFalsy: true })

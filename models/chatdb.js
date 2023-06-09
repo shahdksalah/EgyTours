@@ -19,10 +19,10 @@ const ChatSchema = new Schema(
       type: String,
       required: [true,'Message is required'],
     },
-    dateTime: {
-      type: Date,
-      required: [true,'Date is required'],
-    },
+    // dateTime: {
+    //   type: Date,
+    //   required: [true,'Date is required'],
+    // },
   },
   { timestamps: true }
 );

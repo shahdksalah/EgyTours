@@ -13,9 +13,12 @@ router.get("/", async function (req, res) {
     user: !req.session.authenticated ? "" : req.session.user,chats:chats});
   });
 
-  router.post('/saveChat',async(req,res)=>{
+  router.post('/save',async(req,res)=>{
     try{
-       console.log("nameschat")
+       console.log("nameschat");
+       console.log(req.body.sender_id);
+       console.log(req.body.receiver_id);
+       console.log(req.body.message);
         var chat=new Chat({
             sender_id:req.body.sender_id,
             receiver_id:req.body.receiver_id,

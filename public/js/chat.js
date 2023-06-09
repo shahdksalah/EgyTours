@@ -26,7 +26,7 @@ if (type.value === "admin") {
     receiver_id=document.getElementById("receiverid").innerText;
 } else {
     ur="chat1/saveChat"
-    receiver_id='6473bed00f4f61858f1cc898';
+    receiver_id='64826bd80151e2560e7fa4f5';
 }
 
 
@@ -36,11 +36,11 @@ console.log("submit")
 e.preventDefault();
 
 if (type.value === "admin") {
-    ur="chat/saveChat"
+    ur="chat/save"
     receiver_id=document.getElementById("receiverid").innerText;
 } else {
-    ur="chat1/saveChat"
-    receiver_id='6473bed00f4f61858f1cc898';
+    ur="chat1/save"
+    receiver_id='64826bd80151e2560e7fa4f5';
 }
 
 console.log(receiver_id);
@@ -98,7 +98,7 @@ $.ajax({
         if (type.value === "admin") {
             receiver_id=document.getElementById("receiverid").innerText;
         } else {
-            receiver_id='6473bed00f4f61858f1cc898';
+            receiver_id='64826bd80151e2560e7fa4f5';
         }
 
 
@@ -110,7 +110,7 @@ $.ajax({
 
 
 function addMessagetoUI(isOwnMessage, data) {
-const element = `
+var element = `
 <li class="${
     isOwnMessage ? "message-right": "message-left"
     }" >
@@ -121,6 +121,7 @@ const element = `
     </p>
     </li>
                 `;
+
 messageContainer.innerHTML += element;
 scrollToBottom();
 }

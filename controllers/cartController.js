@@ -185,6 +185,7 @@ const removeFromCart = async (req, res) => {
 }
 
 const clearCart = async (req, res) => {
+  console.log("entered");
   await Cart.findOneAndDelete().where("User").equals(req.session.user._id)
     .then(() => {
       res.render("cart", {

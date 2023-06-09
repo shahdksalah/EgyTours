@@ -1,7 +1,7 @@
 const Chat = require("../models/chatdb");
 
 const saveChat=async(req,res)=>{
-    try{
+    
         console.log("controller")
         var chat=new Chat({
             sender_id:req.body.sender_id,
@@ -11,10 +11,7 @@ const saveChat=async(req,res)=>{
 
         var newChat=await chat.save();
         res.status(200).send({success:true,msg:'Chat inserted!',data:newChat});
-    }
-    catch(error){
-        res.status(400).send({succes:false,msg:error.message});
-    }
+   
 }
 
 const sChat=async(req,res)=>{

@@ -9,8 +9,8 @@
 
     <link rel="stylesheet" href="/css/styleAdminDashboard.css">
     <link rel="stylesheet" href="/css/styleHF_ALL.css">
-    <link rel="stylesheet" type="text/css" href="/css/styleHotels.css">
-    <link rel="stylesheet" type="text/css" href="/css/styleActivities.css">
+    <link rel="stylesheet"  href="/css/styleHotels.css">
+    <link rel="stylesheet"  href="/css/styleActivities.css">
 
 </head>
 <style>
@@ -52,14 +52,13 @@
                     <% const checkout = new Date(year,month-1,day ).getTime(); %>
                     <%console.log(checkout)%>
                     <% if(checkout > date) { %>
-                    <div id="btn" style="margin-right:30px;">
+                    <div id="btn"  style="margin-right:30px;">
                 <% hotels.forEach((hotel) => { %>
                  <% if(hotel1.id == hotel._id) { %>
                     <h1><%=name%></h1>
                     <h2><%=hotel.Name%></h2>
                 <% } %>
                 <% }) %>
-                <% } %>
                
                     
                     <strong>Check in:</strong>
@@ -82,7 +81,8 @@
                     <strong>Price:</strong>
                     <%=hotel1.price %>
                  </div>    
-                 
+                
+                <% } %>
                 <% } %>
                 <% }) %>
                

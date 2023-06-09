@@ -97,14 +97,16 @@ function isAvail(){
   document.getElementById("subForm").style.display="none";
   document.getElementById("t-error").innerHTML=""
 
-  if(checkIn=="" || checkOut=="" || adults=="" || children=="" || rooms=="" || roomType=="" || name==""){
+  if(checkIn=="" || checkOut=="" || adults=="" || rooms=="" || roomType=="" || name==""){
      document.getElementById("t-error").innerHTML="All fields required"
   }
+  else{
+
     
   $.ajax({
       url:`/hotels/browse/${name}/submit`,
       method: 'POST',
-      data: { name:name,adults:adults,children:children,rooms:rooms,roomType:roomType,name:name},
+      data: { checkIn:checkIn,checkOut:checkOut,name:name,adults:adults,children:children,rooms:rooms,roomType:roomType,name:name},
       success: function (response) {
         console.log(response.msg);
             if(response.msg==="Available"){
@@ -114,6 +116,7 @@ function isAvail(){
                 $('#ch').val(children);
                 $('#ro').val(rooms);
                 $('#rt').val(roomType);
+                $('#p').html("Total Price: "+response.price+" LE")
                 $('#subForm').css("display","block");
             }
             else if(response.msg==="Not Available"){
@@ -129,6 +132,7 @@ function isAvail(){
             else if(response.msg==="found"){
               $('#m').css("display","block")
               $('#add'). css("display","none")
+              $('#p').html("Total Price: "+response.price+" LE")
               $('#subForm').css("display","block");
             }
 
@@ -137,7 +141,8 @@ function isAvail(){
 
       }
   });
-     
+  
+  }
 
 
 }

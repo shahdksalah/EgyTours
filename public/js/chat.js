@@ -82,7 +82,15 @@ $.ajax({
 
     //for receiving a message
     socket.on('loadNewChat', (data) => {
-        console.log()
+        console.log("received")
+
+        if (type.value === "admin") {
+            receiver_id=document.getElementById("receiverid").innerText;
+        } else {
+            receiver_id='6473bed00f4f61858f1cc898';
+        }
+
+
         if(sender_id==data.receiver_id && receiver_id==data.sender_id){
             console.log(data);
             addMessagetoUI(false, data);
@@ -99,7 +107,7 @@ const element = `
                     <p class="message">
                         ${data.message}
                         <span>
-                        ${data.name} ${moment(data.dateTime).fromNow()}
+                        ${moment(data.dateTime).fromNow()}
                         </span>
                     </p>
                     </li>

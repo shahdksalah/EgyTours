@@ -51,6 +51,8 @@ function sendMessage() {
 if (messageInput.value === "") return;
 console.log(messageInput.value);
 
+console.log(sender_id);
+console.log(receiver_id);
 
 
 $.ajax({
@@ -59,8 +61,8 @@ $.ajax({
     data: {  
     sender_id: sender_id,
     receiver_id:receiver_id,
-    message: messageInput.value,
-    dateTime: new Date(),  },
+    message: messageInput.value},
+    // dateTime: new Date(),  },
 
     success: function (response) {
     if(response.success){
@@ -75,6 +77,15 @@ $.ajax({
         alert(response.msg)
     }
     },
+    error: function(xhr, status, err) {
+        switch (status){
+        case 'timeout': {}
+        case 'parseerror': {}
+        case 'abort': {}
+        case 'error': {}
+        default: {}
+        }
+      }
 
 });
 
@@ -100,15 +111,15 @@ $.ajax({
 
 function addMessagetoUI(isOwnMessage, data) {
 const element = `
-                    <li class="${
-                    isOwnMessage ? "message-right" : "message-left"
-                    }">
-                    <p class="message">
-                        ${data.message}
-                        <span>
-                        </span>
-                    </p>
-                    </li>
+<li class="${
+    isOwnMessage ? "message-right": "message-left"
+    }" >
+    <p class="message">
+        ${data.message}
+        <span>
+        </span>
+    </p>
+    </li>
                 `;
 messageContainer.innerHTML += element;
 scrollToBottom();
@@ -127,4 +138,3 @@ function openChat(name,id){
      document.getElementById("chat").style.display="block";
 }
 
-// messageContainer.scrollTo(0, messageContainer.scrollHeight);

@@ -53,42 +53,30 @@
           <p id="name-input" class="name-input" ></p> 
       </div>
       <ul class="message-container" id="message-container">
-        <%if(user!=""){%>
-        <%chats.forEach(chat=>{%>
-          <%if(chat.receiver_id==user._id){%>
-            <li class="m-left">
-              <p class="m">
-                <%=chat.message%>
-                  <span><%=chat.createdAt%></span>
-              </p>
-          </li>
-          <%}else{%>
-          <li class="m-right">
-            <p class="m">
-              <%=chat.message%>
-                <span><%=chat.createdAt%></span>
-            </p>
-          </li>
-          <%}%>
-        <%})%>
-        <%}%>
         
+        <%if(user!=""){%>
+          <%chats.forEach(chat=>{%>
+            <%if(chat.receiver_id==user._id){%>
           <li class="message-left">
                
               <p class="message">
-                  <span></span>
+                <%=chat.message%>
+                <span></span>
               </p>
           </li>
+          <%}else{%>
           <li class="message-right">
               <p class="message">
-                  <span></span>
+                <%=chat.message%>
+                <span></span>
               </p>
           </li>
+          <%}%>
+          <%})%>
+          <%}%>
       </ul>
 
-      <script>
-        scrollToBottom();
-      </script>
+   
 
       <form class="message-form" id="message-form">
           <input type="text" name="message" id="message-input" class="message-input">

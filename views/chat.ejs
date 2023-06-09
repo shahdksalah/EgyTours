@@ -53,6 +53,7 @@
           <p id="name-input" class="name-input" ></p> 
       </div>
       <ul class="message-container" id="message-container">
+        <%if(user!=""){%>
         <%chats.forEach(chat=>{%>
           <%if(chat.receiver_id==user._id){%>
             <li class="m-left">
@@ -70,6 +71,7 @@
           </li>
           <%}%>
         <%})%>
+        <%}%>
           <li class="message-left">
                
               <p class="message">

@@ -10,7 +10,7 @@ router.get("/", async function (req, res) {
     console.log(Users);
     var chats=await Chat.find();
     res.render("chat", { users: (Users === 'undefined' ? "" : Users),
-    user: !req.session.authenticated ? "" : req.session.user,chats:chat});
+    user: !req.session.authenticated ? "" : req.session.user,chats:chats});
   });
 
   router.post('/saveChat',async(req,res)=>{

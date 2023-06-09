@@ -57,14 +57,14 @@
         <%chats.forEach(chat=>{%>
           <%if(chat.receiver_id==user._id){%>
             <li class="m-left">
-              <p class="message">
+              <p class="m">
                 <%=chat.message%>
                   <span><%=chat.createdAt%></span>
               </p>
           </li>
           <%}else{%>
           <li class="m-right">
-            <p class="message">
+            <p class="m">
               <%=chat.message%>
                 <span><%=chat.createdAt%></span>
             </p>
@@ -72,6 +72,7 @@
           <%}%>
         <%})%>
         <%}%>
+        
           <li class="message-left">
                
               <p class="message">
@@ -84,6 +85,10 @@
               </p>
           </li>
       </ul>
+
+      <script>
+        scrollToBottom();
+      </script>
 
       <form class="message-form" id="message-form">
           <input type="text" name="message" id="message-input" class="message-input">

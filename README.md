@@ -1,1 +1,1 @@
-# project
+Fully equipped Travel Web Application created using Nodejs and Javascript. It includes features such as registration, login, searching and booking for hotels and activities as well as updating client profiles. Admin side has ample customization features and validations for full control of client's view. 
